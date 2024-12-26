@@ -21,7 +21,8 @@ names(islas) <- islas.nombres
 islas$island.area.log<- log(islas$island.area)
 islas$species.richness.log <- log(islas$species.richness)
 ## Salva arquivo com objeto final esperado
-saveRDS(islas, file = "ejercicio_3.rds")
+ej3_solucion <- islas
+saveRDS(ej3_solucion, file = "3_anadindo_variables.rds")
 
 ## testes
 ## No hay un objeto <code>islas</code>
@@ -36,5 +37,5 @@ any("species.richness.log" %in% names(islas))
 identical(islas$island.area.log, ilhas$island.area.log)
 ## La variable <code>species.richness.log</code> no tiene los valores esperados. Asegúrate de haber calculado los logaritmos naturales, con la función <code>log</code>.
 identical(islas$species.richness.log, ilhas$species.richness.log)
-## El objeto <code>islas</code> no tiene todo que se espera.  
+## El objeto <code>islas</code> no tiene todo que se espera.   
 identical(islas, ilhas)
