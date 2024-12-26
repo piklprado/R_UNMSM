@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>enunciados.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h2 id="leyendo-datos">1. Leyendo datos</h2>
+<p>En nuestros ejercicios utilizaremos los datos recopilados por <a href="https://onlinelibrary.wiley.com/doi/10.1111/jbi.14149">Ohyama et al. 2021</a> ,para analisar la relación entre área y riqueza de especies.</p>
+<p>El fichero <a href="http://notar.ib.usp.br/arquivo/51">islas.csv</a> tiene datos de areas y número de espécies por isla. Descargue el fichero en el directorio de su espacio de trabajo (<em>workspace</em>) R, donde vas executar el código deste ejercício.</p>
+<p>Cree un código (script) en R que realice los siguientes pasos:</p>
+<ol type="1">
+<li><p>Lee el contenido del fichero <a href="http://notar.ib.usp.br/arquivo/51">islas.csv</a> en un <em>data frame</em> que debes nombrar <code>islas.raw</code>.
+<strong>Importante:</strong> su comando debe leer el archivo csv desdeu espacio de trabajo en R. No utilice rutas a otros directorios de trabajo en su código.</p></li>
+<li><p>Cree un objeto denominado <code>islas.nombres</code> con los nombres de las variables del <em>data frame</em>
+<code>islas.raw</code>.</p></li>
+<li><p>Cambie todas las cadenas del objeto <code>islas.nombres</code> a minúsculas utilizando la función <code>tolower</code></p></li>
+<li><p>Sustituya todas las apariciones del carácter «_» en el objeto <code>islas.nombres</code> por el carácter «.», utilizando la función <code>gsub</code>.
+    <strong>Importante:</strong> use el argumento <code>fixed = TRUE</code> de <code>gsub</code>.</p></li>
+<li><p>Cree una copia del objeto <code>islas.raw</code> denominada <code>islas</code></p></li>
+<li><p>Cambie los nombres de las variables en el objeto <code>islas</code> por los nombres que están en el objeto <code>islas.nombres</code>.</p></li>
+</ol>
+
+</body>
+</html>
