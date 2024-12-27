@@ -14,7 +14,7 @@ En este ejercicio convertiremos en factores variables de los *data frame* `islas
 
 ##### ¿Ni idea de por qué recibes mensajes de error? 
 
-Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/4_variables_categoricas_islas.rds) y [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/4_variables_categoricas_archipeilagos.rds) en su espacio de trabajo y leerlos con los comandos:
+Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/4_variables_categoricas_islas.rds) y [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/4_variables_categoricas_archipielagos.rds) en su espacio de trabajo y leerlos con los comandos:
 
 `ej4a  <-  readRDS( "4_variables_categoricas_islas.rds")` 
 

@@ -49,8 +49,8 @@ archipielagos$island.type <- factor(archipielagos$island.type,
                                     labels = c("Oceanic", "Continental", "Habitat-Patches"))
 
 ## Salva arquivos com os data frames esperados
-saveRDS(ilhas, "4_variables_categoricas_islas.rds")
-saveRDS(archipielagos, "4_variables_categoricas_archip.rds")
+saveRDS(islas, "4_variables_categoricas_islas.rds")
+saveRDS(archipielagos, "4_variables_categoricas_archipielagos.rds")
 
 ## testes
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128">ejercício 1</a>en tu código?
