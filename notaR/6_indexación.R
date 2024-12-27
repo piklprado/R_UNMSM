@@ -24,10 +24,22 @@ arquip$island.type <- factor(arquip$island.type,
                                     labels = c("Oceanic", "Continental", "Habitat-Patches"))
 ## Ejercicio 5
 ilhas.mean.area.log <- aggregate( island.area.log ~ island.type + biogeo.realm, FUN = mean, data = ilhas )  
-## Numero de ilhas por study site
-islas.N <- as.data.frame(table(islas$study.id))
+## Numero de islas por study site
+ilhas.N <- as.data.frame(table(ilhas$study.id))
 ## manipulacao de nomes
-names(islas.N) <- c("study.id", "n.muestra")
+names(ilhas.N) <- c("study.id", "n.muestra")
+## Ejercicio 6
+## Archipelagos con por lo menos 6 islas
+ilhas.N.6 <- ilhas.N$n.muestra > 6
+## Filtra por logico
+## nombres de los arch
+ilhas.ids <- ilhas.N$study.id[ilhas.N.6]
+## Selección por indexación de las islas de los archipielagos con N>6
+ilhas$seleccion <- ilhas$study.id %in% ilhas.ids
+ilhas.sel <- ilhas[ilhas$seleccion, ]
+## Lo mismo para los archipielagos
+arquip$seleccion <- arquip$study.id %in% ilhas.ids 
+arquip.sel <- arquip[arquip$seleccion,]
 
 ## Solucao ##
 ## Ejercicio 1
@@ -55,20 +67,35 @@ archipielagos$island.type <- factor(archipielagos$island.type,
                                     labels = c("Oceanic", "Continental", "Habitat-Patches"))
 ## Ejercicio 5
 islas.mean.area.log <- aggregate( island.area.log ~ island.type + biogeo.realm, FUN = mean, data = islas )
+## Numero de ilhas por study site
+islas.N <- as.data.frame(table(islas$study.id))
+## manipulacao de nomes
+names(islas.N) <- c("study.id", "n.muestra")
+
+## Ejercicio 6
+## Archipelagos con por lo menos 6 islas
+islas.N.6 <- islas.N$n.muestra > 6
+## Filtra por logico
+## nombres de los arch
+islas.ids <- islas.N$study.id[islas.N.6]
+## Selección por indexación de las islas de los archipielagos con N>6
+islas$seleccion <- islas$study.id %in% islas.ids
+islas.sel <- islas[islas$seleccion, ]
+## Lo mismo para los archipielagos
+archipielagos$seleccion <- archipielagos$study.id %in% islas.ids 
+archipielagos.sel <- archipielagos[archipielagos$seleccion,]
 
 ## Arquivo da solução
-saveRDS(islas.mean.area.log, "5_aggregate.rds")
+saveRDS(islas.sel, "6_seleccion_islas.rds")
+saveRDS(archipielagos.sel, "6_seleccion_archipielagos.rds")
 
 ## Testes ##
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128"> ejercício 1</a> en tu código?
 exists("islas")
 ## No hay un objeto <code>archipielagos</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/130">ejercício 2</a> en tu código?
 exists("archipielagos")
-## El objeto <code>islas</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 4 en tu código?
+## El objeto <code>islas</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 4 en tu código? Además, ¿Hás añadido la variable `seleccion` al objeto `islas`?
 identical(islas, ilhas)
-## El objeto <code>archipielagos</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 4 en tu código?
+## El objeto <code>archipielagos</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 4 en tu código? Además, ¿Hás añadido la variable `seleccion` al objeto `archipielagos`?
 identical(archipielagos, arquip)
 ## No hay un  objeto <code>islas.mean.area.log</code>.
-exists("islas.mean.area.log")
-## El objeto <code>islas.mean.area.log</code> no és exactamente el esperado. Utiliza la sintaxis de formula de la funcción <code>aggregate</code>.
-identical(islas.mean.area.log, ilhas.mean.area.log)
