@@ -12,11 +12,11 @@ En este ejercicio usaremos el  *data frame* `islas` que hás creado y trabajado 
 
 ##### ¿Ni idea de por qué recibes mensajes de error? 
 
-Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/5_aggregacion_islas_mean.rds) y  [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/5_aggregacion_islas_N.rds) en su espacio de trabajo y leerlos con los comandos:
+Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/5_agregacion_islas_mean.rds) y  [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/5_agregacion_islas_N.rds) en su espacio de trabajo y leerlos con los comandos:
 
-`ej5a  <-  readRDS( "5_aggregacion_islas_mean.rds")`
+`ej5a  <-  readRDS( "5_agregacion_islas_mean.rds")`
 
-`ej5b  <-  readRDS( "5_aggregacion_islas_N.rds")`
+`ej5b  <-  readRDS( "5_agregacion_islas_N.rds")`
 
 
 Los objetos `ej5a` y `ej5b`  tendrán los *data frame* tal cual esperados por este ejercício. Puedes compararlos con los objetos que creaste en tu código, con la función `identical`. 
