@@ -1,0 +1,35 @@
+name: '101.00 Bienvenido(a) a notaR'
+description: |-
+    <p>Hola, este es el primer ejercicio que resolverás en notaR, y está diseñado para que te familiarices con el concepto de sistema de corrección automática y su funcionamiento. </p>
+    <p>notaR funciona ejecutando el script (código) que envías y comprobando que cumple los requisitos del ejercicio. No comprobamos qué comandos escribes, sino cuál es el resultado, ya que hay varias formas de resolver los mismos problemas.</p>
+    <p>Para que te hagas una idea de cómo funciona el sistema, en este ejercicio tienes que crear dos objetos. El primero es un vector de caracteres llamado <code>frutas</code>, que contiene dos elementos, que son las cadenas de letras «plátano» y «naranja».</p>
+    <p>Para empezar, cree un archivo de texto sin formato (txt) en un procesador de textos (notepad, word o otro) que contenga el comando:
+    <br>
+    <code>
+     frutas <- c("platano", "naranja")
+    </code>
+    <p>Guarde este archivo y envíelo al intermediario haciendo clic en el botón "Envie um arquivo" («Enviar un archivo»). También puede copiar el texto del comando y pegarlo en la casilla abajo  de «ou cole seu código aqui:» («o pegue su código aquí:»)</p>
+    <p>¿Listo? Debes recibir un mensaje indicando que tu nota ha sido del 50% («sua nota: 50%»), y dándote una pista sobre cómo mejorar.  El siguiente paso es crear un objeto llamado <code>ensalada</code>, que contenga las cadenas «tomate» y «lechuga». Añade la siguiente línea a tu archivo de código (script), que todavia tiene un error:<br>
+    <code>
+    ensalada <- c("tomate", "lechuza")
+    </code>
+
+    <p>Envíalo al corrector y comprueba cuál es ahora el mensaje de ayuda. Corrige lo que has escrito y envíalo de nuevo para obtener la máxima puntuación.</p>
+    <p>Por último, ten en cuenta que a veces cometemos errores de sintaxis en R y el código no se ejecuta. Prueba a enviar un archivo con la siguiente línea, en la que faltan los corchetes:
+    <br>
+    <code>
+    ensalada <- c"tomate", "lechuga"
+    </code>
+    <br>
+    <p>Y recibes el mensaje «Ocorreu um erro na execução do seu código! Corrija e tente novamente.» («¡Ha habido un error al ejecutar tu código! Corrígelo e inténtalo de nuevo»). Haz clic en el enlace de ayuda abajo de todos los enunciados para obtener pistas sobre lo que falla.</p>
+    <p>Ahora debes reciber el mensaje «Parabéns! Seu código passou em todos os testes!
+    Toca aqui!» («Enhorabuena. ¡Tu código ha superado todas las pruebas! ¡Choca esos cinco! »). </p>
+precondicoes: ''
+topico_id: 1
+testes:
+    - { condicao: 'exists("frutas")', dica: 'No hay un objeto llamado "frutas".', peso: 1.0 }
+    - { condicao: 'class(frutas)=="character"', dica: 'El objeto frutas debe tener solamente cadenas de caracteres', peso: 1.0 }
+    - { condicao: 'identical(frutas, c("platano", "naranja"))', dica: 'El objeto "frutas" no tiene las cadenas "platano" y/ó "naranja", y sólo esto.', peso: 1.0 }
+    - { condicao: 'exists("ensalada")', dica: 'No hay un objeto llamado "ensalada".', peso: 1.0 }
+    - { condicao: 'class(ensalada)=="character"', dica: 'El objeto "frutas" debe tener solamente cadenas de caracteres', peso: 1.0 }
+    - { condicao: 'identical(ensalada, c("tomate", "lechuga"))', dica: 'El objeto "ensalada" no tiene las cadenas "tomate" y/ó "lechuga", y sólo esto.', peso: 1.0 }

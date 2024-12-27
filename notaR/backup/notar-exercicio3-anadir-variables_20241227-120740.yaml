@@ -1,0 +1,30 @@
+name: '3. Añadir variables'
+description: |-
+    <p>En este ejercicio vamos a añadir nuevas variables al <em>data frame</em> <code>islas</code> que hás creado en el ejercício <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>.</p>
+    <ol type="1">
+    <li><p>Inicia tu script R con el código que has utilizado para resolver el ejercicio <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>. Este código debe crear el objeto <code>islas</code> en tu espacio de trabajo.</p></li>
+    <li><p>Añade una variable al objeto <code>islas</code> que contenga el logaritmo natural de la variable <code>species.richness</code>. Esa nueva variable debe llamarse <code>species.richness.log</code>.</p></li>
+    <li><p>Añade una otra variable al objeto <code>islas</code> que contenga el logaritmo natural de la variable <code>island.area</code>. Esa nueva variable debe llamarse <code>island.area.log</code>.</p></li>
+    </ol>
+    <h5 id="ni-idea-de-por-qué-recibes-mensajes-de-error">¿Ni idea de por qué recibes mensajes de error?</h5>
+    <p>Quizás le ayude descargar <a href="https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/3_anadir_variables.rds">ese fichero</a> en su espacio de trabajo y leerlo con el comando:</p>
+    <p><code>ej3  &lt;-  read.RDS( "3_anandir_variables.rds" )</code></p>
+    <p>El objeto <code>ej3</code> tendrá el <em>data frame</em> tal cual esperado por este ejercício. Puedes compararlo con el <em>data frame</em> que creaste en tu código, con la función <code>identical</code>.</p>
+    <p>Pero atención: no incluyas eses comandos en su <em>script</em> de respuesta a este ejercício.</p>
+precondicoes: |-
+    ilhas.raw <- read.csv("islas.csv")
+    ilhas.nombres <- names(ilhas.raw)
+    ilhas.nombres <- gsub("_", ".", tolower(ilhas.nombres), fixed = TRUE)
+    ilhas <- ilhas.raw
+    names(ilhas) <- ilhas.nombres 
+    ilhas$island.area.log<- log(ilhas$island.area)
+    ilhas$species.richness.log <- log(ilhas$species.richness)
+topico_id: 12
+testes:
+    - { condicao: 'exists("islas")', dica: 'No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128">ejercício </a>en tu código?', peso: 1.0 }
+    - { condicao: is.data.frame(islas), dica: 'El objeto <code>islas</code> no es un *data frame*. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128">ejercício </a>en tu código?', peso: 1.0 }
+    - { condicao: 'any("island.area.log" %in% names(islas))', dica: 'No hay una variable de nombre <code>island.area.log</code> en el objeto <code>islas</code>.', peso: 1.0 }
+    - { condicao: 'any("species.richness.log" %in% names(islas))', dica: 'No hay una variable de nombre <code>species.richness.log</code> en el objeto <code>islas</code>.', peso: 1.0 }
+    - { condicao: 'identical(islas$island.area.log, ilhas$island.area.log)', dica: 'La variable <code>island.area.log</code> no tiene los valores esperados. Asegúrate de haber calculado los logaritmos naturales de la variable <code>island.area</code>, con la función <code>log</code>.', peso: 1.0 }
+    - { condicao: 'identical(islas$species.richness.log, ilhas$species.richness.log)', dica: 'La variable <code>species.richness.log</code> no tiene los valores esperados. Asegúrate de haber calculado los logaritmos naturales de todos los valores de <code>species.richness</code>, con la función <code>log</code>.', peso: 1.0 }
+    - { condicao: 'identical(islas, ilhas)', dica: 'El objeto <code>islas</code> no tiene todo que se espera. Comparalo com el objeto esperado com la función <code>identical</code>.', peso: 1.0 }
