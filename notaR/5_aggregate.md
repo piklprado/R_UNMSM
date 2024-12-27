@@ -10,6 +10,6 @@ Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM
 
 `ej5  <-  readRDS( "5_aggregate.rds")` 
 
-El objetos `ej5` tendra el *data frame* tal cual esperado por este ejercício. Puedes compararlos con los objetos que creaste en tu código, con la función `identical`. 
+El objetos `ej5` tendrá el *data frame* tal cual esperado por este ejercício. Puedes compararlos con los objetos que creaste en tu código, con la función `identical`. 
 
 Pero atención: no incluyas eses comandos en su *script* de respuesta a este ejercício.
