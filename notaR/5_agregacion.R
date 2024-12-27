@@ -27,6 +27,8 @@ ilhas.mean.area.log <- aggregate( island.area.log ~ island.type + biogeo.realm, 
 ilhas.N <- as.data.frame(table(ilhas$study.id))
 ## manipulacao de nomes
 names(ilhas.N) <- c("study.id", "n.muestra")
+## Coercao
+ilhas.N$study.id <- as.character(ilhas.N$study.id)
 ## Solucion 1
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
@@ -56,6 +58,8 @@ islas.mean.area.log <- aggregate( island.area.log ~ island.type + biogeo.realm, 
 islas.N <- as.data.frame(table(islas$study.id))
 ## manipulacao de nomes
 names(islas.N) <- c("study.id", "n.muestra")
+## Coercao
+islas.N$study.id <- as.character(islas.N$study.id)
 ## Ficheros esperados ##
 saveRDS(islas.mean.area.log, "5_agregacion_islas_mean.rds")
 saveRDS(islas.N, "5_agregacion_islas_N.rds")
@@ -79,6 +83,8 @@ exists("islas.N")
 is.data.frame(islas.N)
 ## Los nombres de las variables del objeto <code>islas.N</code> no son los esperados.
 identical(names(ilhas.N), names(islas.N))
+## La variable <code>study.id</code> del objeto <code>islas.N</code> nos es de classe <code>character</code>.
+class(islas.N$study.id) == "character"
 ## El objeto <code>islas.N</code> no es exactamente lo esperado.
 identical(islas.N, ilhas.N)
 

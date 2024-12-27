@@ -10,6 +10,8 @@ En este ejercicio usaremos el  *data frame* `islas` que hás creado y trabajado 
 
 5. Cambie los nombres de las dos variables del objeto `islas.N` para `study.id` y `n.muestra`.
 
+6. Convierta la variable `study.id` del objeto `islas.N` para la clase `character`.
+
 ##### ¿Ni idea de por qué recibes mensajes de error? 
 
 Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/5_agregacion_islas_mean.rds) y  [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/5_agregacion_islas_N.rds) en su espacio de trabajo y leerlos con los comandos:

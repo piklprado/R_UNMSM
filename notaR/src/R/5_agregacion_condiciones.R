@@ -21,6 +21,8 @@ exists("islas.N")
 is.data.frame(islas.N)
 ## Los nombres de las variables del objeto <code>islas.N</code> no son los esperados.
 identical(names(ilhas.N), names(islas.N))
+## La variable <code>study.id</code> del objeto <code>islas.N</code> nos es de classe <code>character</code>.
+class(islas.N$study.id) == "character"
 ## El objeto <code>islas.N</code> no es exactamente lo esperado.
 identical(islas.N, ilhas.N)
 
