@@ -1,33 +1,3 @@
-## Preconcidiones 1
-ilhas.raw <- read.csv("islas.csv")
-ilhas.nombres <- names(ilhas.raw)
-ilhas.nombres <- gsub("_", ".", tolower(ilhas.nombres), fixed = TRUE)
-ilhas <- ilhas.raw
-names(ilhas) <- ilhas.nombres
-## Precondiciones 2
-arquip.raw <- read.csv("archipielagos.csv")
-arquip.nombres <- names(arquip.raw)
-arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
-arquip <- arquip.raw
-names(arquip) <- arquip.nombres
-#Precondiciones 3
-ilhas$island.area.log<- log(ilhas$island.area)
-ilhas$species.richness.log <- log(ilhas$species.richness)
-## Solucion 1
-islas.raw <- read.csv("islas.csv")
-islas.nombres <- names(islas.raw)
-islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
-islas <- islas.raw
-names(islas) <- islas.nombres
-## Solucion 2
-archipielagos.raw <- read.csv("archipielagos.csv")
-archipielagos.nombres <- names(archipielagos.raw)
-archipielagos.nombres <- gsub("_", ".", tolower(archipielagos.nombres), fixed = TRUE)
-archipielagos <- archipielagos.raw
-names(archipielagos) <- archipielagos.nombres
-## Solucion 3
-islas$island.area.log<- log(islas$island.area)
-islas$species.richness.log <- log(islas$species.richness)
 ## Fichero esperado 3 ##
 saveRDS(islas, file = "3_anadir_variables.rds")
 

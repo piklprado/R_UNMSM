@@ -1,29 +1,24 @@
-## Preconcidiones 1
-ilhas.raw <- read.csv("islas.csv")
-ilhas.nombres <- names(ilhas.raw)
-ilhas.nombres <- gsub("_", ".", tolower(ilhas.nombres), fixed = TRUE)
-ilhas <- ilhas.raw
-names(ilhas) <- ilhas.nombres
-## Precondiciones 2
+################################################################################
+## 2. Leyendo más datos
+################################################################################
+
+## Pre-condicao
 arquip.raw <- read.csv("archipielagos.csv")
 arquip.nombres <- names(arquip.raw)
 arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
 arquip <- arquip.raw
 names(arquip) <- arquip.nombres
-## Solucion 1
-islas.raw <- read.csv("islas.csv")
-islas.nombres <- names(islas.raw)
-islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
-islas <- islas.raw
-names(islas) <- islas.nombres
-## Solucion 2
+
+
+## Solucao
 archipielagos.raw <- read.csv("archipielagos.csv")
 archipielagos.nombres <- names(archipielagos.raw)
 archipielagos.nombres <- gsub("_", ".", tolower(archipielagos.nombres), fixed = TRUE)
 archipielagos <- archipielagos.raw
 names(archipielagos) <- archipielagos.nombres
 
-## Condiciones 2
+
+## Condicoes
 ## No hay un objeto <code>archipielagos</code>.
 exists("archipielagos")
 ## El objeto <code>archipielagos</code> no es un data frame.
@@ -40,4 +35,6 @@ is.data.frame(archipielagos)
 identical(arquip.nombres, names(archipielagos))
 ## El objeto <code>archipielagos</code> no tiene los mismos datos que el fichero <a href="http://notar.ib.usp.br/arquivo/52">archipielagos.csv</a>.
 identical(arquip, archipielagos)
+
+
 

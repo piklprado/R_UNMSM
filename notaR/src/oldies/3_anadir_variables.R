@@ -1,37 +1,32 @@
-## Preconcidiones 1
+## Precondicoes
 ilhas.raw <- read.csv("islas.csv")
 ilhas.nombres <- names(ilhas.raw)
 ilhas.nombres <- gsub("_", ".", tolower(ilhas.nombres), fixed = TRUE)
 ilhas <- ilhas.raw
-names(ilhas) <- ilhas.nombres
-## Precondiciones 2
-arquip.raw <- read.csv("archipielagos.csv")
-arquip.nombres <- names(arquip.raw)
-arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
-arquip <- arquip.raw
-names(arquip) <- arquip.nombres
-#Precondiciones 3
+names(ilhas) <- ilhas.nombres 
+## arquip.raw <- read.csv("archipielagos.csv")
+## arquip.nombres <- names(arquip.raw)
+## arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
+## arquip <- arquip.raw
+##names(arquip) <- arquip.nombres
 ilhas$island.area.log<- log(ilhas$island.area)
 ilhas$species.richness.log <- log(ilhas$species.richness)
-## Solucion 1
+
+## Solucao
+## Cria o objeto islas
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
 islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
 islas <- islas.raw
 names(islas) <- islas.nombres
-## Solucion 2
-archipielagos.raw <- read.csv("archipielagos.csv")
-archipielagos.nombres <- names(archipielagos.raw)
-archipielagos.nombres <- gsub("_", ".", tolower(archipielagos.nombres), fixed = TRUE)
-archipielagos <- archipielagos.raw
-names(archipielagos) <- archipielagos.nombres
-## Solucion 3
 islas$island.area.log<- log(islas$island.area)
 islas$species.richness.log <- log(islas$species.richness)
-## Fichero esperado 3 ##
+
+
+## Salva arquivo com objeto final esperado
 saveRDS(islas, file = "3_anadir_variables.rds")
 
-## Condiciones 3 ##
+## testes
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128">ejercício </a>en tu código?
 exists("islas")
 ## El objeto <code>islas</code> no es un <em>data frame</em>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128">ejercício </a>en tu código?
@@ -46,4 +41,3 @@ identical(islas$island.area.log, ilhas$island.area.log)
 identical(islas$species.richness.log, ilhas$species.richness.log)
 ## El objeto <code>islas</code> no tiene todo que se espera. 
 identical(islas, ilhas)
-

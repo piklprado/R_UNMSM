@@ -1,17 +1,22 @@
-## Preconcidiones 1
+################################################################################
+## 1. Leyendo datos
+################################################################################
+## Pre condiões
 ilhas.raw <- read.csv("islas.csv")
 ilhas.nombres <- names(ilhas.raw)
 ilhas.nombres <- gsub("_", ".", tolower(ilhas.nombres), fixed = TRUE)
 ilhas <- ilhas.raw
 names(ilhas) <- ilhas.nombres
-## Solucion 1
+
+## Solucao
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
 islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
 islas <- islas.raw
 names(islas) <- islas.nombres
 
-## Condiciones 1 ##
+
+## Condicoes ##
 ## No hay un objeto <code>islas.raw</code>
 exists("islas.raw") 
 ## El objeto <code>islas.raw</code> no tiene todo el contenido del fichero "islas.csv". Use la función <code>read.csv</code> para leer el fichero.
@@ -28,4 +33,6 @@ is.data.frame(islas)
 identical(ilhas.nombres, names(islas))
 ## El objeto <code>islas</code> no tiene los mismos datos que el objeto <code>islas.raw</code>,
 identical(ilhas, islas)
+
+
 
