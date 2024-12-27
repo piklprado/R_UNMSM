@@ -57,8 +57,8 @@ islas.N <- as.data.frame(table(islas$study.id))
 ## manipulacao de nomes
 names(islas.N) <- c("study.id", "n.muestra")
 ## Ficheros esperados ##
-saveRDS(islas.mean.area.log, "5_aggregacion_islas_mean.rds")
-saveRDS(islas.N, "5_aggregacion_islas_N.rds")
+saveRDS(islas.mean.area.log, "5_agregacion_islas_mean.rds")
+saveRDS(islas.N, "5_agregacion_islas_N.rds")
 
 ## Condiciones 5 ##
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128"> ejercício 1</a> en tu código?
