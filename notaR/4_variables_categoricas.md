@@ -1,10 +1,10 @@
 En este ejercicio convertiremos en factores variables de los *data frame* `islas` y `archipelagos` que hás creado en los ejercícios 1, 2 y 3. 
 
-1. Inicia tu script R con los códigos que has utilizado para resolver los ejercicios [Leyendo Datos](http://notar.ib.usp.br/exercicio/128), [Leyendo Más Datos](http://notar.ib.usp.br/exercicio/130) y [Añadir Variables](http://notar.ib.usp.br/exercicio/131). Con eso tu código para este ejercício debe cerar los objetos `islas` y `archipielagos` en tu espacio de trabajo.
+1. Inicia tu script R con los códigos que has utilizado para resolver los ejercicios [Leyendo Datos](http://notar.ib.usp.br/exercicio/128), [Leyendo Más Datos](http://notar.ib.usp.br/exercicio/130) y [Añadir Variables](http://notar.ib.usp.br/exercicio/131). Con eso tu código para este ejercício debe crear los objetos `islas` y `archipielagos` en tu espacio de trabajo.
 
 2. Convierte la variable `sar.type` del objeto `islas` en un factor.
 
-3. Convierte la variable `island.type` del objeto `islas` en un factor. Los niveles dese factor devem ser `Oceanic`, `Continental`, `Habitat-Patches`, en este orden. Tenga en cuenta que deberá utilizar el argumento `levels` de la función `factor` para para reordenar los niveles. 
+3. Convierte la variable `island.type` del objeto `islas` en un factor. Los niveles dese factor devem ser `Oceanic`, `Continental`, `Habitat-Patches`, en este orden. Tenga en cuenta que deberá utilizar el argumento `levels` de la función `factor` para reordenar los niveles. 
 
 4. Convierte la variable `sar.type` del objeto `archipielagos` en un factor.
 
