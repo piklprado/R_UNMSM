@@ -10,7 +10,7 @@ En este ejercicio vamos a añadir nuevas variables al *data frame* `islas` que h
 
 Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/3_anadir_variables.rds) en su espacio de trabajo y leerlo con el comando:
 
-`ej3  <-  read.RDS( "3_anadir_variables.rds")` 
+`ej3  <-  readRDS( "3_anadir_variables.rds")` 
 
 El objeto `ej3` tendrá el *data frame* tal cual esperado por este ejercício. Puedes compararlo con el *data frame* que creaste en tu código, con la función `identical`. 
 
