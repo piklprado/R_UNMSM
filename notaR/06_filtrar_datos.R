@@ -29,6 +29,17 @@ ilhas.N <- as.data.frame(table(ilhas$study.id))
 names(ilhas.N) <- c("study.id", "n.muestra")
 ## Coercao
 ilhas.N$study.id <- as.character(ilhas.N$study.id)
+## Solución 6 ##
+ilhas.N.6 <- ilhas.N$n.muestra > 6
+## nombres de los arch
+ilhas.ids <- ilhas.N$study.id[ilhas.N.6]
+##
+ilhas.test <- ilhas$study.id %in% ilhas.ids
+## Selección por indexación de las ilhas de los archipielagos con N>6
+ilhas.sel <- ilhas[ilhas.test, ]
+## Lo mismo para los archipielagos
+arquip.test <- arquip$study.id %in% ilhas.ids
+arquip.sel <- arquip[arquip.test,]
 ## Solucion 1
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
@@ -60,31 +71,61 @@ islas.N <- as.data.frame(table(islas$study.id))
 names(islas.N) <- c("study.id", "n.muestra")
 ## Coercao
 islas.N$study.id <- as.character(islas.N$study.id)
+## Solución 6 #
+islas.N.6 <- islas.N$n.muestra > 6
+## nombres de los arch
+islas.ids <- islas.N$study.id[islas.N.6]
+##
+islas.test <- islas$study.id %in% islas.ids
+## Selección por indexación de las islas de los archipielagos con N>6
+islas.sel <- islas[islas.test, ]
+## Lo mismo para los archipielagos
+archipielagos.test <- archipielagos$study.id %in% islas.ids
+archipielagos.sel <- archipielagos[archipielagos.test,]
 ## Ficheros esperados ##
-saveRDS(islas.mean.area.log, "5_agregacion_islas_mean.rds")
-saveRDS(islas.N, "5_agregacion_islas_N.rds")
+saveRDS(islas.sel, "06_filtrar_islas_sel.rds")
+saveRDS(archipielagos.sel, "06_filtrar_archipielagos_sel.rds")
 
-## Condiciones 5 ##
+## Condiciones 6 ##
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128"> ejercício 1</a> en tu código?
 exists("islas")
 ## No hay un objeto <code>archipielagos</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/130">ejercício 2</a> en tu código?
 exists("archipielagos")
-## El objeto <code>islas</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 4 en tu código?
+## El objeto <code>islas</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 5 en tu código?
 identical(islas, ilhas)
-## El objeto <code>archipielagos</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 4 en tu código?
+## El objeto <code>archipielagos</code> no és exactamente el esperado. ¿Has incluido la solución de los ejercício 1 a 5 en tu código?
 identical(archipielagos, arquip)
-## No hay un  objeto <code>islas.mean.area.log</code>.
-exists("islas.mean.area.log")
-## El objeto <code>islas.mean.area.log</code> no és exactamente el esperado. Utiliza la sintaxis de formula de la funcción <code>aggregate</code>.
-identical(islas.mean.area.log, ilhas.mean.area.log)
-## No hay un objeto <code>islas.N</code>. 
+## No hay un objeto <code>islas.N</code>. ¿Has incluido la solución de los ejercício 1 a 5 en tu código?
 exists("islas.N")
-## El objeto <code>islas.N</code> no es de la classe `dataframe`
-is.data.frame(islas.N)
-## Los nombres de las variables del objeto <code>islas.N</code> no son los esperados.
-identical(names(ilhas.N), names(islas.N))
-## La variable <code>study.id</code> del objeto <code>islas.N</code> nos es de classe <code>character</code>.
-class(islas.N$study.id) == "character"
-## El objeto <code>islas.N</code> no es exactamente lo esperado.
+## El objeto <code>islas.N</code> no es exactamente lo esperado. ¿Has incluido la solución de los ejercício 1 a 5 en tu código?
 identical(islas.N, ilhas.N)
-
+## No hay el objeto <code>islas.N.6</code>
+exists("islas.N.6")
+## El objeto <code>islas.N.6</code> no es de la clase <code>logical</code>
+is.logical(islas.N.6)
+## El objeto <code>islas.N.6</code> no es exactamente lo esperado.
+identical(ilhas.N.6, islas.N.6)
+## No hay el objeto <code>islas.ids</code>
+exists("islas.ids")
+## El objecto <code>islas.ids</code> no es exactamente lo esperado. Quizás te ayude ese comando: <code> islas.N$study.id[islas.N.6]</code>
+identical(islas.ids, ilhas.ids)
+## No hay el objeto <code>islas.test</code>
+exists("islas.test")
+## El objeto <code>islas.test</code> no es de la clase <code>logical</code>
+is.logical(islas.test)
+## El objeto <code>islas.test</code> no es exactamente lo esperado. Quizás te ayude ese comando: <code>islas$study.id %in% islas.ids</code>.
+identical(ilhas.test, islas.test)
+## No hay el objeto <code>islas.sel</code>
+exists("islas.sel")
+## El objeto <code>islas.sel</code> no es exactamente lo esperado.
+identical(islas.sel, ilhas.sel)
+## No hay el objeto <code>archipielagos.test</code>
+exists("archipielagos.test")
+## El objeto <code>archipielagos.test</code> no es de la clase <code>logical</code>
+is.logical(archipielagos.test)
+## El objeto <code>archipielagos.test</code> no es exactamente lo esperado. Quizás te ayude ese comando: <code>archipielagos$study.id %in% arquip.ids</code>.
+identical(arquip.test, archipielagos.test)
+## No hay el objeto <code>archipielagos.sel</code>
+exists("archipielagos.sel")
+## El objeto <code>archipielagos.sel</code> no es exactamente lo esperado.
+identical(archipielagos.sel, arquip.sel)

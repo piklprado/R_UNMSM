@@ -88,10 +88,10 @@ plot(species.richness.log ~ island.area.log,
 ## programacao
 ## un bucle para todos los gráficos
 par(mfrow = c(5,5))
-for(i in 1:length(arch.ids)){
+for(i in 1:length(islas.ids)){
     plot(species.richness.log ~ island.area.log,
          data = islas.sel,
-         subset = study.id == arch.ids[i],
+         subset = study.id == islas.ids[i],
          main = archipielagos$study.location[archipielagos$study.id==arch.ids[i]])
 }
 par(mfrow=c(1,1))

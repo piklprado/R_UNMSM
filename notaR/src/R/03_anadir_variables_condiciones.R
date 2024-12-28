@@ -1,5 +1,5 @@
 ## Fichero esperado 3 ##
-saveRDS(islas, file = "3_anadir_variables.rds")
+saveRDS(islas, file = "03_anadir_variables.rds")
 
 ## Condiciones 3 ##
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128">ejercício </a>en tu código?

@@ -14,11 +14,11 @@ En este ejercicio convertiremos en factores variables de los *data frame* `islas
 
 ##### ¿Ni idea de por qué recibes mensajes de error? 
 
-Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/4_variables_categoricas_islas.rds) y [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/4_variables_categoricas_archipielagos.rds) en su espacio de trabajo y leerlos con los comandos:
+Quizás le ayude descargar [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/04_variables_categoricas_islas.rds) y [ese fichero](https://github.com/piLaboratory/R_UNMSM/raw/refs/heads/master/notaR/04_variables_categoricas_archipielagos.rds) en su espacio de trabajo y leerlos con los comandos:
 
-`ej4a  <-  readRDS( "4_variables_categoricas_islas.rds")` 
+`ej4a  <-  readRDS( "04_variables_categoricas_islas.rds")` 
 
-`ej4b  <-  readRDS( "4_variables_categoricas_archipielagos.rds")` 
+`ej4b  <-  readRDS( "04_variables_categoricas_archipielagos.rds")` 
 
 Los objetos `ej4a` y `ej4b` tendrán los *data frame* tal cual esperados por este ejercício. Puedes compararlos con los *data frame* que creaste en tu código, con la función `identical`. 
 

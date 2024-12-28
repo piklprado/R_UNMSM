@@ -1,13 +1,15 @@
-nomes <- c("1_leyendo_datos",
-           "2_leyendo_mas_datos",
-           "3_anadir_variables",
-           "4_variables_categoricas",
-           "5_agregacion")
+nomes <- c("01_leyendo_datos",
+           "02_leyendo_mas_datos",
+           "03_anadir_variables",
+           "04_variables_categoricas",
+           "05_agregacion",
+           "06_filtrar_datos")#
+#           "07_graficas")
 sufixos <- c("precondiciones.R", "solucion.R")
 
 df <- expand.grid(sufix = sufixos, nome = nomes)
 df$file <- paste(df$nome, df$sufix, sep="_")
-df$numero <- as.integer(substr(df$nome, 1,1))
+df$numero <- as.integer(substr(df$nome, 1,2))
 
 
 for(i in df$numero){

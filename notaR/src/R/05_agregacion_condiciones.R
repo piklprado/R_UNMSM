@@ -1,6 +1,6 @@
 ## Ficheros esperados ##
-saveRDS(islas.mean.area.log, "5_agregacion_islas_mean.rds")
-saveRDS(islas.N, "5_agregacion_islas_N.rds")
+saveRDS(islas.mean.area.log, "05_agregacion_islas_mean.rds")
+saveRDS(islas.N, "05_agregacion_islas_N.rds")
 
 ## Condiciones 5 ##
 ## No hay un objeto <code>islas</code>. ¿Has incluido la solución del <a href="http://notar.ib.usp.br/exercicio/128"> ejercício 1</a> en tu código?
