@@ -6,3 +6,4 @@ hist(islas.sel$species.richness,
      ylab = "Número de islas",
      xlab = "Riqueza de especies",
      main = "")
+abline(v = mean(islas.sel$species.richness), col = "red")

@@ -14,6 +14,7 @@ hist(ilhas.sel$species.richness,
      ylab = "Número de islas",
      xlab = "Riqueza de especies",
      main = "")
+abline(v = mean(ilhas.sel$species.richness), col = "red")
 dev.off()
 imgOK <- image_read("07_graficas_gabarito.png")
 png("07_graficas_aluno.png", width = X, height = X, pointsize = ponto)
