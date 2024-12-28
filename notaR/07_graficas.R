@@ -41,7 +41,7 @@ ilhas.sel <- ilhas[ilhas.test, ]
 arquip.test <- arquip$study.id %in% ilhas.ids
 arquip.sel <- arquip[arquip.test,]
 ## Precondiciones 7 ##
-X <- 600
+X <- 480
 ponto <- 10
 library(magick)
 library(png)
@@ -49,12 +49,13 @@ proibir("x11")
 proibir("X11")
 proibir("quartz")
 png("07_graficas_gabarito.png", width = X, height = X, pointsize = ponto)
-plot(species.richness.log ~ island.area.log,
-     data = ilhas.sel,
+hist(ilhas.sel$species.richness,
+     breaks = seq(0, 150, by = 15),
      cex.lab = 1.5,
      cex.axis = 1.25,
-     xlab = "Ln Área de la isla",
-     ylab = "Ln Número de especies")
+     ylab = "Número de islas",
+     xlab = "Riqueza de especies",
+     main = "")
 dev.off()
 imgOK <- image_read("07_graficas_gabarito.png")
 png("07_graficas_aluno.png", width = X, height = X, pointsize = ponto)
@@ -101,12 +102,13 @@ islas.sel <- islas[islas.test, ]
 archipielagos.test <- archipielagos$study.id %in% islas.ids
 archipielagos.sel <- archipielagos[archipielagos.test,]
 ## Solucion 7 ##
-plot(species.richness.log ~ island.area.log,
-     data = islas.sel,
+hist(islas.sel$species.richness,
+     breaks = seq(0, 150, by = 15),
      cex.lab = 1.5,
      cex.axis = 1.25,
-     xlab = "Ln Área de la isla",
-     ylab = "Ln Número de especies")
+     ylab = "Número de islas",
+     xlab = "Riqueza de especies",
+     main = "")
 
 ## Condiciones 7 ##
 ##Has usado una función que te pedimos que no usaras.
