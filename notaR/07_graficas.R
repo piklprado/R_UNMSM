@@ -41,20 +41,23 @@ ilhas.sel <- ilhas[ilhas.test, ]
 arquip.test <- arquip$study.id %in% ilhas.ids
 arquip.sel <- arquip[arquip.test,]
 ## Precondiciones 7 ##
+X <- 600
+ponto <- 10
 library(magick)
 library(png)
 proibir("x11")
 proibir("X11")
 proibir("quartz")
-png("07_graficas_gabarito.png", width = 480, height = 480, pointsize = 6)
+png("07_graficas_gabarito.png", width = X, height = X, pointsize = ponto)
 plot(species.richness.log ~ island.area.log,
      data = ilhas.sel,
      cex.lab = 1.5,
+     cex.axis = 1.25,
      xlab = "Ln Área de la isla",
      ylab = "Ln Número de especies")
 dev.off()
 imgOK <- image_read("07_graficas_gabarito.png")
-png("07_graficas_aluno.png", width = 480, height = 480, pointsize = 6)
+png("07_graficas_aluno.png", width = X, height = X, pointsize = ponto)
 ## Solucion 1
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
@@ -101,8 +104,10 @@ archipielagos.sel <- archipielagos[archipielagos.test,]
 plot(species.richness.log ~ island.area.log,
      data = islas.sel,
      cex.lab = 1.5,
-     xlab = "Ln Área de la isla",
-     ylab = "Ln Número de especies")
+     cex.axis = 1.25#,
+     ##xlab = "Ln Área de la isla",
+     ##ylab = "Ln Número de especies"
+     )
 
 ## Condiciones 7 ##
 ##Has usado una función que te pedimos que no usaras.
