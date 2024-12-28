@@ -4,11 +4,12 @@ library(png)
 proibir("x11")
 proibir("X11")
 proibir("quartz")
-png("gabarito.png", width = 400, height = 200, pointsize = 6)
+png("07_graficas_gabarito.png", width = 480, height = 480, pointsize = 6)
 plot(species.richness.log ~ island.area.log,
-     data = islas.sel,
+     data = ilhas.sel,
+     cex.lab = 1.5,
      xlab = "Ln Área de la isla",
      ylab = "Ln Número de especies")
 dev.off()
-imgOK <- image_read("esalignaFig105_2OK.png")
-png("aluno.png", width = 400, height = 200, pointsize = 6)
+imgOK <- image_read("07_graficas_gabarito.png")
+png("07_graficas_aluno.png", width = 480, height = 480, pointsize = 6)

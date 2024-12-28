@@ -1,4 +1,4 @@
-## Solución 6 ##
+## Precondiciones 6 ##
 ilhas.N.6 <- ilhas.N$n.muestra > 6
 ## nombres de los arch
 ilhas.ids <- ilhas.N$study.id[ilhas.N.6]

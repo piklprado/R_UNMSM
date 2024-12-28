@@ -3,8 +3,8 @@ nomes <- c("01_leyendo_datos",
            "03_anadir_variables",
            "04_variables_categoricas",
            "05_agregacion",
-           "06_filtrar_datos")#
-#           "07_graficas")
+           "06_filtrar_datos",
+           "07_graficas")
 sufixos <- c("precondiciones.R", "solucion.R")
 
 df <- expand.grid(sufix = sufixos, nome = nomes)
