@@ -1,0 +1,85 @@
+name: '7. Graficación'
+description: |-
+    <p>En este ejercicio usaremos el <em>data frame</em> <code>islas.sel</code>, que hás creado y trabajado en los ejercícios precedentes.</p>
+    <ol type="1">
+    <li><p>Inicia tu script R con los códigos que has utilizado para resolver los ejercicios <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>, <a href="http://notar.ib.usp.br/exercicio/130">Leyendo Más Datos</a>, <a href="http://notar.ib.usp.br/exercicio/131">Añadir Variables</a>, <a href="http://notar.ib.usp.br/exercicio/132">Variables Categoricas</a>, <a href="http://notar.ib.usp.br/exercicio/133">Tablas de Agregación</a> y <a href="http://notar.ib.usp.br/exercicio/134">Filtrado de Datos</a>. Así que tu código debe crear en tu espacio de trabajo los objetos que necesitas para ese ejercício.</p></li>
+    <li><p>Añade a su <em>script</em> los comandos que haigan un histograma de la variable <code>species.richness</code> de lo objeto <code>islas.sel</code>. El título del eje X debe ser «Riqueza de espécies» y el título del eje Y debe ser «Número de islas». Los títulos de los ejes deben incrementarse en 1,5 veces y los números de los ejes deben incrementarse en 1,25 veces (véanse los argumentos <code>cex.axis</code> y <code>cex.lab</code> en la ayuda de <code>par</code>, que todavia se aceptan en la función <code>hist</code>). Los intervalos de clase del histograma devem ser de 15, empezando en zero hasta 150 (véanse el argumento <code>breaks</code> de <code>hist</code>, y también la función <code>seq</code> para crear secuencias). El histograma no debe tener título (véanse el argumento <code>main</code> de la función <code>hist</code>).</p></li>
+    <li><p>Añade al histograma un línea vertical roja, que marque la média del número de espécies por isla del <em>data frame</em> <code>islas.sel</code>.</p></li>
+    <li><p>No incluyas en tu <em>script</em> ningún comando para guardar el gráfico en un fichero (como <code>png</code>, <code>pdf</code>, etc). Tampoco incluyas en tu código comandos que abran ventanas gráficas, como <code>X11</code> o <code>quartz</code>.</p></li>
+    </ol>
+    <p>El sistema evaluará la similitud de la imagen generada por su código con la imagen siguiente:</p>
+    <p align="center">
+    <img src="https://raw.githubusercontent.com/piLaboratory/R_UNMSM/refs/heads/master/notaR/07_graficas_gabarito.png">
+    </p>
+precondicoes: |-
+    ## Preconcidiones 1
+    ilhas.raw <- read.csv("islas.csv")
+    ilhas.nombres <- names(ilhas.raw)
+    ilhas.nombres <- gsub("_", ".", tolower(ilhas.nombres), fixed = TRUE)
+    ilhas <- ilhas.raw
+    names(ilhas) <- ilhas.nombres
+    ## Precondiciones 2
+    arquip.raw <- read.csv("archipielagos.csv")
+    arquip.nombres <- names(arquip.raw)
+    arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
+    arquip <- arquip.raw
+    names(arquip) <- arquip.nombres
+    #Precondiciones 3
+    ilhas$island.area.log<- log(ilhas$island.area)
+    ilhas$species.richness.log <- log(ilhas$species.richness)
+    ## Precondiciones 4
+    ilhas$sar.type <- factor(ilhas$sar.type)
+    ilhas$island.type <- factor(ilhas$island.type, levels = c("Oceanic", "Continental", "Habitat-Patches"))
+    arquip$sar.type <- factor(arquip$sar.type)
+    arquip$ecoregion <- factor(arquip$ecoregion)
+    arquip$island.type <- factor(arquip$island.type,
+                                        levels = c("Oceanic", "Continental", "Mainland Island"),
+                                        labels = c("Oceanic", "Continental", "Habitat-Patches"))
+    ##Precondiciones 5
+    ilhas.mean.area.log <- aggregate( island.area.log ~ island.type + biogeo.realm, FUN = mean, data = ilhas )  
+    ## Numero de ilhas por study site
+    ilhas.N <- as.data.frame(table(ilhas$study.id))
+    ## manipulacao de nomes
+    names(ilhas.N) <- c("study.id", "n.muestra")
+    ## Coercao
+    ilhas.N$study.id <- as.character(ilhas.N$study.id)
+    ## Precondiciones 6 ##
+    ilhas.N.6 <- ilhas.N$n.muestra > 6
+    ## nombres de los arch
+    ilhas.ids <- ilhas.N$study.id[ilhas.N.6]
+    ##
+    ilhas.test <- ilhas$study.id %in% ilhas.ids
+    ## Selección por indexación de las ilhas de los archipielagos con N>6
+    ilhas.sel <- ilhas[ilhas.test, ]
+    ## Lo mismo para los archipielagos
+    arquip.test <- arquip$study.id %in% ilhas.ids
+    arquip.sel <- arquip[arquip.test,]
+    ## Precondiciones 7 ##
+    X <- 480
+    ponto <- 10
+    library(magick)
+    library(png)
+    proibir("x11")
+    proibir("X11")
+    proibir("quartz")
+    png("07_graficas_gabarito.png", width = X, height = X, pointsize = ponto)
+    hist(ilhas.sel$species.richness,
+         breaks = seq(0, 150, by = 15),
+         cex.lab = 1.5,
+         cex.axis = 1.25,
+         ylab = "Número de islas",
+         xlab = "Riqueza de especies",
+         main = "")
+    abline(v = mean(ilhas.sel$species.richness), col = "red")
+    dev.off()
+    imgOK <- image_read("07_graficas_gabarito.png")
+    png("07_graficas_aluno.png", width = X, height = X, pointsize = ponto)
+topico_id: 12
+testes:
+    - { condicao: 'dev.off(); imgAluno <- image_read("07_graficas_aluno.png"); proibidas()', dica: 'Has usado una función que te pedimos que no usaras.', peso: 0.0 }
+    - { condicao: 'exists("islas.sel")', dica: 'No hay el objeto <code>islas.sel</code> ¿Has incluido la solución de los ejercício 1 a 6 en tu código?', peso: 0.0 }
+    - { condicao: 'identical(islas.sel, ilhas.sel)', dica: 'El objeto <code>islas.sel</code> no es exactamente lo esperado. ¿Has incluido la solución de los ejercício 1 a 6 en tu código?', peso: 0.0 }
+    - { condicao: 'imgMatch <-image_compare_dist(imgAluno, imgOK, metric = "", fuzz = 0)$distortion; imgMatch > .50', dica: 'La imagen de su gráfico tiene gran discrepancia con la figura del enunciado.', peso: 1.0 }
+    - { condicao: 'imgMatch > .90', dica: 'La imagen de su gráfico tiene discrepancias importantes con la figura del enunciado.', peso: 1.0 }
+    - { condicao: 'imgMatch > .95', dica: 'La imagen de su gráfico tiene una discrepancia  moderada con la figura del enunciado.', peso: 1.0 }
+    - { condicao: 'imgMatch > .975', dica: 'La imagen de su gráfico tiene una pequeña discrepancia  con la figura del enunciado.', peso: 1.0 }

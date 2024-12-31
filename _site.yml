@@ -1,0 +1,29 @@
+name: "2025_UNMSM_Curso_R"
+title: "Análisis y visualización de datos biológicos con R"
+theme: theme.css
+description: |
+  Doctorado em Ciencias Biológicas, UNMSM, Lima, 2025
+creative_commons: CC BY
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Sílabo"
+      menu:
+        - text: "Introducción"
+          href: 01_introduccion.html
+        - text: "Manipulación de datos"
+          href: 02_manipulacion_de_datos.html
+        - text: "Gráficos"
+          href: 03_graficos.html
+        - text: "Funciones y programación"
+          href: 04_funciones_y_progamacion.html
+        - text: "Modelos estadisticos"
+          href: 05_modelos_estadisticos.html
+        - text: "Rmarkdown y tidyverse"
+          href: 06_rmarkdown_y_tidyverse.html
+    - icon: fa fa-github
+      href: https://github.com/piLaboratory/R_UNMSM
+output: distill::distill_article
+

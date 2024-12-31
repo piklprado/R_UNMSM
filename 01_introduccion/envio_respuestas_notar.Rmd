@@ -1,0 +1,52 @@
+---
+title: "Envío de respuestas a notarR"
+description: |
+  Traducido y adaptado de (https://github.com/lageIBUSP/notaR/wiki/Como-submeter-respostas)
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+[notaR](https://github.com/lageIBUSP/notaR) es un sistema para corregir automáticamente ejercicios en lenguaje R, almacenar y visualizar las puntuaciones resultantes. Es un software colaborativo, desarrollado en lenguajes de código abierto, bajo la coordinación de [Alexandrede Oliveira](http://labtrop.ib.usp.br/), de la Universidad de São Paulo, Brasil. Lo servicio notaR que vamos usar en nuestro curso está alojada en un servidor desa universidad (http://notar.ib.usp.br/). 
+
+Aquí encontrarás las instrucciones para enviar tus respuestas a notaR.
+
+# Donde encuentras los ejercícios y plazos
+
+La [página de ejercicios](http://notar.ib.usp.br/exercicio) de NotaR enumera todos los ejercicios que hay en el sistema. No tienes que resolverlos todos. Para ver los ejercicios de tu clase, ve a la página de tu clase, o a tu propio perfil. 
+
+En tu perfil, puedes ver las listas de ejercicios con plazos próximos y pasados. Cada ejercicio muestra tu mejor nota y la fecha límite junto a su nombre. Puedes seguir intentando resolver un ejercicio después de que haya vencido el plazo, pero tu nota no se tendrá en cuenta.
+
+# Envío de respuestas 
+
+La página de cada ejercicio en notaR contiene la pregunta y dos formas de enviar una respuesta: por archivo y por cuadro de texto.
+
+## Envío de respuestas por archivo
+
+Escriba el script con la respuesta en un archivo de texto plano, con el editor de scripts de RStudio u otro editor de texto plano (no utilice procesadores de texto como Microsoft Word).  Guárdelo en su ordenador y envíelo pulsando el botón *Envie um arquivo*.  Puedes nombrar el  archivo de su script como quieras, pero utilice la extensión `.R`.
+
+## Envío de respuestas por cuadro de texto
+
+Copie y pegue o escriba su código en el cuadro de respuesta y envíelo utilizando el botón `Enviar`.
+
+## Corrección
+
+notaR ejecutará su código y realizará una serie de pruebas sobre el resultado. notaR asigna una puntuación del 0 al 100 por cien en función de la proporción de pruebas. El resultado de la corrección se mostrará debajo del cuadro de respuesta. Si tu puntuación es inferior al 100 por cien, el recuadro te dará una pista sobre cómo mejorar. Puede presentar tantos intentos como desee hasta la fecha límite: sólo se tendrá en cuenta su mejor puntuación.
+
+### Sugerencias:
+
+  * Preste atención a la declaración del ejercício.
+  * Asegúrate de que tu script crea los objetos con el nombre correcto.
+  * Hay algunos comandos que no están permitidos por razones de seguridad, como `system`, `setwd` o `library`. No te preocupes por ellos: si algo como cargar un paquete  es necesario, notaR se encargará de ejecutar los comandos por sí mismo.
+  * Sé honesto: no copies las respuestas de otros. notaR puede detectar eso. Todavia puedes ayudar y obtener ayuda sin que copies respuestas.
+  
+# Mensajes de error 
+
+Si notaR devuelve el mensaje de error «¡Se ha producido un error al ejecutar su código!» significa que no ha sido posible ejecutar su código en el entorno R que notaR utiliza para comprobar su respuesta. Aquí tienes algunas comprobaciones que puedes hacer:
+
+  * Compruebe que su script se ejecuta correctamente en R en su computador. Si hay un error de sintaxis, R le dará un mensaje de error más específico que notaR.
+    * Comprueba si tu script está utilizando algún objeto inesperado en tu workspace.  Para ello, puedes cambiar a un nuevo directorio de trabajo y borrar todos los objetos con `rm(list = ls())`. A continuación, ejecute en este espacio de trabajo sólo el script de respuesta que desea enviar a notaR.
+  * Si el ejercicio te pide que leas un archivo, asegúrate de guardar los archivos de datos exactamente con el nombre que aparece en el enunciado del ejercicio. Preste atención a las mayúsculas y minúsculas y no utilice rutas a directorios: `read.csv("C:/Usuarios/esaligna.CSV")` será incorrecto, mientras que `read.csv("esaligna.csv")` será correcto.
+  * NotaR no funciona perfectamente bien con gráficos. La mayoría de las veces, los gráficos generados simplemente se ignoran, pero si encuentra un problema al ejecutar un script, intente eliminar los comandos que abren dispositivos gráficos (como `plot` o `hist`) de su código antes de enviarlo.

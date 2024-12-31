@@ -1,0 +1,62 @@
+---
+title: "Análisis y visualización de datos biológicos con R"
+description: |
+  Doctorado em Ciencias Biológicas, UNMSM, Lima, 2025
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tufte)
+```
+Bienvenida(o) a nuestro curso. 
+
+Este es un curso creado por un estudiante de biología de toda la vida para ayudar a otros estudiantes a aprender R más fácil y rápido que él mismo. 
+
+> «Una de las cosas más importantes que puedes hacer es dedicar tiempo a aprender un verdadero lenguaje de programación. Aprender a programar es como aprender otro idioma: lleva tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera cuesta empinada de la curva de aprendizaje, las ganancias como científico son enormes. La programación no sólo te liberará de la camisa de fuerza de los paquetes estadísticos, sino que agudizará tu capacidad analítica y ampliará tus horizontes de modelización ecológica y estadística.»
+>  `r tufte::quote_footer('--- Traducción algo libre de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.')`
+
+## Profesor responsable
+
+* [Paulo Inácio Prado](http://ecologia.ib.usp.br/let/doku.php?id=engl:prado:start), Instituto de Biociências, Universidade de São Paulo, Brasil.
+
+## Programa
+
+```{r, echo = F}
+programa <- read.csv("programa.csv")
+kable(programa)
+```
+
+## Preparate para el curso
+
+### Instale R
+
+Dispondremos de computadoras durante las lecciones, pero le
+recomendamos que también instale R en una computadora de trabajo para
+que pueda realizar las tareas y ejercicios después de las lecciones.
+
+1. Ve a la página de [R](https://www.r-project.org/), elige una réplica
+(el más cercano a tu ubicación) y sigue las instrucciones para instalar R
+según tu sistema operativo.
+
+2. Ve a la página de instalación de [R Studio](https://www.rstudio.com/products/rstudio/download/) y sigue las instrucciones para instalar R Studio según tu sistema operativo[^1].
+
+3. En RStudio instale el paquete *swirl*. Has clic en la opción de menu "Tools", y entonces en la opción "Install packages". En la ventana de diálogo escriba *swril* en la casilla "Package" y pulse el botón "Install".
+
+![](01_introduccion/figs/instal_package_rstudio.png)
+
+![](01_introduccion/figs/instal_package_dialog.png)
+
+
+### Conozca a notaR
+
+Haremos ejercicios en la plataforma notaR, que es un sistema en línea
+para comprobar códigos en R. Ve a la página del [servicio notaR en
+USP](http://notar.ib.usp.br) y busca el ejercício "Bienvenido a
+notaR". Intenta resolverlo. 
+
+Consulte también las [instrucciones para envío de respuestas a notaR](01_introduccion/envio_respuestas_notar.html).
+
+
+[^1]: Rstudio é uno de los muchos [IDE](https://es.wikipedia.org/wiki/Entorno_de_desarrollo_integrado) para programar en R. Si ya usas otro IDE puede quedarte con él en su computadora de trabajo. Pero en las computadores en la class usaremos RStudio.

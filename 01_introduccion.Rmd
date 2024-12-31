@@ -1,0 +1,19 @@
+---
+title: "Introducción al lenguage R"
+date: "2025-01-06" 
+author:
+  - name: Paulo Inácio Prado
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+**página en construcción**
+
+# Slides
+
+```{r slides}
+#| eval: true
+xaringanExtra::embed_xaringan("01_introduccion/slides.html")
+```
+
