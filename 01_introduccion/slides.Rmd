@@ -21,6 +21,7 @@ editor_options:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(servr.daemon = TRUE)#para que no bloquee la sesión
+knitr::opts_chunk$set(prompt = TRUE, comment = "")
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
@@ -43,7 +44,8 @@ style_solarized_light(
   background_color = "#fdf6e3", # base 3
   header_font_google = google_font("DM Sans"),
   text_font_google = google_font("Roboto Condensed", "300", "300i"),
-  code_font_google = google_font("Fira Mono"), text_font_size = "28px"
+  code_font_google = google_font("Fira Mono"), text_font_size = "28px",
+  code_font_size="1.5rem"
 )
 # clipboard
 htmltools::tagList(
@@ -89,10 +91,8 @@ theme_Publication <- function(base_size = 14, base_family = "helvetica") {
 
 ## Quién soy
 
-<center>
-
 .pull-left[
-
+<center>
 ```{r pi, out.width= "40%", echo=FALSE}
 knitr::include_graphics("figs/PI.jpg")
 ```
@@ -105,7 +105,7 @@ knitr::include_graphics("figs/PI.jpg")
 - Profesor en el Departamento de Ecología del Instituto de Biociências USP
 - Ecología de comunidades, ecología teórica, conservación
 - Brasileño, vivo en la ciudad de São Paulo, Brasil
-- Me gusta: aprender, enseñar, buena comida, cocinar, nadar, hablar y conocer a la gente.
+- Me gusta: aprender, enseñar, buena comida, cocinar, nadar, charlar y conocer a la gente.
 ]
 
 
@@ -174,21 +174,129 @@ read.csv("../programa.csv") |>
 ---
 
 ## ¿Qué es el lenguage R?
+.left-column[
+```{r rlogo, echo=FALSE, fig.align='center'}
+include_graphics("figs/Rlogo.png")
+```
+]
 
+.right-column[
+
+- Un potente lenguaje para el análisis de datos y gráficos;
+
+- Software libre creado y mantenido por una gran comunidad de colaboradores;
+
+- La comunidad creó miles de aplicaciones y pone a disposición mucha ayuda;
+
+- Se inició en 1990 a partir del lenguage S;
+
+- El equipo central de R (*R Core Team*) está dirigido por una organización sin fines lucrativos;
+
+]
+
+---
+## Para más veáse `https://www.r-project.org/`
+
+```{r site, echo=FALSE, fig.align='center', out.width="60%"}
+include_graphics("figs/rproject_site.png")
+```
+
+---
+class: middle
+
+## Programación funcional orientada a objetos
+
+.bg-white.b--brblack.ba.bw2.br3.shadow-5.ph5.mt1[
+«Todo en R es un objeto, y todo lo que haces es una llamada a una función.»
+
+.left[— Ross Ihaka y Robert Gentleman]
+
+]
 
 ---
 
-## Comandos
+## Comandos y funciones
+#### Multiplicación
+```{r comandos}
+2*2
+```
+--
+
+#### Raíz cuadrada de una multiplicación
+```{r comandos2}
+sqrt( 2*2 )
+```
+---
+## Comandos y funciones
+#### Log base 2 de la raíz cuadrada de una multiplicación
+```{r comandos3}
+log2( sqrt( 2*2 ) )
+```
+--
+
+#### Lo mismo con operador *pipe*
+```{r comandos_pipe}
+2*2 |> sqrt() |> log2()
+```
+---
+
+
+## Más funciones
+
+#### Combinación de valores en un vector
+```{r mas_funciones}
+c(1, 10, 100)
+```
+--
+
+#### Suma de los elementos de un vector
+```{r mas_funciones2}
+sum( c(1, 10, 100) )
+```
+---
+## Asignación
+
+#### Assigna un vector a `x`
+```{r asignacion}
+x <- c(1, 10, 100)
+```
+--
+#### Assigna a `y` la suma del contenido de `x`
+```{r asignacion2}
+y <- sum(x)
+```
+--
+#### Para ver el contenido escribe el nombre del objeto
+```{r asignacion3}
+y
+```
+
+---
+## Programación funcional orientada a objetos
+
+.left-column[
+```{r chambersbook, echo=FALSE, fig.align='center'}
+include_graphics("figs/chambers_book_cover.jpg")
+```
+]
+.right-column[
+
+- En R, los datos, las funciones y los resultados se tratan como
+  objetos.
+  
+- Cada acción que realizas (por ejemplo, cálculos, manipulación de
+  datos, gráficos) se ejecuta mediante funciones.
+  
+- En R el análisis estadístico es una **secuencia de manipulaciones de
+  objetos**.
+  
+- R es un lenguage para **programar con datos**.
+]
 
 
 ---
 
 ## RStudio
-
-
----
-
-## Objetos y asignación
 
 
 ---

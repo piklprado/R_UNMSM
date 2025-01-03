@@ -48,21 +48,20 @@ class: center, middle, inverse, title-slide
 ## Quién soy
 
 .pull-left[
+&lt;center&gt;
 &lt;img src="figs/PI.jpg" width="40%" /&gt;
 
 **PI**, Paulo Inácio Prado (pronombres: él)
 ]
 
 .pull-right[
- - Bachiler en Biología (1990), Maestria y Doctorado en Ecologia (1991-1999), en Brasil
- - Profesor en el Departamento de Ecología del Instituto de Biociências USP
- - Ecología de comunidades, ecología teórica, conservación
- - Brasileño, vivo en la ciudad de São Paulo, Brasil
- - Me gusta: aprender, enseñar, buena comida, cocinar, nadar, hablar y conocer a la gente
+- Bachiler en Biología (1990), Maestria y Doctorado en Ecologia (1991-1999), en Brasil
+- Profesor en el Departamento de Ecología del Instituto de Biociências USP
+- Ecología de comunidades, ecología teórica, conservación
+- Brasileño, vivo en la ciudad de São Paulo, Brasil
+- Me gusta: aprender, enseñar, buena comida, cocinar, nadar, charlar y conocer a la gente.
 ]
 
-
----
 
 ---
 
@@ -87,17 +86,13 @@ class: center, middle, inverse, title-slide
 &gt; Paulo Freire
 ]
 
-
 ---
 
 ## Estratégias pedagógicas
 
 .pull-left[
 
-
-- Clases magistrales
- 
-- Discusiones en clase
+- Clases dialogadas
  
 - Tutoriales en R (swril)
 
@@ -105,7 +100,7 @@ class: center, middle, inverse, title-slide
  
 - Todos los recursos de aprendizaje en https://pilaboratory.github.io/R_UNMSM/
  
-- Los recursos disponibles a medida que avancemos
+- Los recursos estarán disponibles a medida que avancemos
 
 ]
  
@@ -156,6 +151,188 @@ class: center, middle, inverse, title-slide
 &lt;/table&gt;
 
 ---
+
+## ¿Qué es el lenguage R?
+.left-column[
+&lt;img src="figs/Rlogo.png" width="965" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+- Un potente lenguaje para el análisis de datos y gráficos;
+
+- Software libre creado y mantenido por una gran comunidad de colaboradores;
+
+- La comunidad creó miles de aplicaciones y pone a disposición mucha ayuda;
+
+- Se inició en 1990 a partir del lenguage S;
+
+- El equipo central de R (*R Core Team*) está dirigido por una organización sin fines lucrativos;
+
+]
+
+---
+## Para más veáse `https://www.r-project.org/`
+
+&lt;img src="figs/rproject_site.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle
+
+## Programación funcional orientada a objetos
+
+.bg-white.b--brblack.ba.bw2.br3.shadow-5.ph5.mt1[
+«Todo en R es un objeto, y todo lo que haces es una llamada a una función.»
+
+.left[— Ross Ihaka y Robert Gentleman]
+
+]
+
+---
+
+## Comandos y funciones
+#### Multiplicación
+
+``` r
+&gt; 2*2
+```
+
+```
+[1] 4
+```
+--
+
+#### Raíz cuadrada de una multiplicación
+
+``` r
+&gt; sqrt( 2*2 )
+```
+
+```
+[1] 2
+```
+---
+## Comandos y funciones
+#### Log base 2 de la raíz cuadrada de una multiplicación
+
+``` r
+&gt; log2( sqrt( 2*2 ) )
+```
+
+```
+[1] 1
+```
+--
+
+#### Lo mismo con operador *pipe*
+
+``` r
+&gt; 2*2 |&gt; sqrt() |&gt; log2()
+```
+
+```
+[1] 1
+```
+---
+
+
+## Más funciones
+
+#### Combinación de valores en un vector
+
+``` r
+&gt; c(1, 10, 100)
+```
+
+```
+[1]   1  10 100
+```
+--
+
+#### Suma de los elementos de un vector
+
+``` r
+&gt; sum( c(1, 10, 100) )
+```
+
+```
+[1] 111
+```
+---
+## Asignación
+
+#### Assigna un vector a `x`
+
+``` r
+&gt; x &lt;- c(1, 10, 100)
+```
+--
+#### Assigna a `y` la suma del contenido de `x`
+
+``` r
+&gt; y &lt;- sum(x)
+```
+--
+#### Para ver el contenido escribe el nombre del objeto
+
+``` r
+&gt; y
+```
+
+```
+[1] 111
+```
+
+---
+## Programación funcional orientada a objetos
+
+.left-column[
+&lt;img src="figs/chambers_book_cover.jpg" width="839" style="display: block; margin: auto;" /&gt;
+]
+.right-column[
+
+- En R, los datos, las funciones y los resultados se tratan como
+  objetos.
+  
+- Cada acción que realizas (por ejemplo, cálculos, manipulación de
+  datos, gráficos) se ejecuta mediante funciones.
+  
+- En R el análisis estadístico es una **secuencia de manipulaciones de
+  objetos**.
+  
+- R es un lenguage para **programar con datos**.
+]
+
+
+---
+
+## RStudio
+
+
+---
+
+## Funciones y sus argumentos
+
+
+---
+
+## Ayuda
+
+
+---
+
+## Tipos de datos
+
+
+---
+
+## Tipos de objetos
+
+---
+
+## El código (*script*)
+
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
