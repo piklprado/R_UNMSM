@@ -11,7 +11,7 @@
       ],
       "date": "2025-01-06",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2024-12-30T21:29:43-03:00"
+      "last_modified": "2024-12-30T22:03:10-03:00"
     },
     {
       "path": "02_manipulacion_de_datos.html",
@@ -24,7 +24,7 @@
       ],
       "date": "2025-01-07",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2024-12-30T21:29:44-03:00"
+      "last_modified": "2024-12-30T22:03:10-03:00"
     },
     {
       "path": "03_graficos.html",
@@ -37,7 +37,7 @@
       ],
       "date": "2025-01-08",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2024-12-30T21:29:45-03:00"
+      "last_modified": "2024-12-30T22:03:11-03:00"
     },
     {
       "path": "04_funciones_y_progamacion.html",
@@ -50,7 +50,7 @@
       ],
       "date": "2025-01-09",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2024-12-30T21:29:45-03:00"
+      "last_modified": "2024-12-30T22:03:12-03:00"
     },
     {
       "path": "05_modelos_estadisticos.html",
@@ -63,7 +63,7 @@
       ],
       "date": "2025-01-10",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2024-12-30T21:29:46-03:00"
+      "last_modified": "2024-12-30T22:03:12-03:00"
     },
     {
       "path": "06_rmarkdown_y_tidyverse.html",
@@ -76,15 +76,15 @@
       ],
       "date": "2025-01-13",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2024-12-30T21:29:46-03:00"
+      "last_modified": "2024-12-30T22:03:13-03:00"
     },
     {
       "path": "index.html",
       "title": "Análisis y visualización de datos biológicos con R",
       "description": "Doctorado em Ciencias Biológicas, UNMSM, Lima, 2025\n",
       "author": [],
-      "contents": "\nBienvenida(o) a nuestro curso.\nEste es un curso creado por un estudiante de biología de toda la vida para ayudar a otros estudiantes a aprender R más fácil y rápido que él mismo.\n\n«Una de las cosas más importantes que puedes hacer es dedicar tiempo a aprender un verdadero lenguaje de programación. Aprender a programar es como aprender otro idioma: lleva tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera cuesta empinada de la curva de aprendizaje, las ganancias como científico son enormes. La programación no sólo te liberará de la camisa de fuerza de los paquetes estadísticos, sino que agudizará tu capacidad analítica y ampliará tus horizontes de modelización ecológica y estadística.»\n\n— Traducción algo libre de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.\n\nProfesor responsable\nPaulo Inácio Prado, Instituto de Biociências, Universidade de São Paulo, Brasil.\nPrograma\n\nFecha\nTema\n06/Enero\nIntroducción al lenguage R\n07/Enero\nManipulación de datos\n08/Enero\nGráficos\n09/Enero\nFunciones y programación\n10/Enero\nModelos estadísticos\n13/Enero\nRmarkdown y tidyverse\n\nPreparate para el curso\nInstale R\nDispondremos de computadoras durante las lecciones, pero le\nrecomendamos que también instale R en una computadora de trabajo para\nque pueda realizar las tareas y ejercicios después de las lecciones.\nVe a la página de R, elige una réplica\n(el más cercano a tu ubicación) y sigue las instrucciones para instalar R\nsegún tu sistema operativo.\nVe a la página de instalación de R Studio y sigue las instrucciones para instalar R Studio según tu sistema operativo1.\nEn RStudio instale el paquete swirl. Has clic en la opción de menu “Tools”, y entonces en la opción “Install packages”. En la ventana de diálogo escriba swril en la casilla “Package” y pulse el botón “Install”.\n\n\nConozca a notaR\nHaremos ejercicios en la plataforma notaR, que es un sistema en línea\npara comprobar códigos en R. Ve a la página del servicio notaR en\nUSP y busca el ejercício “Bienvenido a\nnotaR”. Intenta resolverlo.\nConsulte también las instrucciones para envío de respuestas a notaR.\nRstudio é uno de los muchos IDE para programar en R. Si ya usas otro IDE puede quedarte con él en su computadora de trabajo. Pero en las computadores en la class usaremos RStudio.\n\n↩︎\n",
-      "last_modified": "2024-12-30T21:29:47-03:00"
+      "contents": "\nBienvenida(o) a nuestro curso.\nEste es un curso creado por un estudiante de biología de toda la vida para ayudar a otros estudiantes a aprender R más fácil y rápido que él mismo.\n\n«Una de las cosas más importantes que puedes hacer es dedicar tiempo a aprender un verdadero lenguaje de programación. Aprender a programar es como aprender otro idioma: lleva tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera cuesta empinada de la curva de aprendizaje, las ganancias como científico son enormes. La programación no sólo te liberará de la camisa de fuerza de los paquetes estadísticos, sino que agudizará tu capacidad analítica y ampliará tus horizontes de modelización ecológica y estadística.»\n\n— Traducción algo libre de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.\n\nProfesor responsable\nPaulo Inácio Prado, Instituto de Biociências, Universidade de São Paulo, Brasil.\nPrograma\n\nFecha\nTema\n06/Enero\nIntroducción al lenguage R\n07/Enero\nManipulación de datos\n08/Enero\nGráficos\n09/Enero\nFunciones y programación\n10/Enero\nModelos estadísticos\n13/Enero\nRmarkdown y tidyverse\n\nBibliografia\nCrawley, M. J. 2014. Statistics: an introduction using R. John Wiley &\nSons.\nHernández, F & Usuga O. 2024. Manual de R.\nLong, J. D., & Teetor, P. (2019). R cookbook: proven recipes for data\nanalysis, statistics, and graphics. O'Reilly Media. 2nd Ed.\nVerzani, J. 2014. Using R for introductory statistics. Chapman and\nHall/CRC. 2nd Ed.\nWickham, H., Çetinkaya-Rundel, M., & Grolemund, G. 2023. R for data\nscience. O'Reilly Media, Inc. 2nd Ed.\n1a Edición en Castellano\nXie, Y. Allaire, J. J., Grolemund, G. 2023. R Markdown: The Definitive\nGuide. Chapman and Hall/CRC.\nXiménez , C, & Revuelta, J. 2022. Análisis de Datos en Lenguaje R. UAM\nEdiciones, Madrid.\nPreparate para el curso\nInstale R\nDispondremos de computadoras durante las lecciones, pero le\nrecomendamos que también instale R en una computadora de trabajo para\nque pueda realizar las tareas y ejercicios después de las lecciones.\nVe a la página de R, elige una réplica\n(el más cercano a tu ubicación) y sigue las instrucciones para instalar R\nsegún tu sistema operativo.\nVe a la página de instalación de R Studio y sigue las instrucciones para instalar R Studio según tu sistema operativo1.\nEn RStudio instale el paquete swirl. Has clic en la opción de menu “Tools”, y entonces en la opción “Install packages”. En la ventana de diálogo escriba swril en la casilla “Package” y pulse el botón “Install”.\n\n\nConozca a notaR\nHaremos ejercicios en la plataforma notaR, que es un sistema en línea\npara comprobar códigos en R. Ve a la página del servicio notaR en\nUSP y busca el ejercício “Bienvenido a\nnotaR”. Intenta resolverlo.\nConsulte también las instrucciones para envío de respuestas a notaR.\nRstudio é uno de los muchos IDE para programar en R. Si ya usas otro IDE puede quedarte con él en su computadora de trabajo. Pero en las computadores en la class usaremos RStudio.\n\n↩︎\n",
+      "last_modified": "2024-12-30T22:03:13-03:00"
     }
   ],
   "collections": []

@@ -9,8 +9,9 @@ site: distill::distill_website
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 library(tufte)
+library(kableExtra)
 ```
-Bienvenida(o) a nuestro curso. 
+## Bienvenida(o) a nuestro curso. 
 
 Este es un curso creado por un estudiante de biología de toda la vida para ayudar a otros estudiantes a aprender R más fácil y rápido que él mismo. 
 
@@ -24,9 +25,34 @@ Este es un curso creado por un estudiante de biología de toda la vida para ayud
 ## Programa
 
 ```{r, echo = F}
-programa <- read.csv("programa.csv")
-kable(programa)
+read.csv("../programa.csv") |>
+  kbl() |>
+  kable_styling()
 ```
+
+## Bibliografia
+
+Crawley, M. J. 2014. Statistics: an introduction using R. John Wiley &
+Sons.
+
+Hernández, F & Usuga O. 2024. [Manual de R.](https://fhernanb.github.io/Manual-de-R/)
+
+Long, J. D., & Teetor, P. (2019). [R cookbook: proven recipes for data
+analysis, statistics, and graphics. O\'Reilly Media. 2^nd^ Ed.](https://rc2e.com/)
+
+Verzani, J. 2014. Using R for introductory statistics. Chapman and
+Hall/CRC. 2^nd^ Ed.
+
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. 2023. [R for data
+science. O\'Reilly Media, Inc. 2^nd^ Ed.](https://r4ds.hadley.nz/) 
+[1a Edición en Castellano](https://es.r4ds.hadley.nz/) 
+
+Xie, Y. Allaire, J. J., Grolemund, G. 2023. [R Markdown: The Definitive
+Guide. Chapman and Hall/CRC.](https://bookdown.org/yihui/rmarkdown/)
+
+Ximénez , C, & Revuelta, J. 2022. [Análisis de Datos en Lenguaje R. UAM
+Ediciones, Madrid.](https://libros.uam.es/uam/catalog/view/1163/2054/2338)
+
 
 ## Preparate para el curso
 
