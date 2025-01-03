@@ -298,29 +298,103 @@ include_graphics("figs/chambers_book_cover.jpg")
 
 ## RStudio
 
-
+```{r , echo=FALSE, fig.align='center', out.width="60%"}
+include_graphics("figs/Rstudio.png")
+```
 ---
 
-## Funciones y sus argumentos
+## Ventana de comandos (R consola)
 
-
+```{r , echo=FALSE, fig.align='center', out.width="60%"}
+include_graphics("figs/Rstudio_consola.png")
+```
 ---
+
+## Ventana de códigos (*scripts*)
+
+```{r , echo=FALSE, fig.align='center', out.width="60%"}
+include_graphics("figs/Rstudio_script.png")
+```
+---
+
+## Ventana del espacio de trabajo (*worksapce*)
+
+```{r , echo=FALSE, fig.align='center', out.width="60%"}
+include_graphics("figs/Rstudio_workspace.png")
+```
+---
+
+## Ventana de ayuda y gráficos
+
+```{r , echo=FALSE, fig.align='center', out.width="60%"}
+include_graphics("figs/Rstudio_plots.png")
+```
+---
+
 
 ## Ayuda
 
+.pull-left[
+```{r rnormhelp, echo=FALSE, fig.align='center'}
+include_graphics("figs/help_rnorm.png")
+```
+]
+
+.pull-right[
+- `help(rnorm)`, `?rnorm`
+- Cuadro de búsqueda en la ventana de ayuda/gráficos en RStudio
+- Formato estándar
+- Secciones más importantes: 
+  - *Usage*: comandos de uso 
+  - *Arguments*: argumentos 
+  - *Value*: lo que te devuelve 
+  - *Examples*: ejemplos de uso
+]
 
 ---
 
-## Tipos de datos
+## ¡Vámonos!
 
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+1. Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.
+
+2. En la línea de comando en RStudio escribe `library(swril)`
+
+3. En la línea de comando de RStudio escribe `install_course()`
+
+4. Se abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.
+
+5. Debes ver el mensaje `Course installed successfully!`
+
+]
 
 ---
 
-## Tipos de objetos
+## ¡Vámonos!
+
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+6. En la línea de comando de RStudio escribe `swril()`
+
+7. Debes ver el  mensaje `Please choose a course, or type 0 to exit swirl.` 
+
+8. Introduzca el número del curso `Tutoriales UNMSM v#` 
+
+9. ... donde `v#` es la versión del archivo.
+           
+]
 
 ---
-
-## El código (*script*)
-
-
-

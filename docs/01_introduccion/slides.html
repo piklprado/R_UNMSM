@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis y visualización de datos biológicos con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Paulo Inácio Prado (PI)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy code <i class=\"fa fa-clipboard\"><\/i>","success":"Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Análisis y visualización de datos biológicos con R
+]
+.subtitle[
+## Introdución
+]
+.author[
+### Paulo Inácio Prado (PI)
+]
+.date[
+### 06 Enero 2025
+]
+
+---
+
+
+
+
+
+
+## Quién soy
+
+.pull-left[
+&lt;center&gt;
+&lt;img src="figs/PI.jpg" width="40%" /&gt;
+
+**PI**, Paulo Inácio Prado (pronombres: él)
+]
+
+.pull-right[
+- Bachiler en Biología (1990), Maestria y Doctorado en Ecologia (1991-1999), en Brasil
+- Profesor en el Departamento de Ecología del Instituto de Biociências USP
+- Ecología de comunidades, ecología teórica, conservación
+- Brasileño, vivo en la ciudad de São Paulo, Brasil
+- Me gusta: aprender, enseñar, buena comida, cocinar, nadar, charlar y conocer a la gente.
+]
+
+
+---
+
+## Para que estoy aquí
+
+ - Para ayudarles a usar el  lenguaje R
+ 
+ - Para que lo aprendas más rápido y fácil que yo
+ 
+ - Al hacerlo, para mejorar mis propios conocimientos 
+
+
+&lt;center&gt;
+.left-column[
+&lt;img src="figs/Painel.Paulo.Freire_cropped.JPG" width="100%" /&gt;
+]
+&lt;/center&gt;
+
+.right-column[
+&gt; «Nadie educa a nadie, nadie se educa a sí mismo, las personas se educan entre sí, mediadas por el mundo»
+&gt;
+&gt; Paulo Freire
+]
+
+---
+
+## Estratégias pedagógicas
+
+.pull-left[
+
+- Clases dialogadas
+ 
+- Tutoriales en R (swril)
+
+- Ejercícios (notaR)
+ 
+- Todos los recursos de aprendizaje en https://pilaboratory.github.io/R_UNMSM/
+ 
+- Los recursos estarán disponibles a medida que avancemos
+
+]
+ 
+ .pull-right[
+
+&lt;img src="figs/autonomia.jpg" width="896" style="display: block; margin: auto;" /&gt;
+ 
+]
+ 
+---
+
+
+## Programa
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Fecha &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Tema &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 06/Enero &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Introducción al lenguage R &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 07/Enero &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Manipulación de datos &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 08/Enero &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Gráficos &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 09/Enero &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Funciones y programación &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10/Enero &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Modelos estadísticos &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 13/Enero &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rmarkdown y tidyverse &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## ¿Qué es el lenguage R?
+.left-column[
+&lt;img src="figs/Rlogo.png" width="965" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+- Un potente lenguaje para el análisis de datos y gráficos;
+
+- Software libre creado y mantenido por una gran comunidad de colaboradores;
+
+- La comunidad creó miles de aplicaciones y pone a disposición mucha ayuda;
+
+- Se inició en 1990 a partir del lenguage S;
+
+- El equipo central de R (*R Core Team*) está dirigido por una organización sin fines lucrativos;
+
+]
+
+---
+## Para más veáse `https://www.r-project.org/`
+
+&lt;img src="figs/rproject_site.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle
+
+## Programación funcional orientada a objetos
+
+.bg-white.b--brblack.ba.bw2.br3.shadow-5.ph5.mt1[
+«Todo en R es un objeto, y todo lo que haces es una llamada a una función.»
+
+.left[— Ross Ihaka y Robert Gentleman]
+
+]
+
+---
+
+## Comandos y funciones
+#### Multiplicación
+
+``` r
+&gt; 2*2
+```
+
+```
+[1] 4
+```
+--
+
+#### Raíz cuadrada de una multiplicación
+
+``` r
+&gt; sqrt( 2*2 )
+```
+
+```
+[1] 2
+```
+---
+## Comandos y funciones
+#### Log base 2 de la raíz cuadrada de una multiplicación
+
+``` r
+&gt; log2( sqrt( 2*2 ) )
+```
+
+```
+[1] 1
+```
+--
+
+#### Lo mismo con operador *pipe*
+
+``` r
+&gt; 2*2 |&gt; sqrt() |&gt; log2()
+```
+
+```
+[1] 1
+```
+---
+
+
+## Más funciones
+
+#### Combinación de valores en un vector
+
+``` r
+&gt; c(1, 10, 100)
+```
+
+```
+[1]   1  10 100
+```
+--
+
+#### Suma de los elementos de un vector
+
+``` r
+&gt; sum( c(1, 10, 100) )
+```
+
+```
+[1] 111
+```
+---
+## Asignación
+
+#### Assigna un vector a `x`
+
+``` r
+&gt; x &lt;- c(1, 10, 100)
+```
+--
+#### Assigna a `y` la suma del contenido de `x`
+
+``` r
+&gt; y &lt;- sum(x)
+```
+--
+#### Para ver el contenido escribe el nombre del objeto
+
+``` r
+&gt; y
+```
+
+```
+[1] 111
+```
+
+---
+## Programación funcional orientada a objetos
+
+.left-column[
+&lt;img src="figs/chambers_book_cover.jpg" width="839" style="display: block; margin: auto;" /&gt;
+]
+.right-column[
+
+- En R, los datos, las funciones y los resultados se tratan como
+  objetos.
+  
+- Cada acción que realizas (por ejemplo, cálculos, manipulación de
+  datos, gráficos) se ejecuta mediante funciones.
+  
+- En R el análisis estadístico es una **secuencia de manipulaciones de
+  objetos**.
+  
+- R es un lenguage para **programar con datos**.
+]
+
+
+---
+
+## RStudio
+
+&lt;img src="figs/Rstudio.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+## Ventana de comandos (R consola)
+
+&lt;img src="figs/Rstudio_consola.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+## Ventana de códigos (*scripts*)
+
+&lt;img src="figs/Rstudio_script.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+## Ventana del espacio de trabajo (*worksapce*)
+
+&lt;img src="figs/Rstudio_workspace.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+## Ventana de ayuda y gráficos
+
+&lt;img src="figs/Rstudio_plots.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+
+## Ayuda
+
+.pull-left[
+&lt;img src="figs/help_rnorm.png" width="1184" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- `help(rnorm)`, `?rnorm`
+- Cuadro de búsqueda en la ventana de ayuda/gráficos en RStudio
+- Formato estándar
+- Secciones más importantes: 
+  - *Usage*: comandos de uso 
+  - *Arguments*: argumentos 
+  - *Value*: lo que te devuelve 
+  - *Examples*: ejemplos de uso
+]
+
+---
+
+## ¡Vámonos!
+
+.left-column[
+&lt;img src="figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+1. Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.
+
+2. En la línea de comando en RStudio escribe `library(swril)`
+
+3. En la línea de comando de RStudio escribe `install_course()`
+
+4. Se abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.
+
+5. Debes ver el mensaje `Course installed successfully!`
+
+]
+
+---
+
+## ¡Vámonos!
+
+.left-column[
+&lt;img src="figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+6. En la línea de comando de RStudio escribe `swril()`
+
+7. Debes ver el  mensaje `Please choose a course, or type 0 to exit swirl.` 
+
+8. Introduzca el número del curso `Tutoriales UNMSM v#` 
+
+9. ... donde `v#` es la versión del archivo.
+           
+]
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

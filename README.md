@@ -13,8 +13,9 @@ Sitio web y todo el material utilizado en el curso, dictado para el Doctorado en
 │   ├── slides.Rmd                  # slides source file
 │   ├── slides.html
 │   └── xaringan-themer.css
-├── notaR                           # codes and texts of the ecercises
-│   └──src                          # md and R codes for the execrcises
+├── notaR                           # codes and texts of the exercises in notaR
+│   └──src                          # md and R codes for the exercises in notaR
+├── Tutoriales                      # Sources and compiled files for swril tutorials
 ├── index.Rmd                       # home page
 ├── docs/                           # output folder for the site 
 └── theme.css

@@ -2412,6 +2412,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2493,37 +2495,65 @@ Sílabo
 </ul>
 <h2 id="programa">Programa</h2>
 <div class="layout-chunk" data-layout="l-body">
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Fecha</th>
-<th style="text-align: left;">Tema</th>
+<tr>
+<th style="text-align:left;">
+Fecha
+</th>
+<th style="text-align:left;">
+Tema
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">06/Enero</td>
-<td style="text-align: left;">Introducción al lenguage R</td>
+<tr>
+<td style="text-align:left;">
+06/Enero
+</td>
+<td style="text-align:left;">
+Introducción al lenguage R
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">07/Enero</td>
-<td style="text-align: left;">Manipulación de datos</td>
+<tr>
+<td style="text-align:left;">
+07/Enero
+</td>
+<td style="text-align:left;">
+Manipulación de datos
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">08/Enero</td>
-<td style="text-align: left;">Gráficos</td>
+<tr>
+<td style="text-align:left;">
+08/Enero
+</td>
+<td style="text-align:left;">
+Gráficos
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">09/Enero</td>
-<td style="text-align: left;">Funciones y programación</td>
+<tr>
+<td style="text-align:left;">
+09/Enero
+</td>
+<td style="text-align:left;">
+Funciones y programación
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">10/Enero</td>
-<td style="text-align: left;">Modelos estadísticos</td>
+<tr>
+<td style="text-align:left;">
+10/Enero
+</td>
+<td style="text-align:left;">
+Modelos estadísticos
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">13/Enero</td>
-<td style="text-align: left;">Rmarkdown y tidyverse</td>
+<tr>
+<td style="text-align:left;">
+13/Enero
+</td>
+<td style="text-align:left;">
+Rmarkdown y tidyverse
+</td>
 </tr>
 </tbody>
 </table>
@@ -2553,10 +2583,23 @@ que pueda realizar las tareas y ejercicios después de las lecciones.</p>
 (el más cercano a tu ubicación) y sigue las instrucciones para instalar R
 según tu sistema operativo.</p></li>
 <li><p>Ve a la página de instalación de <a href="https://www.rstudio.com/products/rstudio/download/">R Studio</a> y sigue las instrucciones para instalar R Studio según tu sistema operativo<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
-<li><p>En RStudio instale el paquete <em>swirl</em>. Has clic en la opción de menu “Tools”, y entonces en la opción “Install packages”. En la ventana de diálogo escriba <em>swril</em> en la casilla “Package” y pulse el botón “Install”.</p></li>
+<li><p>En RStudio instale los paquete <em>swirl</em>. Has clic en la opción de menu “Tools”, y entonces en la opción “Install packages”. En la ventana de diálogo escriba <em>swril</em> en la casilla “Package” y pulse el botón “Install”.</p></li>
 </ol>
 <p><img src="01_introduccion/figs/instal_package_rstudio.png" /></p>
 <p><img src="01_introduccion/figs/instal_package_dialog.png" /></p>
+<h4 id="instale-nuestros-tutoriales">Instale nuestros tutoriales</h4>
+<ol type="1">
+<li><p>Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.</p></li>
+<li><p>En la línea de comando en RStudio escribe <code>library(swril)</code></p></li>
+<li><p>En la línea de comando de RStudio escribe <code>install_course()</code></p></li>
+<li><p>Se abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.</p></li>
+<li><p>Debes ver el mensage <code>Course installed successfully!</code></p></li>
+</ol>
+<h5 id="archivo-de-los-tutoriales">Archivo de los tutoriales</h5>
+<p>Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente.</p>
+<ul>
+<li><a href="Tutoriales/Curso_R_UNMSM_v1.swc">Tutoriales versión 1.0</a></li>
+</ul>
 <h3 id="conozca-a-notar">Conozca a notaR</h3>
 <p>Haremos ejercicios en la plataforma notaR, que es un sistema en línea
 para comprobar códigos en R. Ve a la página del <a href="http://notar.ib.usp.br">servicio notaR en

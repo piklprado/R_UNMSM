@@ -25,7 +25,7 @@ Este es un curso creado por un estudiante de biología de toda la vida para ayud
 ## Programa
 
 ```{r, echo = F}
-read.csv("../programa.csv") |>
+read.csv("programa.csv") |>
   kbl() |>
   kable_styling()
 ```
@@ -68,12 +68,29 @@ según tu sistema operativo.
 
 2. Ve a la página de instalación de [R Studio](https://www.rstudio.com/products/rstudio/download/) y sigue las instrucciones para instalar R Studio según tu sistema operativo[^1].
 
-3. En RStudio instale el paquete *swirl*. Has clic en la opción de menu "Tools", y entonces en la opción "Install packages". En la ventana de diálogo escriba *swril* en la casilla "Package" y pulse el botón "Install".
+3. En RStudio instale los paquete *swirl*. Has clic en la opción de menu "Tools", y entonces en la opción "Install packages". En la ventana de diálogo escriba *swril* en la casilla "Package" y pulse el botón "Install".
 
 ![](01_introduccion/figs/instal_package_rstudio.png)
 
 ![](01_introduccion/figs/instal_package_dialog.png)
 
+#### Instale nuestros tutoriales
+
+1. Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.
+
+2. En la línea de comando en RStudio escribe `library(swril)`
+
+3. En la línea de comando de RStudio escribe `install_course()`
+
+4. Se abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.
+
+5. Debes ver el mensage `Course installed successfully!`
+
+##### Archivo de los tutoriales
+
+Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente.
+
+* [Tutoriales versión 1.0](Tutoriales/Curso_R_UNMSM_v1.swc)
 
 ### Conozca a notaR
 
