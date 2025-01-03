@@ -191,7 +191,7 @@ class: middle
 ---
 
 ## Comandos y funciones
-#### Multiplicación
+##### Multiplicación
 
 ``` r
 &gt; 2*2
@@ -202,7 +202,7 @@ class: middle
 ```
 --
 
-#### Raíz cuadrada de una multiplicación
+##### Raíz cuadrada de una multiplicación
 
 ``` r
 &gt; sqrt( 2*2 )
@@ -213,7 +213,7 @@ class: middle
 ```
 ---
 ## Comandos y funciones
-#### Log base 2 de la raíz cuadrada de una multiplicación
+##### Log base 2 de la raíz cuadrada de una multiplicación
 
 ``` r
 &gt; log2( sqrt( 2*2 ) )
@@ -224,7 +224,7 @@ class: middle
 ```
 --
 
-#### Lo mismo con operador *pipe*
+##### Lo mismo con operador *pipe*
 
 ``` r
 &gt; 2*2 |&gt; sqrt() |&gt; log2()
@@ -238,7 +238,7 @@ class: middle
 
 ## Más funciones
 
-#### Combinación de valores en un vector
+##### Combinación de valores en un vector
 
 ``` r
 &gt; c(1, 10, 100)
@@ -249,7 +249,7 @@ class: middle
 ```
 --
 
-#### Suma de los elementos de un vector
+##### Suma de los elementos de un vector
 
 ``` r
 &gt; sum( c(1, 10, 100) )
@@ -261,19 +261,19 @@ class: middle
 ---
 ## Asignación
 
-#### Assigna un vector a `x`
+##### Assigna un vector a `x`
 
 ``` r
 &gt; x &lt;- c(1, 10, 100)
 ```
 --
-#### Assigna a `y` la suma del contenido de `x`
+##### Assigna a `y` la suma del contenido de `x`
 
 ``` r
 &gt; y &lt;- sum(x)
 ```
 --
-#### Para ver el contenido escribe el nombre del objeto
+##### Para ver el contenido escribe el nombre del objeto
 
 ``` r
 &gt; y
@@ -392,6 +392,478 @@ class: middle
 ]
 
 ---
+
+## Vectores
+
+* Una collección ordenada de elementos.
+* El objeto básico en R, que basa la mayoría de las operaciones.
+
+--
+##### Asigna un vector con 4 valores numéricos a `y`
+
+``` r
+&gt; y &lt;- c(1804, 1854, 1865, 1888)
+&gt; y
+```
+
+```
+[1] 1804 1854 1865 1888
+```
+--
+
+##### la función `length` devuelve la longitud de un vector
+
+
+``` r
+&gt; length(y)
+```
+
+```
+[1] 4
+```
+---
+
+
+## Operaciones con vectores
+
+* R empareja los elementos de vectores y aplica la operación a cada pareja.
+* En R eso se nombra "vectorización"
+
+--
+
+##### Sustrae un vector de longitud 4 de otro de la misma longitud
+
+
+``` r
+&gt; a &lt;- c(1.1, 2.2, 3.3, 4.4)
+&gt; b &lt;- c(0.1, 0.2, 0.3, 0.4)
+&gt; a - b
+```
+
+```
+[1] 1 2 3 4
+```
+---
+
+## Reciclaje de vectores
+
+##### ¿Por qué es igual el resultado?
+
+
+``` r
+&gt; a &lt;- c(1.1, 2.2, 3.3, 4.4)
+&gt; b &lt;- c(1, 1, 1, 1)
+&gt; a - b
+```
+
+```
+[1] 0.1 1.2 2.3 3.4
+```
+
+``` r
+&gt; a - 1
+```
+
+```
+[1] 0.1 1.2 2.3 3.4
+```
+---
+
+## Reciclaje de vectores de tamaños diferentes
+
+* R automáticamente *repite los elementos del vector más corto* para
+  que coincida con la longitud del vector más largo.
+* Muy útil, pero és importante entenderlo para evitar resultados inesperados.
+* R te avisa si la longitud del vector más largo no es un múltiplo del más corto.
+
+##### Sustrae vector de 2 elementos de vector de 5 elementos
+
+``` r
+&gt; c(1, 2, 3, 4, 5) - c(1, 2)
+```
+
+```
+Warning in c(1, 2, 3, 4, 5) - c(1, 2): longer object length is not a multiple of shorter object length
+```
+
+```
+[1] 0 0 2 2 4
+```
+---
+
+## Vectores de caracteres
+
+* Los elementos de un vector dese tipo son cadenas de caracteres
+* El reciclaje vale para vectores de otros tipos
+
+##### Asigna vector de caracteres al objeto `colores`
+
+``` r
+&gt; colores &lt;- c("rojo", "azul", "verde")
+&gt; colores
+```
+
+```
+[1] "rojo"  "azul"  "verde"
+```
+##### Combina las cadenas de dos vectores
+
+``` r
+&gt; paste(colores, "intenso")
+```
+
+```
+[1] "rojo intenso"  "azul intenso"  "verde intenso"
+```
+
+---
+
+## Vectores lógicos
+
+* Tiene valores FALSE o TRUE (sin comillas)
+* A menudo resultan de pruebas logicas (`&gt;`, `&lt;`, `==`, `!=`)
+
+##### Prueba valores mayores que 1 en un vector numérico
+
+``` r
+&gt; c(0.25, 0.99, 1, 2, 3) &gt; 1
+```
+
+```
+[1] FALSE FALSE FALSE  TRUE  TRUE
+```
+
+##### Prueba las cadenas que no corresponden a "rojo" en un vector de caracteres
+
+``` r
+&gt; c("rojo", "azul", "verde") != "rojo"
+```
+
+```
+[1] FALSE  TRUE  TRUE
+```
+
+---
+
+## Operaciones con Vectores lógicos
+
+* Operados lógicos booleanos: `&amp;` (AND), `|` (OR), `!` (NOT), 
+
+
+##### Prueba valores mayores que 1 y  menores que 3
+
+``` r
+&gt; a &lt;- c(0.25, 0.99, 1, 2, 3)
+&gt; a &gt; 1 &amp; a &lt; 3
+```
+
+```
+[1] FALSE FALSE FALSE  TRUE FALSE
+```
+
+##### Prueba las cadenas que corresponden a "rojo" o a "azul"
+
+``` r
+&gt; colores &lt;- c("rojo", "azul", "verde")
+&gt; colores == "rojo" | colores == "azul"
+```
+
+```
+[1]  TRUE  TRUE FALSE
+```
+
+---
+
+## Operaciones con vectores lógicos
+
+* Acuerdate del reciclaje de las operaciones con vectores!
+
+
+##### Prueba dos vectores del mismo tamaño
+
+``` r
+&gt; c(1, 2, 3) &gt; c(3, 2, 1)
+```
+
+```
+[1] FALSE FALSE  TRUE
+```
+
+##### Prueba vectores de longitudes diferentes y no multiplices
+
+``` r
+&gt; c("rojo", "azul", "verde") == c("azul", "rojo") 
+```
+
+```
+Warning in c("rojo", "azul", "verde") == c("azul", "rojo"): longer object length is not a multiple of shorter object
+length
+```
+
+```
+[1] FALSE FALSE FALSE
+```
+---
+
+## Una operador sin reciclaje: `%in%`
+
+##### Prueba que los elementos de un vector están también en otro
+
+``` r
+&gt; c("rojo", "azul", "verde") %in% c("azul", "rojo")
+```
+
+```
+[1]  TRUE  TRUE FALSE
+```
+
+``` r
+&gt; c(1,2,3,4,5) %in% c(2,4)
+```
+
+```
+[1] FALSE  TRUE FALSE  TRUE FALSE
+```
+---
+
+## Valores reservados: `NA`
+
+* `NA` (*Not available*) representa valores faltantes
+* En general operaciones con `NA` resultan valores `NA`
+
+##### Un vector numerico con un valor faltante 
+
+``` r
+&gt; x &lt;- c(10, 30, 40, NA)
+&gt; x*2
+```
+
+```
+[1] 20 60 80 NA
+```
+
+``` r
+&gt; x&gt;25
+```
+
+```
+[1] FALSE  TRUE  TRUE    NA
+```
+
+##### Excepciones lógicas
+
+
+``` r
+&gt; 2 &gt; 1 | NA
+```
+
+```
+[1] TRUE
+```
+
+``` r
+&gt; "rojo" == "azul" &amp; NA
+```
+
+```
+[1] FALSE
+```
+
+``` r
+&gt; any(x&gt;25)
+```
+
+```
+[1] TRUE
+```
+
+---
+
+## Valores reservados: `NaN`
+
+* En R, `NaN` (*Not a Number*) representa un resultado numerico matematicamente indefinido.
+* Asi como para `NA`, en general operaciones con `NaN` resultan  `NaN`.
+
+##### Operaciones matematicamente indefinidas
+
+``` r
+&gt; 0/0
+```
+
+```
+[1] NaN
+```
+
+``` r
+&gt; log10( c(-1, -10, 1, 10) )
+```
+
+```
+Warning: NaNs produced
+```
+
+```
+[1] NaN NaN   0   1
+```
+
+##### Operaciones con `NaN`
+
+``` r
+&gt; NaN + 1
+```
+
+```
+[1] NaN
+```
+
+``` r
+&gt; log(NaN)
+```
+
+```
+[1] NaN
+```
+
+---
+
+## Valores reservados: `Inf` y `-Inf`
+
+* En R, `Inf` y `-Inf` representa los concepto de infinito positivo y negativo. 
+* Es una constante incorporada que se utiliza para indicar valores que
+  exceden el rango representable de números en cálculos, o resultados
+  de operaciones que matemáticamente producen infinito.
+
+##### Excede el rango representable por vector numerico
+
+``` r
+&gt; 1000^1000
+```
+
+```
+[1] Inf
+```
+
+``` r
+&gt; -1000^1000
+```
+
+```
+[1] -Inf
+```
+
+##### Matematicamente producen infinito
+
+``` r
+&gt; 1/0
+```
+
+```
+[1] Inf
+```
+
+``` r
+&gt; log(0)
+```
+
+```
+[1] -Inf
+```
+
+``` r
+&gt; Inf - 10000000000000000000
+```
+
+```
+[1] Inf
+```
+
+---
+
+## Clases de vectores
+
+* La clase de un vector indicam el tipo de dato que tienen
+* Por ejemplo, numericos, characteres, lógicos
+* Se verifica la clase con las funciones `class` y `is.[classe]`
+
+##### Aplica la funcción `class` a vectores
+
+
+``` r
+&gt; a &lt;- c(1, 2, 3, NA, NaN)
+&gt; class(a)
+```
+
+```
+[1] "numeric"
+```
+
+``` r
+&gt; a &lt;- c("A", "B", "C", NA)
+&gt; class(a)
+```
+
+```
+[1] "character"
+```
+
+``` r
+&gt; class(a &gt; 1)
+```
+
+```
+[1] "logical"
+```
+
+---
+
+## Clases de vectores
+
+* Si intenta crear un vector con elementos de tipos diferentes, R va a buscar una manera de hacerlos todos de un tipo solo.
+* Llamamos a eso **coerción implícita**
+* Como R hace esto entre bastidores, la coerción implícita puede pasar desapercibida y causar problemas.
+
+
+##### Un solo caracter en un vector de numeros
+
+
+``` r
+&gt; a &lt;- c(1, "2", 3)
+&gt; a
+```
+
+```
+[1] "1" "2" "3"
+```
+
+``` r
+&gt; class(a)
+```
+
+```
+[1] "character"
+```
+
+##### Un lógico en un vector de ceros y unos
+
+
+``` r
+&gt; a &lt;- c(FALSE, 1, 2, 3 )
+&gt; a
+```
+
+```
+[1] 0 1 2 3
+```
+
+``` r
+&gt; class(a)
+```
+
+```
+[1] "numeric"
+```
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -1,0 +1,7 @@
+nome <- commandArgs(trailingOnly = TRUE)
+library(swirlify)
+rota <- paste0("Curso_R_UNMSM_v",nome)
+dir.create(rota)
+file.copy("Curso_R_UNMSM/", paste0(rota,"/"), recursive = TRUE)
+set_lesson(path_to_yaml = paste0(rota, "Mi_primera_session/lesson.yaml"), open_lesson = FALSE)
+pack_course()

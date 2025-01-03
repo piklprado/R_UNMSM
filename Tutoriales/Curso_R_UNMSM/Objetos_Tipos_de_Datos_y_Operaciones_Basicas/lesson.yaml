@@ -73,7 +73,7 @@
   la consola es interpretado como un vector."
 
 - Class: text
-  Output: "Un vector es una colección ordenada de números, por lo cual el '[1]'
+  Output: "Un vector es una colección ordenada de elementos, por lo cual el '[1]'
   denota la posición del primer elemento mostrado en el renglón 1. En los casos
   anteriores sólo existe un único elemento en el vector."
 
@@ -125,7 +125,7 @@
   Hint: 'Introduce ls() en la línea de comandos.'
 
 - Class: text
-  Output: 'Como sabes, existen otros tipos de objetos, como los caracteres
+  Output: 'Como sabes, existen otros tipos de datos, como los caracteres
   (character).'
 
 - Class: cmd_question
@@ -273,8 +273,6 @@
   estadísticas con las fechas y horas. Además, R incluye funciones para
   manipularlas. Muchas funciones de graficación requieren fechas y horas."
 
-
-
 - Class: text
   Output: 'Ahora que conoces los objetos más usados en R, debes saber que además
   de la función c(), en R existe la función vector() para crear vectores. Al
@@ -386,6 +384,29 @@
   Hint: "Introduce class(as.logical(x)) en la línea de comandos."
 
 - Class: text
+  Output: 'Los factores son otro tipo especial de vectores usados para
+  representar datos categóricos, éstos pueden ser ordenados o sin orden.'
+
+- Class: text
+  Output: "Recuerda el vector 'continente' que creaste previamente,
+  con los continentes de Haití, Perú, Estados Unidos y Brasil."
+
+- Class: cmd_question
+  Output: 'Es una representación perfectamente válida, pero puede llegar a ser
+  ineficiente. Ahora representarás los continentes como un factor. Introduce
+  as.factor(continente) en la línea de comandos.'
+  CorrectAnswer: as.factor(continente)
+  AnswerTests: omnitest(correctExpr='as.factor(continente)')
+
+- Class: text
+  Output: 'La impresión de un factor muestra información ligeramente diferente a
+  la de un vector de caracteres. En particular, puedes notar que las comillas no
+  son mostradas y que los niveles son explícitamente impresos.'
+
+- Class: text
+  Output: 'La conversión en factores es la coerción explícita más común en R. Hay una función factor que hace esto, con mucha flexibilidad.'
+
+- Class: text
   Output: 'Para guardar objetos de diferentes clases, puedes usar listas.'
 
 - Class: cmd_question
@@ -425,26 +446,6 @@
   Output: 'Como puedes observar, creaste una matriz con tres columnas (ncol) y
   cuatro filas (nrow).'
 
-
-- Class: text
-  Output: 'Los factores son otro tipo especial de vectores usados para
-  representar datos categóricos, éstos pueden ser ordenados o sin orden.'
-
-- Class: text
-  Output: "Recuerda el vector 'continente' que creaste previamente,
-  con los continentes de Haití, Perú, Estados Unidos y Brasil."
-
-- Class: cmd_question
-  Output: 'Es una representación perfectamente válida, pero puede llegar a ser
-  ineficiente. Ahora representarás los continentes como un factor. Introduce
-  factor(continente) en la línea de comandos.'
-  CorrectAnswer: factor(continente)
-  AnswerTests: omnitest(correctExpr='factor(continente)')
-
-- Class: text
-  Output: 'La impresión de un factor muestra información ligeramente diferente a
-  la de un vector de caracteres. En particular, puedes notar que las comillas no
-  son mostradas y que los niveles son explícitamente impresos.'
 
 - Class: text
   Output: 'Existen también los dataframes, que son una manera muy útil de

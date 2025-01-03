@@ -53,10 +53,16 @@ Guide. Chapman and Hall/CRC.](https://bookdown.org/yihui/rmarkdown/)
 Ximénez , C, & Revuelta, J. 2022. [Análisis de Datos en Lenguaje R. UAM
 Ediciones, Madrid.](https://libros.uam.es/uam/catalog/view/1163/2054/2338)
 
+## Archivo de los tutoriales
+
+Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente.
+
+* [Tutoriales versión 1.0](Tutoriales/Curso_R_UNMSM_v1.swc)
+
 
 ## Preparate para el curso
 
-### Instale R
+### Instale R y RStudio
 
 Dispondremos de computadoras durante las lecciones, pero le
 recomendamos que también instale R en una computadora de trabajo para
@@ -74,9 +80,9 @@ según tu sistema operativo.
 
 ![](01_introduccion/figs/instal_package_dialog.png)
 
-#### Instale nuestros tutoriales
+### Instale nuestros tutoriales
 
-1. Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.
+1. Descargue el archivo de los tutoriales del enlace arriba en su directorio de trabajo.
 
 2. En la línea de comando en RStudio escribe `library(swril)`
 
@@ -86,11 +92,6 @@ según tu sistema operativo.
 
 5. Debes ver el mensage `Course installed successfully!`
 
-##### Archivo de los tutoriales
-
-Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente.
-
-* [Tutoriales versión 1.0](Tutoriales/Curso_R_UNMSM_v1.swc)
 
 ### Conozca a notaR
 
@@ -102,4 +103,4 @@ notaR". Intenta resolverlo.
 Consulte también las [instrucciones para envío de respuestas a notaR](01_introduccion/envio_respuestas_notar.html).
 
 
-[^1]: Rstudio é uno de los muchos [IDE](https://es.wikipedia.org/wiki/Entorno_de_desarrollo_integrado) para programar en R. Si ya usas otro IDE puede quedarte con él en su computadora de trabajo. Pero en las computadores en la class usaremos RStudio.
+[^1]: Rstudio es uno de los muchos [IDE](https://es.wikipedia.org/wiki/Entorno_de_desarrollo_integrado) para programar en R. Si ya usas otro IDE puede quedarte con él en su computadora de trabajo. Pero en las computadores en la class usaremos RStudio.
