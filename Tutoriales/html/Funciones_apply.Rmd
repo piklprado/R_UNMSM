@@ -1,0 +1,114 @@
+---
+title: Funciones apply
+output:
+  html_document:
+    theme: spacelab
+---
+
+```{r, strip.white = TRUE, echo=FALSE, message=FALSE}
+suppressPackageStartupMessages(library(swirl))
+
+# Code placed in this file fill be executed every time the
+# lesson is started. Any variables created here will show up in
+# the user's working directory and thus be accessible to them
+# throughout the lesson.
+``` 
+
+En esta lección aprenderás a utilizar a la familia de funciones *apply(). 
+
+Cuando te encuentras procesando información, una operación común es la de aplicar una función a un conjunto de elementos y regresar un nuevo conjunto de elementos. 
+
+La funciones *apply() que se encuentran en el paquete base de R, actúan de esta manera sobre diferentes estructuras de datos, aplican una función con uno o varios argumentos y regresan otra estructura de datos. 
+
+La primera función que conocerás es la función apply(), la cual opera sobre arreglos. 
+
+Para conocer el uso de esta función ingresa help("apply") en la línea de comandos.
+
+```{r, strip.white = TRUE}
+help("apply")
+``` 
+
+X es un arreglo (puede ser una matriz si la dimensión del arreglo es 2). MARGIN es una variable que define cómo la función es aplicada, cuando MARGIN=1 se aplica sobre los renglones, cuando MARGIN=2 trabaja sobre las columnas. FUN es la función que deseas aplicar y puede ser cualquier función de R, incluyendo funciones definidas por ti. 
+
+Opcionalmente puedes especificar argumentos a FUN como argumentos adicionales (...). 
+
+Para ejemplificar cómo funciona crea un arreglo bidimensional (matriz) y guárdalo en la variable 'mi_matriz'. Ingresa mi_matriz <- matrix(data=1:16,nrow=4, ncol=4) en la línea de comandos.
+
+```{r, strip.white = TRUE}
+mi_matriz <- matrix(data=1:16,nrow=4, ncol=4)
+``` 
+
+Ahora ve su contenido.
+
+```{r, strip.white = TRUE}
+mi_matriz
+``` 
+
+Ahora imagina que deseas saber el mínimo valor presente en cada columna de 'mi_matriz'. Puedes usar la funcion min(), la cual regresa el mínimo de los valores que recibe como entrada; y así, al ingresar apply(X=mi_matriz, MARGIN=2, FUN=min) en la línea de comandos obtendrás los mínimos valores por columna. ¡Inténtalo!
+
+```{r, strip.white = TRUE}
+apply(mi_matriz, 2, min)
+``` 
+
+Es importante notar que es necesario que MARGIN=2 para que la función min() sea aplicada sobre las columnas. 
+
+Ahora haz la misma operación, solo que sobre los renglones.
+
+```{r, strip.white = TRUE}
+apply(mi_matriz, 1, min)
+``` 
+
+Te preguntarás qué puedes hacer si deseas aplicar una función a una lista o un vector, ya que apply() solo opera sobre arreglos. 
+
+Pues bien, para aplicar una función a cada elemento de un vector o una lista y regresar una lista, puedes usar la función lapply(). 
+
+Para ejemplificar esto crea una lista, la cual contenga a las cadenas "Introducción", "a", "la", "Programación", "Estadística", "con", "R", en ese orden, y guarda la lista en la variable ‘mi_lista’.
+
+```{r, strip.white = TRUE}
+mi_lista <- list("Introducción", "a", "la", "Programación", "Estadística", "con", "R")
+``` 
+
+Ahora ve el contenido de la variable 'mi_lista'.
+
+```{r, strip.white = TRUE}
+mi_lista
+``` 
+
+Aunque la función lapply() es muy parecida a la función apply(), es importante conocer la manera de usarla; esto lo puedes hacer conociendo sus argumentos. Ahora ve los argumentos de la función lapply().
+
+```{r, strip.white = TRUE}
+formals(lapply)
+``` 
+
+Como podrás notar el uso de lapply() es más simple que el de apply, puesto que no hace uso del argumento MARGIN. 
+
+Ahora ve un simple ejemplo de cómo usar lapply. Ingresa mayusculas <- lapply(mi_lista, toupper) en la línea de comandos.
+
+```{r, strip.white = TRUE}
+mayusculas <- lapply(mi_lista, toupper)
+``` 
+
+Ahora ve el contenido de 'mayusculas'.
+
+```{r, strip.white = TRUE}
+mayusculas
+``` 
+
+Como recordarás, toupper() regresa la cadena que reciba como entrada en mayúsculas. Así que lapply simplemente regresa una lista que contiene el resultado de aplicar la función toupper() a cada elemento de 'mi_lista'. 
+
+Para verificar que lapply efectivamente regresa una lista ingresa class(mayusculas).
+
+```{r, strip.white = TRUE}
+class(mayusculas)
+``` 
+
+Si ahora ingresas lapply(c("Introduccion", "a", "la", "Programacion", "Estadistica", "con", "R"), toupper) en la línea de comandos, ¿qué crees que ocurra?
+
+1. Que te regrese una lista que contenga las cadenas "INTRODUCCION", "A", "LA", "PROGRAMACION", "ESTADISTICA", "CON", "R"
+2. Que te mande error
+3. Que te regrese un vector que contenga las cadenas "INTRODUCCION", "A", "LA", "PROGRAMACION", "ESTADISTICA", "CON", "R"
+
+Que te regrese una lista que contenga las cadenas "INTRODUCCION", "A", "LA", "PROGRAMACION", "ESTADISTICA", "CON", "R" 
+
+Te regresará una lista que contenga a las cadenas "INTRODUCCION", "A", "LA", "PROGRAMACION", "ESTADISTICA", "CON", "R" pues si recuerdas la función lapply() opera sobre listas y vectores y SIEMPRE regresa una lista; es fácil que recuerdes esto si piensas que lista + apply = lapply. 
+

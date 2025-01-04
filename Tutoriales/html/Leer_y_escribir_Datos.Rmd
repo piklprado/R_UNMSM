@@ -1,0 +1,29 @@
+---
+title: Leer y escribir Datos
+output:
+  html_document:
+    theme: spacelab
+---
+
+```{r, strip.white = TRUE, echo=FALSE, message=FALSE}
+suppressPackageStartupMessages(library(swirl))
+
+# Code placed in this file fill be executed every time the
+# lesson is started. Any variables created here will show up in
+# the user's working directory and thus be accessible to them
+# throughout the lesson.
+ok <- function() {
+  invisible()
+}
+``` 
+
+En esta lección conocerás cómo cargar conjuntos de datos en R y guardar estos conjuntos desde R. 
+
+Una de las mejores cosas acerca de R es lo fácil que es añadir información desde otros programas. 
+
+R puede importar conjuntos de datos desde archivos de texto, otros softwares de estadística y hasta hojas de cálculo. No es necesario tener una copia local del archivo. Tú puedes especificar la ubicación del archivo desde una url y R buscará el archivo en Internet. 
+
+La mayoría de los archivos que contienen información tienen un formato similar. Generalmente cada línea del archivo representa una observación o registro, por lo que cada línea contiene un conjunto de diferentes variables asociadas con la observación. 
+
+Algunas veces, diferentes variables son separadas por un carácter especial, llamado delimitador. Otra veces las variables son diferenciadas por su ubicación en cada línea. 
+

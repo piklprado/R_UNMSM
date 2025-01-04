@@ -1,0 +1,206 @@
+---
+title: Mi primera sessión en R y RStudio
+output:
+  html_document:
+    theme: spacelab
+---
+
+```{r, strip.white = TRUE, echo=FALSE, message=FALSE}
+suppressPackageStartupMessages(library(swirl))
+
+# Code placed in this file fill be executed every time the
+      # lesson is started. Any variables created here will show up in
+      # the user's working directory and thus be accessible to them
+      # throughout the lesson.
+``` 
+
+Esta es nuestra primera lección, en la que tendrás un primer contacto con R usando RStudio. Esta lección fue adaptada y traducida al español del módulo 1 del curso 'A (very) short introduction to R, de Claudia Brauer (www.github.com/ClaudiaBrauer/A-very-short-introduction-to-R). 
+
+La interfaz de RStudio tiene varias ventanas. Puede cambiar el tamaño de las ventanas arrastrando las barras grises entre las ventanas. 
+
+Abajo a la izquierda está la ventana de la consola (también llamada ventana/línea de comandos). Aquí puede escribir comandos después del prompt > y R ejecutará su comando. Esta es la ventana más importante, porque aquí es donde R realmente hace cosas. 
+
+Arriba a la izquierda está la ventana del editor de códigos (también llamada ventana de script). Aquí se pueden editar y guardar colecciones de comandos (scripts). Si no aparece esta ventana, puede abrirla con 'File > New R > Script' ('Archivo' > 'Nuevo' > 'R script'). 
+
+Escribir comandos en la ventana del editor no es suficiente, tiene que llegar a la ventana de comandos antes de que R ejecute el comando. Si quieres ejecutar una línea desde la ventana del script (o todo el script), puedes hacer click en 'Run' o pulsar 'CTRL+ENTER' para enviarlo a la ventana de comandos. 
+
+La ventana de scripts es muy importante, ya que en ella podrás crear y guardar tus códigos en R para usarlos cuando los necesites. Por ejemplo, para resolver los ejercicios de nuestro curso, deberás escribir los códigos y guadalos, para luego enviarlos a través de un sistema en línea llamado notaR. 
+
+¡Intenta resolver el resto de este tutorial con un script! Para ello, abre un archivo script ('Archivo > Nuevo R > Script'), escribe los siguientes comandos en él, y envía los comandos a la consola de R pulsando 'CTRL+ENTER'. 
+
+Arriba a la derecha está la ventana de espacio de trabajo y de historial. En la ventana de espacio de trabajo puede ver qué datos y valores tiene R en su memoria. La ventana de historial muestra lo que se ha escrito anteriormente. Hay otras ventanas de que hablaremos después. 
+
+Abajo a la derecha está la ventana de archivos / gráficos / paquetes / ayuda / visor. Aquí puede abrir archivos, ver gráficos (también gráficos anteriores), instalar y cargar paquetes o utilizar la función de ayuda. 
+
+Su directorio de trabajo es la carpeta de su computadora en la que está trabajando actualmente. Cuando le pida a R que abra un determinado archivo, buscará este archivo en el directorio de trabajo, y cuando le diga a R que guarde un archivo de datos o una figura, lo guardará en el directorio de trabajo. 
+
+Para mantener tu trabajo organizado, es muy importante que crees un directorio de trabajo para cada análisis que vayas a realizar. Así que crea ahora mismo un directorio para este curso, donde guardarás todas tus scripts y otros archivos. 
+
+Ahora debe establecer su directorio de trabajo en este directorio que ha creado. Dentro de RStudio puede ir a 'Session' > 'Set working directory' > 'Choose directory'. Por favor, hágalo ahora. Cada vez que empiece a trabajar compruebe que se encuentra en el directorio de trabajo correcto. 
+
+En lugar de hacer clic, también puede escribir en la ventana de comandos setwd('su directorio'), donde 'su directorio' es la ruta para su directorio (por ejemplo setwd('C:/Documents/CursoR/'). Asegúrese de que las barras inclinadas son barras inclinadas hacia delante y de que no olvida los apóstrofos. R distingue entre mayúsculas y minúsculas, así que asegúrese de escribir mayúsculas donde sea necesario. No hace falta que lo intentes ahora. 
+
+R puede realizar muchos análisis estadísticos y de datos. Están organizados en los llamados paquetes o bibliotecas. Con la instalación estándar, se instalan los paquetes más comunes. 
+
+Para obtener una lista de todos los paquetes instalados, vaya a la ventana de paquetes. Si la casilla situada delante del nombre del paquete está marcada, el paquete está cargado (activado) y puede utilizarse. Busque el paquete swirl en la ventana de paquetes y compruebe si la casilla está marcada. 
+
+Hay muchos más paquetes disponibles en el sitio web de R. Si desea instalar y utilizar un paquete (por ejemplo, el paquete llamado 'geometry') primero debe instalar el paquete haciendo clic en 'install packages' en la ventana de paquetes y escribiendo geometry o escribiendo install.packages('geometry') en la ventana de comandos. En realidad ya has hecho esto para el paquete swirl. 
+
+A continuación, debes cargar el paquete marcando la casilla delante de geometry o escribiendo library(geometry) en la ventana de comandos. También has hecho esto para el paquete swirl (de lo contrario no podrías hacer estos ejercicios). 
+
+Ahora, empecemos con la programación de verdad. 
+
+R puede utilizarse como calculadora. Puedes escribir tu ecuación en la ventana de comandos después del >. Escribe 10^2 + 36. Puede tambíen escribrir el comando en el primeiro reglón del archivo script y entonces enviarlo a R con CTRL-ENTER.
+
+```{r, strip.white = TRUE}
+10^2 + 36
+``` 
+
+Y R dio la respuesta directamente. Además, los espacios no importan. 
+
+También puede dar un nombre a los números. Al hacerlo, se convierten en los denominados objetos, que pueden utilizarse posteriormente. Por ejemplo, para crear el objeto 'A' con el valor 4, escriba el comando A <- 4 .
+
+```{r, strip.white = TRUE}
+A <-  4
+``` 
+
+Puede ver que A apareció en la ventana del espacio de trabajo en la esquina superior derecha, lo que significa que R ahora recuerda qué es A. 
+
+Algunas personas prefieren utilizar = en lugar de <-. Hacen lo mismo, es decir, asignar valores a nombres (objetos). 
+
+<- consta de dos caracteres, < y -, y representa una flecha que apunta al objeto que recibe el valor de la expresión. En Rstudio tienes un atajo para ello: basta con pulsar Alt- (es decir, las teclas Alt y la tecla del signo menos). Pruébalo en los próximos comandos. 
+
+También puedes preguntarle a R que hay en un objeto. Sólo tienes que escribir el nombre del objeto en la ventana de comandos. Escriba A
+
+```{r, strip.white = TRUE}
+A
+``` 
+
+También puedes hacer cálculos con los objetos. Escribe A * 5 .
+
+```{r, strip.white = TRUE}
+A*5
+``` 
+
+Si vuelve a especificar A, R olvidará el valor que tenía antes. También puede asignar un nuevo valor a A utilizando el anterior. Escriba A <- A + 10 .
+
+```{r, strip.white = TRUE}
+A <- A + 10
+``` 
+
+Ahora puedes ver en la ventana del espacio de trabajo que se cambió el contenido de A. 
+
+Para eliminar todas las variables de la memoria de R, escriba rm(list=ls()) .
+
+```{r, strip.white = TRUE}
+rm(list=ls())
+``` 
+
+Verá que la ventana del espacio de trabajo está vacía. También puede hacer clic en el icono de la escoba (`clear all`) en la ventana del área de trabajo. Puede ver que RStudio vacía la ventana del área de trabajo. Si sólo desea eliminar la variable A, puede escribir rm(A). 
+
+Mientras escribes el último comando puedes notar que Rstudio adivina algo de lo que has escrito, como cerrar un paréntesis que has abierto. Este autocompletado es una buena característica para reducir el riesgo de errores de sintaxis. Pronto hablaremos más sobre esto. 
+
+Como en muchos otros programas, R organiza los números en escalares (un único número, 0-dimensional), vectores (una fila de números, también llamados arrays, 1-dimensional) y matrices (como una tabla, 2-dimensional). 
+
+El objeto A que definiste antes era un escalar. Para definir un vector con los números 3, 4 y 5, necesitas la función c, que es la abreviatura de concatenar (pegar juntos). Escribe B <- c(3,4,5) .
+
+```{r, strip.white = TRUE}
+B<-c(3,4,5)
+``` 
+
+Conoceremos matrices y otros objetos de más dimensiones en los próximos días. 
+
+Si quisieras calcular la media de todos los elementos del vector B del ejemplo anterior, podrías escribir (3+4+5)/3. Pruebe lo siguiente.
+
+```{r, strip.white = TRUE}
+(3+4+5)/3
+``` 
+
+Pero cuando el vector es muy largo, este trabajo es muy aburrido y puede llevar a errores. Por eso las cosas que se hacen a menudo se automatizan en las llamadas funciones. Algunas funciones son estándar en R o en uno de los paquetes. También puedes programar tus propias funciones (lo harás más adelante). 
+
+Para calcular la media aritmética utilizamos la función mean. Escribe mean(x=B) para comprobarlo.
+
+```{r, strip.white = TRUE}
+mean(x=B)
+``` 
+
+Entre los paréntesis de las funciones se especifican los argumentos. Los argumentos proporcionan información necesaria o adicional a la función. En este caso, el argumento x dice de qué conjunto de números (vector) debe calcularse la media (es decir, de B). A veces, el nombre del argumento no es necesario; mean(B) también funciona. Pruébelo.
+
+```{r, strip.white = TRUE}
+mean(B)
+``` 
+
+Cuando escribe 'mean' en la línea de comandos, RStudio muestra una lista de funciones que empiezan por 'mean'. Puede seleccionar una de las opciones y pulsar Intro para insertar la llamada a la función junto con sus paréntesis de apertura y cierre. A continuación, puede rellenar los argumentos dentro de los paréntesis. Esta es una de las útiles funciones de autocompletado de RStudio. 
+
+Calcula la suma de 4, 5, 8 y 11 combinándolos primero en un vector y utilizando después la función sum. Utiliza la función c dentro de la función sum.
+
+```{r, strip.white = TRUE}
+sum(c(4,5,8,11))
+``` 
+
+La función rnorm, como otro ejemplo, es una función estándar de R que crea muestras aleatorias a partir de una distribución normal. Escriba rnorm(100) y verá 100 números aleatorios extraídos de una normal.
+
+```{r, strip.white = TRUE}
+rnorm(100)
+``` 
+
+Aquí rnorm es la función y el 100 es un argumento que especifica cuántos números aleatorios desea - en este caso 100 números (escribir n=100 en lugar de sólo 100 también funcionaría). El resultado son 100 números aleatorios organizados en un vector de longitud 100. 
+
+Si vuelve a introducir el mismo comando, obtendrá 100 nuevos números aleatorios. En lugar de volver a escribir el mismo texto en la línea de comando, también puedes pulsar la tecla de flecha hacia arriba  (flecha arriba) para acceder a comandos anteriores. Si está en el archivo de script, vuelva a el comando y pulsa CTRL-ENTER. Pruebe a hacerlo.
+
+```{r, strip.white = TRUE}
+rnorm(100)
+``` 
+
+Si quieres 100 números aleatorios de una distribución normal con media 1.2 y desviación estándar 3.4 puedes escribir rnorm(100, mean=1.2, sd=3.4). Inténtelo.
+
+```{r, strip.white = TRUE}
+rnorm(100, mean=1.2, sd=3.4)
+``` 
+
+Esto demuestra que la misma función (rnorm) puede tener diferentes interfaces y que R tiene los llamados argumentos con nombre (en este caso mean y sd). 
+
+La comparación de este ejemplo con el anterior también muestra que para la función rnorm sólo el primer argumento (el número 100) es obligatorio, y que R da valores por defecto a los otros argumentos denominados opcionales. Utilice la función de ayuda para ver qué valores se utilizan por defecto escribiendo ?rnorm.
+
+```{r, strip.white = TRUE}
+?rnorm
+``` 
+
+Las páginas de ayuda de R pueden tratar de múltiples funciones relacionadas. Este es el caso de la página de ayuda de 'rnorm', que también incluye información sobre otras tres funciones: 'dnorm', 'pnorm', y 'qnorm'. Por ahora, vamos a centrarnos en los detalles sobre `rnorm` y dejar de lado las otras. 
+
+Las páginas de ayuda de las funciones en R tienen un formato estándar. Siempre comienzan con un título, y las secciones Description ('Descripción') y Usage ('uso'). La sección 'Usage' muestra el comando para llamar a la función con todos sus argumentos. Si los argumentos tienen valores por defecto se indicará con el nombre del argumento, un signo igual y el valor por defecto. ¿Cuáles son los argumentos de la función rnorm?
+
+1. x, mean, sd
+2. n, mean, sd
+3. mean, sd
+
+n, mean, sd 
+
+¿Cuáles son los argumentos de la función rnorm tienen valores por defecto?
+
+1. todos los argumentos
+2. n, mean, sd
+3. mean, sd
+
+mean, sd 
+
+Hay otra forma rápida de conocer los nombres de los argumentos de las funciones en RStudio. Al escribir rnorm( en la ventana de comandos y pulsar TAB, RStudio mostrará los posibles argumentos. 
+
+Puede guardar el resultado de una funcción en un objeto. Escribe  x<-rnorm(100).
+
+```{r, strip.white = TRUE}
+x<-rnorm(100)
+``` 
+
+Ahora se asignan 100 números aleatorios al objeto x, que se convierte en un vector mediante esta operación. Puedes verlo aparecer en la ventana del espacio de trabajo. 
+
+R también hace gráficos. Escribe hist(x) para un ejemplo muy sencillo.
+
+```{r, strip.white = TRUE}
+hist(x)
+``` 
+
+Mira la ventana de gráficos de la derecha. Hiciste un histograma de los 100 números aleatorios en el vector x. Como era de esperar de una muestra de un distribuición normal, el histograma tiene forma aproximada de campana. 
+
+Enhorabuena. Has terminado el primer tutorial del curso y te has familiarizado un poco más con R y RStudio. Guarda tu archivo de script y escribe tus preguntas para discutirlas en clase. 
+
