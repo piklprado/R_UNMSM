@@ -391,7 +391,7 @@ include_graphics("figs/bora-la.jpg")
 
 7. Debes ver el  mensaje `Please choose a course, or type 0 to exit swirl.` 
 
-8. Introduzca el número del curso `Tutoriales UNMSM v#` 
+8. Introduzca el número del curso `Curso R UNMSM v#`
 
 10. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 1.
            
@@ -544,12 +544,21 @@ c(1,2,3,4,5) %in% c(2,4)
 * `NA` (*Not available*) representa valores faltantes
 * En general operaciones con `NA` resultan valores `NA`
 
-##### Un vector numerico con un valor faltante 
+##### Un vector numérico con un valor faltante 
 ```{r }
 x <- c(10, 30, 40, NA)
 x*2
 x>25
 ```
+
+
+---
+
+## Valores reservados: `NA`
+
+* `NA` (*Not available*) representa valores faltantes
+* En general operaciones con `NA` resultan valores `NA`
+
 
 ##### Excepciones lógicas
 
@@ -561,16 +570,23 @@ any(x>25)
 
 ---
 
+
 ## Valores reservados: `NaN`
 
-* En R, `NaN` (*Not a Number*) representa un resultado numerico matematicamente indefinido.
-* Asi como para `NA`, en general operaciones con `NaN` resultan  `NaN`.
+* En R, `NaN` (*Not a Number*) representa un resultado numérico matemáticamente indefinido.
 
-##### Operaciones matematicamente indefinidas
+
+##### Operaciones matemáticamente indefinidas
 ```{r }
 0/0
 log10( c(-1, -10, 1, 10) )
 ```
+
+
+---
+## Valores reservados: `NaN`
+
+* Asi como para `NA`, en general operaciones con `NaN` resultan  `NaN`.
 
 ##### Operaciones con `NaN`
 ```{r }
@@ -580,22 +596,53 @@ log(NaN)
 
 ---
 
+## Pruebas lógicas para `NA` y `NaN`
+
+* Para pruebar valores `NA` y `NaN` en vectores debe usar las funciones `is.na` y `is.nan`
+
+##### Prueba igualdad con valores faltantes o indefinidos
+
+```{r }
+c(NA, 10, 20) == NA
+c(NaN, 10, 20) == NaN 
+```
+
+
+---
+
+## Pruebas lógicas para `NA` y `NaN`
+
+* Para pruebar valores `NA` y `NaN` en vectores debe usar las funciones `is.na` y `is.nan`
+
+
+##### Verifica si hay valores faltantes o indefinidos
+
+```{r }
+is.na( c(NA, 10, 20) )
+is.nan( c(NaN, 10, 20) ) 
+```
+
+---
+
 ## Valores reservados: `Inf` y `-Inf`
 
 * En R, `Inf` y `-Inf` representa los concepto de infinito positivo y negativo. 
-* Es una constante incorporada que se utiliza para indicar valores que
-  exceden el rango representable de números en cálculos, o resultados
-  de operaciones que matemáticamente producen infinito.
+* Indican valores que exceden el rango representable de números, o resultados que matemáticamente producen infinito.
 
-##### Excede el rango representable por vector numerico
+##### Excede el rango representable por vector numérico
 ```{r }
 1000^1000
 -1000^1000
 ```
+---
 
-##### Matematicamente producen infinito
+## Valores reservados: `Inf` y `-Inf`
+
+* En R, `Inf` y `-Inf` representa los concepto de infinito positivo y negativo. 
+* Indican valores que exceden el rango representable de números, o resultados que matemáticamente producen infinito.
+
+##### Matemáticamente producen infinito
 ```{r }
-1/0
 log(0)
 Inf - 10000000000000000000
 ```
@@ -605,7 +652,7 @@ Inf - 10000000000000000000
 ## Clases de vectores
 
 * La clase de un vector indicam el tipo de dato que tienen
-* Por ejemplo, numericos, characteres, lógicos
+* Por ejemplo, numéricos, caracteres, lógicos
 * Se verifica la clase con las funciones `class` y `is.*`
 
 ##### Aplica la funcción `class` a vectores
@@ -617,6 +664,14 @@ b <- c("A", "B", "C", NA)
 class(b)
 ```
 
+---
+
+## Clases de vectores
+
+* La clase de un vector indicam el tipo de dato que tienen
+* Por ejemplo, numéricos, caracteres, lógicos
+* Se verifica la clase con las funciones `class` y `is.*`
+
 ##### Aplica funcciónes `is.*` a vectores
 
 ```{r }
@@ -625,6 +680,7 @@ is.logical(a > 1)
 ```
 
 ---
+
 
 ## Coerción implícita
 
@@ -647,10 +703,10 @@ class(a)
 * Como la coerción implícita se pasa entre bastidores, puede pasar desapercibida y causar problemas.
 
 
-##### Un lógico en un vector de ceros y unos
+##### Un número en un vector lógico
 
 ```{r }
-a <- c(FALSE, 1, 2, 3 )
+a <- c(FALSE, TRUE, TRUE, 0 )
 a
 class(a)
 ```
@@ -659,14 +715,25 @@ class(a)
 ## Coerción explícita
 
 * A veces la coerción entre clases es posible y la necesitas.
-* Puede hacer eso con las funciones de la família `as.*`.
-
+* Puede hacerla con las funciones de la família `as.*`.
 
 ##### Coerción de un vector numérico en lógico
 ```{r }
 a <- c(1,1,0,1)
 class(a)
 a
+
+```
+
+---
+
+## Coerción explícita
+
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
+
+##### Coerción de un vector numérico en lógico
+```{r }
 a <- as.logical(a)
 class(a)
 a
@@ -676,12 +743,25 @@ a
 
 ## Coerción explícita
 
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
 
-##### Coerción de un vector caracteres en numerico
+##### Coerción de un vector caracteres en numérico
 ```{r }
 b <- c("1","10", "100")
 b
 class(b)
+```
+
+---
+
+## Coerción explícita
+
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
+
+##### Coerción de un vector caracteres en numérico
+```{r }
 b <- as.numeric(b)
 class(b)
 b
@@ -699,12 +779,24 @@ b
 ```{r }
 grupo <- c("control", "control", "arena", "arena")
 class(grupo)
+```
+---
+
+## La clase `factor`
+
+* Un `factor` es una clases para variables categoricas.
+* Puedes hacer un factor con números, caracteres o mismo logicos.
+* Cada valor diferente en su vector se convierte en un nivel de su variable categórica.
+
+##### Coerción de un vector caracteres en factor
+```{r }
 grupo <- as.factor(grupo)
 class(grupo)
 grupo
 ```
 
 ---
+
 
 ## La clase `factor`
 
@@ -737,11 +829,11 @@ m
 ## Listas
 
 * Listas son colecciones de objetos de diferentes clases
-* Se crean con la funcción `list`
+* Se crean con la función `list`
 
-##### Una lista con una matriz, un número y un vector de caracteres
+##### Una lista con una matriz, un lógico y un vector de caracteres
 ```{r }
-list(m, 13, c("A", "B", "C"))
+list(matriz = m, logico = F, letras = c("A", "B", "C"))
 ```
 
 ---
@@ -753,12 +845,54 @@ list(m, 13, c("A", "B", "C"))
 * Son una de las clases más usadas en analisis estadísticos.
 * Se crean con la función `data.frame`
 
-###### Un *dataframe* con una variable de caracteres y una variable numérica
+##### Un *dataframe* con una variable de caracteres y una variable numérica
 
 ```{r }
-continente <- c("Sudamérica", "Norteamérica", "Sudamérica")
-y <- c(1854, 1865, 1888)
+continente <- c("Centroamérica", "Sudamérica", "Norteamérica", "Sudamérica")
+y <- c(1804, 1854, 1865, 1888)
 data.frame(year = y,  cont = continente)
 ```
 
 ---
+
+## ¡Vámonos!
+
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+1. Si ves el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. Vá al paso 4.
+
+2. Si todavia no ves el mensaje, escribe `swril()` en la línea de comando.
+
+3. Ahora  debes el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. 
+
+4. Introduzca el número del curso `Curso R UNMSM v#` 
+
+5. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 2.
+           
+]
+
+---
+
+## Que hacer hasta mañana
+
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+#### Haiga los tutoriales:
+
+* Secuencias
+* Vectores
+* Valores faltantes
+           
+]

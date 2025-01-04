@@ -1,19 +1,20 @@
 - Class: meta
-  Course: Programando en R
-  Lesson: Vectores
-  Author: Nick Carchedi
+  Course: Análisis y visualización de datos biológicos con R
+  Lesson: Vectores Lógicos y de Caracteres
+  Author: Nick Carchedi, tradución de José R Sosa
   Type: Standard
   Organization: JHU Biostat
-  Version: 2.2.0
+  Version: 2.2.1
+
+- Class: text
+  Output: "Esta lección es una versión un poco más corta de la lección del mismo nombre del curso 'R Programming' traducida al castellano por José R Sosa (https://github.com/josersosa/Programando_en_R)."
 
 - Class: text
   Output: La estructura de datos más común y simple en R es el vector.
 
-- Class: text
-  Output: 'Los vectores vienen en dos sabores diferentes: vectores y listas atómicos. Un vector atómico contiene exactamente un tipo de datos, mientras que una lista puede contener tipos de datos múltiples. Vamos a explorar vectores atómicos antes de llegar a las listas.'
 
 - Class: text
-  Output: En las lecciones anteriores, hemos tratado en su totalidad con vectores numéricos, que son uno tipo de vector atómico. Otros tipos de vectores atómicos incluyen lógicos, carácteres, números enteros, y complejos. En esta lección, vamos a echar un vistazo más de cerca tipo de datos lógico y vectores de caracteres.
+  Output: En esta lección, vamos a echar un vistazo más de cerca al tipo de datos lógico y vectores de caracteres.
 
 - Class: text
   Output: Los vectores lógicos pueden contener los valores TRUE, FALSE, y NA (para "no disponible"). Estos valores se generan como resultado de  'condiciones' lógicas. Vamos a experimentar con algunas condiciones simples.
@@ -83,17 +84,6 @@
   AnswerChoices: TRUE; FALSE
   AnswerTests: omnitest(correctVal='TRUE')
   Hint: Rompamos este problema en 2 piezas. El `|` es en conector entre los estados intermedios en dosnde al menos una de las piezas es TRUE. Su trabajo consiste en averiguar si eso es una afirmación precisa. Si es así, toda la condición es TRUE. Si no, es FALSO.
-
-- Class: mult_question
-  Output: ((111 >= 111) | !(TRUE)) & ((4 + 1) == 5)
-  CorrectAnswer: 'TRUE'
-  AnswerChoices: TRUE; FALSE
-  AnswerTests: omnitest(correctVal='TRUE')
-  Hint: This is a tricky one. Remember that the `!` symbol negates whatever comes
-    after it. There's also an 'order of operations' going on here. Conditions that
-    are enclosed within parentheses should be evaluated first. Then, work your way
-    outwards.
-    Este es un asunto difícil. Recuerde que el símbolo `!` niega lo que venga después. También ocurre aquí que hay un "orden de las operaciones". Condiciones que están encerrados entre paréntesis deben ser evaluadas primero. Entonces, la forma de evaluarlas es hacia el exterior.
 
 - Class: text
   Output: No se preocupe si usted encuentra esto complicado. Se supone que lo sea. El trabajo con las declaraciones lógicas en R requiere práctica, pero serán recompensados ​​sus esfuerzos en lecciones futuras (por ejemplo, subconjuntos y estructuras de control)
@@ -178,6 +168,6 @@
   Output: También digno de mención es que el vector numérico 1:4 se a 'coercionado' en un vector de caracteres por la función de paste().
 
 - Class: text
-  Output: Vamos a discutir la coerción en otra lección, pero todo lo que realmente significa es que los números 1, 2, 3 y 4 en la salida anterior ya no son numeros para R, sino más bien los characteres "1", "2", "3" y "4".
+  Output: Llegaste al fin de esa profundización sobre vectores lógicos y de caracteres.
 
 

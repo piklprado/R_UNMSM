@@ -7,6 +7,9 @@
   Version: 1.0.0
 
 - Class: text
+  Output: "Esta lección es una versión ligeramente modificada de la lección del mismo nombre del curso 'Programación estadística en R', de Ismael Fernández, UNAM, México (https://github.com/ifunam/programacion-estadistica-r)"
+
+- Class: text
   Output: 'En esta lección conocerás los tipos de datos que existen en el
   lenguaje R, además de las operaciones básicas que puedes hacer con ellos.'
 
@@ -244,34 +247,6 @@
   CorrectAnswer: 0/0
   AnswerTests: omnitest(correctExpr='0/0')
   Hint: 'Introduce 0/0 en la línea de comandos.'
-
-- Class: text
-  Output: 'Adicionalmente, en R existe el objeto null y es representado por el
-  símbolo NULL.'
-
-- Class: text
-  Output: 'Nota que NULL no es lo mismo que NA, Inf, -Inf o NaN.'
-
-- Class: text
-  Output: "Recuerda que R incluye un conjunto de clases para representar fechas
-  y horas. Algunas de ellas son: Date, POSIXct y POSTXlt."
-
-- Class: cmd_question
-  Output: "Por ejemplo, introduce fecha_primer_curso_R <- Sys.Date() en la línea
-  de comandos."
-  CorrectAnswer: fecha_primer_curso_R <- Sys.Date()
-  AnswerTests: omnitest(correctExpr='fecha_primer_curso_R <- Sys.Date()')
-
-- Class: cmd_question
-  Output: "Ahora imprime el contenido de fecha_primer_curso_R."
-  CorrectAnswer: fecha_primer_curso_R
-  AnswerTests: any_of_exprs('fecha_primer_curso_R', 'print(fecha_primer_curso_R)')
-  Hint: 'Introduce fecha_primer_curso_R en la línea de comandos.'
-
-- Class: text
-  Output: "Recuerda que R te permite llevar a cabo operaciones numéricas y
-  estadísticas con las fechas y horas. Además, R incluye funciones para
-  manipularlas. Muchas funciones de graficación requieren fechas y horas."
 
 - Class: text
   Output: 'Ahora que conoces los objetos más usados en R, debes saber que además

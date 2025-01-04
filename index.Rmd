@@ -53,9 +53,15 @@ Guide. Chapman and Hall/CRC.](https://bookdown.org/yihui/rmarkdown/)
 Ximénez , C, & Revuelta, J. 2022. [Análisis de Datos en Lenguaje R. UAM
 Ediciones, Madrid.](https://libros.uam.es/uam/catalog/view/1163/2054/2338)
 
-## Archivo de los tutoriales
+## Tutoriales
 
-Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente.
+Utilizaremos tutoriales programados con el paquete [swirl](https://swirlstats.com/). En la sección «[Instale nuestros tutoriales]» se explica cómo instalar el paquete y cargar el archivo con los tutoriales. 
+
+Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente, y entenoces cargar novamente el curso en `swirl`.
+
+Véanse también las [orientaciones para los estudiantes](https://swirlstats.com/students.html) en el sitio de swril.
+
+### archivo de los tutoriales
 
 * [Tutoriales versión 1.0](Tutoriales/Curso_R_UNMSM_v1.swc)
 
@@ -82,7 +88,7 @@ según tu sistema operativo.
 
 ### Instale nuestros tutoriales
 
-1. Descargue el archivo de los tutoriales del enlace arriba en su directorio de trabajo.
+1. Descargue el [archivo de los tutoriales] del enlace arriba en su directorio de trabajo.
 
 2. En la línea de comando en RStudio escribe `library(swril)`
 

@@ -191,7 +191,7 @@ class: middle
 ---
 
 ## Comandos y funciones
-#### Multiplicación
+##### Multiplicación
 
 ``` r
 &gt; 2*2
@@ -202,7 +202,7 @@ class: middle
 ```
 --
 
-#### Raíz cuadrada de una multiplicación
+##### Raíz cuadrada de una multiplicación
 
 ``` r
 &gt; sqrt( 2*2 )
@@ -213,7 +213,7 @@ class: middle
 ```
 ---
 ## Comandos y funciones
-#### Log base 2 de la raíz cuadrada de una multiplicación
+##### Log base 2 de la raíz cuadrada de una multiplicación
 
 ``` r
 &gt; log2( sqrt( 2*2 ) )
@@ -224,7 +224,7 @@ class: middle
 ```
 --
 
-#### Lo mismo con operador *pipe*
+##### Lo mismo con operador *pipe*
 
 ``` r
 &gt; 2*2 |&gt; sqrt() |&gt; log2()
@@ -238,7 +238,7 @@ class: middle
 
 ## Más funciones
 
-#### Combinación de valores en un vector
+##### Combinación de valores en un vector
 
 ``` r
 &gt; c(1, 10, 100)
@@ -249,7 +249,7 @@ class: middle
 ```
 --
 
-#### Suma de los elementos de un vector
+##### Suma de los elementos de un vector
 
 ``` r
 &gt; sum( c(1, 10, 100) )
@@ -261,19 +261,19 @@ class: middle
 ---
 ## Asignación
 
-#### Assigna un vector a `x`
+##### Assigna un vector a `x`
 
 ``` r
 &gt; x &lt;- c(1, 10, 100)
 ```
 --
-#### Assigna a `y` la suma del contenido de `x`
+##### Assigna a `y` la suma del contenido de `x`
 
 ``` r
 &gt; y &lt;- sum(x)
 ```
 --
-#### Para ver el contenido escribe el nombre del objeto
+##### Para ver el contenido escribe el nombre del objeto
 
 ``` r
 &gt; y
@@ -385,13 +385,867 @@ class: middle
 
 7. Debes ver el  mensaje `Please choose a course, or type 0 to exit swirl.` 
 
-8. Introduzca el número del curso `Tutoriales UNMSM v#` 
+8. Introduzca el número del curso `Curso R UNMSM v#`
 
-9. ... donde `v#` es la versión del archivo.
+10. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 1.
            
 ]
 
 ---
+
+## Vectores
+
+* Una collección ordenada de elementos.
+* El objeto básico en R, que basa la mayoría de las operaciones.
+
+--
+##### Asigna un vector con 4 valores numéricos a `y`
+
+``` r
+&gt; y &lt;- c(1804, 1854, 1865, 1888)
+&gt; y
+```
+
+```
+[1] 1804 1854 1865 1888
+```
+--
+
+##### la función `length` devuelve la longitud de un vector
+
+
+``` r
+&gt; length(y)
+```
+
+```
+[1] 4
+```
+---
+
+
+## Operaciones con vectores
+
+* R empareja los elementos de vectores y aplica la operación a cada pareja.
+* En R eso se nombra "vectorización"
+
+--
+
+##### Sustrae un vector de longitud 4 de otro de la misma longitud
+
+
+``` r
+&gt; a &lt;- c(1.1, 2.2, 3.3, 4.4)
+&gt; b &lt;- c(0.1, 0.2, 0.3, 0.4)
+&gt; a - b
+```
+
+```
+[1] 1 2 3 4
+```
+---
+
+## Reciclaje de vectores
+
+##### ¿Por qué es igual el resultado?
+
+
+``` r
+&gt; a &lt;- c(1.1, 2.2, 3.3, 4.4)
+&gt; b &lt;- c(1, 1, 1, 1)
+&gt; a - b
+```
+
+```
+[1] 0.1 1.2 2.3 3.4
+```
+
+``` r
+&gt; a - 1
+```
+
+```
+[1] 0.1 1.2 2.3 3.4
+```
+---
+
+## Reciclaje de vectores de tamaños diferentes
+
+* R automáticamente *repite los elementos del vector más corto* para
+  que coincida con la longitud del vector más largo.
+* Muy útil, pero és importante entenderlo para evitar resultados inesperados.
+* R te avisa si la longitud del vector más largo no es un múltiplo del más corto.
+
+##### Sustrae vector de 2 elementos de vector de 5 elementos
+
+``` r
+&gt; c(1, 2, 3, 4, 5) - c(1, 2)
+```
+
+```
+Warning in c(1, 2, 3, 4, 5) - c(1, 2): longer object length is not a multiple of shorter object length
+```
+
+```
+[1] 0 0 2 2 4
+```
+---
+
+## Vectores de caracteres
+
+* Los elementos de un vector dese tipo son cadenas de caracteres
+* El reciclaje vale para vectores de otros tipos
+
+##### Asigna vector de caracteres al objeto `colores`
+
+``` r
+&gt; colores &lt;- c("rojo", "azul", "verde")
+&gt; colores
+```
+
+```
+[1] "rojo"  "azul"  "verde"
+```
+##### Combina las cadenas de dos vectores
+
+``` r
+&gt; paste(colores, "intenso")
+```
+
+```
+[1] "rojo intenso"  "azul intenso"  "verde intenso"
+```
+
+---
+
+## Vectores lógicos
+
+* Tiene valores FALSE o TRUE (sin comillas)
+* A menudo resultan de pruebas logicas (`&gt;`, `&lt;`, `==`, `!=`)
+
+##### Prueba valores mayores que 1 en un vector numérico
+
+``` r
+&gt; c(0.25, 0.99, 1, 2, 3) &gt; 1
+```
+
+```
+[1] FALSE FALSE FALSE  TRUE  TRUE
+```
+
+##### Prueba las cadenas que no corresponden a "rojo" en un vector de caracteres
+
+``` r
+&gt; c("rojo", "azul", "verde") != "rojo"
+```
+
+```
+[1] FALSE  TRUE  TRUE
+```
+
+---
+
+## Operaciones con Vectores lógicos
+
+* Operados lógicos booleanos: `&amp;` (AND), `|` (OR), `!` (NOT), 
+
+
+##### Prueba valores mayores que 1 y  menores que 3
+
+``` r
+&gt; a &lt;- c(0.25, 0.99, 1, 2, 3)
+&gt; a &gt; 1 &amp; a &lt; 3
+```
+
+```
+[1] FALSE FALSE FALSE  TRUE FALSE
+```
+
+##### Prueba las cadenas que corresponden a "rojo" o a "azul"
+
+``` r
+&gt; colores &lt;- c("rojo", "azul", "verde")
+&gt; colores == "rojo" | colores == "azul"
+```
+
+```
+[1]  TRUE  TRUE FALSE
+```
+
+---
+
+## Operaciones con vectores lógicos
+
+* Acuerdate del reciclaje de las operaciones con vectores!
+
+
+##### Prueba dos vectores del mismo tamaño
+
+``` r
+&gt; c(1, 2, 3) &gt; c(3, 2, 1)
+```
+
+```
+[1] FALSE FALSE  TRUE
+```
+
+##### Prueba vectores de longitudes diferentes y no multiplices
+
+``` r
+&gt; c("rojo", "azul", "verde") == c("azul", "rojo") 
+```
+
+```
+Warning in c("rojo", "azul", "verde") == c("azul", "rojo"): longer object length is not a multiple of shorter object
+length
+```
+
+```
+[1] FALSE FALSE FALSE
+```
+---
+
+## Una operador sin reciclaje: `%in%`
+
+##### Prueba que los elementos de un vector están también en otro
+
+``` r
+&gt; c("rojo", "azul", "verde") %in% c("azul", "rojo")
+```
+
+```
+[1]  TRUE  TRUE FALSE
+```
+
+``` r
+&gt; c(1,2,3,4,5) %in% c(2,4)
+```
+
+```
+[1] FALSE  TRUE FALSE  TRUE FALSE
+```
+---
+
+## Valores reservados: `NA`
+
+* `NA` (*Not available*) representa valores faltantes
+* En general operaciones con `NA` resultan valores `NA`
+
+##### Un vector numérico con un valor faltante 
+
+``` r
+&gt; x &lt;- c(10, 30, 40, NA)
+&gt; x*2
+```
+
+```
+[1] 20 60 80 NA
+```
+
+``` r
+&gt; x&gt;25
+```
+
+```
+[1] FALSE  TRUE  TRUE    NA
+```
+
+
+---
+
+## Valores reservados: `NA`
+
+* `NA` (*Not available*) representa valores faltantes
+* En general operaciones con `NA` resultan valores `NA`
+
+
+##### Excepciones lógicas
+
+
+``` r
+&gt; 2 &gt; 1 | NA
+```
+
+```
+[1] TRUE
+```
+
+``` r
+&gt; "rojo" == "azul" &amp; NA
+```
+
+```
+[1] FALSE
+```
+
+``` r
+&gt; any(x&gt;25)
+```
+
+```
+[1] TRUE
+```
+
+---
+
+
+## Valores reservados: `NaN`
+
+* En R, `NaN` (*Not a Number*) representa un resultado numérico matemáticamente indefinido.
+
+
+##### Operaciones matemáticamente indefinidas
+
+``` r
+&gt; 0/0
+```
+
+```
+[1] NaN
+```
+
+``` r
+&gt; log10( c(-1, -10, 1, 10) )
+```
+
+```
+Warning: NaNs produced
+```
+
+```
+[1] NaN NaN   0   1
+```
+
+
+---
+## Valores reservados: `NaN`
+
+* Asi como para `NA`, en general operaciones con `NaN` resultan  `NaN`.
+
+##### Operaciones con `NaN`
+
+``` r
+&gt; NaN + 1
+```
+
+```
+[1] NaN
+```
+
+``` r
+&gt; log(NaN)
+```
+
+```
+[1] NaN
+```
+
+---
+
+## Pruebas lógicas para `NA` y `NaN`
+
+* Para pruebar valores `NA` y `NaN` en vectores debe usar las funciones `is.na` y `is.nan`
+
+##### Prueba igualdad con valores faltantes o indefinidos
+
+
+``` r
+&gt; c(NA, 10, 20) == NA
+```
+
+```
+[1] NA NA NA
+```
+
+``` r
+&gt; c(NaN, 10, 20) == NaN 
+```
+
+```
+[1] NA NA NA
+```
+
+
+---
+
+## Pruebas lógicas para `NA` y `NaN`
+
+* Para pruebar valores `NA` y `NaN` en vectores debe usar las funciones `is.na` y `is.nan`
+
+
+##### Verifica si hay valores faltantes o indefinidos
+
+
+``` r
+&gt; is.na( c(NA, 10, 20) )
+```
+
+```
+[1]  TRUE FALSE FALSE
+```
+
+``` r
+&gt; is.nan( c(NaN, 10, 20) ) 
+```
+
+```
+[1]  TRUE FALSE FALSE
+```
+
+---
+
+## Valores reservados: `Inf` y `-Inf`
+
+* En R, `Inf` y `-Inf` representa los concepto de infinito positivo y negativo. 
+* Indican valores que exceden el rango representable de números, o resultados que matemáticamente producen infinito.
+
+##### Excede el rango representable por vector numérico
+
+``` r
+&gt; 1000^1000
+```
+
+```
+[1] Inf
+```
+
+``` r
+&gt; -1000^1000
+```
+
+```
+[1] -Inf
+```
+---
+
+## Valores reservados: `Inf` y `-Inf`
+
+* En R, `Inf` y `-Inf` representa los concepto de infinito positivo y negativo. 
+* Indican valores que exceden el rango representable de números, o resultados que matemáticamente producen infinito.
+
+##### Matemáticamente producen infinito
+
+``` r
+&gt; log(0)
+```
+
+```
+[1] -Inf
+```
+
+``` r
+&gt; Inf - 10000000000000000000
+```
+
+```
+[1] Inf
+```
+
+---
+
+## Clases de vectores
+
+* La clase de un vector indicam el tipo de dato que tienen
+* Por ejemplo, numéricos, caracteres, lógicos
+* Se verifica la clase con las funciones `class` y `is.*`
+
+##### Aplica la funcción `class` a vectores
+
+
+``` r
+&gt; a &lt;- c(1, 2, 3, NA, NaN)
+&gt; class(a)
+```
+
+```
+[1] "numeric"
+```
+
+``` r
+&gt; b &lt;- c("A", "B", "C", NA)
+&gt; class(b)
+```
+
+```
+[1] "character"
+```
+
+---
+
+## Clases de vectores
+
+* La clase de un vector indicam el tipo de dato que tienen
+* Por ejemplo, numéricos, caracteres, lógicos
+* Se verifica la clase con las funciones `class` y `is.*`
+
+##### Aplica funcciónes `is.*` a vectores
+
+
+``` r
+&gt; is.numeric(a)
+```
+
+```
+[1] TRUE
+```
+
+``` r
+&gt; is.logical(a &gt; 1)
+```
+
+```
+[1] TRUE
+```
+
+---
+
+
+## Coerción implícita
+
+* Si intenta crear un vector con elementos de tipos diferentes, R va a buscar una manera de hacerlos todos de un tipo solo.
+* Llamamos a eso **coerción implícita**
+
+##### Un solo caracter en un vector lógico
+
+
+``` r
+&gt; a &lt;- c(T, "F", T)
+&gt; a
+```
+
+```
+[1] "TRUE" "F"    "TRUE"
+```
+
+``` r
+&gt; class(a)
+```
+
+```
+[1] "character"
+```
+
+
+---
+
+## Coerción implícita
+
+* Como la coerción implícita se pasa entre bastidores, puede pasar desapercibida y causar problemas.
+
+
+##### Un número en un vector lógico
+
+
+``` r
+&gt; a &lt;- c(FALSE, TRUE, TRUE, 0 )
+&gt; a
+```
+
+```
+[1] 0 1 1 0
+```
+
+``` r
+&gt; class(a)
+```
+
+```
+[1] "numeric"
+```
+---
+
+## Coerción explícita
+
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
+
+##### Coerción de un vector numérico en lógico
+
+``` r
+&gt; a &lt;- c(1,1,0,1)
+&gt; class(a)
+```
+
+```
+[1] "numeric"
+```
+
+``` r
+&gt; a
+```
+
+```
+[1] 1 1 0 1
+```
+
+---
+
+## Coerción explícita
+
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
+
+##### Coerción de un vector numérico en lógico
+
+``` r
+&gt; a &lt;- as.logical(a)
+&gt; class(a)
+```
+
+```
+[1] "logical"
+```
+
+``` r
+&gt; a
+```
+
+```
+[1]  TRUE  TRUE FALSE  TRUE
+```
+
+---
+
+## Coerción explícita
+
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
+
+##### Coerción de un vector caracteres en numérico
+
+``` r
+&gt; b &lt;- c("1","10", "100")
+&gt; b
+```
+
+```
+[1] "1"   "10"  "100"
+```
+
+``` r
+&gt; class(b)
+```
+
+```
+[1] "character"
+```
+
+---
+
+## Coerción explícita
+
+* A veces la coerción entre clases es posible y la necesitas.
+* Puede hacerla con las funciones de la família `as.*`.
+
+##### Coerción de un vector caracteres en numérico
+
+``` r
+&gt; b &lt;- as.numeric(b)
+&gt; class(b)
+```
+
+```
+[1] "numeric"
+```
+
+``` r
+&gt; b
+```
+
+```
+[1]   1  10 100
+```
+
+---
+
+## La clase `factor`
+
+* Un `factor` es una clases para variables categoricas.
+* Puedes hacer un factor con números, caracteres o mismo logicos.
+* Cada valor diferente en su vector se convierte en un nivel de su variable categórica.
+
+##### Coerción de un vector caracteres en factor
+
+``` r
+&gt; grupo &lt;- c("control", "control", "arena", "arena")
+&gt; class(grupo)
+```
+
+```
+[1] "character"
+```
+---
+
+## La clase `factor`
+
+* Un `factor` es una clases para variables categoricas.
+* Puedes hacer un factor con números, caracteres o mismo logicos.
+* Cada valor diferente en su vector se convierte en un nivel de su variable categórica.
+
+##### Coerción de un vector caracteres en factor
+
+``` r
+&gt; grupo &lt;- as.factor(grupo)
+&gt; class(grupo)
+```
+
+```
+[1] "factor"
+```
+
+``` r
+&gt; grupo
+```
+
+```
+[1] control control arena   arena  
+Levels: arena control
+```
+
+---
+
+
+## La clase `factor`
+
+* La conversión en factores es la coerción explícita más común en R. 
+* Hay una función `factor` que hace esto, con mucha flexibilidad.
+
+##### Convierte un vector caracteres en factor
+
+``` r
+&gt; grupo &lt;- c("control", "control", "arena", "arena")
+&gt; grupo &lt;- factor(grupo, levels = c("control", "arena"))
+&gt; grupo                
+```
+
+```
+[1] control control arena   arena  
+Levels: control arena
+```
+
+---
+
+## Matrices
+
+* Objetos de la clase `matrix` son vectores de 2 dimensiones.
+* Se crea una matriz en R con la función de `matrix`
+
+##### Matriz con los números 1 a 12, de 4 filas y 3 columnas
+
+``` r
+&gt; m &lt;- matrix(1:12, nrow=4, ncol=3)
+&gt; class(m)
+```
+
+```
+[1] "matrix" "array" 
+```
+
+``` r
+&gt; m
+```
+
+```
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12
+```
+
+---
+
+## Listas
+
+* Listas son colecciones de objetos de diferentes clases
+* Se crean con la función `list`
+
+##### Una lista con una matriz, un lógico y un vector de caracteres
+
+``` r
+&gt; list(matriz = m, logico = F, letras = c("A", "B", "C"))
+```
+
+```
+$matriz
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12
+
+$logico
+[1] FALSE
+
+$letras
+[1] "A" "B" "C"
+```
+
+---
+
+## *Dataframes*
+
+* *Dataframes* son listas de vectores de la misma longitud.
+* Se utilizan para almacenar tablas de datos. 
+* Son una de las clases más usadas en analisis estadísticos.
+* Se crean con la función `data.frame`
+
+##### Un *dataframe* con una variable de caracteres y una variable numérica
+
+
+``` r
+&gt; continente &lt;- c("Centroamérica", "Sudamérica", "Norteamérica", "Sudamérica")
+&gt; y &lt;- c(1804, 1854, 1865, 1888)
+&gt; data.frame(year = y,  cont = continente)
+```
+
+```
+  year          cont
+1 1804 Centroamérica
+2 1854    Sudamérica
+3 1865  Norteamérica
+4 1888    Sudamérica
+```
+
+---
+
+## ¡Vámonos!
+
+.left-column[
+&lt;img src="figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+1. Si ves el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. Vá al paso 4.
+
+2. Si todavia no ves el mensaje, escribe `swril()` en la línea de comando.
+
+3. Ahora  debes el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. 
+
+4. Introduzca el número del curso `Curso R UNMSM v#` 
+
+5. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 2.
+           
+]
+
+---
+
+## Que hacer hasta mañana
+
+.left-column[
+&lt;img src="figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+#### Haiga los tutoriales:
+
+* Secuencias
+* Vectores
+* Valores faltantes
+           
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -158,7 +158,7 @@
   AnswerTests: omnitest(correctExpr='rnorm(100)')
 
 - Class: text
-  Output: Aquí rnorm es la función y el 100 es un argumento que especifica cuántos números aleatorios desea - en este caso 100 números (escribir n=100 en lugar de sólo 100 también funcionaría). El resultado son 10 números aleatorios organizados en un vector de longitud 100.
+  Output: Aquí rnorm es la función y el 100 es un argumento que especifica cuántos números aleatorios desea - en este caso 100 números (escribir n=100 en lugar de sólo 100 también funcionaría). El resultado son 100 números aleatorios organizados en un vector de longitud 100.
 
 - Class: cmd_question
   Output: Si vuelve a introducir el mismo comando, obtendrá 100 nuevos números aleatorios. En lugar de volver a escribir el mismo texto en la línea de comando, también puedes pulsar la tecla de flecha hacia arriba  (flecha arriba) para acceder a comandos anteriores. Si está en el archivo de script, vuelva a el comando y pulsa CTRL-ENTER. Pruebe a hacerlo.

@@ -1,11 +1,14 @@
 - Class: meta
   Course: Programando en R
-  Lesson: Missing Values
+  Lesson: Valores Faltantes
   Author: Nick Carchedi
   Type: Standard
   Organization: JHU Biostat
   Version: 2.2.0
 
+- Class: text
+  Output: "Esta es una lección del curso 'R Programming' traducida al castellano por José R Sosa (https://github.com/josersosa/Programando_en_R)."
+  
 - Class: text
   Output: Los valores faltantes juegan un papel importante en las estadísticas y análisis de datos. A menudo, los valores perdidos no deben ser ignoradas, sino que deben ser estudiados cuidadosamente para ver si hay un patrón subyacente o causa para su falta.
 

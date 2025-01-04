@@ -1,11 +1,14 @@
 - Class: meta
-  Course: Programando en R
+  Course: Análisis y visualización de datos biológicos con R
   Lesson: Secuencias de Números
-  Author: Nick Carchedi
+  Author: Nick Carchedi, tradución de José R Sosa, y adaptaciones de Paulo Inácio Prado (USP)
   Type: Standard
-  Organization: JHU Biostat
-  Version: 2.2.0
+  Organization: JHU Biostat, Universidade de São Paulo
+  Version: 2.2.1
 
+- Class: text
+  Output: "Esta lección es una versión simplificada y ligeramente modificada de la lección del mismo nombre del curso 'R Programming' traducida al castellano por José R Sosa (https://github.com/josersosa/Programando_en_R)."
+  
 - Class: text
   Output: En esta lección, usted aprenderá cómo crear secuencias de números en R.
 
@@ -34,7 +37,7 @@
   Output: Ha contado hacia atrás en incrementos de 1! Es poco probable que busquemos este comportamiento, pero sin embargo es bueno saber cómo podría suceder.
 
 - Class: text
-  Output: "Recuerde que si usted tiene preguntas acerca de una función de R en particular, puede acceder a su documentación con un signo de interrogación seguido del nombre de la función: ?Function_name_here. Sin embargo, en el caso de buscar la ayuda sobre un operador como el colon usado anteriormente, debe incluir el símbolo de acentos abiertos como éste: ?`:`. (NOTA: El acento grave (`) generalmente se encuentra en la esquina superior izquierda de un teclado, por encima de la lengüeta llave. Si usted no tiene una tecla de acento grave, puede utilizar comillas regulares.)"
+  Output: "Recuerde que si usted tiene preguntas acerca de una función de R en particular, puede acceder a su documentación con un signo de interrogación seguido del nombre de la función: ?nombre_de_la_función. Sin embargo, en el caso de buscar la ayuda sobre un operador como el colon usado anteriormente, debe incluir el símbolo de acentos abiertos como éste: ?`:`. (NOTA: El acento grave (`) generalmente se encuentra en la esquina superior izquierda de un teclado, por encima de la lengüeta llave. Si usted no tiene una tecla de acento grave, puede utilizar comillas regulares.)"
 
 - Class: cmd_question
   Output: Abra la documentación de `:` ahora.
@@ -70,34 +73,6 @@
   Hint: Utilice length(my_seq) para ver la longitud de la variable my_seq.
 
 - Class: text
-  Output: Vamos a suponer que no sabemos la longitud de my_seq, pero queremos generar una secuencia de números enteros de 1 a N, donde N representa la longitud de la my_seq vector. En otras palabras, queremos un nuevo vector (1, 2, 3, ...) que es de la misma longitud de my_seq.
-
-- Class: cmd_question
-  Output: 'Hay varias maneras que podríamos hacer esto. Una posibilidad es combinar el operador `:` y la función de la length() así: 1:length(my_seq). Dese un intento. '
-  CorrectAnswer: 1:length(my_seq)
-  AnswerTests: omnitest(correctExpr='1:length(my_seq)')
-  Hint: Trate con 1:length(my_seq), sin asignar el resultado a una nueva variable.
-  
-- Class: cmd_question
-  Output: Otra opción es utilizar seq(along.with = my_seq). Haga un intento.
-  CorrectAnswer: seq(along.with = my_seq)
-  AnswerTests: omnitest(correctExpr='seq(along.with = my_seq)')
-  Hint: Escriba seq(along.with = my_seq). Nótese que estamos usando la misma función seq(), pero con un argumento diferente llamado `along.with`. Esto le dice a R que desea una secuencia 'a lo largo de' la secuencia my_seq. Recuerde que usted puede escribir ?seq si tiene preguntas acerca de la función seq().
-
-- Class: cmd_question
-  Output: Sin embargo, como es el caso con muchas tareas comunes, R tiene una función incorporada especial para este propósito llamado seq_along(). Escriba seq_along(my_seq) para verlo en accion.
-  CorrectAnswer: seq_along(my_seq)
-  AnswerTests: omnitest(correctExpr='seq_along(my_seq)')
-  Hint: La función seq_along() es una variación de la función seq(). Trate seq_along(my_seq) para obtener el mismo resultado de otra manera.
-
-- Class: text
-  Output: A menudo hay varios enfoques para resolver el mismo problema, en particular en R. enfoques simples que involucran menos escritura son generalmente mejores. Es también importante que su código sea legible, para que usted y otros puedan entender lo que está pasando sin demasiados problemas.
-
-
-- Class: text
-  Output: Si R tiene una función incorporada para una tarea en particular, es probable que la función esté altamente optimizada para ese propósito y es su mejor opción. A medida que usted se convierta en un programador R avanzado, usted diseñará sus propias funciones para realizar tareas cuando no hay mejores opciones. Exploraremos escribir sus propias funciones en lecciones futuras.
-
-- Class: text
   Output: Otra función relacionada con la creación de secuencias de números es rep(), que es sinónimo de 'réplica'. Echemos un vistazo a algunos usos de esta función.
 
 - Class: cmd_question
@@ -118,4 +93,5 @@
   AnswerTests: omnitest(correctExpr='rep(c(0, 1, 2), each = 10)')
   Hint: Escriba rep(c (0, 1, 2), each = 10) para ver cómo el argumento `each` de la función rep() altera su comportamiento ligeramente.
 
-
+- Class: text
+  Output: Llegaste al fin de esa lección. Ahora ya conoces más sobre secuencias en R.
