@@ -363,38 +363,19 @@ include_graphics("figs/bora-la.jpg")
 
 .right-column[
 
-1. Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.
-
-2. En la línea de comando en RStudio escribe `library(swril)`
-
-3. En la línea de comando de RStudio escribe `install_course()`
-
-4. Se abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.
-
-5. Debes ver el mensaje `Course installed successfully!`
-
-]
-
----
-
-## ¡Vámonos!
-
-.left-column[
-```{r , echo=FALSE, fig.align='center'}
-include_graphics("figs/bora-la.jpg")
+##### 1. Abre Rstudio. En la línea de comando en RStudio escribe e pulse intro a cada comando
+```{r, eval=FALSE, echo=TRUE}
+library(swirl)
+install_course_github("pilaboratory", "Curso_R_UNMSM")
+select_language("spanish")
+swirl()
 ```
-]
+##### 2. Pase las preguntas de bienvenida hasta ver el mensaje: "`Por favor escoge un curso o teclea 0 para salir de swirl`"
 
-.right-column[
+##### 3. Introduzca el número de la opción "`Curso R UNMSM`"
 
-6. En la línea de comando de RStudio escribe `swril()`
+##### 4. Seleciona la lección 1
 
-7. Debes ver el  mensaje `Please choose a course, or type 0 to exit swirl.` 
-
-8. Introduzca el número del curso `Curso R UNMSM v#`
-
-10. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 1.
-           
 ]
 
 ---
