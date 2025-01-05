@@ -9,11 +9,18 @@ author:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Slides
+
+```{r slides}
+#| eval: true
+xaringanExtra::embed_xaringan("01_introduccion/slides.html")
+```
 
 # Tutoriales
 
-Estos son los tutoriales de esta unidad de aprendizaje que debes
-realizar en Rstudio, con el paquete *swirl*.  Consulta nuestra [página
+A continuación está una lista de los tutoriales de esta unidad de aprendizaje.
+
+Ejecute los tutoriales en Rstudio, con el paquete *swirl*.  Consulta nuestra [página
 de inicio](index.html#tutoriales) para saber cómo hacerlo.
 
 Para ver la transcripción de un tutorial, haz clic en su nombre en la lista:
@@ -31,10 +38,4 @@ Conjuntos de datos que utilizaremos en esa unidad
 * [usda_plant_data.csv](data/usda_plant_data.csv): especies de plantas de Estados Unidos. Fuente:  [PLANTS database](https://plants.usda.gov/)
 
 *[jbi14149-sup-0002-appendixs2.xlsx](data/jbi14149-sup-0002-appendixs2.xlsx): Número de especies de hormigas en islas y manchas de hábitat en varios sítios por el mundo. Fuente: [Ohyama *et al*. 2021. The species–area relationship in ant ecology. Journal of Biogeography 48: 1824-1841.](https://onlinelibrary.wiley.com/doi/10.1111/jbi.14149).
-# Slides
-
-```{r slides}
-#| eval: true
-xaringanExtra::embed_xaringan("01_introduccion/slides.html")
-```
 
