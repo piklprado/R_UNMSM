@@ -879,7 +879,7 @@ include_graphics("figs/bora-la.jpg")
 
 ---
 
-## Que hacer hasta mañana
+## Que hacer ahora
 
 .left-column[
 ```{r , echo=FALSE, fig.align='center'}
@@ -892,7 +892,7 @@ include_graphics("figs/bora-la.jpg")
 #### Haiga los tutoriales:
 
 * Secuencias
-* Vectores
+* Vectores lógicos y de caracteres
 * Valores faltantes
            
 ]

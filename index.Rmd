@@ -57,13 +57,9 @@ Ediciones, Madrid.](https://libros.uam.es/uam/catalog/view/1163/2054/2338)
 
 Utilizaremos tutoriales programados con el paquete [swirl](https://swirlstats.com/). En la sección «[Instale nuestros tutoriales]» se explica cómo instalar el paquete y cargar el archivo con los tutoriales. 
 
-Las nuevas versiones del archivo estarán aquí a lo largo del curso. Asegúrese de descargar la más reciente, y entenoces cargar novamente el curso en `swirl`.
+*IMPORTANTE:* Cada día de clase habrá una nueva versión de los tutoriales. Así que asegúrese siempre de atualizar los tutoriales.
 
 Véanse también las [orientaciones para los estudiantes](https://swirlstats.com/students.html) en el sitio de swril.
-
-### archivo de los tutoriales
-
-* [Tutoriales versión 1.0](Tutoriales/Curso_R_UNMSM_v1.swc)
 
 
 ## Preparate para el curso
@@ -88,9 +84,23 @@ según tu sistema operativo.
 
 ### Instale nuestros tutoriales
 
-1. Descargue el [archivo de los tutoriales] del enlace arriba en su directorio de trabajo.
+Hay dos modos de hacerlo. Le recomendamos que intente el primero.
 
-2. En la línea de comando en RStudio escribe `library(swril)`
+#### Por github
+
+Abre la R consola o RStudio. En la línea de comando escribe y pulse ENTER a cada comando:
+
+```{r, eval=FALSE}
+library(swirl)
+uninstall_course("Curso_R_UNMSM")
+install_course_github("pilaboratory", "Curso_R_UNMSM")
+```
+
+#### Descargando el archivo
+
+1. Descargue el [archivo de los tutoriales](Tutoriales/Curso_R_UNMSM.swc)
+
+2. Abre el programa RStudio. En la línea de comando escribe `library(swirl)`
 
 3. En la línea de comando de RStudio escribe `install_course()`
 
