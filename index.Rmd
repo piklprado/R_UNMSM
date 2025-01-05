@@ -90,7 +90,7 @@ Hay dos modos de hacerlo. Le recomendamos que intente el primero.
 
 Abre la R consola o RStudio. En la línea de comando escribe y pulse ENTER a cada comando:
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo=TRUE}
 library(swirl)
 uninstall_course("Curso_R_UNMSM")
 install_course_github("pilaboratory", "Curso_R_UNMSM")
