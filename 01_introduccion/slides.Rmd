@@ -846,15 +846,9 @@ include_graphics("figs/bora-la.jpg")
 
 .right-column[
 
-1. Si ves el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. Vá al paso 4.
+1. Si ves el mensaje "`Por favor escoge un curso o teclea 0 para salir de swirl`" introduzca el número de la opción "`Curso R UNMSM`" y seleciona la lección 2.
 
-2. Si todavia no ves el mensaje, escribe `swril()` en la línea de comando.
-
-3. Ahora  debes el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. 
-
-4. Introduzca el número del curso `Curso R UNMSM v#` 
-
-5. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 2.
+2. Si todavia no ves el mensaje, escribe `swril()` en la línea de comando. Introduce el mismo nombre que has usado en la primera sessión de swirl. Vese el paso 1.
            
 ]
 
