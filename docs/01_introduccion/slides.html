@@ -359,36 +359,20 @@ class: middle
 
 .right-column[
 
-1. Descargue el archivo de los tutoriales del enlace abajo en su directorio de trabajo.
+##### 1. Abre Rstudio. En la línea de comando en RStudio escribe e pulse intro a cada comando
 
-2. En la línea de comando en RStudio escribe `library(swril)`
+``` r
+&gt; library(swirl)
+&gt; install_course_github("pilaboratory", "Curso_R_UNMSM")
+&gt; select_language("spanish")
+&gt; swirl()
+```
+##### 2. Pase las preguntas de bienvenida hasta ver el mensaje: "`Por favor escoge un curso o teclea 0 para salir de swirl`"
 
-3. En la línea de comando de RStudio escribe `install_course()`
+##### 3. Introduzca el número de la opción "`Curso R UNMSM`"
 
-4. Se abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.
+##### 4. Seleciona la lección 1
 
-5. Debes ver el mensaje `Course installed successfully!`
-
-]
-
----
-
-## ¡Vámonos!
-
-.left-column[
-&lt;img src="figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
-]
-
-.right-column[
-
-6. En la línea de comando de RStudio escribe `swril()`
-
-7. Debes ver el  mensaje `Please choose a course, or type 0 to exit swirl.` 
-
-8. Introduzca el número del curso `Curso R UNMSM v#`
-
-10. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 1.
-           
 ]
 
 ---
@@ -1217,21 +1201,15 @@ $letras
 
 .right-column[
 
-1. Si ves el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. Vá al paso 4.
+1. Si ves el mensaje "`Por favor escoge un curso o teclea 0 para salir de swirl`" introduzca el número de la opción "`Curso R UNMSM`" y seleciona la lección 2.
 
-2. Si todavia no ves el mensaje, escribe `swril()` en la línea de comando.
-
-3. Ahora  debes el mensaje `No. Let me start something new.` Introduzca el número que viene antes de ella. 
-
-4. Introduzca el número del curso `Curso R UNMSM v#` 
-
-5. A el mensaje `Please choose a lesson, or type 0 to return to course menu.` introduzca el número 2.
+2. Si todavia no ves el mensaje, escribe `swril()` en la línea de comando. Introduce el mismo nombre que has usado en la primera sessión de swirl. Vese el paso 1.
            
 ]
 
 ---
 
-## Que hacer hasta mañana
+## Que hacer ahora
 
 .left-column[
 &lt;img src="figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
@@ -1242,7 +1220,7 @@ $letras
 #### Haiga los tutoriales:
 
 * Secuencias
-* Vectores
+* Vectores lógicos y de caracteres
 * Valores faltantes
            
 ]

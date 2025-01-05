@@ -10,6 +10,27 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
+# Tutoriales
+
+Estos son los tutoriales de esta unidad de aprendizaje que debes
+realizar en Rstudio, con el paquete *swirl*.  Consulta nuestra [página
+de inicio](index.html#tutoriales) para saber cómo hacerlo.
+
+Para ver la transcripción de un tutorial, haz clic en su nombre en la lista:
+
+* [1: Mi primera session](Tutoriales/html/Mi_primera_session.html)
+* [2: Objetos Tipos de Datos y Operaciones Basicas](Tutoriales/html/Objetos_Tipos_de_Datos_y_Operaciones_Basicas.html)
+* [3: Secuencias](Tutoriales/html/Secuencias.html)
+* [4: Vectores Logicos y de Caracteres](Tutoriales/html/Vectores_Logicos_y_de_Caracteres.html)
+* [5: Valores Faltantes](Tutoriales/html/Valores_Faltantes.html)
+
+# Datos
+
+Conjuntos de datos que utilizaremos en esa unidad
+
+* [usda_plant_data.csv](data/usda_plant_data.csv): especies de plantas de Estados Unidos. Fuente:  [PLANTS database](https://plants.usda.gov/)
+
+*[jbi14149-sup-0002-appendixs2.xlsx](data/jbi14149-sup-0002-appendixs2.xlsx): Número de especies de hormigas en islas y manchas de hábitat en varios sítios por el mundo. Fuente: [Ohyama *et al*. 2021. The species–area relationship in ant ecology. Journal of Biogeography 48: 1824-1841.](https://onlinelibrary.wiley.com/doi/10.1111/jbi.14149).
 # Slides
 
 ```{r slides}
@@ -17,16 +38,3 @@ knitr::opts_chunk$set(echo = FALSE)
 xaringanExtra::embed_xaringan("01_introduccion/slides.html")
 ```
 
-# Tutoriales
-
-Estos son los tutoriales de esta unidad de aprendizaje que debes realizar. 
-
-Consulta nuestra [página de inicio](index.html#tutoriales) para saber cómo ejecutar los tutoriales en R, con el paquete swril. 
-
-Los siguientes enlaces llevan a páginas con las transcripciones de los tutoriales.
-
-* [1: Mi primera session](Tutoriales/html/Mi_primera_session.html)
-* [2: Objetos Tipos de Datos y Operaciones Basicas](Tutoriales/html/Objetos_Tipos_de_Datos_y_Operaciones_Basicas.html)
-* [3: Secuencias](Tutoriales/html/Secuencias.html)
-* [4: Vectores Logicos y de Caracteres](Tutoriales/html/Vectores_Logicos_y_de_Caracteres.html)
-* [5: Valores Faltantes](Tutoriales/html/Valores_Faltantes.html)
