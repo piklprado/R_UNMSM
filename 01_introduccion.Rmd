@@ -37,5 +37,5 @@ Conjuntos de datos que utilizaremos en esa unidad
 
 * [usda_plant_data.csv](data/usda_plant_data.csv): especies de plantas de Estados Unidos. Fuente:  [PLANTS database](https://plants.usda.gov/)
 
-*[jbi14149-sup-0002-appendixs2.xlsx](data/jbi14149-sup-0002-appendixs2.xlsx): Número de especies de hormigas en islas y manchas de hábitat en varios sítios por el mundo. Fuente: [Ohyama *et al*. 2021. The species–area relationship in ant ecology. Journal of Biogeography 48: 1824-1841.](https://onlinelibrary.wiley.com/doi/10.1111/jbi.14149).
+* [jbi14149-sup-0002-appendixs2.xlsx](data/jbi14149-sup-0002-appendixs2.xlsx): Número de especies de hormigas en islas y manchas de hábitat en varios sítios por el mundo. Fuente: [Ohyama *et al*. 2021. The species–area relationship in ant ecology. Journal of Biogeography 48: 1824-1841.](https://onlinelibrary.wiley.com/doi/10.1111/jbi.14149).
 
