@@ -92,7 +92,7 @@ theme_Publication <- function(base_size = 14, base_family = "helvetica") {
 
 1. Indexación y selección de datos en objetos;
 2. Cambiar y crear variables en objetos de datos;
-3. Funcciones de sintesis de datos
+3. Funciones de sintesis de datos
 
 ---
 
@@ -408,7 +408,7 @@ class(table(fechas_year))
 ## Dividir, aplicar, combinar: `aggregate`
 
 1. Divide datos en pedazos según un criterio;
-2. Aplica una funcción a cada pedazo;
+2. Aplica una función a cada pedazo;
 3. Combina los resultados en un nuevo objeto.
 
 ```{r }
@@ -467,7 +467,7 @@ sapply(mi_lista, is.numeric)
 
 ---
 
-## Funcciones a dimensiones de un arreglo: `apply`
+## Funciones a dimensiones de un arreglo: `apply`
 
 * Arreglos son objetos de un único tipo de datos. 
 * Asi que tiene sentido aplicar funciones a cualquiera de sus dimensiones.
@@ -480,7 +480,7 @@ apply(m1, MARGIN = 2, sum)
 ```
 ---
 
-## Funcciones a dimensiones de un arreglo: `apply`
+## Funciones a dimensiones de un arreglo: `apply`
 
 * Arreglos son objetos de un único tipo de datos. 
 * Asi que tiene sentido aplicar funciones a cualquiera de sus dimensiones.
@@ -506,7 +506,7 @@ include_graphics("../01_introduccion/figs/bora-la.jpg")
 #### Haiga los tutoriales:
 
 * Subconjuntos de datos
-* Funcciones *apply
+* Funciones *apply
 * Y entonces vamos a notaR
            
 ]
