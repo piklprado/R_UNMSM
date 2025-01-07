@@ -26,5 +26,5 @@ de inicio](index.html#tutoriales) para saber cómo hacerlo.
 Para ver la transcripción de un tutorial, haz clic en su nombre en la lista:
 
 * [6: Leer y escribir datos](Tutoriales/html/Leer_y_escribir_Datos.html)
-* [7. Subconjuntos de datos](Subconjuntos_de_Datos.html)
-* [8. Funciones *apply](Funciones_apply.html)
+* [7. Subconjuntos de datos](Tutoriales/html/Subconjuntos_de_Datos.html)
+* [8. Funciones *apply](Tutoriales/html/Funciones_apply.html)
