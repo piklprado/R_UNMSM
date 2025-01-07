@@ -12,7 +12,7 @@ any_of_exprs <- function(...){
     }
 
 manifest <- read.table("../../tutoriales_swril/MANIFEST")$V1
-ddir <- "/home/paulo/work/pos_grad/usp/disciplinas/cursoR/UNMSM/2025/site/Tutoriales/html/teste/"
+ddir <- "/home/paulo/work/pos_grad/usp/disciplinas/cursoR/UNMSM/2025/site/Tutoriales/html/"
 
 
 
@@ -27,5 +27,13 @@ f1 <- function(nome){
      }
 ## Por alguma razao da pau
 f1(manifest[1])
+f1(manifest[2])
+f1(manifest[3])
+f1(manifest[4])
+f1(manifest[5])
+f1(manifest[6])
+f1(manifest[7])
+f1(manifest[8])
+
 ## os excluidos dão pau
-lapply(manifest[c(-1,-6, -9, -10, -11)], f1)
+#lapply(manifest[c(-1,-6, -9, -10, -11)], f1)

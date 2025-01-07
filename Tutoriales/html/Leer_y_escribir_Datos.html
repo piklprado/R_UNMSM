@@ -11,7 +11,7 @@
 
 
 
-<title>Mi primera sessión en R y RStudio</title>
+<title>Leer y escribir datos</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -372,288 +372,356 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Mi primera sessión en R y RStudio</h1>
+<h1 class="title toc-ignore">Leer y escribir datos</h1>
 
 </div>
 
 
-<p>Esta es nuestra primera lección, en la que tendrás un primer contacto
-con R usando RStudio. Esta lección fue adaptada y traducida al español
-del módulo 1 del curso ’A (very) short introduction to R, de Claudia
-Brauer
-(www.github.com/ClaudiaBrauer/A-very-short-introduction-to-R).</p>
-<p>La interfaz de RStudio tiene varias ventanas. Puede cambiar el tamaño
-de las ventanas arrastrando las barras grises entre las ventanas.</p>
-<p>Abajo a la izquierda está la ventana de la consola (también llamada
-ventana/línea de comandos). Aquí puede escribir comandos después del
-prompt &gt; y R ejecutará su comando. Esta es la ventana más importante,
-porque aquí es donde R realmente hace cosas.</p>
-<p>Arriba a la izquierda está la ventana del editor de códigos (también
-llamada ventana de script). Aquí se pueden editar y guardar colecciones
-de comandos (scripts). Si no aparece esta ventana, puede abrirla con
-‘File &gt; New R &gt; Script’ (‘Archivo’ &gt; ‘Nuevo’ &gt; ‘R
-script’).</p>
-<p>Escribir comandos en la ventana del editor no es suficiente, tiene
-que llegar a la ventana de comandos antes de que R ejecute el comando.
-Si quieres ejecutar una línea desde la ventana del script (o todo el
-script), puedes hacer click en ‘Run’ o pulsar ‘CTRL+ENTER’ para enviarlo
-a la ventana de comandos.</p>
-<p>La ventana de scripts es muy importante, ya que en ella podrás crear
-y guardar tus códigos en R para usarlos cuando los necesites. Por
-ejemplo, para resolver los ejercicios de nuestro curso, deberás escribir
-los códigos y guadalos, para luego enviarlos a través de un sistema en
-línea llamado notaR.</p>
-<p>¡Intenta resolver el resto de este tutorial con un script! Para ello,
-abre un archivo script (‘Archivo &gt; Nuevo R &gt; Script’), escribe los
-siguientes comandos en él, y envía los comandos a la consola de R
-pulsando ‘CTRL+ENTER’.</p>
-<p>Arriba a la derecha está la ventana de espacio de trabajo y de
-historial. En la ventana de espacio de trabajo puede ver qué datos y
-valores tiene R en su memoria. La ventana de historial muestra lo que se
-ha escrito anteriormente. Hay otras ventanas de que hablaremos
-después.</p>
-<p>Abajo a la derecha está la ventana de archivos / gráficos / paquetes
-/ ayuda / visor. Aquí puede abrir archivos, ver gráficos (también
-gráficos anteriores), instalar y cargar paquetes o utilizar la función
-de ayuda.</p>
-<p>Su directorio de trabajo es la carpeta de su computadora en la que
-está trabajando actualmente. Cuando le pida a R que abra un determinado
-archivo, buscará este archivo en el directorio de trabajo, y cuando le
-diga a R que guarde un archivo de datos o una figura, lo guardará en el
-directorio de trabajo.</p>
-<p>Para mantener tu trabajo organizado, es muy importante que crees un
-directorio de trabajo para cada análisis que vayas a realizar. Así que
-crea ahora mismo un directorio para este curso, donde guardarás todas
-tus scripts y otros archivos.</p>
-<p>Ahora debe establecer su directorio de trabajo en este directorio que
-ha creado. Dentro de RStudio puede ir a ‘Session’ &gt; ‘Set working
-directory’ &gt; ‘Choose directory’. Por favor, hágalo ahora. Cada vez
-que empiece a trabajar compruebe que se encuentra en el directorio de
-trabajo correcto.</p>
-<p>En lugar de hacer clic, también puede escribir en la ventana de
-comandos setwd(‘su directorio’), donde ‘su directorio’ es la ruta para
-su directorio (por ejemplo setwd(‘C:/Documents/CursoR/’). Asegúrese de
-que las barras inclinadas son barras inclinadas hacia delante y de que
-no olvida los apóstrofos. R distingue entre mayúsculas y minúsculas, así
-que asegúrese de escribir mayúsculas donde sea necesario. No hace falta
-que lo intentes ahora.</p>
-<p>R puede realizar muchos análisis estadísticos y de datos. Están
-organizados en los llamados paquetes o bibliotecas. Con la instalación
-estándar, se instalan los paquetes más comunes.</p>
-<p>Para obtener una lista de todos los paquetes instalados, vaya a la
-ventana de paquetes. Si la casilla situada delante del nombre del
-paquete está marcada, el paquete está cargado (activado) y puede
-utilizarse. Busque el paquete swirl en la ventana de paquetes y
-compruebe si la casilla está marcada.</p>
-<p>Hay muchos más paquetes disponibles en el sitio web de R. Si desea
-instalar y utilizar un paquete (por ejemplo, el paquete llamado
-‘geometry’) primero debe instalar el paquete haciendo clic en ‘install
-packages’ en la ventana de paquetes y escribiendo geometry o escribiendo
-install.packages(‘geometry’) en la ventana de comandos. En realidad ya
-has hecho esto para el paquete swirl.</p>
-<p>A continuación, debes cargar el paquete marcando la casilla delante
-de geometry o escribiendo library(geometry) en la ventana de comandos.
-También has hecho esto para el paquete swirl (de lo contrario no podrías
-hacer estos ejercicios).</p>
-<p>Ahora, empecemos con la programación de verdad.</p>
-<p>R puede utilizarse como calculadora. Puedes escribir tu ecuación en
-la ventana de comandos después del &gt;. Escribe 10^2 + 36. Puede
-tambíen escribrir el comando en el primeiro reglón del archivo script y
-entonces enviarlo a R con CTRL-ENTER.</p>
-<pre class="r"><code>10^2 + 36</code></pre>
-<pre><code>## [1] 136</code></pre>
-<p>Y R dio la respuesta directamente. Además, los espacios no
-importan.</p>
-<p>También puede dar un nombre a los números. Al hacerlo, se convierten
-en los denominados objetos, que pueden utilizarse posteriormente. Por
-ejemplo, para crear el objeto ‘A’ con el valor 4, escriba el comando A
-&lt;- 4 .</p>
-<pre class="r"><code>A &lt;-  4</code></pre>
-<p>Puede ver que A apareció en la ventana del espacio de trabajo en la
-esquina superior derecha, lo que significa que R ahora recuerda qué es
-A.</p>
-<p>Algunas personas prefieren utilizar = en lugar de &lt;-. Hacen lo
-mismo, es decir, asignar valores a nombres (objetos).</p>
-<p>&lt;- consta de dos caracteres, &lt; y -, y representa una flecha que
-apunta al objeto que recibe el valor de la expresión. En Rstudio tienes
-un atajo para ello: basta con pulsar Alt- (es decir, las teclas Alt y la
-tecla del signo menos). Pruébalo en los próximos comandos.</p>
-<p>También puedes preguntarle a R que hay en un objeto. Sólo tienes que
-escribir el nombre del objeto en la ventana de comandos. Escriba A</p>
-<pre class="r"><code>A</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>También puedes hacer cálculos con los objetos. Escribe A * 5 .</p>
-<pre class="r"><code>A*5</code></pre>
-<pre><code>## [1] 20</code></pre>
-<p>Si vuelve a especificar A, R olvidará el valor que tenía antes.
-También puede asignar un nuevo valor a A utilizando el anterior. Escriba
-A &lt;- A + 10 .</p>
-<pre class="r"><code>A &lt;- A + 10</code></pre>
-<p>Ahora puedes ver en la ventana del espacio de trabajo que se cambió
-el contenido de A.</p>
-<p>Para eliminar todas las variables de la memoria de R, escriba
-rm(list=ls()) .</p>
-<pre class="r"><code>rm(list=ls())</code></pre>
-<p>Verá que la ventana del espacio de trabajo está vacía. También puede
-hacer clic en el icono de la escoba (<code>clear all</code>) en la
-ventana del área de trabajo. Puede ver que RStudio vacía la ventana del
-área de trabajo. Si sólo desea eliminar la variable A, puede escribir
-rm(A).</p>
-<p>Mientras escribes el último comando puedes notar que Rstudio adivina
-algo de lo que has escrito, como cerrar un paréntesis que has abierto.
-Este autocompletado es una buena característica para reducir el riesgo
-de errores de sintaxis. Pronto hablaremos más sobre esto.</p>
-<p>Como en muchos otros programas, R organiza los números en escalares
-(un único número, 0-dimensional), vectores (una fila de números, también
-llamados arrays, 1-dimensional) y matrices (como una tabla,
-2-dimensional).</p>
-<p>El objeto A que definiste antes era un escalar. Para definir un
-vector con los números 3, 4 y 5, necesitas la función c, que es la
-abreviatura de concatenar (pegar juntos). Escribe B &lt;- c(3,4,5) .</p>
-<pre class="r"><code>B&lt;-c(3,4,5)</code></pre>
-<p>Conoceremos matrices y otros objetos de más dimensiones en los
-próximos días.</p>
-<p>Si quisieras calcular la media de todos los elementos del vector B
-del ejemplo anterior, podrías escribir (3+4+5)/3. Pruebe lo
-siguiente.</p>
-<pre class="r"><code>(3+4+5)/3</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Pero cuando el vector es muy largo, este trabajo es muy aburrido y
-puede llevar a errores. Por eso las cosas que se hacen a menudo se
-automatizan en las llamadas funciones. Algunas funciones son estándar en
-R o en uno de los paquetes. También puedes programar tus propias
-funciones (lo harás más adelante).</p>
-<p>Para calcular la media aritmética utilizamos la función mean. Escribe
-mean(x=B) para comprobarlo.</p>
-<pre class="r"><code>mean(x=B)</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Entre los paréntesis de las funciones se especifican los argumentos.
-Los argumentos proporcionan información necesaria o adicional a la
-función. En este caso, el argumento x dice de qué conjunto de números
-(vector) debe calcularse la media (es decir, de B). A veces, el nombre
-del argumento no es necesario; mean(B) también funciona. Pruébelo.</p>
-<pre class="r"><code>mean(B)</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Cuando escribe ‘mean’ en la línea de comandos, RStudio muestra una
-lista de funciones que empiezan por ‘mean’. Puede seleccionar una de las
-opciones y pulsar Intro para insertar la llamada a la función junto con
-sus paréntesis de apertura y cierre. A continuación, puede rellenar los
-argumentos dentro de los paréntesis. Esta es una de las útiles funciones
-de autocompletado de RStudio.</p>
-<p>Calcula la suma de 4, 5, 8 y 11 combinándolos primero en un vector y
-utilizando después la función sum. Utiliza la función c dentro de la
-función sum.</p>
-<pre class="r"><code>sum(c(4,5,8,11))</code></pre>
-<pre><code>## [1] 28</code></pre>
-<p>La función rnorm, como otro ejemplo, es una función estándar de R que
-crea muestras aleatorias a partir de una distribución normal. Escriba
-rnorm(100) y verá 100 números aleatorios extraídos de una normal.</p>
-<pre class="r"><code>rnorm(100)</code></pre>
-<pre><code>##   [1]  1.24023676 -0.59396709 -0.36962309  0.90809208  0.45245542  1.34615472 -0.07077776  0.84587641  0.91034976
-##  [10] -0.46971188  1.13273951 -0.83920848  0.45652753  0.43041932  1.91326411  0.82776683  1.24851075 -0.03081931
-##  [19] -0.40107260  0.59395498 -0.09712996  1.50938346  0.83045660 -0.98838566 -0.46890223 -1.68997218 -1.07803375
-##  [28]  0.02050272  0.48741222  0.25542681  3.21231817 -0.21959241  0.19047897 -1.21787851  0.93293990  0.66317941
-##  [37] -0.22160988  1.81251887 -0.47292177  0.23691427  0.71496649 -0.70346454  1.78286008  1.47400442 -2.17408182
-##  [46]  0.42499832 -1.63666760  0.72603597  0.05142723 -0.18250416  0.08059778 -0.57512865 -1.79167530  1.34910103
-##  [55] -2.52423107  1.32842656  0.67812167  0.10066011 -0.59109113  0.84856652 -0.18925245 -1.68186423  1.11802757
-##  [64]  0.18642900 -0.48316297 -0.52638494 -0.05173372 -0.47717455 -0.50803041  1.36684186  0.04044548 -0.46390281
-##  [73] -0.43660051  2.29197444 -0.74781250  1.67734368 -2.38726212  0.23874175 -1.01015752 -0.36702692 -1.97960401
-##  [82] -0.13537214  1.38643183 -0.06800538 -0.50885198  1.51963833 -0.08811076  0.19270276  0.92866120  1.10076659
-##  [91] -0.33894690  0.86292198 -0.10837165  0.33340831 -0.07688504 -0.95580035  0.04222616 -0.87009298 -1.08081643
-## [100] -0.79849789</code></pre>
-<p>Aquí rnorm es la función y el 100 es un argumento que especifica
-cuántos números aleatorios desea - en este caso 100 números (escribir
-n=100 en lugar de sólo 100 también funcionaría). El resultado son 100
-números aleatorios organizados en un vector de longitud 100.</p>
-<p>Si vuelve a introducir el mismo comando, obtendrá 100 nuevos números
-aleatorios. En lugar de volver a escribir el mismo texto en la línea de
-comando, también puedes pulsar la tecla de flecha hacia arriba (flecha
-arriba) para acceder a comandos anteriores. Si está en el archivo de
-script, vuelva a el comando y pulsa CTRL-ENTER. Pruebe a hacerlo.</p>
-<pre class="r"><code>rnorm(100)</code></pre>
-<pre><code>##   [1]  1.34285626  0.56666734  1.09836270 -0.99056114 -0.66731775  0.61975831  1.35223403  0.65667211 -1.73464795
-##  [10] -0.14660348  0.03308256 -1.36945302 -1.21049346 -0.54264192 -0.43169773  0.02557432 -1.07099030  0.23383446
-##  [19] -0.46297038  0.86053802  0.68691362  0.07225365 -1.91453800 -0.26065517  0.90656106  0.45055762  0.63611238
-##  [28]  1.19728352  0.49665150 -0.27244602  1.02926949  0.47212552 -1.99213645 -1.13647002 -0.51309034  0.76260449
-##  [37]  0.18285308 -0.05161052 -1.41082868  0.87426231  0.73849966 -1.29778727 -0.16449658  0.11282963 -0.02941508
-##  [46]  1.35916475  0.20127102  1.27092528  1.43450454  0.84712042 -0.90213085  0.20618855 -0.08619528  0.97358623
-##  [55]  2.19265945  1.26920512 -1.05466697  0.54394851 -2.85922275 -1.41100063  0.80101901  0.51668741 -0.20808993
-##  [64]  0.24113072  1.28865718  0.62931561  1.40177512  1.59772039  2.11921605 -2.11663747 -1.36873219 -0.27345089
-##  [73]  0.42213269  1.36222131 -1.19814671  0.21243899  0.24569582  0.57872937 -0.09554877  0.33738080 -0.45358688
-##  [82]  0.82369399  1.41159333 -1.57730662  0.72676561 -0.07003267 -0.19242931  0.42827181  0.53633424 -0.38600008
-##  [91]  0.89527293  0.22465606  1.32599400  0.08611950 -0.13443186 -0.32024817  0.87687159 -0.08384408  1.45251842
-## [100]  0.89377836</code></pre>
-<p>Si quieres 100 números aleatorios de una distribución normal con
-media 1.2 y desviación estándar 3.4 puedes escribir rnorm(100, mean=1.2,
-sd=3.4). Inténtelo.</p>
-<pre class="r"><code>rnorm(100, mean=1.2, sd=3.4)</code></pre>
-<pre><code>##   [1] -4.77423683  0.74654837 -4.13212392  4.78180311  3.29732423 -0.28006828 -5.96518240 -2.77435642  1.87549021
-##  [10]  6.09659086  0.75560133  3.73587281 -0.93744230 -1.42413828  1.80965683 -0.89542886 -1.44031314 -5.43449444
-##  [19]  0.45598799  3.22122108 -2.20129366 -0.68934152  5.60370116 -1.38521475  1.11964841  4.09159460  1.47703323
-##  [28]  2.59814020 -3.43319241 -7.14541101 -0.06957430 -6.32177813  0.41736371  1.62423280 -3.80002586  3.17553783
-##  [37]  2.77677934  2.71093544 -1.63365406 -0.48843356  0.94246677 -3.01200436 -2.36297358  7.40978708  2.62376464
-##  [46]  3.66766747  7.66369119 -4.71461836  2.16373434  0.44934044  1.44001283  6.85972643 -0.25576711 -1.64699885
-##  [55]  2.87149696  1.42019085  3.55531449 -0.02353808  3.88683269 -1.07921457  2.92555328 -2.24617092  2.84463452
-##  [64]  4.10917927 -0.07938790 -1.70822404  3.52254987  0.29916097 -0.60839207  8.30562622  3.67908084  4.06551578
-##  [73]  2.90095037  3.31160828  5.71371686 -5.55374932  3.17377910 -1.48880991  1.33840769  0.22401942  5.85933926
-##  [82]  3.94330927 -4.95492424 -0.25910868  3.33386135  0.35208093  4.35436868 -0.18166260  4.54555203  0.97295304
-##  [91] -3.32605221  4.81346215  4.27505109 -2.27256082 -0.43150604  2.53117494 -2.74517581 -4.34464444  5.18679659
-## [100]  0.29750715</code></pre>
-<p>Esto demuestra que la misma función (rnorm) puede tener diferentes
-interfaces y que R tiene los llamados argumentos con nombre (en este
-caso mean y sd).</p>
-<p>La comparación de este ejemplo con el anterior también muestra que
-para la función rnorm sólo el primer argumento (el número 100) es
-obligatorio, y que R da valores por defecto a los otros argumentos
-denominados opcionales. Utilice la función de ayuda para ver qué valores
-se utilizan por defecto escribiendo ?rnorm.</p>
-<pre class="r"><code>?rnorm</code></pre>
-<p>Las páginas de ayuda de R pueden tratar de múltiples funciones
-relacionadas. Este es el caso de la página de ayuda de ‘rnorm’, que
-también incluye información sobre otras tres funciones: ‘dnorm’,
-‘pnorm’, y ‘qnorm’. Por ahora, vamos a centrarnos en los detalles sobre
-<code>rnorm</code> y dejar de lado las otras.</p>
-<p>Las páginas de ayuda de las funciones en R tienen un formato
-estándar. Siempre comienzan con un título, y las secciones Description
-(‘Descripción’) y Usage (‘uso’). La sección ‘Usage’ muestra el comando
-para llamar a la función con todos sus argumentos. Si los argumentos
-tienen valores por defecto se indicará con el nombre del argumento, un
-signo igual y el valor por defecto. ¿Cuáles son los argumentos de la
-función rnorm?</p>
+<p>Esta lección es una combinación con modificaciones de las lecciones
+‘Leer y Escribir Datos’ del curso ‘Programación estadística en R’, de
+Ismael Fernández, UNAM, México (<a href="https://github.com/ifunam/programacion-estadistica-r" class="uri">https://github.com/ifunam/programacion-estadistica-r</a>), y
+del curso ‘R Programming’ traducida al castellano por José R Sosa (<a href="https://github.com/josersosa/Programando_en_R" class="uri">https://github.com/josersosa/Programando_en_R</a>).</p>
+<p>En esta lección aprenderemos a leer conjuntos de datos en R. También
+aprenderemos a realizar una primera inspección de los datos.</p>
+<p>R puede importar conjuntos de datos desde archivos de texto, otros
+softwares de estadística y hasta hojas de cálculo. Puedes leer archivos
+de datos que hayas descargado en tu computadora o directamente de
+Internet.</p>
+<p>Empezamos con los archivos de datos en texto. Vamos descargar un
+archivo de datos del sitio de nuestro curso. Primero crea un objeto con
+la url para descargar. Escribe url1 &lt;- “<a href="https://pilaboratory.github.io/R_UNMSM/data/usda_plant_data.csv" class="uri">https://pilaboratory.github.io/R_UNMSM/data/usda_plant_data.csv</a>”</p>
+<pre class="r"><code>url1 &lt;- &quot;https://pilaboratory.github.io/R_UNMSM/data/usda_plant_data.csv&quot;</code></pre>
+<p>Ahora descargue el archivo en su directorio de trabajo con
+download.file(url = url1, destfile = “usda_plant_data.csv”)</p>
+<pre class="r"><code>download.file(url = url1, destfile = &quot;usda_plant_data.csv&quot;)</code></pre>
+<p>La mayoría de los archivos que contienen información tienen un
+formato similar. Generalmente cada línea del archivo representa una
+observación o registro, por lo que cada línea contiene un conjunto de
+diferentes variables asociadas con la observación.</p>
+<p>En los archivos de datos em texto, diferentes variables son separadas
+por un carácter especial, llamado delimitador. Otra veces las variables
+son diferenciadas por su ubicación en cada línea.</p>
+<p>El separador de números decimales (punto o coma en general) y la
+existencia o no de nombres de variables son otras cosas a las que debe
+prestar atención en estos archivos.</p>
+<p>Echemos un vistazo al archivo que acabamos de descargar. Escriba
+file.edit(“usda_plant_data.csv”).</p>
+<pre class="r"><code>file.edit(&quot;usda_plant_data.csv&quot;)</code></pre>
+<p>RStudio debe abrir el archivo en la ventana del editor de archivos,
+que normalmente está encima de la ventana de la consola de R. Podemos
+ver que el valor de cada campo está encerrado entre comillas dobles.
+Vemos también que los valores faltantes están como dos comillas dobles
+en secuencia (““).</p>
+<p>¿Cuál es el delimitador de campo en este archivo?</p>
 <ol style="list-style-type: decimal">
-<li>x, mean, sd</li>
-<li>n, mean, sd</li>
-<li>mean, sd</li>
+<li>coma</li>
+<li>punto y coma</li>
+<li>punto</li>
+<li>espacio</li>
 </ol>
-<p>n, mean, sd</p>
-<p>¿Cuáles son los argumentos de la función rnorm tienen valores por
-defecto?</p>
+<p>coma</p>
+<p>¿Qué hay en la primera línea del archivo?</p>
 <ol style="list-style-type: decimal">
-<li>todos los argumentos</li>
-<li>n, mean, sd</li>
-<li>mean, sd</li>
+<li>datos</li>
+<li>nombres de variables</li>
+<li>nombre del fichero</li>
+<li></li>
 </ol>
-<p>mean, sd</p>
-<p>Hay otra forma rápida de conocer los nombres de los argumentos de las
-funciones en RStudio. Al escribir rnorm( en la ventana de comandos y
-pulsar TAB, RStudio mostrará los posibles argumentos.</p>
-<p>Puede guardar el resultado de una funcción en un objeto. Escribe
-x&lt;-rnorm(100).</p>
-<pre class="r"><code>x&lt;-rnorm(100)</code></pre>
-<p>Ahora se asignan 100 números aleatorios al objeto x, que se convierte
-en un vector mediante esta operación. Puedes verlo aparecer en la
-ventana del espacio de trabajo.</p>
-<p>R también hace gráficos. Escribe hist(x) para un ejemplo muy
-sencillo.</p>
-<pre class="r"><code>hist(x)</code></pre>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAAC/VBMVEUAAAABAQECAgIDAwMEBAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUWFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAiIiIjIyMkJCQlJSUmJiYnJycoKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6Ojo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tMTExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1eXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29wcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICBgYGCgoKDg4OEhISFhYWGhoaHh4eIiIiJiYmKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OUlJSVlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWmpqanp6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+YwqXWAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO3dd5xcVd348e+mESAkhhp6QEQ6DyCgD/qLSjU06Q8ioGhEBAQMCIqQB9EHldBEpCggRYrBBlIEMSpVAiIgTZrU0EJLIKTN6zf3zmydO7vfOXvvOfO95/P+w9wdZu+c78yej1tmZ6UCAHAioRcAAFYRUABwREABwBEBBQBHBBQAHBFQAHBEQAHAEQEFAEcEFAAcEVAAcERAAcARAQUARwQUABwRUABwREABwBEBBQBHBBQAHBFQAHBEQAHAEQEFAEcEFAAcEVAAcERAAcARAQUARwQUABwRUABwREABwBEBBQBHBBQAHBFQAHBEQAHAEQEFAEcEFAAcEVAAcERAAcARAQUARwQUABwRUABwREABwBEBBQBHBBQAHBFQAHBEQAHAEQEFAEcEFAAcEVAAcERAAcARAQUARwQUABwRUABwREABwBEBBQBHBBQAHBFQAHBEQAHAEQEFAEcEFAAcEVAAcERAAcARAQUARwQUABwRUABwREABwBEBxWC9ND3xcvcF/04veDs5fD45ui3UynLz2t9vv/eZ0ItAGyKgGKyfSeKy7gsOTS+4Kzk8Izn6QKiV5WPheeOSKdYPvQ60IQKKwRpUQPfeuOpHBa9wcL6ZjkNAkYGAYrAGFdCNkyscUfAKB+XJ4QQUzRBQDFbJA/rLdJph628feiFoQwQUg9VfQP9yRNVx/bxz+wf0f5MVDnk69DLQlggoBqu/gA6o/QM6OVnhh0OvAu2JgGKw+gtow9OYFjx194uLOt94dvr0DyZX3WP69Ce7rvHGo7c/9ErDjbxz/z9nV/95JDnfs8kFjydH9yVHr981p/Na7z9x+z+e7X6nB5PrPFKpzL/95jueXVi/8KV7H5jbzzQNNz856xug76bP1Jr+evrGe7U3XuvnrCgpAorB0n8P9KkvrTms+vZiax9aq9wp0mVy7Rr/mbxu+uZqX76v503M2GlE9d0OnFnZL/mPpyQXHZwcbVmpTN9cZEZ6pTt3WbEjuXCpiVfVE71j8uZ+lQvGJv+ufPy7lcqin6xfPRy61vmLKlkabv7CjTdeLrlg5MYbb7ygxxUXTUiv98X0jR+mx2vMaTwfyo6AYrC0AZ09aXhXL4d/6c1KY0AXHLdY1wUde7/VdcITh9QuW+XBhoBemDQzCehL23afTLaYmb5fGtDPfb3z0vVnzv505/FH32kcJOPme6xQega08u/Fk4uGPlw9fGvp9D//Kae7E5YQUAxWLaA/m91lUmZAF0yQnjad0xDQuTv0usY6z9dv4Jiui1bbuk9A/5SmtRrQ+R/v9b4bzkuukwZ0qe5Lt92++/jwhjmybr5pQCs/Si/brXp0fHr05YLuXbQ1AorB+plk6hvQM/r896MqlUenTRufHE6cNu2B6jUm9bnGx+an73h13zN3B3Sz9aUe0KP7XOfc5Do7Zq8sNeTRvnNk3fwvJ0xYNTlecsKECQt7XXvBpumV7q68PCr5d6U3i7yL0a4IKAZLGdC1k8PVfzNrwYtXrJUcjkq/Z9jjp/C31N5vr6seu/bw2tfsU5OL5yyfHk+84KK9GwJa/9J+RmVR+p3KD1/64LP3/2hkcpg+a7Me0E2/d/HRo+rvu8nJFx+1ZHp0aZ8xmtx89g+Rqu5PvyHxycrh6XV/m//9CgMIKAZLF9DX0wt/nb7HM2mgbk0OewT0U+k1zkyPr08jt/L7lc6vldPvkV44tE9Aq1f58d/+8/A7lX8lx0Nrr/dxQnK8dnJUC+gXk6+9/157188nn9Tent78sX3GaHLzTQNa+Xb6DueNSP537zzuSNhDQDFYuoA+kV745dpX5SceWnVPctQd0BfTK+xSP+l30rf+WD3aKDlYt3bpIX0Dutns2n+4ceuqSbXjNGyrJEe174HWvrhOb2jJ2lON0i/89+s9RbObbx7QuR9O/kv6g/+lX87474gAAcVg1QK6zoQuq2UFdH76mZosd8BlL/V85+6AXp7+93vrl89Kv+b+VqUyMy3UT2uXPj2sT0BnNKzm5TMX6x3Qj9UuT39+tEXteOuMgDa5+X4CWrmto/P/LPp+OwCxIKAYrIanMR2bFdDKzl2fm25w5B9md163O6DfSj9F7DrJlsmbO1UqN6Xv8kj90g16B3SpnutY9I+zDv7ECvXb6A7o7rX/mgZ0z9pxVkCb3Hx/Aa0/X6v+DVfEiIBisJQBfXol6TZ8j+m163YHNP0h+IZdJ9m3/tnjZen1O4O7S++A/lf3jb7ypeV6nL9HQPeo/fc0oPvUjrMC2uTm+w3oO7XPtUf9R3lPoXQIKAZLGdDKrCOW7Zm4b6cXdgf088nRx7tOclj6uWqlcnby78jOSyf1DuiWXVe/YZnaWVf6zP+e4BTQJjffb0ArtWeOrjtfd0ehfAgoBksb0Eplwa2T1+ku6O+Si7oDekRX91ITkzf/X6VySXrdWfVLd2gS0FfSfq5z4Uud62k5oE1uvt+AXlGf5GTV/YQSIqAYLH1AE0//ZOLitex8MnmzO6A/SI46ur45mr7KyN7VTy3T63b+sGjNJgE9KnlrvdqLhLh9Btrk5vsL6Kud3zQY8S/N/YQSIqAYrNYCWvXuL9PyjEuOuwN6W/peZ9avc2v61lnVzy3Tg/prjfxVmgQ0/TXRE2rHuzsFtMnN9xfQ/5FOWyzM+u8oPwKKwdIFdJORVcfXr5E+VXOl5CgN6GHJ0bz0NZPGvZFeYV76U3BJft0yfX2kMemrg8z7RLOArpy89Y308LFhTgFtdvPNA/q79DqfTf93aqt3GsqBgGKwdAHdLTlarva17qyPJG9smxymAd0rvbT2ohwfSp6x9HLtpUE+k1w8NT1c+/FK5bn6y5FkBHTz5K1lqtep/Ct9plPrAW12800D+mb6rILV526T/LP4vx3vPNhGQDFYuoDWfuAyZJsjTvrm7qO732O7ND+nXlW99mvjalfZ8PNb1p50PyJ9Uc436t9p/NCaIk0D+qXaO0w8sP6usmJyaUsBbXLzTQN6UHqlSyr3pk+n/0T2C4yi5AgoBksX0AVbSG8fS79veFj9reSbnH8d3vsa9V8/6vlqTCOaBPTPHX2u05H8AmdLAW12800CenN6nY2qQ+yTHp0zqPsQRhFQDJbyh0gvbNQrT+vVfn383qHdAa38aemerfxZ5/l+0HXZ3v/TJKD135JPbHZu+s/RlVYD2uTmswM6e3x6rRurh0+k4R31jNOdB9sIKAZL+1P4d7+/fFeeVjun8+8SnbZYd0Arz32l67PAXR/oPuG02lfXcvi8xj/pUTf3O/Wvu4+b87falWe2HNDsm88OaO23OD+VHn8tPd62lfsMJUFAMVh/SF9B5ObuC85PL0j+2kVlWnK0Y+d/WPjXUw/adevt9zr2mnnd135qyv7b7PL1u+tvvX7V4Xtts9vBP3+u102896uDJ+581L2VSvqSoD9MLjotOfMhPa7z2Jlf3n7/s6vZXLh7evuvVirHJf+eWPvPxyTHJ9WOv5Ecfy9rloyb/2ly5S/0ud6zn0xvo/baIzM/lb5xR393EsqJgMKS9NsAF4deBVBHQNHmJu1XdXbtuPYcz7v7fwfAGwKKNpe+UvyS6RNIX0t/kr8qzxhCuyCgaHNnpj+iGfut3/7q+NqrOfHqxWgbBBRtbsFO0stXQy8I6EJA0e7mHzesO59LnsYX8GgfBBTt7/GjP5J+9b74R3/IX29DOyGgsOGdhx54lld+R5shoADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgKIE3pxVgBeLOOms90PfV8gTAYV9Z4odq80PfW8hRwQU9k2SkaNzt5gMy/+koztkVuh7CzkioLBvkpz4YO6OlC3zP+mDowloqRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARiJeALrj7qouue9HHLSFKBBSBFBbQh++6a2HtaOHZS0viY/cVdVuIHAFFIIUFdILI7PTguS2lbujkeUXdGqJGQBFI8QHdpprODfb7zkFbVP89qKhbQ9QIKAIpPKDni6x8TXrJLWuI3FLUzSFmBBSBFB7QD8nQO+sXPTBctinq5hAzAopAig7oiyIHdl02SYbPLur2EDECikCKDui9Iud0XVb9cv5fRd0eIkZAEUjRAX1M5Mauy24SuaOo20PECCgCKTqg84bJJV2X/VzkyaJuDxEjoAik8B8ifUb26LrsszLq/aJuDxEjoAikyIBu+/Wzb3p6Rof8oX7Rr0V2L+rmEDMCikCKDGhqsSGy+P3JBU8fPUQ67i7q5hAzAopACgvouXttMrrzdzinJRcMrx4cU9StIWoEFIEU+mpMr9xxyQn7bj62FtBhMmJKkTeGeBFQBOLj5exefzv5362O5yfwKAYBRSDt84LKx0mjjrNDrwoWEFAE0j4BPTYjoPK10KuCBQQUgbRPQDMcKaeFXgIsIKAIhIDCPgKKQAgo7COgCISAwj4CikAIKOwjoAiksIC+OjNTS39WjoBChYAikMICOj7rWUki01s5BwGFCgFFIIUFdHMCCl8IKAIp7nugf9+p2ssx2/fxQCunIKBQIaAIpMgfIh0psuUgT0BAoUBAEUiRAX1zFAGFDwQUgRT6NKa9CSh8IKAIpNCA/pCAwgcCikAKDehfJhwyqPcnoFAhoAiE30SCfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX0EFIEQUNhHQBEIAYV9BBSBEFDYR0ARCAGFfQQUgRBQ2EdAEQgBhX2xB3TauLEFWOHM/FdaOgQU9sUe0ElSiG3yX2npEFDYR0CPuT13ZxBQBQIK+whoAfOfT0AVCCjsI6AENBACCvsIKAENhIDCPgJKQAMhoLCPgBLQQAgo7COgBDQQAgr7CCgBDYSAwj4CSkADIaCwj4AS0EAIKOwjoAQ0EAIK+wgoAQ2EgMI+AkpAAyGgsI+AEtBACCjsI6AENBACCvsIKAENhIDCPgJKQAMhoLCPgBLQQAgo7COgBDQQAgr7CCgBDYSAwj4CSkADIaCwj4AS0EAIKOwjoAQ0EAIK+wgoAQ2EgMI+AkpAAyGgsI+AEtBACCjsI6AENBACCvsIKAENhIDCPgJKQAMhoLCPgBLQQAgo7COgBDQQAgqvDlujAKPtBHSEjDcyPwHVIKDwaqwUwkxAO8zMT0A1CCi8GitX35C7VS0F1Mr8BFSDgMKrsXJ7/nt9DUsBtTI/AdUgoPCKgFqZn4BqEFB4RUCtzE9ANQgovCKgVuYnoBoEFF4RUCvzE1ANAgqvCKiV+QmoBgGFVwTUyvwEVIOAwisCamV+AqpBQOEVAbUyPwHVIKDwioBamZ+AahBQeEVArcxPQDUIKLwioFbmJ6AaBBReEVAr8xNQDQIKrwiolfkJqAYBhVcE1Mr8BFSDgMIrAmplfgKqQUDhFQG1Mj8B1SCg8IqAWpmfgGoQUHhFQK3MT0A1CCi8IqBW5iegGgQUXhFQK/MTUA0CCq8IqJX5CagGAYVXBNTK/ARUg4DCKwJqZX4CqkFA4RUBtTI/AdUgoPCKgFqZn4BqEFB4RUCtzE9ANQgovCKgVuYnoBoEFF4RUCvzE1ANAgqvCKiV+QmoBgGFVwTUyvwEVIOAwisCamV+AqpBQOEVAbUyPwHVIKDwioBamZ+AahBQeEVArcxPQDUIKLwioFbmJ6AaBBReEVAr8xNQDQIKrwiolfkJqAYBhVcE1Mr8BFSjMaB3/ivAMrIR0PIhoFbmJ6AajQGdIpucPjPASjIQ0PIhoFbmJ6AaWQEVGbr95XMCLKYvAlo+BNTK/ARUozGgd+08oppQGXXALQsDrKcXAlo+BNTK/ARUI+uHSK+fP2FI0tCVj3nA+3p6IaDlQ0CtzE9ANZr8FP75UzdJEiobnfqi3/X0QkDLh4BamZ+AajR/GtOjJ66VJHTotpfO9rieXgho+RBQK/MTUI1+nwd6z5ErJg1dcr+bwnw7lICWDwG1Mj8B1egvoHOv+8LSUvPhX3lbUQ8EtHwIqJX5CahG04DOuWbf0Wk7N5m8YfLPmS5nn3neIf9vrZWWGrPKert+69b5Lb87AS0fAmplfgKqkR3Qty7ffYlaPU95svrmjC8OlcWeb/nc/9xuiPSwzPdb/WYqAS0fAmplfgKqkRHQ1y6cmD4TVDZN65k6ReTCVk/9/aHpWTpGjl1qeP0bAf9u7QwEtHwIqJX5CahGY0B/OqxWzx881ePCB0XOavHMZ1ZPsvYJNz2TfuX+5oOXfnG0yGpvtHQKAlo+BNTK/ARUI/tXOTfrVc+qv4n8vbUTv7SELHFJr0ve+qLIoS2dg4CWDwG1Mj8B1cgIaEM9qxbOndviiU8XuarvZbvJ2HmtnIOAlg8BtTI/AdVoDGhLiWtuX1l5Ud/Lqp/HPtHKOQho+RBQK/MTUI3sn8Ivevyl5J8bZixwPvG2smXDZc+J3NnKOQho+RBQK/MTUI2sgM6fupxcmRzsKmPOcT3x/rJCw68vTRdp/O5APwho+RBQK/MTUI2MgM7bVaQzoCK7Of4W5/ki5/e5aOH2slxLz6YnoOVDQK3MT0A1MgL6A5ElPv94cjTjyFEiF7id+I2lZfjUXt9PfaHa48ktnYOAlg8BtTI/AdVoDOj7H5AVH+x84/FVZdl33c58efXT1xUOuXzGzDkL57/91PQzdh4ustY7LZ2CgJYPAbUyPwHVaAzoTSIXdb91hcgMx1OfP1L62KzFXwcloOVDQK3MT0A1GgN6tsjL3W+9LnKp67mf3m+Jnvn84PmtPkOKgJYPAbUyPwHVaAzo96Wjx5Pm3x8qp7iffc5vT9zjvzda88ObfvqrZzn8tWQCWj4E1Mr8BFSjMaA/F7mr+617RH7mZyWXbbFpXyvIcX5uG94QUCvzE1CNxoA+LPLV7rcOF/H0l+X26fsd08T+fm4b3hBQK/MTUI2MpzF9ROTMzt/CvFBkPU8rmTOjwb58CV86BNTK/ARUIyOgdwwT2eCCu2e+8Y8rPirScZP/RXXie6DlQ0CtzE9ANbJ+lfOKHs8/Gur0pzxyQkDLh4BamZ+AamS+mMhzB3b+LY7tHvK9oJ4IaPkQUCvzE1CNJn9U7pHT9tvuU3uccJvfxfRFQMuHgFqZn4Bq9Pt34UMjoOVDQK3MT0A1Cgvopz+cqaU/DEJAy4eAWpmfgGoUFtDxWU/rFJneyjkIaPkQUCvzE1CNrIDOOmGH9Xtwe03lp364avo3jfv4ayvnIKDlQ0CtzE9ANTIC+vDqvT9pnOJ46llbS8af9WgFAS0fAmplfgKqkRHQT1ajOXa9wX4GWvXkEAKKPgiolfkJqEZjQO8TWeXP+Zx8OwKKPgiolfkJqEZjQC8TuSGnk59IQNEHAbUyPwHVaAzoSbJEwx90d3QlAUUfBNTK/ARUozGgR8m4AOvIREDLh4BamZ+AamR9BiovBVhIFgJaPgTUyvwEVKMxoA8NkRMCLCQLAS0fAmplfgKqkfE0pu/KEOe/I5cvAlo+BNTK/ARUI+s3kc4eIVv95JYHH6p7xfuiOhHQ8iGgVuYnoBoZf5Vz1Kihufwm0uAR0PIhoFbmJ6AajQGd0vf1Pwgo8kNArcxPQDUaA3rr8X3cGmBZNQS0fAiolfkJqAYvqAyvCKiV+QmoBgGFVwTUyvwEVIOAwisCamV+AqqRHdBF/5h6+AGnVea94Hk1fRDQ8iGgVuYnoBqZAf3buslP33etvDZ0+zt8L6gnAlo+BNTK/ARUIyugF3dIPaAii13pfUndCGj5EFAr8xNQjYyA3jFCZKdz968GdO5uIh33+F9UJwJaPgTUyvwEVCMjoNtIx2XJ8+l3rR5PGxbyXiSg5UNArcxPQDUaA/pvka9UOgNaOUbkCd9r6kJAy4eAWpmfgGo0BnSayIxKV0CrOb3O95q6ENDyIaBW5iegGo0B/ZF0vFvpCuiCYQEjRkDLh4BamZ+AajQG9AyR5AXs6gF9T+R032vqQkDLh4BamZ+AajQG9DciN1a6AnqzyK98r6kLAS0fAmplfgKq0RjQt0bI5gs7Azp7Uxn6mv9V1RHQ8iGgVuYnoBoZT2M6WGTft2oBnfMZkX38L6oTAS0fAmplfgKqkRHQV9cQGfeF7eUj501eTmT5Z/0vqhMBLR8CamV+AqqR9aucT27V/XL0697nfUndCGj5EFAr8xNQjexXY7pi9Vo+lztngef19EJAy4eAWpmfgGo0eT3QRf/8xdRTL7onaD4JaBkRUCvzE1ANXlAZXhFQK/MTUA0CCq8IqJX5CagGAYVXBNTK/ARUozGgV+/Rx9UBllVDQMuHgFqZn4BqNAZ0ivQxJcCyagho+RBQK/MTUI3GgJ40rFOazw22viTAsmoIaPkQUCvzE1CN/r4H+s493xopq/7T21oaENDyIaBW5iegGgP8EOmRMbLyLD8ryUBAy4eAWpmfgGoM9FP4X/A9UOSJgFqZn4BqDBTQtztkopeFZCGg5UNArcxPQDUGfB7o6nKAh2VkI6DlQ0CtzE9ANQYK6MKR8n0vC8lCQMuHgFqZn4BqDBTQy0WmeVlIFgJaPgTUyvwEVKP/gL768zHS8binpTQioOVDQK3MT0A1+nsife2p9HsHWFUdAS0fAmplfgKqMeCvcm7+QoBV1RHQ8iGgVuYnoBoDvJjIYZfMC7CoTgS0fAiolfkJqAYvZwevCKiV+QmoBgGFVwTUyvwEVIOAwisCamV+AqrRGNB3X8s23//iCGj5EFAr8xNQDcULKtc94X9xBLR8CKiV+QmohjqgSy3yvzgCWj4E1Mr8BFSjMaBP3LhftZdjNt97v4+OFRmy/6E1PwiwOAIa0pyD9yzACDMBiT2gZ8sKRXwAhHt1zEJk/BDpiSVl3FnvJUfv/2RF2fB130vqRkBDurXJ93IGy0pAYg/oNwp6/N8K/YGdq4yAflzGPNJ5/OgY2cvncnojoCHdLGtNzZ+dgMQe0CMLefwXl3B/4aIIjQF9VOSc7rfOkY7/eFxObwQ0pJujDwjz52906QN6ocgj3W9Vc3qxx+X0RkBDIqDMn7/yB/T7Im90v/W2yCkel9MbAQ2JgDJ//sof0HNEbu5+61aRszwupzcCGhIBZf78lT+gfxX5XPdb+4tc73E5vRHQkAgo8+ev/AFduKrI6Z1v/Fhkqfe8LqgnAhoSAWX+/JU/oJWrROQTf6yOOeuWCdXD//O/qE4ENCQCyvz5iyCglRPS57uOXTr9Z5cALyLSiYCGRECZP38xBLTy5y06f2tg3LkB+0lAgyKgzJ+/KAJaqfz+y5uNH//pg38y2+9q+iCgIRFQ5s9fJAFtDwQ0JALK/PkjoB4R0JAIKPPnL46ALvrH1MMPOK0yL+CfNE4Q0JAIKPPnL4qA/m3d5AdIu1ZeG7r9Hb4X1BMBDYmAMn/+YgjoxR1SD6jIYld6X1I3AhoSAWX+/EUQ0DtGiOx07v7VgM7dTaTjHv+L6kRAQyKgzJ+/CAK6jXRclvxppF2rx9OGhfzDKAQ0JALK/Pkrf0D/LfKVSmdAK8cE+XOcdQQ0JALK/Pkrf0CnicyodAW0mtPrfK+pCwENiYAyf/7KH9AfSce7la6ALhgWMGIENCQCyvz5K39AzxB5pdIV0Pd6vLaddwQ0JALK/Pkrf0B/I3JjpSugN4v8yveauhDQkAgo8+ev/AF9a4RsvrAzoLM3laGv+V9VHQENiYAyf/7KH9DKwSL7vlUL6JzPiOzjf1GdCGhIBJT58xdBQF9dQ2TcF7aXj5w3eTmR5Z/1v6hOBDQkAsr8+YsgoJUnt5Iu697nfUndCGhIBJT58xdDQCuVK1av5XO5cxZ4Xk8vBDQkAsr8+YsjoJVF//zF1FMvuk8q+wIAABiySURBVCdoPgloWASU+fNX/oD+4vgfBlhHJgIaEgFl/vyVP6AnyYhFARaShYCGRECZP3/lD+g0kecDLCQLAQ2JgDJ//sof0HlrydEBFpKFgIZEQJk/f+UPaOWxlYb92v9CshDQkAgo8+cvgoBWXtxOPvGT6x96oi7cwAQ0JALK/Pkrf0BPHTdueelpSoBl1RDQkAgo8+ev/AGdIn0Q0DgRUObPX/kD+sfJffwxwLJqCGhIBJT581f+gLYRAhoSAWX+/JU5oBdutdVLwRaShYCGRECZP39lDugUkWdqR8/edtvcIMvpjYCGRECZP39xBLT7KCgCGhIBZf78EVCPCGhIBJT580dAPSKgIRFQ5s8fAfWIgIZEQJk/fwTUIwIaEgFl/vwRUI8IaEgElPnzR0A9IqAhEVDmzx8B9YiAhkRAmT9/BNQjAhoSAWX+/BFQjwhoSASU+fNX8oDeMzM1ueuoanawxRHQkAgo8+ev5AHNwuuBxomAMn/+CKhHBDQkAsr8+StzQM8Yn+mMYIsjoCERUObPX5kD2nYIaEgElPnzR0A9IqAhEVDmzx8B9YiAhkRAmT9/BNQjAhoSAWX+/BFQjwhoSASU+fNHQD0ioCERUObPHwH1iICGRECZP38E1CMCGhIBZf78EVCPCGhIBJT580dAPSKgSo8dMil/EwlI/ieNfn4C6hEBVfpa9qsYDBYByV/s8xNQjwio0iTZ8cTcbU1A8j9p9PMTUI8IqNIkOxso9oDEPj8B9YiAKhFQ5s8dAdUgoGVAQJk/dwRUg4CWAQFl/twRUA0CWgYElPlzR0A1CGgZEFDmzx0B1SCgZUBAmT93BFSDgJYBAWX+3BFQDQJaBgSU+XNHQDUIaBkQUObPHQHVIKBlQECZP3cEVIOAlgEBZf7cEVANAloGBJT5c0dANQhoGRBQ5s8dAdUgoGVAQJk/dwRUg4CWAQFl/twRUA0CWgYElPlzR0A1CGgZEFDmzx0B1SCgZUBAmT93BFSDgJYBAWX+3BFQDQJaBgSU+XNHQDUIaBkQUObPHQHVIKBlQECZP3cEVIOAlgEBZf7cEVANHwGdfdoO66y+2Vf+2PI7ElAlAsr8uSOgGoUF9Jjtt3+vdvSH1aVmtxdaPAcBVSKgzJ87AqpRWEAniMxOD85P49mR/M/oO1o7BwFVIqDMnzsCqlF4QP+zlMjG1zyx4LkbPi6ywhstnYOAKhFQ5s8dAdUoPKB7iHxtYe2i40SOa+kcBFSJgDJ/7gioRtEBnbu4rDO3ftH8jWS1ls5BQJUIKPPnjoBqFB3QR0VO7LrsZJFnm77DjG82+Ih8r6jllQsBZf7cEVCNogN6j8g1XZf9VuTupu+wo2TYp6jllQsBZf7cEVCNogP6msjvuy77jcj9Td/h0VMabCWnFLW8ciGgzJ87AqpR+A+RVpTvdl32XZFXWzkH3wNVIqDMnzsCqlFkQKcnd9VUWfXt+kVzxsn6LZ2DgCoRUObPHQHVKDKgIst+9IDjh8mO76eXvLKVyP+1dA4CqkRAmT93BFSj2IDWpT9GOmgJkfHvtnQOAqpEQJk/dwRUo7CAzn3496cdsu0aQ5OATksuGCYy7pHWzkFAlQgo8+eOgGoU/WpM8x6//szD7kqOho086KUW35mAKhFQ5s8dAdXw93qgf5zd8rsQUCUCyvy5I6AavKByGRBQ5s8dAdUgoGVAQJk/dwRUg4CWAQFl/twRUA0CWgYElPlzR0A1CGgZEFDmzx0B1SCgZUBAmT93BFSDgJYBAWX+3BFQDQJaBgSU+XNHQDUIaBkQUObPHQHVIKBlQECZP3cEVIOAlgEBZf7cEVANAloGBJT5c0dANQhoGRBQ5s8dAdUgoGVAQJk/dwRUg4CWAQFl/twRUA0CWgYElPlzR0A1CGgZEFDmzx0B1SCgZUBAmT93BFSDgJYBAWX+3BFQDQJaBgSU+XNHQDUIaBkQUObPHQHVIKBlQECZP3cEVIOAlgEBZf7cEVANAurZracUYHM7Gyj2gMQ+PwH1qIwBXVEKYWYDxR6Q2OcnoB6VMaBjZb8v5u4DdjZQ7AGJfX4C6lE5Axr3Boo9ILHPT0A9IqBKhjZQ7AGJfX4C6hEBVTK0gWIPSOzzE1CPCKiSoQ0Ue0Bin5+AekRAlQxtoNgDEvv8BNQjAqpkaAPFHpDY5yegHhFQJUMbKPaAxD4/AfWIgCoZ2kCxByT2+QmoRwRUydAGij0gsc9PQD0ioEqGNlDsAYl9fgLqEQFVMrSBYg9I7PMTUI8IqJKhDRR7QGKfn4B6RECVDG2g2AMS+/wE1CMCqmRoA8UekNjnJ6AeEVAlQxso9oDEPj8B9YiAKhnaQLEHJPb5CahHBFTJ0AaKPSCxz09APSKgSoY2UOwBiX1+AuoRAVUytIFiD0js8xNQjwiokqENFHtAYp+fgHpEQJUMbaDYAxL7/ATUIwKqZGgDxR6Q2OcnoB4RUCVDGyj2gMQ+PwH1iIAqGdpAsQck9vkJqEcEVMnQBoo9ILHPT0A9IqBKhjZQ7AGJfX4C6hEBVTK0gWIPSOzzE1CPCKiSoQ0Ue0Bin5+AekRAlQxtoNgDEvv8BNQjAqpkaAPFHpDY5yegHhFQJUMbKPaAxD4/AfWIgCoZ2kCxByT2+QmoRwRUydAGij0gsc9PQD0ioEqGNlDsAYl9fgLqEQFVMrSBYg9I7PMTUI8IqJKhDRR7QGKfn4B6RECVDG2g2AMS+/wE1CMCqmRoA8UekNjnJ6AeEVAlQxso9oDEPj8B9YiAKhnaQLEHJPb5CahHBFTJ0AaKPSCxz09APSKgSoY2UOwBiX1+AuoRAVUytIFiD0js8xNQjwiokqENFHtAYp+fgHpEQJUMbaDYAxL7/ATUIwKqZGgDxR6Q2OcnoB4RUCVDGyj2gMQ+PwH1iIAqGdpAsQck9vkJqEcEVMnQBoo9ILHPT0A9IqBKhjZQ7AGJfX4C6hEBVTK0gWIPSOzzE1CPCKiSoQ0Ue0Bin5+AekRAlQxtoNgDEvv8BNQjAqpkaAPFHpDY5yegHhFQJUMbKPaAxD4/AfWIgCoZ2kCxByT2+QmoRwRUydAGij0gsc9PQD0ioEqGNlDsAYl9fgLqEQFVMrSBYg9I7PMTUI8IqJKhDRR7QGKfn4B6RECVDG2g2AMS+/wE1CMCqmRoA8UekNjnJ6AeEVAlQxso9oDEPj8B9YiAKhnaQLEHJPb5CahHBFTJ0AaKPSCxz09APSKgSoY2UOwBiX1+AuoRAVUytIFiD0js8xNQjwiokqENFHtAYp+fgHpEQJUMbaDYAxL7/ATUIwKqZGgDxR6Q2OcnoB4RUCVDGyj2gMQ+PwH1iIAqGdpAsQck9vkJqEcEVMnQBoo9ILHPT0A9IqBKhjZQ7AGJfX4C6hEBVTK0gWIPSOzzE1CPCKiSoQ0Ue0Bin5+AekRAlQxtoNgDEvv8BNQjAqpkaAPFHpDY5yegHhFQJUMbKPaAxD4/AfWIgCoZ2kCxByT2+QmoRwRUydAGij0gsc9PQD0ioEqGNlDsAYl9fgLqEQFVMrSBYg9I7PMTUI8IqJKhDRR7QGKfn4B6RECVDG2g2AMS+/wE1CMCqmRoA8UekNjnJ6AeEVAlQxso9oDEPj8B9YiAKhnaQLEHJPb5CahHBFTJ0AaKPSCxz09APSKgSoY2UOwBiX1+AuoRAVUytIFiD0js8xNQjwiokqENFHtAYp+fgHpEQJUMbaDYAxL7/ATUIwKqZGgDxR6Q2OcnoB4RUCVDGyj2gMQ+PwH1iIAqGdpAsQck9vkJqEfqgL497eoCfOeCAk66ZOQbKPaAxD7/KLmogF117YJiS9RcOQI6WQyJewPFHpDY5x9SzKa6stgSNVeOgE6SdbfN3VqyTP4n3ZaAMn/uTM3/yfw31SpyXrElaq4sATX0ART7BmL+3MU+/x4ENBMBVYp9AzF/3PMT0GwEVCn2DcT8cc9PQLMRUKXYNxDzxz0/Ac1GQJVi30DMH/f8BDQbAVWKfQMxf9zzE9BsBFQp9g3E/HHPT0CzEVCl2DcQ88c9PwHNRkCVYt9AzB/3/AQ0GwFVin0DMX/c8xPQbARUKfYNxPxxz09AsxFQpdg3EPPHPT8BzUZAlWLfQMwf9/wENBsBVYp9AzF/3PMT0GwEVCn2DcT8cc9PQLMRUKXYNxDzxz0/Ac1GQJVi30DMH/f8BDQbAVWKfQMxf9zzE9BsBFQp9g3E/HHPT0CzEVCl2DcQ88c9PwHNRkCVYt9AzB/3/AQ0GwFVin0DMX/c8xPQbARUKfYNxPxxz09AsxFQpdg3EPPHPX+JA/rKny8/f+rpP/vV/e85vDMBVYp9AzF/3POXNaB3fm1F6TT0E6e/3er7E1Cl2DcQ88c9fzkD+uKe0tsyP2vxDARUKfYNxPxxz1/KgD49vtrMxT564PGnnDn15CN2XzNJ6HGtnYKAKsW+gZg/7vnLGNBFHxdZ95c9vvP57JQlRK5t6RwEVCn2DcT8cc9fxoDeIvKZub0venhZ+VhL5yCgSrFvIOaPe/4yBvQwGTGz72U/FXm16Tu8Nu3qvibKqbobmyR7TM3djrJW/ied2iEn53/S5Zk//5Myv5n5tyxhQHeU/2q47HGRe5u+w26S4fO6Gzs4630BRKLVn0/nprCA7iIbNlxWDej9Td/h93s22HaNu3Q3NmPvxncetN3W+HgBZ91k3QJOuvX4nfI/KfMzf/4KmX/P/V9y7dRgFRbQyTLsP30vO0s6ZhV1ewDgW2EBvUtkq7d6X3T3aJlQ1M0BgHfFPQ90Z5FVznql681F9x0yTDpuKezmAMC34gL6yvrJN3fX2vHgo7/z7aP2nzC2+kbHKYXdGgB4V+Cvcs46eEjvn5St/uvibgwAvCv0xUQem7Lx8M56Lr3nZfOKvC0A8K3ol7Ob99DNv7n0ymv/9nLBtwMA3rX1CyoDQDsjoADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioE098YHl1jBi3MhVQy9Ba8yo0CvQGr84j3/+xqy+MPTGzhUBbeoin3+WFYjEKwNvPUMIaFM3y38/acQ+8r3QS9AaI/eFXoLSJTz+BRgj5frDvAS0qZtl69BL0Jok54VegtZYMxuIx78Idh5/HQLaFBuoCHY2EI9/Eew8/joEtCk2UBHsbCAe/yLYefx1CGhTbKAi2NlAPP5FsPP46xDQpthARbCzgXj8i2Dn8dchoE2xgYpgZwPx+BfBzuOvQ0CbYgMVwc4G4vEvgp3HX4eANsUGKoKdDcTjXwQ7j78OAW2KDVQEOxuIx78Idh5/HQLaFBuoCHY2EI9/Eew8/joEtCk2UBHsbCAe/yLYefx1CGhTbKAi2NlAPP5FsPP46xDQpthARbCzgXj8i2Dn8dchoE2xgYpgZwPx+BfBzuOvQ0CbYgMVwc4G4vEvgp3HX4eANsUGKoKdDcTjXwQ7j78OAW2KDVQEOxuIx78Idh5/HQLa1N9l99BL0JosV4Zegtb4xd4NvQQlHv8i2Hn8dQhoczfPDL0CrbevWxB6CVqPzAi9AjUe/wIYevxVCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKg/Xnuom/usu+Uq98PvQ6FN37xlZ0/e+xFb4Reh84vx3879BIG8OYF+2/3uTNmhl6GUvvfnylbH6QqBLS5BWeMktQHfxt6KQNZ9OMla0td7ueLQq9FY6IcHHoJ/fvl0unducRZoRei0/b3Z8LaB6kKAW3uy9XHevmtNhxZ/eea0GsZwNHVNS61xUYjqv98I/RaFO4e2uYb/oLkod9iper/fj/0UjTa/v5MGfsg1SGgTd3ZIctes7BSeftwkWVeCr2aft1U/Zj85pxK5b1vD5eOP4VezYBuX03ae8M/PVKGn7ugsuiKJWToP0MvZmBtf3+mjH2QKhHQprYW+UvtaBeR88KuZQDbixxdOzpd5ENh1zKA1y8+etPky7i23vD7iZyaHvxCZLvAaxmAifszZeiDtAUEtKmlZaP60e9Fvhp0KQN4qUNWWlg7XLSmyCNhV9O/6bVvg7X1hp+zpCw/r3b4IRnS3j9IsnB/pix9kLaAgDYzU2S/+uGDItsGXcsAql8cHdh5/DmR60KuZSD3bVm1Xntv+N+KHFI/PKHdv/iwcH+mLH2QtoCANvPCySffUD+8QuSAkEsZyKUiJ3UeTxK5JeRaVO5q7w0/ReTy+uFN3S1tY21+f6bMfZDqENCBvT+xzX8M//Jdd3V9nbmxyHMh16LS5ht+D5EZ9cNnRCYEXYtKm9+fKXMfpDoEdADzXvj9x0R2WBh6HUrXimwaeg0Da/MN/98inXt9foeFn3e0+f3Zl40PUh0C2r/PJt+gH3n0e6HXoTRjjMjvQi9iYG2+4TcSmdN5PFJWCrkUnTa/P/sw8kGqQ0D7t2sS0FGT2/tpoJ3m/3AxG89RbvMNv6ZI11ccY2WpkEvRafP7sxczH6Q6BLR/991wyf9+SGSVh0MvROHmdaux/7qF35Jr8w3/YZH5ncdLyZiQS9Fp8/uzJzsfpDoEtJe/T6j5S88LFxwlslmoFTV1fn2pb9Xffna36kfmKjcFXVO2efWVntl1SZtv+E1F3u48Hi6rhFyKTpvfn93a94PUFQHt5cb605Kn9bp0/jrdP5ZtG8fWl/pa7c1zlhRZ4oTZYdeUbW59pYd2XdLmG/7TIk/XD98UWS/kUnTa/P7s0sYfpK4IaC+PHFFzf++LvyJyZZgFNXdtfanph+Oi/auBOvCF0GvKNr++0u7/V2rzDf/Vrl/iTX6HYtega1Fp8/uzrq0/SF0R0GY+N3Jk1zc+TxT5aci1DOhwW18YtfmGP0vkjPrhpSLfCroWlTa/P+uMfZDqENBmju/+dZTK3iK/DrmWgZwnssGLoRfRgjbf8P8S2bl+eJCIgRcOavP7s8baB6kOAW3mWpGJ9cPXlpUhLwddTP8WfVBGPx96Ea1o9w3/QRle+0rzrdGyzPwBrtwG2v3+TJj7INUhoM0sWFnk/PTonV3b/Hfhrxf5Zug1tKTdN3z1k6XPps8ErX4C+r3Qi1Fo9/szYe6DVIeANnWNiGzz4+unnVQt6fi3Br5+OEeJ7D2lW3u//lqi3Tf8vE1Fdvjr87ftLrL2O6EXo9Du92fC3AepDgFt7v+G1p9/IxvdP/C1A9pFemnvxSbafsM/98H6fbnq46GXotH292fF4AepDgHtxx17Lp78JvyG5ywIvZL+bWDtY7P9N/w731imek9+4GuzQi9Epf3vT4MfpDoEtF9zn7rrqfZ/IaY7pvfS/k9Ufnv69Lb/zG7+E3c8buHvWScs3J/mPkh1CCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCst+J7JD7Wju2jLykbCLQXwIKEz7vMgv0oNjRc4IvBbEh4DCtFkrytIzq//eO0w+uSj0YhAdAgrbrhXZvVKZv5GMfib0UhAfAgrjDhSZVvmuyEWhF4IIEVAY98bKssJfR8jOodeBGBFQWHe9yDBZ9uXQy0CMCCjMO0hErgm9CESJgMK820SW5BNQhEBAYd37G0n6k3jAOwIK644TWU/k6tDLQIwIKIy7c6jsNXNpWf7V0AtBhAgobJvzIVnm5cpFIvuEXgkiREBh26Eil1X/2VrkN6GXgvgQUJh2S4dMTP59cgkZNyv0YhAdAgrL3lxVRj+XHp0q8vnAi0F8CCgsO0DkvNrRgs1Ergu7GMSHgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI4IKAA4IqAA4IiAAoAjAgoAjggoADgioADgiIACgCMCCgCOCCgAOCKgAOCIgAKAIwIKAI7+P/0y+VSutBLTAAAAAElFTkSuQmCC" width="672" /></p>
-<p>Mira la ventana de gráficos de la derecha. Hiciste un histograma de
-los 100 números aleatorios en el vector x. Como era de esperar de una
-muestra de un distribuición normal, el histograma tiene forma aproximada
-de campana.</p>
-<p>Enhorabuena. Has terminado el primer tutorial del curso y te has
-familiarizado un poco más con R y RStudio. Guarda tu archivo de script y
-escribe tus preguntas para discutirlas en clase.</p>
+<p>nombres de variables</p>
+<p>Ahora ya sabemos lo que necesitamos para importar el archivo a R. La
+función para hacerlo es read.table. Es una función con muchos
+argumentos, lo que le da mucha flexibilidad para leer distintos tipos de
+datos.</p>
+<p>En nuestro caso, necesitamos especificar que el primer renglón
+contiene los nombres de la columnas (header=TRUE), sep para especificar
+el delimitador (sep=“,”) y que el string que represent valores faltantes
+(na.strings=““). Ingresa plants &lt;- read.table(”usda_plant_data.csv”,
+header=TRUE, sep=“,”, na.strings = ““)</p>
+<pre class="r"><code>plants &lt;- read.table(&quot;usda_plant_data.csv&quot;, header=TRUE, sep=&quot;,&quot;, na.strings=&quot;&quot;)</code></pre>
+<p>El primer argumento de read.table es el nombre del fichero de texto a
+importar. En este argumento puede escribir un enlace a un fichero de
+Internet. La mayoría de las funciones que leen ficheros lo permiten.
+Intentalo: plants &lt;- read.table(url1, header=TRUE, sep=“,”,
+na.strings=““)</p>
+<pre class="r"><code>plants &lt;- read.table(url1, header=TRUE, sep=&quot;,&quot;, na.strings=&quot;&quot;)</code></pre>
+<p>Se trata de un archivo csv (valores separados por comas), un estándar
+de datos de texto tabular que pueden crear la mayoría de los programas.
+R incluye un conjunto de funciones que llaman a read.table() con
+diferentes opciones por defecto para valores como sep y header, y
+algunos otros. En la mayoría de los casos encontrarás que puedes usar
+read.csv() para archivos separados por comas o read.delim() para
+archivos delimitados por TAB sin especificar otras opciones.</p>
+<p>Intenta importar el archivo con read.csv, sin informar los argumentos
+header y sep.</p>
+<pre class="r"><code>plants &lt;- read.csv(&quot;usda_plant_data.csv&quot;, na.strings=&quot;&quot;)</code></pre>
+<p>Todas esas maneras de importación crean el objeto ‘plants’ en su
+espacio de trabajo. En Rstudio, verá el objeto en la ventana del entorno
+de trabajo. Escriba ls() para listar las variables en el espacio de
+trabajo, entre los cuales debe aparecer plants.</p>
+<pre class="r"><code>ls()</code></pre>
+<pre><code>##  [1] &quot;course_dir&quot;     &quot;dest_dir&quot;       &quot;destrmd&quot;        &quot;initpath&quot;       &quot;install_course&quot; &quot;keep_rmd&quot;      
+##  [7] &quot;les&quot;            &quot;lessonPath&quot;     &quot;meta&quot;           &quot;open_html&quot;      &quot;out&quot;            &quot;plants&quot;        
+## [13] &quot;quiet&quot;          &quot;rmd_filename&quot;   &quot;unit&quot;           &quot;url1&quot;</code></pre>
+<p>En RStudio puede importar datos a través del menú Files &gt; Import
+data sets. Pero mantener los comandos de importación de datos en su
+código hace que sus análisis sean reproducibles.</p>
+<p>Cada vez que usted está trabajando con un nuevo conjunto de datos, lo
+primero que debe hacer es mirarlo! ¿Cuál es el formato de los datos?
+¿Cuáles son las dimensiones? ¿Cuáles son los nombres de las variables?
+¿Cómo se almacenan las variables? ¿Existen datos que faltan? ¿Hay
+errores en los datos?</p>
+<p>Empecemos por por verificar la clase de la variable plants con
+class(plants). Esto nos dará una idea de la estructura general de los
+datos.</p>
+<pre class="r"><code>class(plants)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>Es muy común que los datos se almacenen en una trama de datos (clase
+data.frame). Esta es la clase predeterminada para los datos leídos en R
+utilizando funciones como read.csv() y read.table().</p>
+<p>Dado que el conjunto de datos se almacena en una trama de datos,
+sabemos que debe ser es rectangular. En otras palabras, tiene dos
+dimensiones (filas y columnas) y encaja perfectamente en una tabla u
+hoja de cálculo. Utilice dim(plants) para ver exactamente con cuántas
+filas y columnas estamos tratando.</p>
+<pre class="r"><code>dim(plants)</code></pre>
+<pre><code>## [1] 5166   12</code></pre>
+<p>El primer número que se ve (5166) es el número de filas
+(observaciones) y el segundo número (12) es el número de columnas
+(variables).</p>
+<p>También puede utilizar nrow(plants) para ver sólo el número de filas.
+Inténtalo.</p>
+<pre class="r"><code>nrow(plants)</code></pre>
+<pre><code>## [1] 5166</code></pre>
+<p>… Y ncol(plants) para ver sólo el número de columnas.</p>
+<pre class="r"><code>ncol(plants)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<p>Ahora que sabemos forma y tamaño del conjunto de datos, vamos a tener
+una idea de lo que hay dentro. names(plants) devolverá un vector de
+caracteres con los nombres de las columnas (es decir, variables).
+Inténtalo.</p>
+<pre class="r"><code>names(plants)</code></pre>
+<pre><code>##  [1] &quot;Accepted.Symbol&quot;           &quot;Synonym.Symbol&quot;            &quot;Scientific.Name&quot;           &quot;Duration&quot;                 
+##  [5] &quot;Active.Growth.Period&quot;      &quot;Foliage.Color&quot;             &quot;pH..Minimum.&quot;              &quot;pH..Maximum.&quot;             
+##  [9] &quot;Precipitation..Minimum.&quot;   &quot;Precipitation..Maximum.&quot;   &quot;Shade.Tolerance&quot;           &quot;Temperature..Minimum...F.&quot;</code></pre>
+<p>Los nombres de las variables son muy descriptivos. La función
+read.table sustituye los espacios y los caracteres que no son letras en
+los nombres de las variables por puntos. Pero esto ha creado algunos
+nombres raros, como ‘Temperatura..Mínima…F.’, convertido a ‘Temperatura,
+Mínima (°F)’. Una forma sencilla de solucionarlo es utilizar la propia
+función names para asignar un nuevo nombre a una o varias variables.</p>
+<p>El comando names(plants)[12] devuelve el decimo segundo elemento del
+vector de nombres de variables. Intentálo.</p>
+<pre class="r"><code>names(plants)[12]</code></pre>
+<pre><code>## [1] &quot;Temperature..Minimum...F.&quot;</code></pre>
+<p>El comando names(plants)[12] &lt;- “Temperature.Minimum.F” cambia el
+nombre de la variable. Intentálo.</p>
+<pre class="r"><code>names(plants)[12] &lt;- &quot;Temperature.Minimum.F&quot;</code></pre>
+<p>Ahora cambie el nombre de la variable ‘Precipitation..Minimum.’ para
+‘Precipitation.Minimum’</p>
+<pre class="r"><code>names(plants)[9] &lt;- &quot;Precipitation.Minimum&quot;</code></pre>
+<p>Si hay muchas variables para cambiar nombres hay otras maneras mas
+faciles para hacerlo. Pero todas utilizan la asignación función
+names.</p>
+<p>read.table importa variables no numéricas de tipo ‘carácter’. Si va a
+utilizar alguna de ellas como variable categórica en sus análisis, es
+importante convertirlas en factores. Hágalo para la variable tolerancia
+a la sombra con el comando plants<span class="math inline">\(Shade.Tolerance &lt;-
+factor(plants\)</span>Shade.Tolerance).</p>
+<pre class="r"><code>plants$Shade.Tolerance &lt;- factor(plants$Shade.Tolerance)</code></pre>
+<p>Converta la variable Active.Growth.Period en factor.</p>
+<pre class="r"><code>plants$Active.Growth.Period &lt;- factor(plants$Active.Growth.Period)</code></pre>
+<p>Ahora vamos a dar un vistazo a los datos. Sin embargo, nuestra base
+de datos contiene más de 5.000 observaciones (filas), así que es poco
+práctico ver toda la tabla a la vez.</p>
+<p>La función head() le permite hacer una vista previa de la parte
+superior del conjunto de datos. Dese la oportunidad con un solo
+argumento.</p>
+<pre class="r"><code>head(plants)</code></pre>
+<pre><code>##   Accepted.Symbol Synonym.Symbol              Scientific.Name          Duration Active.Growth.Period Foliage.Color
+## 1           ABELM             NA                  Abelmoschus              &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 2            ABES             NA       Abelmoschus esculentus Annual, Perennial                 &lt;NA&gt;          &lt;NA&gt;
+## 3           ABIES             NA                        Abies              &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 4            ABBA             NA               Abies balsamea         Perennial    Spring and Summer         Green
+## 5           ABBAB             NA Abies balsamea var. balsamea         Perennial                 &lt;NA&gt;          &lt;NA&gt;
+## 6           ABUTI             NA                     Abutilon              &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+##   pH..Minimum. pH..Maximum. Precipitation.Minimum Precipitation..Maximum. Shade.Tolerance Temperature.Minimum.F
+## 1           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 2           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 3           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 4            4            6                    13                      60        Tolerant                   -43
+## 5           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 6           NA           NA                    NA                      NA            &lt;NA&gt;                    NA</code></pre>
+<p>Tome un minuto para mirar el resultado y entender la salida anterior.
+Cada fila se etiqueta con el número de observación y cada columna con el
+nombre de la variable. Es probable que su pantalla no sea lo
+suficientemente amplia como para ver las 12 columnas de lado a lado, en
+cuyo caso R muestra tantas columnas como pueda en cada línea antes de
+continuar al siguiente.</p>
+<p>Por defecto, la función head() muestra las primeras seis filas de los
+datos. Puede modificar este comportamiento al pasar como segundo
+argumento el número de filas que desea ver. Use la head() para obtener
+una vista previa de las primeras 10 filas de plantas.</p>
+<pre class="r"><code>head(plants, 10)</code></pre>
+<pre><code>##    Accepted.Symbol Synonym.Symbol                   Scientific.Name          Duration Active.Growth.Period
+## 1            ABELM             NA                       Abelmoschus              &lt;NA&gt;                 &lt;NA&gt;
+## 2             ABES             NA            Abelmoschus esculentus Annual, Perennial                 &lt;NA&gt;
+## 3            ABIES             NA                             Abies              &lt;NA&gt;                 &lt;NA&gt;
+## 4             ABBA             NA                    Abies balsamea         Perennial    Spring and Summer
+## 5            ABBAB             NA      Abies balsamea var. balsamea         Perennial                 &lt;NA&gt;
+## 6            ABUTI             NA                          Abutilon              &lt;NA&gt;                 &lt;NA&gt;
+## 7             ABTH             NA              Abutilon theophrasti            Annual                 &lt;NA&gt;
+## 8            ACACI             NA                            Acacia              &lt;NA&gt;                 &lt;NA&gt;
+## 9            ACCO2             NA                 Acacia constricta         Perennial    Spring and Summer
+## 10           ACCOC             NA Acacia constricta var. constricta         Perennial                 &lt;NA&gt;
+##    Foliage.Color pH..Minimum. pH..Maximum. Precipitation.Minimum Precipitation..Maximum. Shade.Tolerance
+## 1           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 2           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 3           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 4          Green            4          6.0                    13                      60        Tolerant
+## 5           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 6           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 7           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 8           &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+## 9          Green            7          8.5                     4                      20      Intolerant
+## 10          &lt;NA&gt;           NA           NA                    NA                      NA            &lt;NA&gt;
+##    Temperature.Minimum.F
+## 1                     NA
+## 2                     NA
+## 3                     NA
+## 4                    -43
+## 5                     NA
+## 6                     NA
+## 7                     NA
+## 8                     NA
+## 9                    -13
+## 10                    NA</code></pre>
+<p>Lo mismo se aplica en el uso de la función tail() para obtener una
+vista previa del final del conjunto de datos. Utilice tail() para ver
+las últimas 15 filas.</p>
+<pre class="r"><code>tail(plants, 15)</code></pre>
+<pre><code>##      Accepted.Symbol Synonym.Symbol                  Scientific.Name  Duration Active.Growth.Period Foliage.Color
+## 5152           ZIZAN             NA                          Zizania      &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 5153            ZIAQ             NA                 Zizania aquatica    Annual               Spring         Green
+## 5154          ZIAQA2             NA   Zizania aquatica var. aquatica    Annual                 &lt;NA&gt;          &lt;NA&gt;
+## 5155           ZIPA3             NA                Zizania palustris    Annual                 &lt;NA&gt;          &lt;NA&gt;
+## 5156           ZIPAP             NA Zizania palustris var. palustris    Annual                 &lt;NA&gt;          &lt;NA&gt;
+## 5157          ZIZAN2             NA                      Zizaniopsis      &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 5158            ZIMI             NA             Zizaniopsis miliacea Perennial    Spring and Summer         Green
+## 5159           ZIZIA             NA                            Zizia      &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 5160            ZIAP             NA                     Zizia aptera Perennial                 &lt;NA&gt;          &lt;NA&gt;
+## 5161            ZIAU             NA                      Zizia aurea Perennial                 &lt;NA&gt;          &lt;NA&gt;
+## 5162            ZITR             NA                 Zizia trifoliata Perennial                 &lt;NA&gt;          &lt;NA&gt;
+## 5163           ZOSTE             NA                          Zostera      &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 5164            ZOMA             NA                   Zostera marina Perennial                 &lt;NA&gt;          &lt;NA&gt;
+## 5165           ZOYSI             NA                           Zoysia      &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;
+## 5166            ZOJA             NA                  Zoysia japonica Perennial                 &lt;NA&gt;          &lt;NA&gt;
+##      pH..Minimum. pH..Maximum. Precipitation.Minimum Precipitation..Maximum. Shade.Tolerance Temperature.Minimum.F
+## 5152           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5153          6.4          7.4                    30                      50      Intolerant                    32
+## 5154           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5155           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5156           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5157           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5158          4.3          9.0                    35                      70      Intolerant                    12
+## 5159           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5160           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5161           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5162           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5163           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5164           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5165           NA           NA                    NA                      NA            &lt;NA&gt;                    NA
+## 5166           NA           NA                    NA                      NA            &lt;NA&gt;                    NA</code></pre>
+<p>Después de la vista previa de la parte superior e inferior de los
+datos, usted probablemente ha notado un montón de NAs, que son los
+marcadores de posición de R para los valores perdidos. Use
+summary(plants) para obtener una mejor idea de cómo se distribuye cada
+variable y que tanto de la base de datos no se encuentra.</p>
+<pre class="r"><code>summary(plants)</code></pre>
+<pre><code>##  Accepted.Symbol    Synonym.Symbol Scientific.Name      Duration                   Active.Growth.Period
+##  Length:5166        Mode:logical   Length:5166        Length:5166        Spring and Summer   : 447     
+##  Class :character   NA&#39;s:5166      Class :character   Class :character   Spring              : 144     
+##  Mode  :character                  Mode  :character   Mode  :character   Spring, Summer, Fall:  95     
+##                                                                          Summer              :  92     
+##                                                                          Summer and Fall     :  24     
+##                                                                          (Other)             :  30     
+##                                                                          NA&#39;s                :4334     
+##  Foliage.Color       pH..Minimum.    pH..Maximum.    Precipitation.Minimum Precipitation..Maximum.
+##  Length:5166        Min.   :3.000   Min.   : 5.100   Min.   : 4.00         Min.   : 16.00         
+##  Class :character   1st Qu.:4.500   1st Qu.: 7.000   1st Qu.:16.75         1st Qu.: 55.00         
+##  Mode  :character   Median :5.000   Median : 7.300   Median :28.00         Median : 60.00         
+##                     Mean   :4.997   Mean   : 7.344   Mean   :25.57         Mean   : 58.73         
+##                     3rd Qu.:5.500   3rd Qu.: 7.800   3rd Qu.:32.00         3rd Qu.: 60.00         
+##                     Max.   :7.000   Max.   :10.000   Max.   :60.00         Max.   :200.00         
+##                     NA&#39;s   :4327    NA&#39;s   :4327     NA&#39;s   :4338          NA&#39;s   :4338           
+##      Shade.Tolerance Temperature.Minimum.F
+##  Intermediate: 242   Min.   :-79.00       
+##  Intolerant  : 349   1st Qu.:-38.00       
+##  Tolerant    : 246   Median :-33.00       
+##  NA&#39;s        :4329   Mean   :-22.53       
+##                      3rd Qu.:-18.00       
+##                      Max.   : 52.00       
+##                      NA&#39;s   :4328</code></pre>
+<p>summary() proporciona una salida diferente para cada variable,
+dependiendo de su clase. Para los datos numéricos, summary() muestra el
+mínimo, primer cuartil, la mediana, la media, el tercer cuartil, y el
+máximo. Estos valores nos ayudan a entender cómo se distribuyen los
+datos.</p>
+<p>Para los factores (variables categóricas), summary() muestra el
+número de veces que cada valor (o “nivel”) se produce en los datos. Por
+ejemplo, el resumen de Shade.Tolerance nos dice que nuestro conjunto de
+datos contiene 246 plantas tolerantes, 349 no tolerantes, etc.</p>
+<p>Se puede ver que R trunca el resumen para Active.Growth.Period
+incluyendo una nueva categoría denominada “Other”. Dado que es una
+variable categórica (factor), podemos ver cuántas veces cada valor
+realmente ocurre en los datos con
+table(plants$Active.Growth.Period).</p>
+<pre class="r"><code>table(plants$Active.Growth.Period)</code></pre>
+<pre><code>## 
+## Fall, Winter and Spring                  Spring         Spring and Fall       Spring and Summer 
+##                      15                     144                      10                     447 
+##    Spring, Summer, Fall                  Summer         Summer and Fall              Year Round 
+##                      95                      92                      24                       5</code></pre>
+<p>Cada una de las funciones que hemos introducido hasta el momento
+tiene su utilidad para ayudar a entender mejor la estructura de los
+datos. Sin embargo, hemos dejado lo mejor para lo último …</p>
+<p>Quizás la función más útil y concisa para la comprensión de la
+estructura de sus datos es str (E<em>str</em>uctura). Dese una
+oportunidad ahora.</p>
+<pre class="r"><code>str(plants)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    5166 obs. of  12 variables:
+##  $ Accepted.Symbol        : chr  &quot;ABELM&quot; &quot;ABES&quot; &quot;ABIES&quot; &quot;ABBA&quot; ...
+##  $ Synonym.Symbol         : logi  NA NA NA NA NA NA ...
+##  $ Scientific.Name        : chr  &quot;Abelmoschus&quot; &quot;Abelmoschus esculentus&quot; &quot;Abies&quot; &quot;Abies balsamea&quot; ...
+##  $ Duration               : chr  NA &quot;Annual, Perennial&quot; NA &quot;Perennial&quot; ...
+##  $ Active.Growth.Period   : Factor w/ 8 levels &quot;Fall, Winter and Spring&quot;,..: NA NA NA 4 NA NA NA NA 4 NA ...
+##  $ Foliage.Color          : chr  NA NA NA &quot;Green&quot; ...
+##  $ pH..Minimum.           : num  NA NA NA 4 NA NA NA NA 7 NA ...
+##  $ pH..Maximum.           : num  NA NA NA 6 NA NA NA NA 8.5 NA ...
+##  $ Precipitation.Minimum  : int  NA NA NA 13 NA NA NA NA 4 NA ...
+##  $ Precipitation..Maximum.: int  NA NA NA 60 NA NA NA NA 20 NA ...
+##  $ Shade.Tolerance        : Factor w/ 3 levels &quot;Intermediate&quot;,..: NA NA NA 3 NA NA NA NA 2 NA ...
+##  $ Temperature.Minimum.F  : int  NA NA NA -43 NA NA NA NA -13 NA ...</code></pre>
+<p>La belleza de str() es que combina muchas de las características de
+las otras funciones que ya has visto, todo ello en un formato conciso y
+fácil de leer. En la parte superior, se nos dice que la clase de las
+plantas es ‘data.frame’ y que cuenta con 5166 observaciones y 12
+variables. A continuación, nos da el nombre y la categoría de cada
+variable, así como una vista previa de su contenido.</p>
+<p>str() es en realidad una función muy general que se puede utilizar en
+la mayoría de los objetos en R. Cada vez que usted quiere entender la
+estructura de algo (un conjunto de datos, función, etc.), str() es un
+buen modo para comenzar.</p>
+<p>Y claro, puedes mirar todos los datos con View(plants).
+Inténtalo.</p>
+<pre class="r"><code>View(plants)</code></pre>
+<p>En Rstudio, ese comando abre la visualización de los datos en la
+ventana de script. Da lo mismo si haces clic en el nombre del objeto en
+la ventana de ambiente de trabajo (Environment).</p>
+<p>En esta lección, ha aprendido a cargar datos a R y a tener una idea
+de la estructura y contenido de un nuevo conjunto de datos utilizando
+una colección de funciones simples y útiles. Tomarse el tiempo para
+hacer esto por adelantado puede ahorrarle tiempo y frustración más tarde
+durante su análisis.</p>
 
 
 

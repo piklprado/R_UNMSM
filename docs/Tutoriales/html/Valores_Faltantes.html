@@ -414,12 +414,12 @@ my_na.</p>
 <pre class="r"><code>my_na &lt;- is.na(my_data)</code></pre>
 <p>Ahora, imprima my_na para ver lo que le ocurrió.</p>
 <pre class="r"><code>my_na</code></pre>
-<pre><code>##   [1] FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-##  [19]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-##  [37] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
-##  [55]  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
-##  [73]  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
-##  [91] FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>##   [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [19]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+##  [37]  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+##  [55] FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+##  [73] FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [91] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE</code></pre>
 <p>En todas partes donde se ve un TRUE, se sabes el elemento
 correspondiente de my_data es NA. Del mismo modo, en todas partes se ve
 un FALSE, ya sabes el elemento correspondiente de my_data es uno de
@@ -452,23 +452,24 @@ TRUEs.</p>
 contar el número total de TRUEs en my_na, y por lo tanto el número total
 de NAs en my_data. No asigne el resultado de una nueva variable.</p>
 <pre class="r"><code>sum(my_na)</code></pre>
-<pre><code>## [1] 57</code></pre>
+<pre><code>## [1] 52</code></pre>
 <p>Bastante bien, ¿eh? Por último, vamos a echar un vistazo a los datos
 para convencernos de que todo ‘suma’. Imprimir my_data en la
 consola.</p>
 <pre class="r"><code>my_data</code></pre>
-<pre><code>##   [1]  0.55992394          NA          NA  0.29238262 -1.59038918 -0.98592438          NA          NA          NA
-##  [10]          NA  1.24149380 -0.51053075          NA          NA          NA  2.01252978  1.35451170 -1.12030221
-##  [19]          NA          NA          NA          NA  0.29519498          NA -0.40687194          NA  0.09377954
-##  [28]          NA          NA          NA          NA          NA          NA -1.54815099 -0.55585154 -0.80551709
-##  [37] -1.16088432 -0.24847694 -1.07396203  0.48199150          NA -2.12225314          NA          NA          NA
-##  [46]  0.93204727  0.10636033          NA          NA -1.32637951          NA -0.07809653          NA  1.54996748
-##  [55]          NA          NA          NA -1.21443771  0.83449426          NA          NA  0.74941001 -1.00408001
-##  [64]  1.32518193  1.17184501          NA          NA          NA          NA          NA  0.93902907          NA
-##  [73]          NA -0.87609435          NA          NA  0.99915572          NA  0.06954533 -0.59178921  0.30356712
-##  [82]          NA  0.52543881          NA          NA          NA          NA  1.60283315          NA -0.81994711
-##  [91]  1.38434919  0.65401669          NA          NA  0.37467213          NA          NA          NA          NA
-## [100]          NA</code></pre>
+<pre><code>##   [1] -0.101102391           NA           NA           NA           NA           NA -1.478828675           NA
+##   [9]  0.078860945           NA           NA           NA           NA -0.302284204  1.612719965           NA
+##  [17]  0.007859738 -2.496609615           NA           NA -0.686073586           NA -0.377066281           NA
+##  [25]  1.579857304 -0.141604812           NA           NA -0.940276391  2.247111032  0.260819254           NA
+##  [33]           NA  1.947454196  0.153223431  0.068300545           NA  0.460969411 -0.109463217  1.306600737
+##  [41]           NA           NA -1.397399392  0.628715533  0.290917720 -1.340628640           NA -0.140013364
+##  [49] -1.802718328           NA           NA -0.134424094  0.959884820           NA  1.905660374  0.252271072
+##  [57]           NA           NA  0.643498886           NA  0.799742892           NA           NA  1.436594011
+##  [65]           NA           NA -0.532580118           NA           NA -1.275773961  1.754511211           NA
+##  [73] -1.615562062           NA           NA  0.129959193  0.148874894           NA           NA  0.930937564
+##  [81]           NA           NA           NA  0.047120196  0.162843694           NA           NA           NA
+##  [89]           NA  0.095192195 -2.296212040  1.478009303           NA  0.519939173           NA  0.287237689
+##  [97]           NA -0.444448670           NA           NA</code></pre>
 <p>Ahora que tenemos los NA al dedillo, echemos un vistazo a un segundo
 tipo de valor faltante, el NaN, que significa ’no es un número “. Para
 generar NaN, intente dividir (utilizando una barra inclinada) 0 entre 0

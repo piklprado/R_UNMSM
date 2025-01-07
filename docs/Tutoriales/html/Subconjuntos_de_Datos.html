@@ -377,6 +377,9 @@ display: none;
 </div>
 
 
+<p>Esta lección es una versión un poco modificada de la lección del
+mismo nombre del curso ‘Programación estadística en R’, de Ismael
+Fernández, UNAM, México (<a href="https://github.com/ifunam/programacion-estadistica-r" class="uri">https://github.com/ifunam/programacion-estadistica-r</a>).</p>
 <p>En esta lección conocerás las maneras de acceder a las estructuras de
 datos en el lenguaje R.</p>
 <p>R tiene una sintaxis especializada para acceder a las estructuras de
@@ -422,11 +425,11 @@ un solo elemento. Ingresa mi_vector[[3]] en la línea de comandos.</p>
 <pre class="r"><code>mi_vector[[3]]</code></pre>
 <pre><code>## [1] 13</code></pre>
 <p>La notación [[]] funciona de la misma manera que la notación [] en
-este caso.</p>
+este caso. Veras que es diferente para listas.</p>
 <p>También puedes usar enteros negativos para obtener un vector que
 consista en todos los elementos, excepto los elementos especificados.
-Excluye los elementos 9:15, al especificar -9:-15.</p>
-<pre class="r"><code>mi_vector[-9:-15]</code></pre>
+Excluye los elementos 9:15, al especificar -(9:15).</p>
+<pre class="r"><code>mi_vector[-(9:15)]</code></pre>
 <pre><code>##  [1] 11 12 13 14 15 16 17 18 26 27 28 29 30</code></pre>
 <p>Como alternativa a indexar con un vector de enteros, puedes indexar a
 través de un vector lógico.</p>
@@ -452,9 +455,9 @@ comandos mi_vector &gt; 20.</p>
 <pre class="r"><code>mi_vector &gt; 20</code></pre>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ## [20]  TRUE</code></pre>
-<p>Y ahora indexa ‘mi_vector’ usando el vector previamente calculado.
-Ingresa mi_vector[(mi_vector &gt; 20)] en la línea de comandos.</p>
-<pre class="r"><code>mi_vector[(mi_vector &gt; 20)]</code></pre>
+<p>Y ahora indexa ‘mi_vector’ usando el vector previamente
+calculado.</p>
+<pre class="r"><code>mi_vector[mi_vector &gt; 20]</code></pre>
 <pre><code>##  [1] 21 22 23 24 25 26 27 28 29 30</code></pre>
 <p>También puedes usar esta notación para extraer partes de una
 estructura de datos multidimensional.</p>
@@ -463,10 +466,8 @@ almacenan de la misma manera internamente, pero un arreglo se muestra
 diferente y se accede diferente.</p>
 <p>Para crear un arreglo de dimensión 3x3x2 y de contenido los números
 del 1 al 18 y guardarlo en la variable ‘mi_arreglo’, ingresa mi_arreglo
-&lt;-
-array(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18),dim=c(3,3,2)) en
-la línea de comandos.</p>
-<pre class="r"><code>mi_arreglo &lt;- array(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18),dim=c(3,3,2))</code></pre>
+&lt;- array(1:18,dim=c(3,3,2)) en la línea de comandos.</p>
+<pre class="r"><code>mi_arreglo &lt;- array(1:18,dim=c(3,3,2))</code></pre>
 <p>Ahora ve el contenido de la variable ‘mi_arreglo’.</p>
 <pre class="r"><code>mi_arreglo</code></pre>
 <pre><code>## , , 1
@@ -494,27 +495,26 @@ comandos. ¡Inténtalo!</p>
 ## [1,]    1    4
 ## [2,]    2    5</code></pre>
 <p>Una matriz es simplemente un arreglo bidimensional. Ahora crea una
-matriz con 3 renglones y 3 columnas con los números enteros del 1 al 9 y
+matriz con 3 filas y 3 columnas con los números enteros del 1 al 9 y
 guárdala en la variable ‘mi_matriz’.</p>
 <pre class="r"><code>mi_matriz &lt;- matrix(data=1:9,nrow=3,ncol=3)</code></pre>
-<p>Al igual que con los arreglos, para obtener todos los renglones o
+<p>Al igual que con los arreglos, para obtener todas las filas o
 columnas de una dimensión de una matriz, simplemente omite los
 índices.</p>
-<p>Por ejemplo, si quisiéras solo el primer renglón de ‘mi_matriz’,
-basta con ingresar mi_matriz[1,] en la línea de comandos.
-¡Inténtalo!</p>
+<p>Por ejemplo, si quisiéras solo la primer fila de ‘mi_matriz’, basta
+con ingresar mi_matriz[1,] en la línea de comandos. ¡Inténtalo!</p>
 <pre class="r"><code>mi_matriz[1,]</code></pre>
 <pre><code>## [1] 1 4 7</code></pre>
 <p>¡Ahora obtén solo la primera columna!</p>
 <pre class="r"><code>mi_matriz[,1]</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
-<p>También puedes referirte a un rango de renglones. Ingresa
-mi_matriz[2:3,] en la línea de comandos.</p>
+<p>También puedes referirte a un rango de filas. Ingresa mi_matriz[2:3,]
+en la línea de comandos.</p>
 <pre class="r"><code>mi_matriz[2:3,]</code></pre>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    2    5    8
 ## [2,]    3    6    9</code></pre>
-<p>O referirte a un conjunto no contiguo de renglones. Ingresa
+<p>O referirte a un conjunto no contiguo de filas. Ingresa
 mi_matriz[c(1,3),] en la línea de comandos.</p>
 <pre class="r"><code>mi_matriz[c(1,3),]</code></pre>
 <pre><code>##      [,1] [,2] [,3]
@@ -534,7 +534,11 @@ carro &lt;- list(color=“rojo”, nllantas=4, marca= “Renault”,
 ncilindros=4).</p>
 <pre class="r"><code>carro &lt;- list(color=&quot;rojo&quot;, nllantas=4, marca= &quot;Renault&quot;, ncilindros=4)</code></pre>
 <p>Tú puedes acceder a los elementos de una lista de múltiples formas.
-Puedes usar la misma notación que usaste con los vectores.</p>
+Puedes usar la misma notación que usaste con los vectores. Intenta ahora
+acceder al primero elemento de la lista carro</p>
+<pre class="r"><code>carro[1]</code></pre>
+<pre><code>## $color
+## [1] &quot;rojo&quot;</code></pre>
 <p>Y además puedes indexar un elemento por nombre usando la notación
 <span class="math inline">\(. Por ejemplo, ingresa carro\)</span>color
 en la línea de comandos.</p>
@@ -553,10 +557,6 @@ línea de comandos.</p>
 seleccionas un simple elemento. Por ejemplo, ingresa carro[[“marca”]] en
 la línea de comandos.</p>
 <pre class="r"><code>carro[[&quot;marca&quot;]]</code></pre>
-<pre><code>## [1] &quot;Renault&quot;</code></pre>
-<p>Hasta puedes indexar por nombre parcial usando la opción exact=FALSE.
-Ingresa carro[[“mar”,exact=FALSE]] en la línea de comandos.</p>
-<pre class="r"><code>carro[[&quot;mar&quot;,exact=FALSE]]</code></pre>
 <pre><code>## [1] &quot;Renault&quot;</code></pre>
 <p>Ahora crea la siguiente lista: camioneta &lt;- list(color=“azul”,
 nllantas=4, marca= “BMW”, ncilindros=6).</p>
@@ -682,13 +682,44 @@ Ingresa cars<span class="math inline">\(speed[cars\)</span>dist&gt;100]
 en la línea de comandos.</p>
 <pre class="r"><code>cars$speed[cars$dist&gt;100]</code></pre>
 <pre><code>## [1] 24</code></pre>
-<p>Ahora ya sabes cómo acceder a las estructuras de datos.</p>
-<p>Has concluido la lección. ¿Te gustaría que se le notificará a
-Coursera que has completado esta lección?</p>
-<ol style="list-style-type: decimal">
-<li>Si</li>
-<li>No</li>
-</ol>
+<p>Como los dataframes son objetos tabulares, puedes utilizar una
+indexación numérica similar a la de las matrices. Escriba cars[1:5,]
+para ver las 5 primeras filas y todas las columnas del dataframe.</p>
+<pre class="r"><code>cars[1:5,]</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16</code></pre>
+<p>Ahora muestre el dataframe cars con sólo las filas que tienen una
+distancia de frenado mayor que la distancia media del conjunto de datos.
+Muestra todas las columnas del marco de datos</p>
+<pre class="r"><code>cars[cars$dist&gt;mean(cars$dist),]</code></pre>
+<pre><code>##    speed dist
+## 19    13   46
+## 22    14   60
+## 23    14   80
+## 26    15   54
+## 31    17   50
+## 33    18   56
+## 34    18   76
+## 35    18   84
+## 37    19   46
+## 38    19   68
+## 40    20   48
+## 41    20   52
+## 42    20   56
+## 43    20   64
+## 44    22   66
+## 45    23   54
+## 46    24   70
+## 47    24   92
+## 48    24   93
+## 49    24  120
+## 50    25   85</code></pre>
+<p>Has terminado esa lección. Ahora ya sabes cómo acceder a las
+estructuras de datos.</p>
 
 
 

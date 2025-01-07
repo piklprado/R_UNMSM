@@ -11,7 +11,7 @@
 
 
 
-<title>Mi primera sessión en R y RStudio</title>
+<title>Funciones *apply</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -372,288 +372,829 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Mi primera sessión en R y RStudio</h1>
+<h1 class="title toc-ignore">Funciones *apply</h1>
 
 </div>
 
 
-<p>Esta es nuestra primera lección, en la que tendrás un primer contacto
-con R usando RStudio. Esta lección fue adaptada y traducida al español
-del módulo 1 del curso ’A (very) short introduction to R, de Claudia
-Brauer
-(www.github.com/ClaudiaBrauer/A-very-short-introduction-to-R).</p>
-<p>La interfaz de RStudio tiene varias ventanas. Puede cambiar el tamaño
-de las ventanas arrastrando las barras grises entre las ventanas.</p>
-<p>Abajo a la izquierda está la ventana de la consola (también llamada
-ventana/línea de comandos). Aquí puede escribir comandos después del
-prompt &gt; y R ejecutará su comando. Esta es la ventana más importante,
-porque aquí es donde R realmente hace cosas.</p>
-<p>Arriba a la izquierda está la ventana del editor de códigos (también
-llamada ventana de script). Aquí se pueden editar y guardar colecciones
-de comandos (scripts). Si no aparece esta ventana, puede abrirla con
-‘File &gt; New R &gt; Script’ (‘Archivo’ &gt; ‘Nuevo’ &gt; ‘R
-script’).</p>
-<p>Escribir comandos en la ventana del editor no es suficiente, tiene
-que llegar a la ventana de comandos antes de que R ejecute el comando.
-Si quieres ejecutar una línea desde la ventana del script (o todo el
-script), puedes hacer click en ‘Run’ o pulsar ‘CTRL+ENTER’ para enviarlo
-a la ventana de comandos.</p>
-<p>La ventana de scripts es muy importante, ya que en ella podrás crear
-y guardar tus códigos en R para usarlos cuando los necesites. Por
-ejemplo, para resolver los ejercicios de nuestro curso, deberás escribir
-los códigos y guadalos, para luego enviarlos a través de un sistema en
-línea llamado notaR.</p>
-<p>¡Intenta resolver el resto de este tutorial con un script! Para ello,
-abre un archivo script (‘Archivo &gt; Nuevo R &gt; Script’), escribe los
-siguientes comandos en él, y envía los comandos a la consola de R
-pulsando ‘CTRL+ENTER’.</p>
-<p>Arriba a la derecha está la ventana de espacio de trabajo y de
-historial. En la ventana de espacio de trabajo puede ver qué datos y
-valores tiene R en su memoria. La ventana de historial muestra lo que se
-ha escrito anteriormente. Hay otras ventanas de que hablaremos
-después.</p>
-<p>Abajo a la derecha está la ventana de archivos / gráficos / paquetes
-/ ayuda / visor. Aquí puede abrir archivos, ver gráficos (también
-gráficos anteriores), instalar y cargar paquetes o utilizar la función
-de ayuda.</p>
-<p>Su directorio de trabajo es la carpeta de su computadora en la que
-está trabajando actualmente. Cuando le pida a R que abra un determinado
-archivo, buscará este archivo en el directorio de trabajo, y cuando le
-diga a R que guarde un archivo de datos o una figura, lo guardará en el
-directorio de trabajo.</p>
-<p>Para mantener tu trabajo organizado, es muy importante que crees un
-directorio de trabajo para cada análisis que vayas a realizar. Así que
-crea ahora mismo un directorio para este curso, donde guardarás todas
-tus scripts y otros archivos.</p>
-<p>Ahora debe establecer su directorio de trabajo en este directorio que
-ha creado. Dentro de RStudio puede ir a ‘Session’ &gt; ‘Set working
-directory’ &gt; ‘Choose directory’. Por favor, hágalo ahora. Cada vez
-que empiece a trabajar compruebe que se encuentra en el directorio de
-trabajo correcto.</p>
-<p>En lugar de hacer clic, también puede escribir en la ventana de
-comandos setwd(‘su directorio’), donde ‘su directorio’ es la ruta para
-su directorio (por ejemplo setwd(‘C:/Documents/CursoR/’). Asegúrese de
-que las barras inclinadas son barras inclinadas hacia delante y de que
-no olvida los apóstrofos. R distingue entre mayúsculas y minúsculas, así
-que asegúrese de escribir mayúsculas donde sea necesario. No hace falta
-que lo intentes ahora.</p>
-<p>R puede realizar muchos análisis estadísticos y de datos. Están
-organizados en los llamados paquetes o bibliotecas. Con la instalación
-estándar, se instalan los paquetes más comunes.</p>
-<p>Para obtener una lista de todos los paquetes instalados, vaya a la
-ventana de paquetes. Si la casilla situada delante del nombre del
-paquete está marcada, el paquete está cargado (activado) y puede
-utilizarse. Busque el paquete swirl en la ventana de paquetes y
-compruebe si la casilla está marcada.</p>
-<p>Hay muchos más paquetes disponibles en el sitio web de R. Si desea
-instalar y utilizar un paquete (por ejemplo, el paquete llamado
-‘geometry’) primero debe instalar el paquete haciendo clic en ‘install
-packages’ en la ventana de paquetes y escribiendo geometry o escribiendo
-install.packages(‘geometry’) en la ventana de comandos. En realidad ya
-has hecho esto para el paquete swirl.</p>
-<p>A continuación, debes cargar el paquete marcando la casilla delante
-de geometry o escribiendo library(geometry) en la ventana de comandos.
-También has hecho esto para el paquete swirl (de lo contrario no podrías
-hacer estos ejercicios).</p>
-<p>Ahora, empecemos con la programación de verdad.</p>
-<p>R puede utilizarse como calculadora. Puedes escribir tu ecuación en
-la ventana de comandos después del &gt;. Escribe 10^2 + 36. Puede
-tambíen escribrir el comando en el primeiro reglón del archivo script y
-entonces enviarlo a R con CTRL-ENTER.</p>
-<pre class="r"><code>10^2 + 36</code></pre>
-<pre><code>## [1] 136</code></pre>
-<p>Y R dio la respuesta directamente. Además, los espacios no
-importan.</p>
-<p>También puede dar un nombre a los números. Al hacerlo, se convierten
-en los denominados objetos, que pueden utilizarse posteriormente. Por
-ejemplo, para crear el objeto ‘A’ con el valor 4, escriba el comando A
-&lt;- 4 .</p>
-<pre class="r"><code>A &lt;-  4</code></pre>
-<p>Puede ver que A apareció en la ventana del espacio de trabajo en la
-esquina superior derecha, lo que significa que R ahora recuerda qué es
-A.</p>
-<p>Algunas personas prefieren utilizar = en lugar de &lt;-. Hacen lo
-mismo, es decir, asignar valores a nombres (objetos).</p>
-<p>&lt;- consta de dos caracteres, &lt; y -, y representa una flecha que
-apunta al objeto que recibe el valor de la expresión. En Rstudio tienes
-un atajo para ello: basta con pulsar Alt- (es decir, las teclas Alt y la
-tecla del signo menos). Pruébalo en los próximos comandos.</p>
-<p>También puedes preguntarle a R que hay en un objeto. Sólo tienes que
-escribir el nombre del objeto en la ventana de comandos. Escriba A</p>
-<pre class="r"><code>A</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>También puedes hacer cálculos con los objetos. Escribe A * 5 .</p>
-<pre class="r"><code>A*5</code></pre>
-<pre><code>## [1] 20</code></pre>
-<p>Si vuelve a especificar A, R olvidará el valor que tenía antes.
-También puede asignar un nuevo valor a A utilizando el anterior. Escriba
-A &lt;- A + 10 .</p>
-<pre class="r"><code>A &lt;- A + 10</code></pre>
-<p>Ahora puedes ver en la ventana del espacio de trabajo que se cambió
-el contenido de A.</p>
-<p>Para eliminar todas las variables de la memoria de R, escriba
-rm(list=ls()) .</p>
-<pre class="r"><code>rm(list=ls())</code></pre>
-<p>Verá que la ventana del espacio de trabajo está vacía. También puede
-hacer clic en el icono de la escoba (<code>clear all</code>) en la
-ventana del área de trabajo. Puede ver que RStudio vacía la ventana del
-área de trabajo. Si sólo desea eliminar la variable A, puede escribir
-rm(A).</p>
-<p>Mientras escribes el último comando puedes notar que Rstudio adivina
-algo de lo que has escrito, como cerrar un paréntesis que has abierto.
-Este autocompletado es una buena característica para reducir el riesgo
-de errores de sintaxis. Pronto hablaremos más sobre esto.</p>
-<p>Como en muchos otros programas, R organiza los números en escalares
-(un único número, 0-dimensional), vectores (una fila de números, también
-llamados arrays, 1-dimensional) y matrices (como una tabla,
-2-dimensional).</p>
-<p>El objeto A que definiste antes era un escalar. Para definir un
-vector con los números 3, 4 y 5, necesitas la función c, que es la
-abreviatura de concatenar (pegar juntos). Escribe B &lt;- c(3,4,5) .</p>
-<pre class="r"><code>B&lt;-c(3,4,5)</code></pre>
-<p>Conoceremos matrices y otros objetos de más dimensiones en los
-próximos días.</p>
-<p>Si quisieras calcular la media de todos los elementos del vector B
-del ejemplo anterior, podrías escribir (3+4+5)/3. Pruebe lo
-siguiente.</p>
-<pre class="r"><code>(3+4+5)/3</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Pero cuando el vector es muy largo, este trabajo es muy aburrido y
-puede llevar a errores. Por eso las cosas que se hacen a menudo se
-automatizan en las llamadas funciones. Algunas funciones son estándar en
-R o en uno de los paquetes. También puedes programar tus propias
-funciones (lo harás más adelante).</p>
-<p>Para calcular la media aritmética utilizamos la función mean. Escribe
-mean(x=B) para comprobarlo.</p>
-<pre class="r"><code>mean(x=B)</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Entre los paréntesis de las funciones se especifican los argumentos.
-Los argumentos proporcionan información necesaria o adicional a la
-función. En este caso, el argumento x dice de qué conjunto de números
-(vector) debe calcularse la media (es decir, de B). A veces, el nombre
-del argumento no es necesario; mean(B) también funciona. Pruébelo.</p>
-<pre class="r"><code>mean(B)</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Cuando escribe ‘mean’ en la línea de comandos, RStudio muestra una
-lista de funciones que empiezan por ‘mean’. Puede seleccionar una de las
-opciones y pulsar Intro para insertar la llamada a la función junto con
-sus paréntesis de apertura y cierre. A continuación, puede rellenar los
-argumentos dentro de los paréntesis. Esta es una de las útiles funciones
-de autocompletado de RStudio.</p>
-<p>Calcula la suma de 4, 5, 8 y 11 combinándolos primero en un vector y
-utilizando después la función sum. Utiliza la función c dentro de la
-función sum.</p>
-<pre class="r"><code>sum(c(4,5,8,11))</code></pre>
-<pre><code>## [1] 28</code></pre>
-<p>La función rnorm, como otro ejemplo, es una función estándar de R que
-crea muestras aleatorias a partir de una distribución normal. Escriba
-rnorm(100) y verá 100 números aleatorios extraídos de una normal.</p>
-<pre class="r"><code>rnorm(100)</code></pre>
-<pre><code>##   [1]  1.24023676 -0.59396709 -0.36962309  0.90809208  0.45245542  1.34615472 -0.07077776  0.84587641  0.91034976
-##  [10] -0.46971188  1.13273951 -0.83920848  0.45652753  0.43041932  1.91326411  0.82776683  1.24851075 -0.03081931
-##  [19] -0.40107260  0.59395498 -0.09712996  1.50938346  0.83045660 -0.98838566 -0.46890223 -1.68997218 -1.07803375
-##  [28]  0.02050272  0.48741222  0.25542681  3.21231817 -0.21959241  0.19047897 -1.21787851  0.93293990  0.66317941
-##  [37] -0.22160988  1.81251887 -0.47292177  0.23691427  0.71496649 -0.70346454  1.78286008  1.47400442 -2.17408182
-##  [46]  0.42499832 -1.63666760  0.72603597  0.05142723 -0.18250416  0.08059778 -0.57512865 -1.79167530  1.34910103
-##  [55] -2.52423107  1.32842656  0.67812167  0.10066011 -0.59109113  0.84856652 -0.18925245 -1.68186423  1.11802757
-##  [64]  0.18642900 -0.48316297 -0.52638494 -0.05173372 -0.47717455 -0.50803041  1.36684186  0.04044548 -0.46390281
-##  [73] -0.43660051  2.29197444 -0.74781250  1.67734368 -2.38726212  0.23874175 -1.01015752 -0.36702692 -1.97960401
-##  [82] -0.13537214  1.38643183 -0.06800538 -0.50885198  1.51963833 -0.08811076  0.19270276  0.92866120  1.10076659
-##  [91] -0.33894690  0.86292198 -0.10837165  0.33340831 -0.07688504 -0.95580035  0.04222616 -0.87009298 -1.08081643
-## [100] -0.79849789</code></pre>
-<p>Aquí rnorm es la función y el 100 es un argumento que especifica
-cuántos números aleatorios desea - en este caso 100 números (escribir
-n=100 en lugar de sólo 100 también funcionaría). El resultado son 100
-números aleatorios organizados en un vector de longitud 100.</p>
-<p>Si vuelve a introducir el mismo comando, obtendrá 100 nuevos números
-aleatorios. En lugar de volver a escribir el mismo texto en la línea de
-comando, también puedes pulsar la tecla de flecha hacia arriba (flecha
-arriba) para acceder a comandos anteriores. Si está en el archivo de
-script, vuelva a el comando y pulsa CTRL-ENTER. Pruebe a hacerlo.</p>
-<pre class="r"><code>rnorm(100)</code></pre>
-<pre><code>##   [1]  1.34285626  0.56666734  1.09836270 -0.99056114 -0.66731775  0.61975831  1.35223403  0.65667211 -1.73464795
-##  [10] -0.14660348  0.03308256 -1.36945302 -1.21049346 -0.54264192 -0.43169773  0.02557432 -1.07099030  0.23383446
-##  [19] -0.46297038  0.86053802  0.68691362  0.07225365 -1.91453800 -0.26065517  0.90656106  0.45055762  0.63611238
-##  [28]  1.19728352  0.49665150 -0.27244602  1.02926949  0.47212552 -1.99213645 -1.13647002 -0.51309034  0.76260449
-##  [37]  0.18285308 -0.05161052 -1.41082868  0.87426231  0.73849966 -1.29778727 -0.16449658  0.11282963 -0.02941508
-##  [46]  1.35916475  0.20127102  1.27092528  1.43450454  0.84712042 -0.90213085  0.20618855 -0.08619528  0.97358623
-##  [55]  2.19265945  1.26920512 -1.05466697  0.54394851 -2.85922275 -1.41100063  0.80101901  0.51668741 -0.20808993
-##  [64]  0.24113072  1.28865718  0.62931561  1.40177512  1.59772039  2.11921605 -2.11663747 -1.36873219 -0.27345089
-##  [73]  0.42213269  1.36222131 -1.19814671  0.21243899  0.24569582  0.57872937 -0.09554877  0.33738080 -0.45358688
-##  [82]  0.82369399  1.41159333 -1.57730662  0.72676561 -0.07003267 -0.19242931  0.42827181  0.53633424 -0.38600008
-##  [91]  0.89527293  0.22465606  1.32599400  0.08611950 -0.13443186 -0.32024817  0.87687159 -0.08384408  1.45251842
-## [100]  0.89377836</code></pre>
-<p>Si quieres 100 números aleatorios de una distribución normal con
-media 1.2 y desviación estándar 3.4 puedes escribir rnorm(100, mean=1.2,
-sd=3.4). Inténtelo.</p>
-<pre class="r"><code>rnorm(100, mean=1.2, sd=3.4)</code></pre>
-<pre><code>##   [1] -4.77423683  0.74654837 -4.13212392  4.78180311  3.29732423 -0.28006828 -5.96518240 -2.77435642  1.87549021
-##  [10]  6.09659086  0.75560133  3.73587281 -0.93744230 -1.42413828  1.80965683 -0.89542886 -1.44031314 -5.43449444
-##  [19]  0.45598799  3.22122108 -2.20129366 -0.68934152  5.60370116 -1.38521475  1.11964841  4.09159460  1.47703323
-##  [28]  2.59814020 -3.43319241 -7.14541101 -0.06957430 -6.32177813  0.41736371  1.62423280 -3.80002586  3.17553783
-##  [37]  2.77677934  2.71093544 -1.63365406 -0.48843356  0.94246677 -3.01200436 -2.36297358  7.40978708  2.62376464
-##  [46]  3.66766747  7.66369119 -4.71461836  2.16373434  0.44934044  1.44001283  6.85972643 -0.25576711 -1.64699885
-##  [55]  2.87149696  1.42019085  3.55531449 -0.02353808  3.88683269 -1.07921457  2.92555328 -2.24617092  2.84463452
-##  [64]  4.10917927 -0.07938790 -1.70822404  3.52254987  0.29916097 -0.60839207  8.30562622  3.67908084  4.06551578
-##  [73]  2.90095037  3.31160828  5.71371686 -5.55374932  3.17377910 -1.48880991  1.33840769  0.22401942  5.85933926
-##  [82]  3.94330927 -4.95492424 -0.25910868  3.33386135  0.35208093  4.35436868 -0.18166260  4.54555203  0.97295304
-##  [91] -3.32605221  4.81346215  4.27505109 -2.27256082 -0.43150604  2.53117494 -2.74517581 -4.34464444  5.18679659
-## [100]  0.29750715</code></pre>
-<p>Esto demuestra que la misma función (rnorm) puede tener diferentes
-interfaces y que R tiene los llamados argumentos con nombre (en este
-caso mean y sd).</p>
-<p>La comparación de este ejemplo con el anterior también muestra que
-para la función rnorm sólo el primer argumento (el número 100) es
-obligatorio, y que R da valores por defecto a los otros argumentos
-denominados opcionales. Utilice la función de ayuda para ver qué valores
-se utilizan por defecto escribiendo ?rnorm.</p>
-<pre class="r"><code>?rnorm</code></pre>
-<p>Las páginas de ayuda de R pueden tratar de múltiples funciones
-relacionadas. Este es el caso de la página de ayuda de ‘rnorm’, que
-también incluye información sobre otras tres funciones: ‘dnorm’,
-‘pnorm’, y ‘qnorm’. Por ahora, vamos a centrarnos en los detalles sobre
-<code>rnorm</code> y dejar de lado las otras.</p>
-<p>Las páginas de ayuda de las funciones en R tienen un formato
-estándar. Siempre comienzan con un título, y las secciones Description
-(‘Descripción’) y Usage (‘uso’). La sección ‘Usage’ muestra el comando
-para llamar a la función con todos sus argumentos. Si los argumentos
-tienen valores por defecto se indicará con el nombre del argumento, un
-signo igual y el valor por defecto. ¿Cuáles son los argumentos de la
-función rnorm?</p>
-<ol style="list-style-type: decimal">
-<li>x, mean, sd</li>
-<li>n, mean, sd</li>
-<li>mean, sd</li>
-</ol>
-<p>n, mean, sd</p>
-<p>¿Cuáles son los argumentos de la función rnorm tienen valores por
-defecto?</p>
-<ol style="list-style-type: decimal">
-<li>todos los argumentos</li>
-<li>n, mean, sd</li>
-<li>mean, sd</li>
-</ol>
-<p>mean, sd</p>
-<p>Hay otra forma rápida de conocer los nombres de los argumentos de las
-funciones en RStudio. Al escribir rnorm( en la ventana de comandos y
-pulsar TAB, RStudio mostrará los posibles argumentos.</p>
-<p>Puede guardar el resultado de una funcción en un objeto. Escribe
-x&lt;-rnorm(100).</p>
-<pre class="r"><code>x&lt;-rnorm(100)</code></pre>
-<p>Ahora se asignan 100 números aleatorios al objeto x, que se convierte
-en un vector mediante esta operación. Puedes verlo aparecer en la
-ventana del espacio de trabajo.</p>
-<p>R también hace gráficos. Escribe hist(x) para un ejemplo muy
-sencillo.</p>
-<pre class="r"><code>hist(x)</code></pre>
-<p><img src="data:image/png;base64,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" width="672" /></p>
-<p>Mira la ventana de gráficos de la derecha. Hiciste un histograma de
-los 100 números aleatorios en el vector x. Como era de esperar de una
-muestra de un distribuición normal, el histograma tiene forma aproximada
-de campana.</p>
-<p>Enhorabuena. Has terminado el primer tutorial del curso y te has
-familiarizado un poco más con R y RStudio. Guarda tu archivo de script y
-escribe tus preguntas para discutirlas en clase.</p>
+<p>Esta lección es una combinación con pocas modificaciones de las
+lecciones ‘Funciones apply’ del curso ‘Programación estadística en R’,
+de Ismael Fernández, UNAM, México (<a href="https://github.com/ifunam/programacion-estadistica-r" class="uri">https://github.com/ifunam/programacion-estadistica-r</a>), y
+de la lección ‘lapply y sapply’ del curso ‘R Programming’ traducida al
+castellano por José R Sosa (<a href="https://github.com/josersosa/Programando_en_R" class="uri">https://github.com/josersosa/Programando_en_R</a>).</p>
+<p>En esta lección, aprenderá cómo utilizar las funciones apply(),
+lapply() y sapply(), son tres de los miembros más importantes de la
+familia de funciones *apply de R , también conocidas como las funciones
+lazo.</p>
+<p>Estas poderosas funciones, junto con sus familiares cercanos
+(vapply() y tapply(), entre otros) ofrecen un medio conciso y práctico
+para la aplicación de la estrategia Dividir-Aplicar-Combinar
+(Split-Apply-Combine) en el análisis de datos.</p>
+<p>En cada una de las funciones *apply se dividirán algunos datos en
+pedazos más pequeños, se aplica una función a cada pedazo, y luego se
+combinan los resultados. Una discusión más detallada de esta estrategia
+se encuentra en el artículo titulado “The Split-Apply-Combine Strategy
+for Data Analysis” por Hadley Wickham en el Journal of Statistical
+Software.</p>
+<p>La primera función que conocerás es la función apply(), la cual opera
+sobre arreglos.</p>
+<p>Para conocer el uso de esta función ingresa help(“apply”) en la línea
+de comandos.</p>
+<pre class="r"><code>help(&quot;apply&quot;)</code></pre>
+<p>X es un arreglo (puede ser una matriz si la dimensión del arreglo es
+2). MARGIN es una variable que define cómo la función es aplicada,
+cuando MARGIN=1 se aplica sobre los renglones, cuando MARGIN=2 trabaja
+sobre las columnas. FUN es la función que deseas aplicar y puede ser
+cualquier función de R, incluyendo funciones definidas por ti.</p>
+<p>Opcionalmente puedes especificar argumentos a FUN como argumentos
+adicionales (…).</p>
+<p>Para ejemplificar cómo funciona crea un arreglo bidimensional
+(matriz) y guárdalo en la variable ‘mi_matriz’. Ingresa mi_matriz &lt;-
+matrix(data=1:16,nrow=4, ncol=4) en la línea de comandos.</p>
+<pre class="r"><code>mi_matriz &lt;- matrix(data=1:16,nrow=4, ncol=4)</code></pre>
+<p>Ahora ve su contenido.</p>
+<pre class="r"><code>mi_matriz</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16</code></pre>
+<p>Ahora imagina que deseas saber el mínimo valor presente en cada
+columna de ‘mi_matriz’. Puedes usar la funcion min(), la cual regresa el
+mínimo de los valores que recibe como entrada; y así, al ingresar
+apply(X=mi_matriz, MARGIN=2, FUN=min) en la línea de comandos obtendrás
+los mínimos valores por columna. ¡Inténtalo!</p>
+<pre class="r"><code>apply(X=mi_matriz, MARGIN=2, FUN=min)</code></pre>
+<pre><code>## [1]  1  5  9 13</code></pre>
+<p>Es importante notar que es necesario que MARGIN=2 para que la función
+min() sea aplicada sobre las columnas.</p>
+<p>Ahora haz la misma operación, solo que sobre los renglones.</p>
+<pre class="r"><code>apply(mi_matriz, 1, min)</code></pre>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<p>Te preguntarás qué puedes hacer si deseas aplicar una función a una
+lista o un vector, ya que apply() solo opera sobre arreglos.</p>
+<p>Pues bien, para aplicar una función a cada elemento de un vector o
+una lista y regresar una lista, puedes usar la función lapply().</p>
+<p>A partir de este punto vamos a utilizar el conjunto de datos Flags
+del repositorio sobre Aprendizaje Automatico de la UCI (University of
+California, Irvine). Este conjunto de datos contiene detalles de
+diversas naciones y sus banderas. Más información se puede encontrar
+aquí: <a href="http://archive.ics.uci.edu/ml/datasets/Flags" class="uri">http://archive.ics.uci.edu/ml/datasets/Flags</a></p>
+<p>Vayamos a ver como podemos tener una idea de cómo operan lapply e
+sapply.</p>
+<p>He guardado el conjunto de datos en una variable llamada flags.
+Escriba head(flags) para previsualizar las primeras seis líneas (es
+decir, el “encabezado”) del conjunto de datos.</p>
+<pre class="r"><code>head(flags)</code></pre>
+<pre><code>##             name landmass zone area population language religion bars stripes colours red green blue gold white black
+## 1    Afghanistan        5    1  648         16       10        2    0       3       5   1     1    0    1     1     1
+## 2        Albania        3    1   29          3        6        6    0       0       3   1     0    0    1     0     1
+## 3        Algeria        4    1 2388         20        8        2    2       0       3   1     1    0    0     1     0
+## 4 American-Samoa        6    3    0          0        1        1    0       0       5   1     0    1    1     1     0
+## 5        Andorra        3    1    0          0        6        0    3       0       3   1     0    1    1     0     0
+## 6         Angola        4    2 1247          7       10        5    0       2       3   1     0    0    1     0     1
+##   orange mainhue circles crosses saltires quarters sunstars crescent triangle icon animate text topleft botright
+## 1      0   green       0       0        0        0        1        0        0    1       0    0   black    green
+## 2      0     red       0       0        0        0        1        0        0    0       1    0     red      red
+## 3      0   green       0       0        0        0        1        1        0    0       0    0   green    white
+## 4      1    blue       0       0        0        0        0        0        1    1       1    0    blue      red
+## 5      0    gold       0       0        0        0        0        0        0    0       0    0    blue      red
+## 6      0     red       0       0        0        0        1        0        0    1       0    0     red    black</code></pre>
+<p>Puede que tenga que desplazarse hacia arriba para ver toda la salida.
+Ahora, vamos a ver las dimensiones del conjunto de datos utilizando
+dim(flags).</p>
+<pre class="r"><code>dim(flags)</code></pre>
+<pre><code>## [1] 194  30</code></pre>
+<p>Esto nos dice que hay 194 filas u observaciones, y 30 columnas o
+variables. Cada observación es un país y con cada variable se describen
+algunas características de ese país o de su bandera. Para abrir una
+descripción más completa del conjunto de datos en un archivo de texto
+por separado, escriba viewinfo() cuando usted esté de vuelta en el
+prompt (&gt;).</p>
+<p>Como con cualquier conjunto de datos, nos gustaría saber en qué
+formato se han almacenado las variables. En otras palabras, ¿cuál es la
+“clase” de cada variable? ¿Qué pasa si escribimos class(flags)?
+Inténtalo.</p>
+<pre class="r"><code>class(flags)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>Eso sólo nos dice que todo el conjunto de datos se almacena como un
+‘data.frame’, lo que no responde a nuestra pregunta. Lo que realmente
+necesitamos es llamar a la función de clase() en cada una de las
+columnas individualmente. Si bien podríamos hacerlo manualmente (es
+decir, una columna a la vez) es mucho más rápido si podemos automatizar
+el proceso. Esto suena como un ciclo!</p>
+<p>La función lapply() toma una lista como entrada, se aplica una
+función a cada elemento de la lista, y a continuación, devuelve una
+lista con los resultados, de la misma longitud que la original. Tomando
+en cuenta que una trama de datos (ó data.frame) es en realidad una lista
+de vectores (esto se puede verificar con as.list(flags)), podemos
+utilizar lapply() para aplicar la función class() a cada columna del
+conjunto de datos flags. Vamos a verlo en acción!</p>
+<p>Escriba cls_list &lt;- lapply(flags, class) para aplicar la función
+class() para cada columna del conjunto de datos flags y guardar el
+resultado en una variable llamada cls_list. Tenga en cuenta que, en el
+segundo argumento de la función, solo se proporciona el nombre de la
+función que desea aplicar (es decir, class), sin los paréntesis
+habituales después de ella.</p>
+<pre class="r"><code>cls_list &lt;- lapply(flags, class)</code></pre>
+<p>Escriba cls_list para ver el resultado.</p>
+<pre class="r"><code>cls_list</code></pre>
+<pre><code>## $name
+## [1] &quot;character&quot;
+## 
+## $landmass
+## [1] &quot;integer&quot;
+## 
+## $zone
+## [1] &quot;integer&quot;
+## 
+## $area
+## [1] &quot;integer&quot;
+## 
+## $population
+## [1] &quot;integer&quot;
+## 
+## $language
+## [1] &quot;integer&quot;
+## 
+## $religion
+## [1] &quot;integer&quot;
+## 
+## $bars
+## [1] &quot;integer&quot;
+## 
+## $stripes
+## [1] &quot;integer&quot;
+## 
+## $colours
+## [1] &quot;integer&quot;
+## 
+## $red
+## [1] &quot;integer&quot;
+## 
+## $green
+## [1] &quot;integer&quot;
+## 
+## $blue
+## [1] &quot;integer&quot;
+## 
+## $gold
+## [1] &quot;integer&quot;
+## 
+## $white
+## [1] &quot;integer&quot;
+## 
+## $black
+## [1] &quot;integer&quot;
+## 
+## $orange
+## [1] &quot;integer&quot;
+## 
+## $mainhue
+## [1] &quot;character&quot;
+## 
+## $circles
+## [1] &quot;integer&quot;
+## 
+## $crosses
+## [1] &quot;integer&quot;
+## 
+## $saltires
+## [1] &quot;integer&quot;
+## 
+## $quarters
+## [1] &quot;integer&quot;
+## 
+## $sunstars
+## [1] &quot;integer&quot;
+## 
+## $crescent
+## [1] &quot;integer&quot;
+## 
+## $triangle
+## [1] &quot;integer&quot;
+## 
+## $icon
+## [1] &quot;integer&quot;
+## 
+## $animate
+## [1] &quot;integer&quot;
+## 
+## $text
+## [1] &quot;integer&quot;
+## 
+## $topleft
+## [1] &quot;character&quot;
+## 
+## $botright
+## [1] &quot;character&quot;</code></pre>
+<p>El ‘l’ en ‘lapply’ es sinónimo de ‘lista’. Escriba class(cls_list)
+para confirmar que lapply() devuelve una lista.</p>
+<pre class="r"><code>class(cls_list)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p>Como era de esperar, nos dieron una lista de longitud 30 - un
+elemento para cada variable/columna. La salida sería considerablemente
+más compacta si pudieramos representarla como un vector en lugar de una
+lista.</p>
+<p>Usted puede recordar de una lección anterior que las listas son de
+gran ayuda para el almacenamiento de múltiples clases de datos. En este
+caso, puesto que cada elemento de la lista devuelta por lapply() es un
+vector de caracteres de longitud uno (es decir, “integer” y “vector”),
+cls_list se puede simplificar a un vector de caracteres. Para hacerlo de
+forma manual, escriba as.character(cls_list).</p>
+<pre class="r"><code>as.character(cls_list)</code></pre>
+<pre><code>##  [1] &quot;character&quot; &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;  
+## [10] &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;character&quot;
+## [19] &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;  
+## [28] &quot;integer&quot;   &quot;character&quot; &quot;character&quot;</code></pre>
+<p>sapply() permite automatizar este proceso llamando lapply() detrás de
+escena, pero luego intenta simplificar (de ahí la ‘s’ en ‘sapply’) el
+resultado para usted. Utilice sapply() de la misma manera que utilizó
+lapply() para obtener la clase de cada columna del conjunto de datos
+flags y almacene el resultado en cls_vect. Si necesita ayuda, escriba
+?sapply para que aparezca la documentación.</p>
+<pre class="r"><code>cls_vect &lt;- sapply(flags, class)</code></pre>
+<p>Utilice class(cls_vect) para confirmar que sapply() simplifica el
+resultado a un vector de caracteres.</p>
+<pre class="r"><code>class(cls_vect)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>En general, si el resultado es una lista donde cada elemento es de
+longitud uno, entonces sapply() devuelve un vector. Si el resultado es
+una lista donde cada elemento es un vector de la misma longitud (&gt;
+1), sapply() devuelve una matriz. Si sapply() no puede entender la
+estructura del resultado, entonces sólo se devolvera una lista, en este
+caso no hay diferencia de lo que lapply() le daría.</p>
+<p>Vamos a practicar el uso lapply() y sapply() un poco más!</p>
+<p>Las columnas 11 a la 17 de nuestra base de datos son variables
+indicadoras que representan cada una un color diferente. El valor de la
+variable es 1 si el color está presente en la bandera de un país y 0 en
+caso contrario.</p>
+<p>Por lo tanto, si queremos saber el número total de países (en nuestro
+conjunto de datos) con, por ejemplo, el color naranja en su bandera,
+podemos simplemente sumar todos los unos y ceros en la columna “orange”.
+Intente con Try sum(flags$orange) para ver esto.</p>
+<pre class="r"><code>sum(flags$orange)</code></pre>
+<pre><code>## [1] 26</code></pre>
+<p>Ahora queremos repetir esta operación para cada uno de los colores
+registrados en el conjunto de datos.</p>
+<p>En primer lugar, utilice flag_colors &lt;- flags[, 11:17] para
+extraer las columnas que contienen los datos de color y almacenarlos en
+un nuevo marco de datos llamado flag_colors. (Note la coma antes de
+11:17. Este comando le dice a R que queremos todas las filas, pero sólo
+las columnas 11 a 17).</p>
+<pre class="r"><code>flag_colors &lt;- flags[, 11:17]</code></pre>
+<p>Utilice la función head() para ver las primeras 6 líneas de
+flag_colors.</p>
+<pre class="r"><code>head(flag_colors)</code></pre>
+<pre><code>##   red green blue gold white black orange
+## 1   1     1    0    1     1     1      0
+## 2   1     0    0    1     0     1      0
+## 3   1     1    0    0     1     0      0
+## 4   1     0    1    1     1     0      1
+## 5   1     0    1    1     0     0      0
+## 6   1     0    0    1     0     1      0</code></pre>
+<p>Para obtener una lista que contenga la suma de cada columna de
+flag_colors, llame a la función lapply() con dos argumentos. El primer
+argumento es el objeto sobre el cual queremos hacer el bucle bucle (es
+decir flag_colors) y el segundo argumento es el nombre de la función que
+queremos aplicar a cada columna (es decir sum). Recuerde que el segundo
+argumento es sólo el nombre de la función sin paréntesis, etc.</p>
+<pre class="r"><code>lapply(flag_colors, sum)</code></pre>
+<pre><code>## $red
+## [1] 153
+## 
+## $green
+## [1] 91
+## 
+## $blue
+## [1] 99
+## 
+## $gold
+## [1] 91
+## 
+## $white
+## [1] 146
+## 
+## $black
+## [1] 52
+## 
+## $orange
+## [1] 26</code></pre>
+<p>Esto nos dice que de las 194 banderas en nuestra base de datos, 153
+contienen el color rojo, 91 contienen verde, 99 contienen azul, y así
+sucesivamente.</p>
+<p>El resultado es una lista, ya lapply() siempre devuelve una lista.
+Cada elemento de esta lista es de longitud uno, por lo que el resultado
+se puede simplificar a un vector llamando sapply() en lugar de lapply().
+Inténtalo ahora.</p>
+<pre class="r"><code>sapply(flag_colors, sum)</code></pre>
+<pre><code>##    red  green   blue   gold  white  black orange 
+##    153     91     99     91    146     52     26</code></pre>
+<p>Quizás sería más informativo encontrar la proporción de banderas (de
+un total de 194) que contiene cada color. Dado que cada columna es sólo
+un montón de 1s y 0s, la media aritmética de cada columna nos dará la
+proporción de 1s. (Si no está claro el por qué, piense en una situación
+más simple, donde tienes tres 1s y dos 0s - (1 + 1 + 1 + 0 + 0) / 5 =
+3.5 = 0.6).</p>
+<p>Use sapply() para aplicar la función de mean() a cada columna de
+flag_colors. Recuerde que en el segundo argumento de sapply()
+simplemente debe especificar el nombre de la función (es decir mean) que
+desea aplicar.</p>
+<pre class="r"><code>sapply(flag_colors, mean)</code></pre>
+<pre><code>##       red     green      blue      gold     white     black    orange 
+## 0.7886598 0.4690722 0.5103093 0.4690722 0.7525773 0.2680412 0.1340206</code></pre>
+<p>En los ejemplos que hemos visto hasta ahora, sapply() ha sido capaz
+de simplificar el resultado a un vector. Eso es porque cada elemento de
+la lista devuelta por lapply() era un vector de longitud uno. Recordemos
+que sapply() intentará devolver una matriz cuando cada elemento de la
+lista devuelta por lapply() sea un vector de la misma longitud (&gt;
+1).</p>
+<p>Para ilustrar esto, vamos a extraer las columnas 19 a 23 del conjunto
+de datos flags y guardaremos el resultado en un nuevo data.frame llamado
+flag_shapes. flag_shapes &lt;- flags[, 19:23] lo hará.</p>
+<pre class="r"><code>flag_shapes &lt;- flags[, 19:23]</code></pre>
+<p>Cada una de estas columnas (es decir, variables) representa el número
+de veces que una forma o diseño en particular aparece en la bandera de
+un país. Estamos interesados ​​en el número mínimo y máximo de veces que
+aparece cada forma o diseño.</p>
+<p>La función range() devuelve el mínimo y el máximo de su primer
+argumento, que debe ser un vector numérico. Utilice lapply() para
+aplicar la función de rango a cada columna de flag_shapes. No te
+preocupes por guardar el resultado en una nueva variable. Por ahora,
+sabemos que lapply() siempre devuelve una lista.</p>
+<pre class="r"><code>lapply(flag_shapes, range)</code></pre>
+<pre><code>## $circles
+## [1] 0 4
+## 
+## $crosses
+## [1] 0 2
+## 
+## $saltires
+## [1] 0 1
+## 
+## $quarters
+## [1] 0 4
+## 
+## $sunstars
+## [1]  0 50</code></pre>
+<p>Realice la misma operación, pero utilizando sapply() y almacena el
+resultado en una variable llamada shape_mat.</p>
+<pre class="r"><code>shape_mat &lt;- sapply(flag_shapes, range)</code></pre>
+<p>Vea el contenido de shape_mat.</p>
+<pre class="r"><code>shape_mat</code></pre>
+<pre><code>##      circles crosses saltires quarters sunstars
+## [1,]       0       0        0        0        0
+## [2,]       4       2        1        4       50</code></pre>
+<p>Cada columna de shape_mat da el mínimo (fila 1) y máximo (fila 2)
+número de veces que aparece su respectiva forma o diseño en las
+diferentes banderas.</p>
+<p>Utilice la función de la class() para confirmar que shape_mat es una
+matriz.</p>
+<pre class="r"><code>class(shape_mat)</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
+<p>Como hemos visto, sapply() siempre intenta simplificar el resultado
+dado por lapply(). Esta función ha tenido éxito en hacer esto para cada
+uno de los ejemplos que hemos visto hasta ahora. Veamos un ejemplo donde
+sapply() no puede encontrar la manera de simplificar el resultado por lo
+que devuelve una lista, es decir, no es diferente de lapply().</p>
+<p>Cuando se le dá un vector, la función unique() devuelve un vector con
+todos los elementos duplicados eliminados. En otras palabras, unique()
+devuelve un vector de sólo los elementos “únicos”. Para ver cómo
+funciona, intente unique(c(3, 4, 5, 5, 5, 6, 6)).</p>
+<pre class="r"><code>unique(c(3, 4, 5, 5, 5, 6, 6))</code></pre>
+<pre><code>## [1] 3 4 5 6</code></pre>
+<p>Queremos saber los valores únicos para cada variable en el conjunto
+de datos flags. Para lograr esto, utilice lapply() para aplicar la
+función unique() para cada columna en el conjunto de datos flags,
+almacenando el resultado en una variable llamada unique_vals.</p>
+<pre class="r"><code>unique_vals &lt;- lapply(flags, unique)</code></pre>
+<p>Escriba el valor de unique_vals a la consola.</p>
+<pre class="r"><code>unique_vals</code></pre>
+<pre><code>## $name
+##   [1] &quot;Afghanistan&quot;              &quot;Albania&quot;                  &quot;Algeria&quot;                  &quot;American-Samoa&quot;          
+##   [5] &quot;Andorra&quot;                  &quot;Angola&quot;                   &quot;Anguilla&quot;                 &quot;Antigua-Barbuda&quot;         
+##   [9] &quot;Argentina&quot;                &quot;Argentine&quot;                &quot;Australia&quot;                &quot;Austria&quot;                 
+##  [13] &quot;Bahamas&quot;                  &quot;Bahrain&quot;                  &quot;Bangladesh&quot;               &quot;Barbados&quot;                
+##  [17] &quot;Belgium&quot;                  &quot;Belize&quot;                   &quot;Benin&quot;                    &quot;Bermuda&quot;                 
+##  [21] &quot;Bhutan&quot;                   &quot;Bolivia&quot;                  &quot;Botswana&quot;                 &quot;Brazil&quot;                  
+##  [25] &quot;British-Virgin-Isles&quot;     &quot;Brunei&quot;                   &quot;Bulgaria&quot;                 &quot;Burkina&quot;                 
+##  [29] &quot;Burma&quot;                    &quot;Burundi&quot;                  &quot;Cameroon&quot;                 &quot;Canada&quot;                  
+##  [33] &quot;Cape-Verde-Islands&quot;       &quot;Cayman-Islands&quot;           &quot;Central-African-Republic&quot; &quot;Chad&quot;                    
+##  [37] &quot;Chile&quot;                    &quot;China&quot;                    &quot;Colombia&quot;                 &quot;Comorro-Islands&quot;         
+##  [41] &quot;Congo&quot;                    &quot;Cook-Islands&quot;             &quot;Costa-Rica&quot;               &quot;Cuba&quot;                    
+##  [45] &quot;Cyprus&quot;                   &quot;Czechoslovakia&quot;           &quot;Denmark&quot;                  &quot;Djibouti&quot;                
+##  [49] &quot;Dominica&quot;                 &quot;Dominican-Republic&quot;       &quot;Ecuador&quot;                  &quot;Egypt&quot;                   
+##  [53] &quot;El-Salvador&quot;              &quot;Equatorial-Guinea&quot;        &quot;Ethiopia&quot;                 &quot;Faeroes&quot;                 
+##  [57] &quot;Falklands-Malvinas&quot;       &quot;Fiji&quot;                     &quot;Finland&quot;                  &quot;France&quot;                  
+##  [61] &quot;French-Guiana&quot;            &quot;French-Polynesia&quot;         &quot;Gabon&quot;                    &quot;Gambia&quot;                  
+##  [65] &quot;Germany-DDR&quot;              &quot;Germany-FRG&quot;              &quot;Ghana&quot;                    &quot;Gibraltar&quot;               
+##  [69] &quot;Greece&quot;                   &quot;Greenland&quot;                &quot;Grenada&quot;                  &quot;Guam&quot;                    
+##  [73] &quot;Guatemala&quot;                &quot;Guinea&quot;                   &quot;Guinea-Bissau&quot;            &quot;Guyana&quot;                  
+##  [77] &quot;Haiti&quot;                    &quot;Honduras&quot;                 &quot;Hong-Kong&quot;                &quot;Hungary&quot;                 
+##  [81] &quot;Iceland&quot;                  &quot;India&quot;                    &quot;Indonesia&quot;                &quot;Iran&quot;                    
+##  [85] &quot;Iraq&quot;                     &quot;Ireland&quot;                  &quot;Israel&quot;                   &quot;Italy&quot;                   
+##  [89] &quot;Ivory-Coast&quot;              &quot;Jamaica&quot;                  &quot;Japan&quot;                    &quot;Jordan&quot;                  
+##  [93] &quot;Kampuchea&quot;                &quot;Kenya&quot;                    &quot;Kiribati&quot;                 &quot;Kuwait&quot;                  
+##  [97] &quot;Laos&quot;                     &quot;Lebanon&quot;                  &quot;Lesotho&quot;                  &quot;Liberia&quot;                 
+## [101] &quot;Libya&quot;                    &quot;Liechtenstein&quot;            &quot;Luxembourg&quot;               &quot;Malagasy&quot;                
+## [105] &quot;Malawi&quot;                   &quot;Malaysia&quot;                 &quot;Maldive-Islands&quot;          &quot;Mali&quot;                    
+## [109] &quot;Malta&quot;                    &quot;Marianas&quot;                 &quot;Mauritania&quot;               &quot;Mauritius&quot;               
+## [113] &quot;Mexico&quot;                   &quot;Micronesia&quot;               &quot;Monaco&quot;                   &quot;Mongolia&quot;                
+## [117] &quot;Montserrat&quot;               &quot;Morocco&quot;                  &quot;Mozambique&quot;               &quot;Nauru&quot;                   
+## [121] &quot;Nepal&quot;                    &quot;Netherlands&quot;              &quot;Netherlands-Antilles&quot;     &quot;New-Zealand&quot;             
+## [125] &quot;Nicaragua&quot;                &quot;Niger&quot;                    &quot;Nigeria&quot;                  &quot;Niue&quot;                    
+## [129] &quot;North-Korea&quot;              &quot;North-Yemen&quot;              &quot;Norway&quot;                   &quot;Oman&quot;                    
+## [133] &quot;Pakistan&quot;                 &quot;Panama&quot;                   &quot;Papua-New-Guinea&quot;         &quot;Parguay&quot;                 
+## [137] &quot;Peru&quot;                     &quot;Philippines&quot;              &quot;Poland&quot;                   &quot;Portugal&quot;                
+## [141] &quot;Puerto-Rico&quot;              &quot;Qatar&quot;                    &quot;Romania&quot;                  &quot;Rwanda&quot;                  
+## [145] &quot;San-Marino&quot;               &quot;Sao-Tome&quot;                 &quot;Saudi-Arabia&quot;             &quot;Senegal&quot;                 
+## [149] &quot;Seychelles&quot;               &quot;Sierra-Leone&quot;             &quot;Singapore&quot;                &quot;Soloman-Islands&quot;         
+## [153] &quot;Somalia&quot;                  &quot;South-Africa&quot;             &quot;South-Korea&quot;              &quot;South-Yemen&quot;             
+## [157] &quot;Spain&quot;                    &quot;Sri-Lanka&quot;                &quot;St-Helena&quot;                &quot;St-Kitts-Nevis&quot;          
+## [161] &quot;St-Lucia&quot;                 &quot;St-Vincent&quot;               &quot;Sudan&quot;                    &quot;Surinam&quot;                 
+## [165] &quot;Swaziland&quot;                &quot;Sweden&quot;                   &quot;Switzerland&quot;              &quot;Syria&quot;                   
+## [169] &quot;Taiwan&quot;                   &quot;Tanzania&quot;                 &quot;Thailand&quot;                 &quot;Togo&quot;                    
+## [173] &quot;Tonga&quot;                    &quot;Trinidad-Tobago&quot;          &quot;Tunisia&quot;                  &quot;Turkey&quot;                  
+## [177] &quot;Turks-Cocos-Islands&quot;      &quot;Tuvalu&quot;                   &quot;UAE&quot;                      &quot;Uganda&quot;                  
+## [181] &quot;UK&quot;                       &quot;Uruguay&quot;                  &quot;US-Virgin-Isles&quot;          &quot;USA&quot;                     
+## [185] &quot;USSR&quot;                     &quot;Vanuatu&quot;                  &quot;Vatican-City&quot;             &quot;Venezuela&quot;               
+## [189] &quot;Vietnam&quot;                  &quot;Western-Samoa&quot;            &quot;Yugoslavia&quot;               &quot;Zaire&quot;                   
+## [193] &quot;Zambia&quot;                   &quot;Zimbabwe&quot;                
+## 
+## $landmass
+## [1] 5 3 4 6 1 2
+## 
+## $zone
+## [1] 1 3 2 4
+## 
+## $area
+##   [1]   648    29  2388     0  1247  2777  7690    84    19     1   143    31    23   113    47  1099   600  8512
+##  [19]     6   111   274   678    28   474  9976     4   623  1284   757  9561  1139     2   342    51   115     9
+##  [37]   128    43    22    49   284  1001    21  1222    12    18   337   547    91   268    10   108   249   239
+##  [55]   132  2176   109   246    36   215   112    93   103  3268  1904  1648   435    70   301   323    11   372
+##  [73]    98   181   583   236    30  1760     3   587   118   333  1240  1031  1973  1566   447   783   140    41
+##  [91]  1267   925   121   195   324   212   804    76   463   407  1285   300   313    92   237    26  2150   196
+## [109]    72   637  1221    99   288   505    66  2506    63    17   450   185   945   514    57     5   164   781
+## [127]   245   178  9363 22402    15   912   256   905   753   391
+## 
+## $population
+##  [1]   16    3   20    0    7   28   15    8   90   10    1    6  119    9   35    4   24    2   11 1008    5   47
+## [23]   31   54   17   61   14  684  157   39   57  118   13   77   12   56   18   84   48   36   22   29   38   49
+## [45]   45  231  274   60
+## 
+## $language
+##  [1] 10  6  8  1  2  4  3  5  7  9
+## 
+## $religion
+## [1] 2 6 1 0 5 3 4 7
+## 
+## $bars
+## [1] 0 2 3 1 5
+## 
+## $stripes
+##  [1]  3  0  2  1  5  9 11 14  4  6 13  7
+## 
+## $colours
+## [1] 5 3 2 8 6 4 7 1
+## 
+## $red
+## [1] 1 0
+## 
+## $green
+## [1] 1 0
+## 
+## $blue
+## [1] 0 1
+## 
+## $gold
+## [1] 1 0
+## 
+## $white
+## [1] 1 0
+## 
+## $black
+## [1] 1 0
+## 
+## $orange
+## [1] 0 1
+## 
+## $mainhue
+## [1] &quot;green&quot;  &quot;red&quot;    &quot;blue&quot;   &quot;gold&quot;   &quot;white&quot;  &quot;orange&quot; &quot;black&quot;  &quot;brown&quot; 
+## 
+## $circles
+## [1] 0 1 4 2
+## 
+## $crosses
+## [1] 0 1 2
+## 
+## $saltires
+## [1] 0 1
+## 
+## $quarters
+## [1] 0 1 4
+## 
+## $sunstars
+##  [1]  1  0  6 22 14  3  4  5 15 10  7  2  9 50
+## 
+## $crescent
+## [1] 0 1
+## 
+## $triangle
+## [1] 0 1
+## 
+## $icon
+## [1] 1 0
+## 
+## $animate
+## [1] 0 1
+## 
+## $text
+## [1] 0 1
+## 
+## $topleft
+## [1] &quot;black&quot;  &quot;red&quot;    &quot;green&quot;  &quot;blue&quot;   &quot;white&quot;  &quot;orange&quot; &quot;gold&quot;  
+## 
+## $botright
+## [1] &quot;green&quot;  &quot;red&quot;    &quot;white&quot;  &quot;black&quot;  &quot;blue&quot;   &quot;gold&quot;   &quot;orange&quot; &quot;brown&quot;</code></pre>
+<p>Dado que unique_vals es una lista, puede usar lo que has aprendido
+para determinar la longitud de cada elemento de unique_vals (es decir,
+el número de valores únicos para cada variable) y, si es posible,
+simplificar el resultado. Sugerencia: Aplica la length() para cada
+elemento de unique_vals.</p>
+<pre class="r"><code>sapply(unique_vals, length)</code></pre>
+<pre><code>##       name   landmass       zone       area population   language   religion       bars    stripes    colours 
+##        194          6          4        136         48         10          8          5         12          8 
+##        red      green       blue       gold      white      black     orange    mainhue    circles    crosses 
+##          2          2          2          2          2          2          2          8          4          3 
+##   saltires   quarters   sunstars   crescent   triangle       icon    animate       text    topleft   botright 
+##          2          3         14          2          2          2          2          2          7          8</code></pre>
+<p>El hecho de que los elementos de la lista unique_vals son todos los
+vectores de “diferente” longitud, plantea un problema para sapply(), ya
+que no hay forma obvia de simplificar el resultado.</p>
+<p>Utilice sapply() para aplicar la función unique() para cada columna
+del conjunto de datos flags para ver que se obtiene la misma lista no
+simplificada que recibió de lapply().</p>
+<pre class="r"><code>sapply(flags, unique)</code></pre>
+<pre><code>## $name
+##   [1] &quot;Afghanistan&quot;              &quot;Albania&quot;                  &quot;Algeria&quot;                  &quot;American-Samoa&quot;          
+##   [5] &quot;Andorra&quot;                  &quot;Angola&quot;                   &quot;Anguilla&quot;                 &quot;Antigua-Barbuda&quot;         
+##   [9] &quot;Argentina&quot;                &quot;Argentine&quot;                &quot;Australia&quot;                &quot;Austria&quot;                 
+##  [13] &quot;Bahamas&quot;                  &quot;Bahrain&quot;                  &quot;Bangladesh&quot;               &quot;Barbados&quot;                
+##  [17] &quot;Belgium&quot;                  &quot;Belize&quot;                   &quot;Benin&quot;                    &quot;Bermuda&quot;                 
+##  [21] &quot;Bhutan&quot;                   &quot;Bolivia&quot;                  &quot;Botswana&quot;                 &quot;Brazil&quot;                  
+##  [25] &quot;British-Virgin-Isles&quot;     &quot;Brunei&quot;                   &quot;Bulgaria&quot;                 &quot;Burkina&quot;                 
+##  [29] &quot;Burma&quot;                    &quot;Burundi&quot;                  &quot;Cameroon&quot;                 &quot;Canada&quot;                  
+##  [33] &quot;Cape-Verde-Islands&quot;       &quot;Cayman-Islands&quot;           &quot;Central-African-Republic&quot; &quot;Chad&quot;                    
+##  [37] &quot;Chile&quot;                    &quot;China&quot;                    &quot;Colombia&quot;                 &quot;Comorro-Islands&quot;         
+##  [41] &quot;Congo&quot;                    &quot;Cook-Islands&quot;             &quot;Costa-Rica&quot;               &quot;Cuba&quot;                    
+##  [45] &quot;Cyprus&quot;                   &quot;Czechoslovakia&quot;           &quot;Denmark&quot;                  &quot;Djibouti&quot;                
+##  [49] &quot;Dominica&quot;                 &quot;Dominican-Republic&quot;       &quot;Ecuador&quot;                  &quot;Egypt&quot;                   
+##  [53] &quot;El-Salvador&quot;              &quot;Equatorial-Guinea&quot;        &quot;Ethiopia&quot;                 &quot;Faeroes&quot;                 
+##  [57] &quot;Falklands-Malvinas&quot;       &quot;Fiji&quot;                     &quot;Finland&quot;                  &quot;France&quot;                  
+##  [61] &quot;French-Guiana&quot;            &quot;French-Polynesia&quot;         &quot;Gabon&quot;                    &quot;Gambia&quot;                  
+##  [65] &quot;Germany-DDR&quot;              &quot;Germany-FRG&quot;              &quot;Ghana&quot;                    &quot;Gibraltar&quot;               
+##  [69] &quot;Greece&quot;                   &quot;Greenland&quot;                &quot;Grenada&quot;                  &quot;Guam&quot;                    
+##  [73] &quot;Guatemala&quot;                &quot;Guinea&quot;                   &quot;Guinea-Bissau&quot;            &quot;Guyana&quot;                  
+##  [77] &quot;Haiti&quot;                    &quot;Honduras&quot;                 &quot;Hong-Kong&quot;                &quot;Hungary&quot;                 
+##  [81] &quot;Iceland&quot;                  &quot;India&quot;                    &quot;Indonesia&quot;                &quot;Iran&quot;                    
+##  [85] &quot;Iraq&quot;                     &quot;Ireland&quot;                  &quot;Israel&quot;                   &quot;Italy&quot;                   
+##  [89] &quot;Ivory-Coast&quot;              &quot;Jamaica&quot;                  &quot;Japan&quot;                    &quot;Jordan&quot;                  
+##  [93] &quot;Kampuchea&quot;                &quot;Kenya&quot;                    &quot;Kiribati&quot;                 &quot;Kuwait&quot;                  
+##  [97] &quot;Laos&quot;                     &quot;Lebanon&quot;                  &quot;Lesotho&quot;                  &quot;Liberia&quot;                 
+## [101] &quot;Libya&quot;                    &quot;Liechtenstein&quot;            &quot;Luxembourg&quot;               &quot;Malagasy&quot;                
+## [105] &quot;Malawi&quot;                   &quot;Malaysia&quot;                 &quot;Maldive-Islands&quot;          &quot;Mali&quot;                    
+## [109] &quot;Malta&quot;                    &quot;Marianas&quot;                 &quot;Mauritania&quot;               &quot;Mauritius&quot;               
+## [113] &quot;Mexico&quot;                   &quot;Micronesia&quot;               &quot;Monaco&quot;                   &quot;Mongolia&quot;                
+## [117] &quot;Montserrat&quot;               &quot;Morocco&quot;                  &quot;Mozambique&quot;               &quot;Nauru&quot;                   
+## [121] &quot;Nepal&quot;                    &quot;Netherlands&quot;              &quot;Netherlands-Antilles&quot;     &quot;New-Zealand&quot;             
+## [125] &quot;Nicaragua&quot;                &quot;Niger&quot;                    &quot;Nigeria&quot;                  &quot;Niue&quot;                    
+## [129] &quot;North-Korea&quot;              &quot;North-Yemen&quot;              &quot;Norway&quot;                   &quot;Oman&quot;                    
+## [133] &quot;Pakistan&quot;                 &quot;Panama&quot;                   &quot;Papua-New-Guinea&quot;         &quot;Parguay&quot;                 
+## [137] &quot;Peru&quot;                     &quot;Philippines&quot;              &quot;Poland&quot;                   &quot;Portugal&quot;                
+## [141] &quot;Puerto-Rico&quot;              &quot;Qatar&quot;                    &quot;Romania&quot;                  &quot;Rwanda&quot;                  
+## [145] &quot;San-Marino&quot;               &quot;Sao-Tome&quot;                 &quot;Saudi-Arabia&quot;             &quot;Senegal&quot;                 
+## [149] &quot;Seychelles&quot;               &quot;Sierra-Leone&quot;             &quot;Singapore&quot;                &quot;Soloman-Islands&quot;         
+## [153] &quot;Somalia&quot;                  &quot;South-Africa&quot;             &quot;South-Korea&quot;              &quot;South-Yemen&quot;             
+## [157] &quot;Spain&quot;                    &quot;Sri-Lanka&quot;                &quot;St-Helena&quot;                &quot;St-Kitts-Nevis&quot;          
+## [161] &quot;St-Lucia&quot;                 &quot;St-Vincent&quot;               &quot;Sudan&quot;                    &quot;Surinam&quot;                 
+## [165] &quot;Swaziland&quot;                &quot;Sweden&quot;                   &quot;Switzerland&quot;              &quot;Syria&quot;                   
+## [169] &quot;Taiwan&quot;                   &quot;Tanzania&quot;                 &quot;Thailand&quot;                 &quot;Togo&quot;                    
+## [173] &quot;Tonga&quot;                    &quot;Trinidad-Tobago&quot;          &quot;Tunisia&quot;                  &quot;Turkey&quot;                  
+## [177] &quot;Turks-Cocos-Islands&quot;      &quot;Tuvalu&quot;                   &quot;UAE&quot;                      &quot;Uganda&quot;                  
+## [181] &quot;UK&quot;                       &quot;Uruguay&quot;                  &quot;US-Virgin-Isles&quot;          &quot;USA&quot;                     
+## [185] &quot;USSR&quot;                     &quot;Vanuatu&quot;                  &quot;Vatican-City&quot;             &quot;Venezuela&quot;               
+## [189] &quot;Vietnam&quot;                  &quot;Western-Samoa&quot;            &quot;Yugoslavia&quot;               &quot;Zaire&quot;                   
+## [193] &quot;Zambia&quot;                   &quot;Zimbabwe&quot;                
+## 
+## $landmass
+## [1] 5 3 4 6 1 2
+## 
+## $zone
+## [1] 1 3 2 4
+## 
+## $area
+##   [1]   648    29  2388     0  1247  2777  7690    84    19     1   143    31    23   113    47  1099   600  8512
+##  [19]     6   111   274   678    28   474  9976     4   623  1284   757  9561  1139     2   342    51   115     9
+##  [37]   128    43    22    49   284  1001    21  1222    12    18   337   547    91   268    10   108   249   239
+##  [55]   132  2176   109   246    36   215   112    93   103  3268  1904  1648   435    70   301   323    11   372
+##  [73]    98   181   583   236    30  1760     3   587   118   333  1240  1031  1973  1566   447   783   140    41
+##  [91]  1267   925   121   195   324   212   804    76   463   407  1285   300   313    92   237    26  2150   196
+## [109]    72   637  1221    99   288   505    66  2506    63    17   450   185   945   514    57     5   164   781
+## [127]   245   178  9363 22402    15   912   256   905   753   391
+## 
+## $population
+##  [1]   16    3   20    0    7   28   15    8   90   10    1    6  119    9   35    4   24    2   11 1008    5   47
+## [23]   31   54   17   61   14  684  157   39   57  118   13   77   12   56   18   84   48   36   22   29   38   49
+## [45]   45  231  274   60
+## 
+## $language
+##  [1] 10  6  8  1  2  4  3  5  7  9
+## 
+## $religion
+## [1] 2 6 1 0 5 3 4 7
+## 
+## $bars
+## [1] 0 2 3 1 5
+## 
+## $stripes
+##  [1]  3  0  2  1  5  9 11 14  4  6 13  7
+## 
+## $colours
+## [1] 5 3 2 8 6 4 7 1
+## 
+## $red
+## [1] 1 0
+## 
+## $green
+## [1] 1 0
+## 
+## $blue
+## [1] 0 1
+## 
+## $gold
+## [1] 1 0
+## 
+## $white
+## [1] 1 0
+## 
+## $black
+## [1] 1 0
+## 
+## $orange
+## [1] 0 1
+## 
+## $mainhue
+## [1] &quot;green&quot;  &quot;red&quot;    &quot;blue&quot;   &quot;gold&quot;   &quot;white&quot;  &quot;orange&quot; &quot;black&quot;  &quot;brown&quot; 
+## 
+## $circles
+## [1] 0 1 4 2
+## 
+## $crosses
+## [1] 0 1 2
+## 
+## $saltires
+## [1] 0 1
+## 
+## $quarters
+## [1] 0 1 4
+## 
+## $sunstars
+##  [1]  1  0  6 22 14  3  4  5 15 10  7  2  9 50
+## 
+## $crescent
+## [1] 0 1
+## 
+## $triangle
+## [1] 0 1
+## 
+## $icon
+## [1] 1 0
+## 
+## $animate
+## [1] 0 1
+## 
+## $text
+## [1] 0 1
+## 
+## $topleft
+## [1] &quot;black&quot;  &quot;red&quot;    &quot;green&quot;  &quot;blue&quot;   &quot;white&quot;  &quot;orange&quot; &quot;gold&quot;  
+## 
+## $botright
+## [1] &quot;green&quot;  &quot;red&quot;    &quot;white&quot;  &quot;black&quot;  &quot;blue&quot;   &quot;gold&quot;   &quot;orange&quot; &quot;brown&quot;</code></pre>
+<p>Ocasionalmente, puede que tenga que aplicar una función que aún no
+está definida, por lo que se requiere que usted escriba su propia
+función para ello. La escritura de funciones en R está más allá del
+alcance de esta lección, pero vamos a ver un ejemplo rápido de cómo
+puede hacerlo en el contexto de las funciones del lazo.</p>
+<p>Imagine usted que está interesado en el segundo artículo de cada
+elemento de la lista unique_vals que acaba de crear. Dado que cada
+elemento de la lista unique_vals es un vector y no estamos al tanto de
+alguna función incorporada en R que devuelva el segundo elemento de un
+vector, vamos a construir nuestra propia función.</p>
+<p>lapply(unique_vals, function(elem) elem[2]) devolverá una lista que
+contiene el segundo artículo de cada elemento de la lista unique_vals.
+Tenga en cuenta que nuestra función toma un argumento, elem, que es sólo
+una “variable dummy” que toma el valor de cada elemento de unique_vals,
+por turnos.</p>
+<pre class="r"><code>lapply(unique_vals, function(elem) elem[2])</code></pre>
+<pre><code>## $name
+## [1] &quot;Albania&quot;
+## 
+## $landmass
+## [1] 3
+## 
+## $zone
+## [1] 3
+## 
+## $area
+## [1] 29
+## 
+## $population
+## [1] 3
+## 
+## $language
+## [1] 6
+## 
+## $religion
+## [1] 6
+## 
+## $bars
+## [1] 2
+## 
+## $stripes
+## [1] 0
+## 
+## $colours
+## [1] 3
+## 
+## $red
+## [1] 0
+## 
+## $green
+## [1] 0
+## 
+## $blue
+## [1] 1
+## 
+## $gold
+## [1] 0
+## 
+## $white
+## [1] 0
+## 
+## $black
+## [1] 0
+## 
+## $orange
+## [1] 1
+## 
+## $mainhue
+## [1] &quot;red&quot;
+## 
+## $circles
+## [1] 1
+## 
+## $crosses
+## [1] 1
+## 
+## $saltires
+## [1] 1
+## 
+## $quarters
+## [1] 1
+## 
+## $sunstars
+## [1] 0
+## 
+## $crescent
+## [1] 1
+## 
+## $triangle
+## [1] 1
+## 
+## $icon
+## [1] 0
+## 
+## $animate
+## [1] 1
+## 
+## $text
+## [1] 1
+## 
+## $topleft
+## [1] &quot;red&quot;
+## 
+## $botright
+## [1] &quot;red&quot;</code></pre>
+<p>La única diferencia entre los ejemplos anteriores y éste es que
+estamos definiendo y utilizando nuestra propia función para usarla en la
+llamada a lapply(). Nuestra función no tiene nombre y desaparece tan
+pronto como lapply() termina de usarla. Las llamados ‘funciones
+anónimas’ puede ser muy útiles cuando ninguna de las funciones
+incorporadas de R es una opción.</p>
+<p>En esta lección, ha aprendido a usar el poderosas funciones apply(),
+lapply() y sapply() para aplicar una operación sobre los elementos de
+arreglos y listas.</p>
 
 
 
