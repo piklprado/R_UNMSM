@@ -11,8 +11,8 @@ any_of_exprs <- function(...){
     eval(expr)
     }
 
-manifest <- read.table("../Curso_R_UNMSM/MANIFEST")$V1
-ddir <- "/home/paulo/work/pos_grad/usp/disciplinas/cursoR/UNMSM/2025/repo_material_didatico/Tutoriales/html"
+manifest <- read.table("../../tutoriales_swril/MANIFEST")$V1
+ddir <- "/home/paulo/work/pos_grad/usp/disciplinas/cursoR/UNMSM/2025/site/Tutoriales/html/teste/"
 
 
 
@@ -22,7 +22,7 @@ ddir <- "/home/paulo/work/pos_grad/usp/disciplinas/cursoR/UNMSM/2025/repo_materi
 ## }
 
 f1 <- function(nome){
-     set_lesson(file.path("..", "Curso_R_UNMSM",nome,"lesson.yaml"), open_lesson=FALSE, silent=TRUE)
+     set_lesson(file.path("..","..", "tutoriales_swril",nome,"lesson.yaml"), open_lesson=FALSE, silent=TRUE)
      lesson_to_html(install_course=FALSE , dest_dir=ddir)
      }
 ## Por alguma razao da pau

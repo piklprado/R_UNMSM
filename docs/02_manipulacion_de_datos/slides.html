@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis y visualización de datos biológicos con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Paulo Inácio Prado (PI)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy code <i class=\"fa fa-clipboard\"><\/i>","success":"Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Análisis y visualización de datos biológicos con R
+]
+.subtitle[
+## Manipulación de objetos de datos
+]
+.author[
+### Paulo Inácio Prado (PI)
+]
+.date[
+### 07 Enero 2025
+]
+
+---
+
+
+
+
+
+
+## Lo que veremos hoy
+
+1. Indexación y selección de datos en objetos;
+2. Cambiar y crear variables en objetos de datos;
+3. Funcciones de sintesis de datos
+
+---
+
+## La notación de indexado
+
+* Filtra un vector por posición: `x[s]`
+* `x`: vector que quieres filtrar
+* `s`: vector con el criterio de busca: numérico, lógico, nombres
+
+
+``` r
+&gt; mi_vector &lt;- 11:30
+&gt; mi_vector[3]
+```
+
+```
+[1] 13
+```
+--
+
+![](figs/vector_sel3.png)
+
+---
+
+## Indexación numérica
+
+
+
+``` r
+&gt; mi_vector[1:5]
+```
+
+```
+[1] 11 12 13 14 15
+```
+
+![](figs/vector_sel1_5.png)
+
+--
+
+##### El resultado de la selección sigue el orden del vector entre corchetes
+
+``` r
+&gt; mi_vector[c(13,6,4)]
+```
+
+```
+[1] 23 16 14
+```
+
+![](figs/vector_sel4_6_13.png)
+
+---
+
+## Exclusión
+
+* Enteros negativos excluyen elementos
+
+
+``` r
+&gt; mi_vector[-(10:15)]
+```
+
+```
+ [1] 11 12 13 14 15 16 17 18 19 26 27 28 29 30
+```
+
+![](figs/vector_unsel_9_15.png)
+
+---
+
+## Lógico
+
+* TRUE seleciona, FALSE excluye
+
+
+``` r
+&gt; rep(c(TRUE,FALSE),10)
+```
+
+```
+ [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+[13]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+```
+
+``` r
+&gt; mi_vector[rep(c(TRUE,FALSE),10)]
+```
+
+```
+ [1] 11 13 15 17 19 21 23 25 27 29
+```
+
+![](figs/vector_sel_logical.png)
+
+---
+
+## Selección por pruebas lógicas
+
+
+``` r
+&gt; fechas &lt;- as.Date(
++     c("2001-06-23", "2001-06-23", "2001-06-26", "2001-07-05", "2001-07-07",
++       "2001-12-28", "2005-09-25", "2006-10-20", "2007-08-15", "2007-11-16",
++       "2008-08-26", "2009-02-09", "2010-03-23", "2010-05-05", "2010-05-18",
++       "2010-05-23", "2010-05-24", "2011-03-06", "2011-06-20", "2011-08-24",
++       "2011-10-28", "2012-01-30", "2012-05-14", "2012-06-07", "2012-08-02",
++       "2013-07-16", "2013-09-25", "2014-03-15", "2014-03-15", "2014-08-24",
++       "2015-11-25", "2016-08-14", "2017-07-17", "2017-10-10", "2018-01-14",
++       "2018-08-24", "2019-03-01", "2019-05-26", "2020-12-27", "2021-06-22",
++       "2021-07-30", "2021-11-28", "2022-02-03", "2022-05-26", "2022-10-05",
++       "2023-12-20", "2024-06-16", "2024-06-28", "2024-06-29", "2024-11-05")
++     )
+&gt; class(fechas)
+```
+
+```
+[1] "Date"
+```
+---
+
+## Selección por pruebas lógicas
+
+
+``` r
+&gt; as.Date("2025-01-07") - fechas
+```
+
+```
+Time differences in days
+ [1] 8599 8599 8596 8587 8585 8411 7044 6654 6355 6262 5978 5811 5404 5361 5348
+[16] 5343 5342 5056 4950 4885 4820 4726 4621 4597 4541 4193 4122 3951 3951 3789
+[31] 3331 3068 2731 2646 2550 2328 2139 2053 1472 1295 1257 1136 1069  957  825
+[46]  384  205  193  192   63
+```
+--
+
+
+``` r
+&gt; magnitud &lt;- c(
++     8.4, 6.1, 6.7, 6.6, 7.6, 6.0, 7.5, 6.7, 8.0, 6.8, 6.4, 6.1, 6.0, 6.2, 6.0, 6.1, 6.5,
++     6.2, 6.6, 7.0, 6.9, 6.3, 6.3, 6.1, 6.2, 6.0, 7.1, 6.2, 6.3, 6.8, 7.6, 5.3, 6.3, 6.3,
++     7.1, 7.1, 7.0, 8.0, 6.0, 6.4, 6.2, 7.5, 6.5, 7.2, 6.1, 6.2, 6.3, 7.2, 6.1, 6.0)
+&gt; fechas[magnitud&gt;=8]
+```
+
+```
+[1] "2001-06-23" "2007-08-15" "2019-05-26"
+```
+
+``` r
+&gt; fechas[magnitud&gt;=8 &amp; (as.Date("2025-01-07") - fechas)&lt;=1000]
+```
+
+```
+Date of length 0
+```
+
+---
+
+## Arreglos (arrays)
+
+##### Crea un arreglo de 3 dimension 3 x 3 x 2
+
+
+``` r
+&gt; mi_arreglo &lt;- array(LETTERS[1:18], dim=c(3,3,2))
+&gt; mi_arreglo
+```
+
+```
+, , 1
+
+     [,1] [,2] [,3]
+[1,] "A"  "D"  "G" 
+[2,] "B"  "E"  "H" 
+[3,] "C"  "F"  "I" 
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,] "J"  "M"  "P" 
+[2,] "K"  "N"  "Q" 
+[3,] "L"  "O"  "R" 
+```
+---
+
+## Indexación multidimensional
+
+
+.pull-left[
+
+
+``` r
+&gt; mi_arreglo[1,3,2]
+```
+
+```
+[1] "P"
+```
+* Filtra un  arreglo por posición: `x[d1, d2, d3, ..., dn]`
+* `x`: vector que quieres filtrar
+* `d1, d2, d3, ..., dn`: vectores de indices de selección para la dimensión 1, 2, 3, ... n
+
+
+]
+
+.pull-right[
+![](figs/array_sel132.png)
+]
+---
+
+## Indexación multidimensional
+
+.pull-left[
+
+``` r
+&gt; mi_arreglo[1:2,1:2,1]
+```
+
+```
+     [,1] [,2]
+[1,] "A"  "D" 
+[2,] "B"  "E" 
+```
+]
+
+.pull-right[
+![](figs/array_sel12121.png)
+]
+
+---
+
+## Matrices
+
+* Tan solo arreglos de dos dimensiones
+
+##### Selección de una ficha y todas las columnas
+
+
+``` r
+&gt; mi_matriz &lt;- matrix(LETTERS[1:9], 3, 3)
+&gt; mi_matriz[2,]
+```
+
+```
+[1] "B" "E" "H"
+```
+--
+
+![](figs/matrix_row2.png)
+
+
+---
+
+## Matrices
+
+##### Selección de una coluna y todas las fichas
+
+``` r
+&gt; mi_matriz[,3]
+```
+
+```
+[1] "G" "H" "I"
+```
+
+![](figs/matrix_col3.png)
+
+---
+
+## Selección de listas
+
+* `x[s]` donde `x` es una lista y `s` un vector de indices o nombres.
+* Devuelve **una lista** solamente con los elementos indexados o nombrados.
+
+
+
+.pull-left[
+
+
+``` r
+&gt; mi_lista
+```
+
+```
+$A
+[1] 1 2 3 4 5
+
+$B
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+$C
+  siglo empieza
+1   XIX    1801
+2    XX    1901
+3   XXI    2001
+```
+]
+
+--
+
+.pull-right[
+
+
+``` r
+&gt; mi_lista[2]
+```
+
+```
+$B
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+
+``` r
+&gt; mi_lista["A"]
+```
+
+```
+$A
+[1] 1 2 3 4 5
+```
+]
+
+
+---
+
+## Selección de elementos de listas
+
+* `x[[s]]`,  donde `x` es una lista y `s` es **un único** indice o nombre. 
+* `x$n`, donde `n` es un nombre.
+* Devuelve **el elemento** indexado o nombrado.
+
+
+.pull-left[
+
+
+``` r
+&gt; mi_lista$A
+```
+
+```
+[1] 1 2 3 4 5
+```
+
+``` r
+&gt; mi_lista[[2]]
+```
+
+```
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+]
+
+.pull-right[
+
+
+``` r
+&gt; mi_lista[[1]]
+```
+
+```
+[1] 1 2 3 4 5
+```
+
+``` r
+&gt; mi_lista$B
+```
+
+```
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+]
+
+---
+
+## Dataframes
+
+.pull-left[
+
+##### Tan solo listas con elementos con la misma longitud
+
+``` r
+&gt; df1
+```
+
+```
+  siglo empieza
+1   XIX    1801
+2    XX    1901
+3   XXI    2001
+```
+]
+
+.pull-right[
+
+##### Selección de dataframes
+
+
+``` r
+&gt; df1[1]
+```
+
+```
+  siglo
+1   XIX
+2    XX
+3   XXI
+```
+
+``` r
+&gt; df1["siglo"]
+```
+
+```
+  siglo
+1   XIX
+2    XX
+3   XXI
+```
+]
+
+---
+
+## Dataframes
+
+
+
+.pull-left[
+
+##### Tan solo listas con elementos con la misma longitud
+
+
+``` r
+&gt; df1
+```
+
+```
+  siglo empieza
+1   XIX    1801
+2    XX    1901
+3   XXI    2001
+```
+]
+
+.pull-right[
+
+##### Selección de elementos
+
+``` r
+&gt; df1[[1]]
+```
+
+```
+[1] "XIX" "XX"  "XXI"
+```
+
+``` r
+&gt; df1$siglo
+```
+
+```
+[1] "XIX" "XX"  "XXI"
+```
+]
+
+---
+
+## Cambia valores en objetos
+
+
+``` r
+&gt; mi_matriz
+```
+
+```
+     [,1] [,2] [,3]
+[1,] "A"  "D"  "G" 
+[2,] "B"  "E"  "H" 
+[3,] "C"  "F"  "I" 
+```
+
+``` r
+&gt; mi_matriz[,1] &lt;- tolower(mi_matriz[,1])
+&gt; mi_matriz
+```
+
+```
+     [,1] [,2] [,3]
+[1,] "a"  "D"  "G" 
+[2,] "b"  "E"  "H" 
+[3,] "c"  "F"  "I" 
+```
+---
+
+## Cambia variables en dataframes
+
+
+``` r
+&gt; df1
+```
+
+```
+  siglo empieza
+1   XIX    1801
+2    XX    1901
+3   XXI    2001
+```
+
+``` r
+&gt; df1$siglo &lt;- paste("Siglo",df1$siglo)
+&gt; df1
+```
+
+```
+      siglo empieza
+1 Siglo XIX    1801
+2  Siglo XX    1901
+3 Siglo XXI    2001
+```
+---
+
+## Añade variables a dataframes
+
+
+``` r
+&gt; df1$termina &lt;- df1$empieza + 99
+&gt; df1
+```
+
+```
+      siglo empieza termina
+1 Siglo XIX    1801    1900
+2  Siglo XX    1901    2000
+3 Siglo XXI    2001    2100
+```
+---
+
+## Tabla de frecuencias con `table`
+
+
+``` r
+&gt; (fechas_year &lt;-format(fechas, "%Y"))
+```
+
+```
+ [1] "2001" "2001" "2001" "2001" "2001" "2001" "2005" "2006" "2007" "2007"
+[11] "2008" "2009" "2010" "2010" "2010" "2010" "2010" "2011" "2011" "2011"
+[21] "2011" "2012" "2012" "2012" "2012" "2013" "2013" "2014" "2014" "2014"
+[31] "2015" "2016" "2017" "2017" "2018" "2018" "2019" "2019" "2020" "2021"
+[41] "2021" "2021" "2022" "2022" "2022" "2023" "2024" "2024" "2024" "2024"
+```
+
+``` r
+&gt; table(fechas_year)
+```
+
+```
+fechas_year
+2001 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 
+   6    1    1    2    1    1    5    4    4    2    3    1    1    2    2    2 
+2020 2021 2022 2023 2024 
+   1    3    3    1    4 
+```
+
+``` r
+&gt; class(table(fechas_year))
+```
+
+```
+[1] "table"
+```
+
+
+---
+
+
+## Dividir, aplicar, combinar: `aggregate`
+
+1. Divide datos en pedazos según un criterio;
+2. Aplica una funcción a cada pedazo;
+3. Combina los resultados en un nuevo objeto.
+
+
+``` r
+&gt; aggregate(magnitud, by = list(fechas_year), FUN = mean)
+```
+
+```
+   Group.1        x
+1     2001 6.900000
+2     2005 7.500000
+3     2006 6.700000
+4     2007 7.400000
+5     2008 6.400000
+6     2009 6.100000
+7     2010 6.160000
+8     2011 6.675000
+9     2012 6.225000
+10    2013 6.550000
+11    2014 6.433333
+12    2015 7.600000
+13    2016 5.300000
+14    2017 6.300000
+15    2018 7.100000
+16    2019 7.500000
+17    2020 6.000000
+18    2021 6.700000
+19    2022 6.600000
+20    2023 6.200000
+21    2024 6.400000
+```
+
+---
+
+## `aggregate`: sintaxis de fórmulas
+
+
+``` r
+&gt; sismos &lt;- data.frame(fechas, fechas_year, magnitud)
+&gt; aggregate(magnitud ~ fechas_year, mean, data = sismos)
+```
+
+```
+   fechas_year magnitud
+1         2001 6.900000
+2         2005 7.500000
+3         2006 6.700000
+4         2007 7.400000
+5         2008 6.400000
+6         2009 6.100000
+7         2010 6.160000
+8         2011 6.675000
+9         2012 6.225000
+10        2013 6.550000
+11        2014 6.433333
+12        2015 7.600000
+13        2016 5.300000
+14        2017 6.300000
+15        2018 7.100000
+16        2019 7.500000
+17        2020 6.000000
+18        2021 6.700000
+19        2022 6.600000
+20        2023 6.200000
+21        2024 6.400000
+```
+
+---
+
+## Dividir, aplicar y combinar: `lapply`
+
+* Aplica una función a cada elemento de una lista
+* Devuelve otra lista
+
+
+.pull-left[
+
+``` r
+&gt; mi_lista
+```
+
+```
+$A
+[1] 1 2 3 4 5
+
+$B
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+$C
+  siglo empieza
+1   XIX    1801
+2    XX    1901
+3   XXI    2001
+```
+]
+
+.pull-right[
+
+
+``` r
+&gt; lapply(mi_lista, is.numeric)
+```
+
+```
+$A
+[1] TRUE
+
+$B
+[1] TRUE
+
+$C
+[1] FALSE
+```
+]
+
+---
+
+## Dividir, aplicar y combinar: `sapply`
+
+* Aplica una función a cada elemento de una lista
+* Intenta volver un vector
+
+.pull-left[
+
+``` r
+&gt; mi_lista
+```
+
+```
+$A
+[1] 1 2 3 4 5
+
+$B
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+$C
+  siglo empieza
+1   XIX    1801
+2    XX    1901
+3   XXI    2001
+```
+]
+
+.pull-right[
+
+
+``` r
+&gt; sapply(mi_lista, is.numeric)
+```
+
+```
+    A     B     C 
+ TRUE  TRUE FALSE 
+```
+]
+
+---
+
+## Funcciones a dimensiones de un arreglo: `apply`
+
+* Arreglos son objetos de un único tipo de datos. 
+* Asi que tiene sentido aplicar funciones a cualquiera de sus dimensiones.
+* La función `apply` lo hace, indicando la dimensión en su segundo argumento (`MARGIN`).
+
+
+``` r
+&gt; (m1 &lt;- matrix(c(4, 3, 2, 2, 4, 3, 3, 2, 4), nrow = 3, byrow = TRUE))
+```
+
+```
+     [,1] [,2] [,3]
+[1,]    4    3    2
+[2,]    2    4    3
+[3,]    3    2    4
+```
+
+``` r
+&gt; apply(m1, MARGIN = 1, sum)
+```
+
+```
+[1] 9 9 9
+```
+
+``` r
+&gt; apply(m1, MARGIN = 2, sum)
+```
+
+```
+[1] 9 9 9
+```
+---
+
+## Funcciones a dimensiones de un arreglo: `apply`
+
+* Arreglos son objetos de un único tipo de datos. 
+* Asi que tiene sentido aplicar funciones a cualquiera de sus dimensiones.
+* La función `apply` lo hace, indicando la dimensión en su segundo argumento (`MARGIN`).
+
+
+``` r
+&gt; (m2 &lt;- matrix(c("A", "B", "C", "B", "C", "A", "C", "A", "B"), nrow = 3, byrow = TRUE))
+```
+
+```
+     [,1] [,2] [,3]
+[1,] "A"  "B"  "C" 
+[2,] "B"  "C"  "A" 
+[3,] "C"  "A"  "B" 
+```
+
+``` r
+&gt; apply(m2, MARGIN = 1, paste, collapse = "")
+```
+
+```
+[1] "ABC" "BCA" "CAB"
+```
+---
+
+
+## Que hacer ahora
+
+.left-column[
+&lt;img src="../01_introduccion/figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+#### Haiga los tutoriales:
+
+* Subconjuntos de datos
+* Funcciones *apply
+* Y entonces vamos a notaR
+           
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
