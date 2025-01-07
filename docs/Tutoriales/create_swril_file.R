@@ -1,8 +1,8 @@
 if(file.exists("Curso_R_UNMSM.swc")) file.remove("Curso_R_UNMSM.swc")
 library(swirlify)
-set_lesson(path_to_yaml = "~/work/disciplinas/pos_graduacao/R/UNMSM/2025/tutoriales_swril//Mi_primera_session/lesson.yaml", open_lesson = FALSE, silent = TRUE)
+set_lesson(path_to_yaml = "~/work/disciplinas/pos_graduacao/R/UNMSM/2025/tutoriales_swirl/Mi_primera_session/lesson.yaml", open_lesson = FALSE, silent = TRUE)
 pack_course("~/work/disciplinas/pos_graduacao/R/UNMSM/2025/site/Tutoriales/")
-file.rename("tutoriales_swril.swc", "Curso_R_UNMSM.swc")
+file.rename("tutoriales_swirl.swc", "Curso_R_UNMSM.swc")
 ## Old code
 ##nome <- commandArgs(trailingOnly = TRUE)
 ## rota0 <- "Curso_R_UNMSM"
