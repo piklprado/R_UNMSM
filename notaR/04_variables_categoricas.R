@@ -11,8 +11,8 @@ arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
 arquip <- arquip.raw
 names(arquip) <- arquip.nombres
 #Precondiciones 3
-ilhas$island.area.log<- log(ilhas$island.area)
 ilhas$species.richness.log <- log(ilhas$species.richness)
+ilhas$island.area.log<- log(ilhas$island.area)
 ## Precondiciones 4
 ilhas$sar.type <- factor(ilhas$sar.type)
 ilhas$island.type <- factor(ilhas$island.type, levels = c("Oceanic", "Continental", "Habitat-Patches"))
@@ -34,8 +34,8 @@ archipielagos.nombres <- gsub("_", ".", tolower(archipielagos.nombres), fixed = 
 archipielagos <- archipielagos.raw
 names(archipielagos) <- archipielagos.nombres
 ## Solucion 3
-islas$island.area.log<- log(islas$island.area)
 islas$species.richness.log <- log(islas$species.richness)
+islas$island.area.log<- log(islas$island.area)
 ## Solucion 4
 islas$sar.type <- factor(islas$sar.type)
 islas$island.type <- factor(islas$island.type, levels = c("Oceanic", "Continental", "Habitat-Patches"))
