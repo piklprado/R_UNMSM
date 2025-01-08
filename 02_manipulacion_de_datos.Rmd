@@ -28,3 +28,18 @@ Para ver la transcripción de un tutorial, haz clic en su nombre en la lista:
 * [6: Leer y escribir datos](Tutoriales/html/Leer_y_escribir_Datos.html)
 * [7. Subconjuntos de datos](Tutoriales/html/Subconjuntos_de_Datos.html)
 * [8. Funciones *apply](Tutoriales/html/Funciones_apply.html)
+
+## Alternativas
+
+Para el  tema de funciones `lapply` y `sapply` puedes tambiém correr el
+tutorial del curso en swril [Programando en R](https://swirlstats.com/scn/programando.html).
+
+Para eso ingressa eses comandos en la consola de R:
+
+```{r , eval=FALSE, echo=TRUE}
+library(swirl)
+install_course_github('josersosa','Programando_en_R')
+swirl()
+```
+Escoge el curso `Programando en R` e entonces la lección `10: lapply and sapply `. 
+

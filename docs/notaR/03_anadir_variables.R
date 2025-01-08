@@ -11,8 +11,8 @@ arquip.nombres <- gsub("_", ".", tolower(arquip.nombres), fixed = TRUE)
 arquip <- arquip.raw
 names(arquip) <- arquip.nombres
 #Precondiciones 3
-ilhas$island.area.log<- log(ilhas$island.area)
 ilhas$species.richness.log <- log(ilhas$species.richness)
+ilhas$island.area.log<- log(ilhas$island.area)
 ## Solucion 1
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
@@ -26,8 +26,8 @@ archipielagos.nombres <- gsub("_", ".", tolower(archipielagos.nombres), fixed = 
 archipielagos <- archipielagos.raw
 names(archipielagos) <- archipielagos.nombres
 ## Solucion 3
-islas$island.area.log<- log(islas$island.area)
 islas$species.richness.log <- log(islas$species.richness)
+islas$island.area.log<- log(islas$island.area)
 ## Fichero esperado 3 ##
 saveRDS(islas, file = "03_anadir_variables.rds")
 
