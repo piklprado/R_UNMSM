@@ -1,0 +1,72 @@
+name: '105.02 Dos gráficos juntos'
+description: |-
+    <p>Utilice las variables <code>dap</code> e <code>talhao</code> de los datos <a href= "http://ecor.ib.usp.br/doku.php?id=dados:dados-esaligna"> Biomasa de los árboles de Eucalyptus saligna</a> para construir dos gráficos, colocándolos uno al lado del otro. El primero debe ser un diagrama de caja de la variable  <code>dap</code> en función del fator <code>talhao</code>. El segundo debe mostrar la <code>dap</code> media de cada parcela ("talhão") y sus respectivas barras de desviación estándar.  Utilice la figura siguiente como patrón para el gráfico que debe construir.</p>
+
+    <div style="background-color:darkseagreen;color:white;padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+    <b>Importante!</b> Su código no debe tener ninguna función para abrir o cerrar dispositivos gráficos, tales como <code>x11(), png() </code>, etc.
+    </div>
+
+    <img src="https://i.imgur.com/yJbHTOW.png" width="95%">
+
+    <br>
+    <p>Vease esas instrucciones:</p>
+    <p>Para el gráfico de cajas:</p>
+    <ol>
+    <li>Nombre al eje <b>y</b> como: <code>Diametro a altura do peito (cm)</code></li>
+    <li>Nombre al eje  <b>x</b> como: <code>Talhao</code></li>
+    <li>Aumente el tamaño de letra de los ejes en <b>50%</b> y el tamaño de los títulos de los ejes en <b>70%</b></li>
+    <li>Ponga las marcas de graduación dentro del área del gráfico, con un tamaño de <b>0.3</b> del tamaño de la linea</li>
+    <li>Dibuja sólo las líneas relativas a los ejes <b>x</b> y <b>y</b> . No incluyas las líneas que cierran el gráfico en un recuadro. O sea use la opción que hace los ejes en forma "<code>l</code>)</li>"
+    <li>Especifica los límites de <b>y</b> para que el gráfico admita los valores mínimo y máximo de <code>dap</code></li>
+    <li>Incluya una letra <code>a</code> en la esquina superior derecha del gráfico (alineado al valor seis del eje <b>x</b>)</li>
+    <li>Atención a los colores de las cajas </li>
+    </ol>
+    <p>Para el gráfico de médias:</p>
+    <ol>
+    <li>Utilice las mismas instrucciones de formato que para el boxplot, pero omita el título del eje <b>y</b></li>
+    <li>Las medias deben trazarse equidistantes a lo largo del eje <b>x</b>. </li>
+    <li>Los valores representados en el eje <b>x</b> deben estar comprendidos entre <code>0.5</code> y <code>6</code></li>
+    <li>Las medias deben representarse mediante el símbolo del círculo relleno en rojo, aumentado en  <b>40%</b></li>
+    <li>Utilice el símbolo <i>underline</i> (<code>_</code>) en los extremos de los segmentos que representan las desviaciones estandar</li>
+    <li>Incluya una letra <code>b</code> en la esquina superior derecha del gráfico (a la altura del valor 6 en el eje <b>x</b>)</li>
+    </ol>
+    <div style="background-color:darkseagreen;color:white;padding:15px; border-top:1px; padding-top:1px;border-radius:30px;"> </div>
+precondicoes: |-
+    library(magick)
+    library(png)
+    proibir("x11")
+    proibir("X11")
+    proibir("quartz")
+    esalignaOK1 = read.table("esaligna.csv", header = T, sep = ",")
+    esalignaOK2 = read.table("esaligna.csv", header = T, sep = ",", as.is = T)
+    min_esalignaOK1<- as.integer(min(esalignaOK1$dap))
+    max_esalignaOK1<- max(esalignaOK1$dap)
+    media.dap.por.talhao <- tapply(esalignaOK1$dap, esalignaOK1$talhao, mean)
+    sd.dap.por.talhao <- tapply(esalignaOK1$dap, esalignaOK1$talhao, sd)
+    sd.up <- media.dap.por.talhao+sd.dap.por.talhao
+    sd.down <- media.dap.por.talhao-sd.dap.por.talhao
+    png("esalignaFig105_2OK.png", width = 400, height = 200, pointsize = 6)
+    par(mfrow=c(1,2), cex.main=1.8 , cex.lab=1.7, cex.axis=1.50, tcl=0.3, las=1, bty="l")
+    boxplot(esalignaOK1$dap~esalignaOK1$talhao, ylab = "Diametro a altura do peito (cm)", xlab= "Talhao",  ylim= c(min_esalignaOK1,max_esalignaOK1), col = "white")
+    mtext("a", side=3, line=0, at=6,cex=2, family="serif")
+    plot(y = media.dap.por.talhao, x = c(1:6), pch=19, col="red", cex=1.4, ylab = "", xlab= "Talhao",  ylim=c(min_esalignaOK1,max_esalignaOK1), tcl=0.3, xaxt = "n", xlim = c(0.5,6))
+    axis(side = 1, at = 1:6, label = sort(unique(esalignaOK1$talhao)))
+    points(y=sd.up, x=1:6, pch= "_")
+    points(y=sd.down, x=1:6, pch= "_")
+    segments(x0= 1:6, y0=sd.up, y1=sd.down) 
+    mtext("b", side=3, line=0, at=6,cex=2, family="serif")
+    dev.off()
+    imgOK <- image_read("esalignaFig105_2OK.png")
+    png("esalignaFig105_2Aluno.png", width = 400, height = 200, pointsize = 6)
+topico_id: 5
+testes:
+    - { condicao: 'dev.off(); imgAluno <- image_read("esalignaFig105_2Aluno.png"); proibidas()', dica: 'Usaste una función que te pedimos que no usaras', peso: 1.0 }
+    - { condicao: 'exists("esaligna")', dica: 'No hay el objeto de datos <code>esaligna</code>.', peso: 1.0 }
+    - { condicao: 'identical(esaligna, esalignaOK1) | identical(esaligna, esalignaOK2)', dica: 'Los datos no corresponden al archivo original suministrado.', peso: 1.0 }
+    - { condicao: 'imgMatch <-image_compare_dist(imgAluno, imgOK, metric = "", fuzz = 0)$distortion; imgMatch > .50', dica: 'El gráfico no corresponde al modelo solicitado.', peso: 1.0 }
+    - { condicao: 'imgMatch > .80', dica: 'Su gráfico se ha producido, pero tiene un aspecto muy diferente del que esperaba.', peso: 1.0 }
+    - { condicao: 'imgMatch > .90', dica: 'Su figura difiere del modelo presentado.', peso: 1.0 }
+    - { condicao: 'imgMatch > .95', dica: 'Su figura es un poco diferente de lo esperado.', peso: 1.0 }
+    - { condicao: 'imgMatch > .990', dica: 'Su figura presenta algunas pequeñas diferencias respecto a lo esperado.', peso: 2.0 }
+    - { condicao: 'imgMatch > .998', dica: 'Tu gráfico muestra algunas inconsistencias menores. ¡Vamos, ya falta poco!', peso: 0.5 }
+    - { condicao: 'imgMatch > .999', dica: 'Su gráfico tiene pequeñas desviaciones, que son normales cuando se comparan imágenes idénticas. Se considerará 100% correcto. Enhorabuena.', peso: 0.5 }

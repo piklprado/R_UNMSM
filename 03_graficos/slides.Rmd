@@ -1,0 +1,653 @@
+---
+title: "Análisis y visualización de datos biológicos con R"
+subtitle: "Graficos"
+author: 
+  - "Paulo Inácio Prado (PI)"
+date: '09 Enero 2025'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+self-contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(servr.daemon = TRUE)#para que no bloquee la sesión
+knitr::opts_chunk$set(prompt = TRUE, comment = "")
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(ggplot2)
+library(ggthemes)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyr)
+
+xaringanExtra::use_share_again()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_tachyons()
+
+style_solarized_light(
+  title_slide_background_color = "#586e75",# base 3
+  header_color = "#586e75",
+  text_bold_color = "#cb4b16",
+  background_color = "#fdf6e3", # base 3
+  header_font_google = google_font("DM Sans"),
+  text_font_google = google_font("Roboto Condensed", "300", "300i"),
+  code_font_google = google_font("Fira Mono"), text_font_size = "28px",
+  code_font_size="1rem"
+)
+# clipboard
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "Copy code <i class=\"fa fa-clipboard\"></i>",
+    success_text = "Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+  )
+## ggplot theme
+theme_Publication <- function(base_size = 14, base_family = "helvetica") {
+    (theme_foundation(base_size = base_size, base_family = base_family)
+        + theme(plot.title = element_text(face = "bold",
+                                          size = rel(1.2), hjust = 0.5),
+                text = element_text(),
+                panel.border = element_rect(colour = NA),
+                panel.background = element_rect(fill = 'transparent'),
+                plot.background = element_rect(fill = 'transparent', color = NA),
+                axis.title = element_text(face = "bold",size = rel(1)),
+                axis.title.y = element_text(angle=90,vjust =2),
+                axis.title.x = element_text(vjust = -0.2),
+                axis.text = element_text(), 
+                axis.line = element_line(colour="black"),
+                axis.ticks = element_line(),
+                panel.grid.major = element_line(colour=NA),
+                panel.grid.minor = element_blank(),
+                legend.key = element_rect(colour = NA),
+                legend.position = "bottom",
+                legend.direction = "horizontal",
+                legend.key.size= unit(0.2, "cm"),
+                ##legend.margin = unit(0, "cm"),
+                legend.spacing = unit(0.2, "cm"),
+                legend.title = element_text(face="italic"),
+                plot.margin = unit(c(10,5,5,5),"mm"),
+                strip.background = element_rect(colour = NA,fill = "transparent"),
+                strip.text = element_text(face="bold")
+                ))
+    
+}
+```
+
+
+```{r prep, echo=FALSE}
+islas.raw <- read.csv("../notaR/islas_corrigido.csv")
+islas.nombres <- names(islas.raw)
+islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
+islas <- islas.raw
+names(islas) <- islas.nombres
+## Solucion 3
+islas$species.richness.log <- log(islas$species.richness)
+islas$island.area.log<- log(islas$island.area)
+## Solucion 4
+islas$sar.type <- factor(islas$sar.type)
+islas$island.type <- factor(islas$island.type, levels = c("Oceanic", "Continental", "Habitat-Patches"))
+## Numero de ilhas por study site
+islas.N <- as.data.frame(table(islas$study.id))
+## manipulacao de nomes
+names(islas.N) <- c("study.id", "n.muestra")
+## Coercao
+islas.N$study.id <- as.character(islas.N$study.id)
+## Solución 6 #
+islas.N.6 <- islas.N$n.muestra > 6
+## nombres de los arch
+islas.ids <- islas.N$study.id[islas.N.6]
+islas.test <- islas$study.id %in% islas.ids
+## Selección por indexación de las islas de los archipielagos con N>6
+islas.sel <- islas[islas.test, ]
+reg.rich <- aggregate(species.richness ~ biogeo.realm, data = islas, mean)
+```
+
+
+## Lo que veremos hoy
+
+1. La base gráfica de R:
+  - Funciones gráficas de alto nivel
+  - Funciones gráficas de bajo nivel
+2. Dispositivos gráficos
+3. Parámetros gráficos en los dispositivos
+4. El paquete `ggplot2`
+
+---
+
+## Funcciones de alto nivel
+
+.pull-left[
+* Generan gráficos preestablecidas.
+* Un montón de argumentos ...
+* ... pero pocos son  obrigatorios
+* Empezaran con paquete `graphics` (*R Base graphics*)
+* Muchos otros paquetes basados en `graphics`
+]
+
+.pull-right[
+```{r muestra_tipos_graficos, echo=FALSE, fig=TRUE, fig.width = 8}
+par(mfrow=c(2,2))
+
+plot(species.richness.log ~ island.area.log, data = islas.sel, main = "plot()", cex.main=2)
+boxplot(species.richness ~ island.type, data = islas, main = "boxplot()", cex.main=2)
+hist(islas$island.area.log, main = "hist()", cex.main=2)
+barplot(height = reg.rich$species.richness, names=reg.rich$biogeo.realm, main = "barplot()", cex.main=2)
+
+par(mfrow=c(1,1))
+```
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+```{r hist, eval=FALSE}
+hist(islas$island.area.log)
+```
+
+]
+
+.pull-right[
+```{r hist, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+```{r boxplot, eval=FALSE}
+boxplot(islas$species.richness)
+```
+]
+
+.pull-right[
+```{r boxplot, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+```{r boxplotxy, eval=FALSE}
+boxplot(islas$species.richness ~
+            islas$island.type)
+```
+]
+
+.pull-right[
+```{r boxplotxy, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+```{r plotxy, eval=FALSE}
+plot(islas$species.richness.log ~
+         islas$island.area.log)
+```
+]
+
+.pull-right[
+```{r plotxy, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Argumentos 
+
+.pull-left[
+
+```{r plotxy2, eval=FALSE}
+plot(species.richness.log ~
+         island.area.log,
+     data = islas,
+     ylab = "Número de espécies (ln)",     
+     xlab = "Área de la isla (ln km2)",
+     cex = 0.75,
+     cex.lab = 1.5,
+     cex.axis = 1.25,
+     col = "darkblue",
+     las = 1,
+     bty = "l"
+     )
+```
+]
+
+.pull-right[
+```{r plotxy2, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Funciones de nivel inferior en R Base Graphics
+
+Se utilizan para añadir elementos a gráficos. Las usamos despues de la llamada de un función gráfica de nivel alto. 
+
+- **`points()`**: añade puntos;
+- **`lines()`**: líneas que conectan puntos;
+- **`text()`**: añade texto;
+- **`abline()`**: líneas con intercepto y pendiente;
+- **`segments()`**: segmentos de líneas;
+- **`arrows()`**: flechas entre dos puntos;
+- **`polygon()`**: polígonos cerrados;
+- **`rect()`**: rectángulos;
+- **`legend()`**: añade una leyenda;
+- **`mtext()`**: texto en los márgenes;
+- **`axis()`**: haz ejes personalizados;
+- **`grid()`**: Añade una cuadrícula.
+
+---
+
+## `mtext()`
+
+.pull-left[
+
+```{r plotxy3, eval=FALSE}
+plot(species.richness.log ~
+         island.area.log,
+     data = islas,
+     ylab = "Número de espécies (ln)",     
+     xlab = "Área de la isla (ln km2)",
+     cex = 0.75,
+     cex.lab = 1.5,
+     cex.axis = 1.25,
+     col = "darkblue",
+     las = 1,
+     bty = "l"
+     )
+
+mtext("A", at =2, cex = 2)
+```
+]
+
+.pull-right[
+```{r plotxy3, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## `points()`
+
+.pull-left[
+
+```{r boxplotxy2, eval=FALSE}
+boxplot(species.richness ~
+            island.type,
+        data = islas,
+        xlab = "Tipo de isla",
+        ylab = "Número de especies")
+
+medias <- aggregate(species.richness ~
+            island.type,
+            data = islas, mean)
+
+points(medias, pch =8,
+       cex = 1.5, col = "red")
+```
+]
+
+.pull-right[
+```{r boxplotxy2, eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+
+---
+
+## Pasito a pasito
+
+```{r plotxy4a, eval=FALSE, echo=FALSE}
+plot(species.richness ~ island.area,
+     data = islas, log = "xy",
+     type = "n"
+     )
+```
+
+```{r plotxy4b, eval=FALSE, echo=FALSE}
+points(species.richness ~ island.area,
+       data = islas,
+       subset =
+           island.type == "Oceanic",
+       col = 1)
+```
+
+```{r plotxy4c, eval=FALSE, echo=FALSE}
+points(species.richness ~ island.area,
+       data = islas,
+       subset =
+           island.type == "Continental",
+       col = 3)
+```
+
+```{r plotxy4d, eval=FALSE, echo=FALSE}
+points(species.richness ~ island.area,
+       data = islas,
+       subset =
+           island.type ==
+           "Habitat-Patches",
+       col = 4)
+```
+
+.pull-left[
+
+```{r ref.label="plotxy4a", eval=FALSE}
+```
+]
+
+.pull-right[
+```{r ref.label="plotxy4a", eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Pasito a pasito
+
+.pull-left[
+
+```{r ref.label=c("plotxy4a", "plotxy4b"), eval=FALSE}
+```
+]
+
+.pull-right[
+```{r ref.label=c("plotxy4a", "plotxy4b"), eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Pasito a pasito
+
+.pull-left[
+
+```{r ref.label=c("plotxy4a", "plotxy4b", "plotxy4c"), eval=FALSE}
+```
+]
+
+.pull-right[
+```{r ref.label=c("plotxy4a", "plotxy4b", "plotxy4c"), eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Pasito a pasito
+
+.pull-left[
+
+```{r ref.label=c("plotxy4a", "plotxy4b", "plotxy4c", "plotxy4d"), eval=FALSE}
+```
+]
+
+.pull-right[
+```{r ref.label=c("plotxy4a", "plotxy4b", "plotxy4c", "plotxy4d"), eval=TRUE, echo=FALSE, fig.height =6.5}
+```
+]
+
+---
+
+## Los dispositivos gráficos
+
+* Son piezas de *software* que generan y te mostran gráficas.
+* Por defecto, R usa el dispositivo gráfico de la pantalla.
+* Hay muchos otros dispositivos, que generan gráficas en archivos de diferentes formatos.
+* Los dispositivos de archivos te permiten guardar tus gráficos con total control.
+* Por ejemplo, escoges el tipo de archivo, la resolución, dimensiones y mucho más.
+* Lo haces con funciones que abren un dispositivo, como `png()` o `pdf()`
+
+--
+
+```{r }
+args(png)
+```
+
+---
+
+## Funciones de dispositivos de archivos
+
+.pull-left[
+#### Generan archivos vetoriales:
+Códigos de fórmulas matemáticas que generan objetos geométricos. No
+tiene detalle para una foto, pero son escalables y en general muy
+buenos para gráficos. 
+* `pdf()` : **P**ortable **D**ocument **F**ormat
+* `eps()`: **E**ncapsulated **P**ost**S**cript
+* `svg()`: **S**calable **V**ector **G**raphics
+]
+
+.pull-right[
+#### Generan archivos ráster:
+Imágenes en pixeles: tienen mucho detalle pero pierden calidad al escalarse.
+* `png()`: **P**ortable **N**etwork **G**raphic
+* `jpeg()`: **J**oint **P**hotographic **E**xperts **G**roup
+* `tiff()` : **T**agged **I**mage **F**ile Format
+]
+
+---
+
+## Guardando gráficos
+
+##### Abre un archivo PNG con la función `png()`
+```{r , eval=FALSE, echo=TRUE}
+png(filename = "mi_boxplot.png", width = 12, height = 10, units="cm", res = 300)
+```
+--
+
+##### Crea uno os mas graficos
+
+```{r, eval=FALSE, echo=TRUE }
+boxplot(species.richness ~ island.type, data = islas,
+        xlab = "", ylab = "Número de especies")
+## Calcula medias de los grupos
+medias <- aggregate(species.richness ~ island.type, data = islas, mean)
+## Agrega puntos con las médias al gráfico
+points(medias, pch =8,  cex = 1.5, col = "red")
+```
+--
+
+##### Cierra el archivo PNG
+
+```{r, veal =FALSE, echo=TRUE }
+dev.off()
+```
+
+---
+
+## Parámetros de los gráficos en los dispositivos: `par()`
+
+```{r  par.ex1a, echo=FALSE, eval=FALSE}
+par(cex = 0.75,
+    cex.lab = 2.5,
+    cex.axis = 2,
+    col = "darkblue",
+    las = 1,
+    bty = "l",
+    las=1,
+    mar=c(6,6,1,1),
+    mgp=c(4,1,0))
+
+```
+
+```{r par.ex1b, echo=FALSE, eval=FALSE}
+plot(species.richness.log ~
+         island.area.log,
+     data = islas,
+     ylab = "Número de espécies (ln)",     
+     xlab = "Área de la isla (ln km2)")
+```
+
+
+.pull-left[
+```{r  ref.label="par.ex1b", eval=FALSE}
+```
+]
+
+.pull-right[
+```{r  ref.label="par.ex1b", echo=FALSE, fig.height = 6}
+```
+]
+
+    
+---
+
+## Parámetros de los gráficos en los dispositivos: `par()`
+
+.pull-left[
+```{r  ref.label=c("par.ex1a", "par.ex1b"), eval=FALSE}
+```
+]
+
+.pull-right[
+```{r  ref.label=c("par.ex1a", "par.ex1b"), echo=FALSE, fig.height=6}
+```
+]
+
+---
+
+## `par()` te ofrece un montón de parámetros
+
+```{r , echo = FALSE}
+knitr::include_url("https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/par")
+```
+
+---
+
+## El paquete `ggplot2`
+
+#### 1. Capa base del gráfico: `ggplot( aes() )` 
+La función `ggplot()` define el mapeo estético básico (`aes`), es decir, qué variables se
+   asignarán a los elementos del gráfico como ejes, colores, tamaños,
+   etc.
+
+#### 2. Capas geométricas: `geom_*()` 
+funciones que agregan las capas geométricas que
+definen el tipo de gráfico. Por ejemplo,
+`geom_point()` para gráficos de dispersión, `geom_line()` para
+líneas, o `geom_bar()` para barras.
+
+#### 3. Divide en subgráficos: `facet_*()`
+   Funciones que mostran subconjuntos de los datos en diferentes paneles, basados en una o más variables. 
+   
+#### 4. Capa de escalas, temas y etiquetas
+   Ajusta escalas con `scale_*()`, y la apariencia del gráfico con
+   temas (`theme_*()`) y otras funciones.
+
+---
+
+### Ejemplo de código `ggplot2`
+
+.pull-left[
+
+```{r ggplot1, eval=FALSE}
+library(ggplot2)
+## Mapeo
+p1 <- ggplot(islas,
+       aes(x = island.area,
+           y = species.richness,
+           color = island.type)) +
+    ## Geometria    
+    geom_point() +
+    ## Ejes
+    scale_x_log10() +
+    scale_y_log10() +
+    ## Ajustes de elementos
+    theme(legend.position="bottom")
+
+p1
+```
+]
+
+
+.pull-right[
+
+```{r ref.label="ggplot1", eval=TRUE, echo=FALSE}
+```
+]
+
+---
+
+## Objetos de gráficos en `ggplot2`
+
+.pull-left[
+
+##### Agrega capa de subgráficos al objeto de gráfico
+```{r ggplot2, eval=FALSE}
+p1 +
+    facet_wrap(~ island.type)
+```
+]
+
+
+.pull-right[
+
+```{r ref.label="ggplot2", eval=TRUE, echo=FALSE, fig.height=6}
+```
+]
+
+
+---
+
+## Galería de gráficos R: 
+
+##### https://r-graph-gallery.com/
+
+
+```{r , echo = FALSE}
+knitr::include_url("https://r-graph-gallery.com/")
+```
+
+---
+
+## Que hacer ahora
+
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("../01_introduccion/figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+#### 1. Tutoriales del curso "Programación estadística R"
+
+* 7: Graficación
+* 8: Parámetros en el sistema de gráficos
+
+#### 2. Ejercícios en notaR
+
+* 8: Graficación: (http://notar.ib.usp.br/exercicio/135)
+* 105.02 Dos gráficos juntos (Opcional) : (http://notar.ib.usp.br/exercicio/137)
+]
+
+

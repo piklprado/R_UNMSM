@@ -29,6 +29,7 @@ ilhas.N <- as.data.frame(table(ilhas$study.id))
 names(ilhas.N) <- c("study.id", "n.muestra")
 ## Coercao
 ilhas.N$study.id <- as.character(ilhas.N$study.id)
+
 ## Solucion 1
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
@@ -75,8 +76,9 @@ identical(islas, ilhas)
 identical(archipielagos, arquip)
 ## No hay un  objeto <code>islas.mean.area.log</code>.
 exists("islas.mean.area.log")
-## El objeto <code>islas.mean.area.log</code> no és exactamente el esperado. Utiliza la sintaxis de formula de la funcción <code>aggregate</code>.
-identical(islas.mean.area.log, ilhas.mean.area.log)
+## El objeto <code>islas.mean.area.log</code> no tiene los valores esperados. Utiliza la sintaxis de formula de la funcción <code>aggregate</code>.
+##identical(islas.mean.area.log, ilhas.mean.area.log)
+identical(islas.mean.area.log[,1],ilhas.mean.area.log[,1]) & identical(islas.mean.area.log[,2],ilhas.mean.area.log[,2])
 ## No hay un objeto <code>islas.N</code>. 
 exists("islas.N")
 ## El objeto <code>islas.N</code> no es de la classe `dataframe`

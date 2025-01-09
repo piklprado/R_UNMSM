@@ -19,4 +19,18 @@ xaringanExtra::embed_xaringan("03_graficos/slides.html")
 
 # Tutoriales
 
-Lecciones 
+Del curso en `swril` [Programación estadística en R](https://swirlstats.com/scn/estadistica.html), de Ismael Frenández, UNAM. 
+
+Para eso ingressa eses comandos en la consola de R:
+
+```{r , eval=FALSE, echo=TRUE}
+library(swirl)
+swirl::install_course_github("ifunam", "programacion-estadistica-r")
+swirl()
+```
+Escoge el curso "`programacion-estadistica-r`" e entonces las lecciones 
+
+* 7: Graficacion
+* 8: Parametros en el Sistema de Graficos
+
+

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis y visualización de datos biológicos con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Paulo Inácio Prado (PI)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy code <i class=\"fa fa-clipboard\"><\/i>","success":"Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Análisis y visualización de datos biológicos con R
+]
+.subtitle[
+## Graficos
+]
+.author[
+### Paulo Inácio Prado (PI)
+]
+.date[
+### 09 Enero 2025
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+## Lo que veremos hoy
+
+1. La base gráfica de R:
+  - Funciones gráficas de alto nivel
+  - Funciones gráficas de bajo nivel
+2. Dispositivos gráficos
+3. Parámetros gráficos en los dispositivos
+4. El paquete `ggplot2`
+
+---
+
+## Funcciones de alto nivel
+
+.pull-left[
+* Generan gráficos preestablecidas.
+* Un montón de argumentos ...
+* ... pero pocos son  obrigatorios
+* Empezaran con paquete `graphics` (*R Base graphics*)
+* Muchos otros paquetes basados en `graphics`
+]
+
+.pull-right[
+![](slides_files/figure-html/muestra_tipos_graficos-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+
+``` r
+&gt; hist(islas$island.area.log)
+```
+
+]
+
+.pull-right[
+![](slides_files/figure-html/hist-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+
+``` r
+&gt; boxplot(islas$species.richness)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/boxplot-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+
+``` r
+&gt; boxplot(islas$species.richness ~
++             islas$island.type)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/boxplotxy-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Inspección rápida de los datos
+
+.pull-left[
+
+
+``` r
+&gt; plot(islas$species.richness.log ~
++          islas$island.area.log)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/plotxy-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Argumentos 
+
+.pull-left[
+
+
+``` r
+&gt; plot(species.richness.log ~
++          island.area.log,
++      data = islas,
++      ylab = "Número de espécies (ln)",     
++      xlab = "Área de la isla (ln km2)",
++      cex = 0.75,
++      cex.lab = 1.5,
++      cex.axis = 1.25,
++      col = "darkblue",
++      las = 1,
++      bty = "l"
++      )
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/plotxy2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Funciones de nivel inferior en R Base Graphics
+
+Se utilizan para añadir elementos a gráficos. Las usamos despues de la llamada de un función gráfica de nivel alto. 
+
+- **`points()`**: añade puntos;
+- **`lines()`**: líneas que conectan puntos;
+- **`text()`**: añade texto;
+- **`abline()`**: líneas con intercepto y pendiente;
+- **`segments()`**: segmentos de líneas;
+- **`arrows()`**: flechas entre dos puntos;
+- **`polygon()`**: polígonos cerrados;
+- **`rect()`**: rectángulos;
+- **`legend()`**: añade una leyenda;
+- **`mtext()`**: texto en los márgenes;
+- **`axis()`**: haz ejes personalizados;
+- **`grid()`**: Añade una cuadrícula.
+
+---
+
+## `mtext()`
+
+.pull-left[
+
+
+``` r
+&gt; plot(species.richness.log ~
++          island.area.log,
++      data = islas,
++      ylab = "Número de espécies (ln)",     
++      xlab = "Área de la isla (ln km2)",
++      cex = 0.75,
++      cex.lab = 1.5,
++      cex.axis = 1.25,
++      col = "darkblue",
++      las = 1,
++      bty = "l"
++      )
+&gt; 
+&gt; mtext("A", at =2, cex = 2)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/plotxy3-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## `points()`
+
+.pull-left[
+
+
+``` r
+&gt; boxplot(species.richness ~
++             island.type,
++         data = islas,
++         xlab = "Tipo de isla",
++         ylab = "Número de especies")
+&gt; 
+&gt; medias &lt;- aggregate(species.richness ~
++             island.type,
++             data = islas, mean)
+&gt; 
+&gt; points(medias, pch =8,
++        cex = 1.5, col = "red")
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/boxplotxy2-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+## Pasito a pasito
+
+
+
+
+
+
+
+
+
+.pull-left[
+
+
+``` r
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Pasito a pasito
+
+.pull-left[
+
+
+``` r
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Oceanic",
++        col = 1)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Pasito a pasito
+
+.pull-left[
+
+
+``` r
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Oceanic",
++        col = 1)
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Continental",
++        col = 3)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Pasito a pasito
+
+.pull-left[
+
+
+``` r
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Oceanic",
++        col = 1)
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Continental",
++        col = 3)
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type ==
++            "Habitat-Patches",
++        col = 4)
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Los dispositivos gráficos
+
+* Son piezas de *software* que generan y te mostran gráficas.
+* Por defecto, R usa el dispositivo gráfico de la pantalla.
+* Hay muchos otros dispositivos, que generan gráficas en archivos de diferentes formatos.
+* Los dispositivos de archivos te permiten guardar tus gráficos con total control.
+* Por ejemplo, escoges el tipo de archivo, la resolución, dimensiones y mucho más.
+* Lo haces con funciones que abren un dispositivo, como `png()` o `pdf()`
+
+--
+
+
+``` r
+&gt; args(png)
+```
+
+```
+function (filename = "Rplot%03d.png", width = 480, height = 480, 
+    units = "px", pointsize = 12, bg = "white", res = NA, ..., 
+    type = c("cairo", "cairo-png", "Xlib", "quartz"), antialias) 
+NULL
+```
+
+---
+
+## Funciones de dispositivos de archivos
+
+.pull-left[
+#### Generan archivos vetoriales:
+Códigos de fórmulas matemáticas que generan objetos geométricos. No
+tiene detalle para una foto, pero son escalables y en general muy
+buenos para gráficos. 
+* `pdf()` : **P**ortable **D**ocument **F**ormat
+* `eps()`: **E**ncapsulated **P**ost**S**cript
+* `svg()`: **S**calable **V**ector **G**raphics
+]
+
+.pull-right[
+#### Generan archivos ráster:
+Imágenes en pixeles: tienen mucho detalle pero pierden calidad al escalarse.
+* `png()`: **P**ortable **N**etwork **G**raphic
+* `jpeg()`: **J**oint **P**hotographic **E**xperts **G**roup
+* `tiff()` : **T**agged **I**mage **F**ile Format
+]
+
+---
+
+## Guardando gráficos
+
+##### Abre un archivo PNG con la función `png()`
+
+``` r
+&gt; png(filename = "mi_boxplot.png", width = 12, height = 10, units="cm", res = 300)
+```
+--
+
+##### Crea uno os mas graficos
+
+
+``` r
+&gt; boxplot(species.richness ~ island.type, data = islas,
++         xlab = "", ylab = "Número de especies")
+&gt; ## Calcula medias de los grupos
+&gt; medias &lt;- aggregate(species.richness ~ island.type, data = islas, mean)
+&gt; ## Agrega puntos con las médias al gráfico
+&gt; points(medias, pch =8,  cex = 1.5, col = "red")
+```
+--
+
+##### Cierra el archivo PNG
+
+
+``` r
+&gt; dev.off()
+```
+
+```
+png 
+  4 
+```
+
+---
+
+## Parámetros de los gráficos en los dispositivos: `par()`
+
+
+
+
+
+
+.pull-left[
+
+``` r
+&gt; plot(species.richness.log ~
++          island.area.log,
++      data = islas,
++      ylab = "Número de espécies (ln)",     
++      xlab = "Área de la isla (ln km2)")
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
+
+    
+---
+
+## Parámetros de los gráficos en los dispositivos: `par()`
+
+.pull-left[
+
+``` r
+&gt; par(cex = 0.75,
++     cex.lab = 2.5,
++     cex.axis = 2,
++     col = "darkblue",
++     las = 1,
++     bty = "l",
++     las=1,
++     mar=c(6,6,1,1),
++     mgp=c(4,1,0))
+&gt; 
+&gt; plot(species.richness.log ~
++          island.area.log,
++      data = islas,
++      ylab = "Número de espécies (ln)",     
++      xlab = "Área de la isla (ln km2)")
+```
+]
+
+.pull-right[
+![](slides_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## `par()` te ofrece un montón de parámetros
+
+&lt;iframe src="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/par" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+---
+
+## El paquete `ggplot2`
+
+#### 1. Capa base del gráfico: `ggplot( aes() )` 
+La función `ggplot()` define el mapeo estético básico (`aes`), es decir, qué variables se
+   asignarán a los elementos del gráfico como ejes, colores, tamaños,
+   etc.
+
+#### 2. Capas geométricas: `geom_*()` 
+funciones que agregan las capas geométricas que
+definen el tipo de gráfico. Por ejemplo,
+`geom_point()` para gráficos de dispersión, `geom_line()` para
+líneas, o `geom_bar()` para barras.
+
+#### 3. Divide en subgráficos: `facet_*()`
+   Funciones que mostran subconjuntos de los datos en diferentes paneles, basados en una o más variables. 
+   
+#### 4. Capa de escalas, temas y etiquetas
+   Ajusta escalas con `scale_*()`, y la apariencia del gráfico con
+   temas (`theme_*()`) y otras funciones.
+
+---
+
+### Ejemplo de código `ggplot2`
+
+.pull-left[
+
+
+``` r
+&gt; library(ggplot2)
+&gt; ## Mapeo
+&gt; p1 &lt;- ggplot(islas,
++        aes(x = island.area,
++            y = species.richness,
++            color = island.type)) +
++     ## Geometria    
++     geom_point() +
++     ## Ejes
++     scale_x_log10() +
++     scale_y_log10() +
++     ## Ajustes de elementos
++     theme(legend.position="bottom")
+&gt; 
+&gt; p1
+```
+]
+
+
+.pull-right[
+
+![](slides_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Objetos de gráficos en `ggplot2`
+
+.pull-left[
+
+##### Agrega capa de subgráficos al objeto de gráfico
+
+``` r
+&gt; p1 +
++     facet_wrap(~ island.type)
+```
+]
+
+
+.pull-right[
+
+![](slides_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+## Galería de gráficos R: 
+
+##### https://r-graph-gallery.com/
+
+
+&lt;iframe src="https://r-graph-gallery.com/" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+---
+
+## Que hacer ahora
+
+.left-column[
+&lt;img src="../01_introduccion/figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+#### 1. Tutoriales del curso "Programación estadística R"
+
+* 7: Graficación
+* 8: Parámetros en el sistema de gráficos
+
+#### 2. Ejercícios en notaR
+
+* 8: Graficación: (http://notar.ib.usp.br/exercicio/135)
+* 105.02 Dos gráficos juntos (Opcional) : (http://notar.ib.usp.br/exercicio/137)
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

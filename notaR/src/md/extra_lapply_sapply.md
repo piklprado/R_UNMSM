@@ -1,0 +1,8 @@
+1. Descargue el archivo [inventario.rds](http://notar.ib.usp.br/arquivo/53) en tu carpeta de trabajo.
+2. Inicia tu código para ese ejercício con el comando `abund <- readRDS("inventario.rds")`.   
+3. El objeto `abund` que creaste asi es una lista de tres matrices. Cada matriz contiene el número de individuos de varias especies registradas en varios sitios de una misma zona. Se trata, por tanto, de matrices con especies en las filas y sitio en las columnas, con abundancias en las casillas. La lista tiene entonces matrices de ese tipo para trés zonas
+4. Crea una lista con matrices lógicas que contengan el valor TRUE si una especie está presente en un sítio, y el valor FALSE si está ausente. Ese objeto deve llevar el nombre `occup`. Pistas: (a) la prueba lógica `m < 0` aplicada a una matriz numérica `m` devuelve una matriz lógica con el resultado de la prueba para cada casilla. (b) Para aplicar un operador lógico a una lista con `lapply` es necesitas encerrar el operador entre comillas en el argumento `FUN` (por ejemplo, `lapply(m, FUN="<", 0)` aplica el operador `<` (menor que) a cada elemento de la lista y devuelve otra lista.
+5. Cree una lista con el número de especies en cada sitio, para cada zona. Las zonas deben seguir siendo los elementos de esa lista. Nombre este objeto `sp_por_sitio`.
+6. Cree un vector con el promedio del número de especies en cada zona. Nombre este objeto `alfa`.
+7. Cree una lista con el número de sitios em que ocurre cada especie, en cada zona. Las zonas deben seguir siendo los elementos de esa lista. Nombre este objeto `sitios_por_especie`.
+8. Cree un vector con el número de espécies en cada zona. Nombre este objeto `gama`.
