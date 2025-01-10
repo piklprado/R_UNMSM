@@ -1,6 +1,6 @@
 ---
 title: "Gráficos"
-date: "2025-01-08" 
+date: "2025-01-09" 
 author:
   - name: Paulo Inácio Prado
 ---
