@@ -8,7 +8,7 @@ author:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-**página en construcción**
+
 
 # Slides
 
@@ -17,3 +17,13 @@ knitr::opts_chunk$set(echo = FALSE)
 xaringanExtra::embed_xaringan("04_funciones_y_programacion/slides.html")
 ```
 
+# Códigos
+
+* [Códigos demonstrados en clase](04_funciones_y_progamacion/masster_class.R)
+
+#### Ejercícios en notaR
+
+A la seción *Criando Funções* :
+
+* **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
+* **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139

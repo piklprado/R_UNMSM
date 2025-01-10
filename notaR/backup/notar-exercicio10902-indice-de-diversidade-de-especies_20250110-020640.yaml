@@ -1,0 +1,51 @@
+name: '109.02 Índice de diversidade de espécies'
+description: |-
+    <p>Construa uma função chamada <code>shannon</code> para computar o índice de diversidade de Shannon e outra função chamada <code>simpson</code> para o índice de diversidade de Simpson de uma amostra. </p>
+    <p><b>Considere que:</b></p>
+    <ol><li>o objeto de entrada será um vetor contendo a <b>abundância</b> de cada espécie na amostra
+    </li><p><li>existe a possibilidade de haver dados faltantes nesse vetor (<code>NA</code>), os quais serão removidos para o cálculo dos índices.
+    </li></ol><p>
+    O índice de Shannon é dado por:
+    <p>
+    <img align="middle" src="http://latex.codecogs.com/svg.latex? H = - \sum{p_i\ln{(p_i)}}"/> 
+    <p>
+    e o índice de Simpson é dado por:
+    <p>
+    <img src="https://latex.codecogs.com/svg.latex?D = \sum{p_i^2}">
+    <p>
+    onde <img align="middle" src="http://latex.codecogs.com/svg.latex? p_i"/> é a proporção da espécie <i>i</i> em relação ao número total de indivíduos na amostra  (<img align="middle" src="http://latex.codecogs.com/svg.latex?\frac{n_i}{N} ">) .
+    </li><p>
+    <b>Lembre-se</b>: Não existe logaritmo de zero! Isso pode ser relevante para o cálculo do índice de Shannon!
+    <b>Lembre-se</b>: O log natural tem base <code>e</code>, que é o exponencial de 1.
+precondicoes: |-
+    ipt0 <- c(1:3, 0, 5, 0, 3:8, 4, 0, 5, 4)
+    ipt1<-c(1:3,NA,5,NA,3:8,4,NA,5,4)
+    ipt2<-matrix(c(1:3,NA,5,NA,3:8,4,NA,5,4),ncol=4,nrow=4)
+
+    Homer<-function(data) sum((na.omit(data)/sum(na.omit(data)))^2)
+    Lenon<-function(data){-sum(na.omit(data)/sum(na.omit(data))*log(na.omit(data)/sum(na.omit(data)), base = exp(1)))}
+
+    vida<-function(data,indice)
+    {
+      if(indice=="simpson") 
+      {
+        resultado<-apply(data,2,FUN=Homer)
+        return(resultado)
+      }
+      else
+      {
+        resultado<-apply(data,2,FUN=Lenon)
+        return(resultado)
+      }
+    }
+topico_id: 9
+testes:
+    - { condicao: 'exists("shannon")', dica: 'Voce criou o objeto shannon?', peso: 1.0 }
+    - { condicao: 'exists("simpson")', dica: 'Voce criou o objeto simpson?', peso: 1.0 }
+    - { condicao: 'class(shannon)=="function" & length(formals(shannon)) == 1', dica: 'O objeto shannon deve ser da classe function e aceitar exatamente um argumento', peso: 1.0 }
+    - { condicao: 'class(simpson)=="function" & length(formals(simpson)) == 1', dica: 'O objeto simpson deve ser da classe function e aceitar exatamente um argumento', peso: 1.0 }
+    - { condicao: '!is.na(shannon(ipt1))', dica: 'A funcao shannon nao executa ou esta retornando um valor errado. Você removeu as células contendo <code>NA</code> para o cálculo do índice de Shannon?', peso: 3.0 }
+    - { condicao: '!is.nan(shannon(ipt0))', dica: 'É preciso lidar com os valores <code>0</code> na função de <code>shannon </code>', peso: 3.0 }
+    - { condicao: '!is.na(simpson(ipt1))', dica: 'A funcao simpson nao executa ou esta retornando um valor errado. Você removeu as células contendo NA para o cálculo do índice de Simpson?', peso: 3.0 }
+    - { condicao: Lenon(ipt1)==shannon(ipt1), dica: 'A função não calcula o valor correto para o índice de Shannon. Verifique seu código e veja se escreveu corretamente a função que descreve o índice de Shannon. Lembre que pi é uma proporção...', peso: 5.0 }
+    - { condicao: Homer(ipt1)==simpson(ipt1), dica: 'A função não calcula o valor correto para o índice de Simpson. Verifique seu código e veja se escreveu corretamente a função que descreve o índice de Simpson.', peso: 5.0 }

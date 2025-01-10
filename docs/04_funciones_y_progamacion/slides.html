@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis y visualización de datos biológicos con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Paulo Inácio Prado (PI)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy code <i class=\"fa fa-clipboard\"><\/i>","success":"Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Análisis y visualización de datos biológicos con R
+]
+.subtitle[
+## Funciones
+]
+.author[
+### Paulo Inácio Prado (PI)
+]
+.date[
+### 10 Enero 2025
+]
+
+---
+
+
+
+
+
+
+
+
+
+## Introducción
+
+### ¿Qué son las funciones?
+
+- Bloques de código que encapsulan comandos. 
+- Se definen con la función base `function()`. La clase de las funciones también se llama `function`.
+
+### ¿Por qué hacer funciones?
+
+- Para que no se repitan los mismos códigos en tareas repetitivas.
+- Reduce el riesgo de inconsistencia
+- Hace el código más claro y modular.
+
+
+---
+## Sintaxis básica
+
+```r
+
+nombre_funcion &lt;- function(argumentos) {
+  cuerpo_de_la_funcion
+}
+```
+
+- **Nombre**: como a menudo, el nombre del objeto que estás creando
+- **Argumentos**: valores de entrada, nombrados
+- **Cuerpo**: un o más comandos en secuencia
+- **Retorno**: valor que la función devuelve (último valor calculado).
+
+---
+
+## Ejemplo: Función sin argumentos
+
+
+``` r
+&gt; dale &lt;- function() {
++   n &lt;- sample(c("chévere", "genial", "estupendo"), size = 1)
++   paste("¡Eso es", n, "!")
++ }
+&gt; 
+&gt; class(dale)
+```
+
+```
+[1] "function"
+```
+
+``` r
+&gt; dale()
+```
+
+```
+[1] "¡Eso es genial !"
+```
+
+---
+
+## Función con argumentos
+
+
+``` r
+&gt; suma &lt;- function(a, b) {
++   resultado &lt;- a + b
++   return(resultado)
++ }
+&gt; 
+&gt; suma(3, 5)
+```
+
+```
+[1] 8
+```
+
+``` r
+&gt; suma(a = 3, b = 5)
+```
+
+```
+[1] 8
+```
+
+---
+
+## Valores por defecto
+
+
+``` r
+&gt; elevar &lt;- function(base, exponente = 2) {
++   base ^ exponente
++ }
+&gt; 
+&gt; 
+&gt; elevar(3)
+```
+
+```
+[1] 9
+```
+
+``` r
+&gt; elevar(3, 3) 
+```
+
+```
+[1] 27
+```
+
+---
+
+## Control de flujo
+
+- **if()** es un control condicional de flujo .
+- Para otras funciones de control de flujo vease `?if`
+- **stop()**: interrumpe la execución y muestar un mensaje de error.
+- Vease `?stop` y `?`
+
+
+``` r
+&gt; divide &lt;- function(a, b){
++     if (!is.numeric(a)| !is.numeric(b)) {
++         stop("Error: a y b deben ser numéricos ")
++     }
++     else{
++         if(a == 0 &amp; b == 0)
++             warning("0/0 es indefinida.")
++         else
++             a/b
++     }
++ }
+```
+---
+## Control de flujo para manejo de errores
+
+
+
+``` r
+&gt; divide("a", 2)
+```
+
+```
+Error in divide("a", 2): Error: a y b deben ser numéricos 
+```
+
+``` r
+&gt; divide(0, 0)
+```
+
+```
+Warning in divide(0, 0): 0/0 es indefinida.
+```
+
+``` r
+&gt; divide(5, 2)
+```
+
+```
+[1] 2.5
+```
+
+
+---
+## Tareas repetidas
+
+##### Matriz de especies x sitios
+
+``` r
+&gt; matriz[1:4,1:4]
+```
+
+```
+      sitio_1 sitio_2 sitio_3 sitio_4
+sp.56       0       0       7       9
+sp.44       2       0       0       0
+sp.55       2       0      13       3
+sp.73       4      28       0       0
+```
+##### Diversidad alfa de espécies
+
+
+``` r
+&gt; pres &lt;- matriz &gt; 0
+&gt; (sp.por.sitio &lt;- apply(pres, 2, sum))
+```
+
+```
+ sitio_1  sitio_2  sitio_3  sitio_4  sitio_5  sitio_6  sitio_7  sitio_8  sitio_9 sitio_10 
+      10        9        6        5        8        7        9        6        8        7 
+```
+
+``` r
+&gt; mean(sp.por.sitio)
+```
+
+```
+[1] 7.5
+```
+
+##### Una función para hacerlo
+
+
+``` r
+&gt; alfa &lt;- function(matriz) {
++     pres &lt;- matriz &gt; 0
++     sp.por.sitio &lt;- apply(pres, 2, sum)
++     mean(sp.por.sitio)
++ }
+&gt; 
+&gt; alfa(matriz)
+```
+
+```
+[1] 7.5
+```
+
+---
+
+## Repetición con `sapply()`
+
+
+``` r
+&gt; str(abund)
+```
+
+```
+List of 3
+ $ zona_1: num [1:23, 1:10] 0 2 2 4 8 0 0 0 37 0 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:23] "sp.56" "sp.44" "sp.55" "sp.73" ...
+  .. ..$ : chr [1:10] "sitio_1" "sitio_2" "sitio_3" "sitio_4" ...
+ $ zona_2: num [1:37, 1:10] 0 0 0 0 0 0 1 0 0 1 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:37] "sp.33" "sp.72" "sp.99" "sp.32" ...
+  .. ..$ : chr [1:10] "sitio_1" "sitio_2" "sitio_3" "sitio_4" ...
+ $ zona_3: num [1:18, 1:10] 24 6 0 1 1 0 2 0 5 0 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:18] "sp.66" "sp.86" "sp.3" "sp.48" ...
+  .. ..$ : chr [1:10] "sitio_1" "sitio_2" "sitio_3" "sitio_4" ...
+```
+
+
+``` r
+&gt; sapply(abund, alfa)
+```
+
+```
+zona_1 zona_2 zona_3 
+   7.5   13.7    6.6 
+```
+
+---
+
+## El riesgo de inconsistencia
+
+.pull-left[
+
+``` r
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Oceanic",
++        col = 1)
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type == "Continental",
++        col = 3)
+&gt; points(species.richness ~ island.area,
++        data = islas,
++        subset =
++            island.type ==
++            "Habitat-Patches",
++        col = 4)
+```
+]
+
+.pull-right[
+
+![](slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Código más consistente y organizado
+
+.pull-left[
+
+
+``` r
+&gt; pasito &lt;- function(type, color) {
++     points(species.richness ~
++                island.area,
++            data = islas,
++            subset = island.type==type,
++            col = color)
++ }
+&gt; 
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+&gt; pasito("Oceanic", 1)
+&gt; pasito("Continental", 3)
+&gt; pasito("Habitat-Patches", 4)
+```
+]
+
+.pull-right[
+
+![](slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+]
+
+### La ellipsis
+
+.pull-left[
+
+``` r
+&gt; pasito &lt;- function(type, color, ...) {
++     points(species.richness ~ island.area,
++            data = islas,
++            subset = island.type==type,
++            col = color, ...)
++ }
+```
+
+
+``` r
+&gt; plot(species.richness ~ island.area,
++      data = islas, log = "xy",
++      type = "n"
++      )
+&gt; pasito("Oceanic", 1, pch = 2)
+&gt; pasito("Continental", 3, pch = 3)
+&gt; pasito("Habitat-Patches", 4, pch = 4)
+```
+
+![](slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+
+
+]
+---
+
+## Un ejemplo mas complejo en RStudio
+
+.pull-left[
+### Tarea
+
+Crea un factor para cada variable de medida con los niveles:
+  - Pequeño: menor que el primer cuartil (&lt;25%) de la espécie
+  - Médio: dentro del rango interquartilico (&gt;=25% &amp; &lt; 75%) de la espécie
+  - Grande: igual o más grande que el último cuartil (&gt;=75%) de la espécie
+] 
+
+
+.pull-right[
+
+``` r
+&gt; data(iris)
+&gt; head(iris)
+```
+
+```
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+```
+]
+
+---
+
+## Que hacer ahora
+
+.left-column[
+&lt;img src="../01_introduccion/figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+
+#### Ejercícios en notaR
+
+A la seción *Criando Funções* :
+
+* **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
+* **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139
+
+
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

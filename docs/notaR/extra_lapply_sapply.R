@@ -74,7 +74,7 @@ all(sapply(sp_por_sitio, is.numeric))
 identical(sp_por_sitio2, sp_por_sitio)
 ## No hay un objeto alfa
 exists("alfa")
-## El objeto alfa no es un vector
+## El objeto alfa no es un vector numérico
 is.numeric(alfa2)
 ## El objeto alfa no tiene los valores esperados
 identical(alfa2, alfa)

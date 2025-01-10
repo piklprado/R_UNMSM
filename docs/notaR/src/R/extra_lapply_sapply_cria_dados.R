@@ -1,4 +1,4 @@
-## Preparacao
+## Cria os dados
 library(tidyverse)
 library(sads)
 

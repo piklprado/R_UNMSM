@@ -1,0 +1,17 @@
+name: '109.01 Una función simples'
+description: |-
+    <script>$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script>
+    Construye una funcion nombranda  <code>conversor</code> que recibe un vector numérico de valores de temperatura en grados Fahrenheit y devuelve un dataframe con dos columnas. Una colunma deve nombrarse (<code>gC</code>) e llevar todos los valores em grados Celsius que resultan de la conversión. La otra colunma del dataframe debe nombrarse <code>gF</code> e contener ter los  valores em Fahrenheit que se ingresaran. 
+    <p>
+    La ecuación matemática de equivalencia entre grados Celsius y Fahrenheit es:
+    <center><span class='latex'>^{\circ}C = \frac{5}{9}(^{\circ}F - 32)</span></center>
+    
+precondicoes: ''
+topico_id: 9
+testes:
+    - { condicao: 'exists("conversor")', dica: 'No hay objeto  <code>conversor</code>', peso: 1.0 }
+    - { condicao: 'class(conversor)=="function"', dica: 'El objeto conversor no es de clase <code>function</code>', peso: 1.0 }
+    - { condicao: 'class(conversor(c(125,345))) == "data.frame"', dica: 'El objeto que la función retorna no es un  <code>data.frame</code>.', peso: 2.0 }
+    - { condicao: 'all(names(conversor(c(123,345))) %in% c("gC", "gF"))', dica: 'Los nombres de las variables en el objeto de salida no están como pedimos en el enunciado.', peso: 2.0 }
+    - { condicao: 'all(conversor(0:100)$gF == 0:100)', dica: 'El vector numérico que es argumento de la función debe también ser una de las variables del objeto de salida. ', peso: 2.0 }
+    - { condicao: 'all.equal(conversor(0:100)$gC, 5/9*(0:100 - 32))', dica: 'La función no hace el cálculo esperado.', peso: 8.0 }

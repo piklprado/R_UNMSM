@@ -1,0 +1,20 @@
+name: '109.01 Funções simples'
+description: |-
+    <script>$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script>
+    Construa uma função vetorizada<a href="#vet" data-toggle="tooltip" title="uma função que aplica um procedimento para cada elemento de um vetor, veja nota de rodapé"><sup>vet</sup></a> chamada <code>conversor</code> que calcula automaticamente o valor de graus Celsius, sabendo-se a temperatura em Fahrenheit. Esta função deve retornar um data frame com duas colunas, uma contendo os valores em Celsius (<code>gC</code>) e a outra contendo os valores em Fahrenheit (<code>gF</code>). 
+    <p>
+    A função matemática que descreve essa conversão é:
+    <center><span class='latex'>^{\circ}C = \frac{5}{9}(^{\circ}F - 32)</span></center>
+    <div style="width:100%;background-color:#99b3ff;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+    <b>Dicas</b>: basta apenas um parâmetro para escrever essa função em R, os dados de entrada.
+    <p id="vet"><sup>vet</sup> O dado de entrada deve ser um vetor com um ou mais valores numéricos e a função retornar um data frame com o número de linhas relacionado ao tamanho do vetor de entrada.</p> 
+    </div>
+precondicoes: ''
+topico_id: 9
+testes:
+    - { condicao: 'exists("conversor")', dica: 'Objeto <code>conversor</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(conversor)=="function"', dica: 'A classe do objeto <code>conversor</code> não está correta. Deve ser da classe <code>function</code>, verifique.', peso: 1.0 }
+    - { condicao: 'class(conversor(c(125,345))) == "data.frame"', dica: 'Objeto de resultado do <code>conversor</code> não é um <code>data.frame</code>, verifique.', peso: 2.0 }
+    - { condicao: 'all(names(conversor(c(123,345))) %in% c("gC", "gF"))', dica: 'Os nomes das variáveis no objeto de resultado não está correto. Utilize os nomes que aparecem no enunciado.', peso: 2.0 }
+    - { condicao: 'all(conversor(0:100)$gF == 0:100)', dica: 'Os valores de entrada devem constar no objeto na variável de saída <code>gF</code> na mesma sequência do vetor original.', peso: 2.0 }
+    - { condicao: 'all(conversor(0:100)$gC == 5/9*(0:100 - 32))', dica: 'O cáculo do conversor não está correto, verifique a fórmula de conversão do enunciado e se a sequência de valores do vetor de resposta <code>gC</code> corresponde ao cáculo na  mesma ordem do vetor de entrado.', peso: 8.0 }

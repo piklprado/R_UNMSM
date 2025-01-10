@@ -1,0 +1,381 @@
+---
+title: "Análisis y visualización de datos biológicos con R"
+subtitle: "Funciones"
+author: 
+  - "Paulo Inácio Prado (PI)"
+date: '10 Enero 2025'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+self-contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(servr.daemon = TRUE)#para que no bloquee la sesión
+knitr::opts_chunk$set(prompt = TRUE, comment = "")
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(ggplot2)
+library(ggthemes)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyr)
+
+xaringanExtra::use_share_again()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_tachyons()
+
+style_solarized_light(
+  title_slide_background_color = "#586e75",# base 3
+  header_color = "#586e75",
+  text_bold_color = "#cb4b16",
+  background_color = "#fdf6e3", # base 3
+  header_font_google = google_font("DM Sans"),
+  text_font_google = google_font("Roboto Condensed", "300", "300i"),
+  code_font_google = google_font("Fira Mono"), text_font_size = "28px",
+  code_font_size="1rem"
+)
+# clipboard
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "Copy code <i class=\"fa fa-clipboard\"></i>",
+    success_text = "Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+  )
+```
+
+
+```{r prep, echo = FALSE}
+abund <- readRDS("../notaR/inventario.rds")
+matriz <- abund[[1]]
+islas.raw <- read.csv("../notaR/islas_corrigido.csv")
+islas.nombres <- names(islas.raw)
+islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
+islas <- islas.raw
+names(islas) <- islas.nombres
+## Solucion 3
+islas$species.richness.log <- log(islas$species.richness)
+islas$island.area.log<- log(islas$island.area)
+## Solucion 4
+islas$sar.type <- factor(islas$sar.type)
+islas$island.type <- factor(islas$island.type, levels = c("Oceanic", "Continental", "Habitat-Patches"))
+## Numero de ilhas por study site
+islas.N <- as.data.frame(table(islas$study.id))
+## manipulacao de nomes
+names(islas.N) <- c("study.id", "n.muestra")
+## Coercao
+islas.N$study.id <- as.character(islas.N$study.id)
+## Solución 6 #
+islas.N.6 <- islas.N$n.muestra > 6
+## nombres de los arch
+islas.ids <- islas.N$study.id[islas.N.6]
+islas.test <- islas$study.id %in% islas.ids
+## Selección por indexación de las islas de los archipielagos con N>6
+islas.sel <- islas[islas.test, ]
+reg.rich <- aggregate(species.richness ~ biogeo.realm, data = islas, mean)
+```
+
+## Introducción
+
+### ¿Qué son las funciones?
+
+- Bloques de código que encapsulan comandos. 
+- Se definen con la función base `function()`. La clase de las funciones también se llama `function`.
+
+### ¿Por qué hacer funciones?
+
+- Para que no se repitan los mismos códigos en tareas repetitivas.
+- Reduce el riesgo de inconsistencia
+- Hace el código más claro y modular.
+
+
+---
+## Sintaxis básica
+
+```r
+
+nombre_funcion <- function(argumentos) {
+  cuerpo_de_la_funcion
+}
+```
+
+- **Nombre**: como a menudo, el nombre del objeto que estás creando
+- **Argumentos**: valores de entrada, nombrados
+- **Cuerpo**: un o más comandos en secuencia
+- **Retorno**: valor que la función devuelve (último valor calculado).
+
+---
+
+## Ejemplo: Función sin argumentos
+
+```{r}
+dale <- function() {
+  n <- sample(c("chévere", "genial", "estupendo"), size = 1)
+  paste("¡Eso es", n, "!")
+}
+
+class(dale)
+
+dale()
+```
+
+---
+
+## Función con argumentos
+
+```{r}
+suma <- function(a, b) {
+  resultado <- a + b
+  return(resultado)
+}
+
+suma(3, 5)
+
+suma(a = 3, b = 5)
+```
+
+---
+
+## Valores por defecto
+
+```{r}
+elevar <- function(base, exponente = 2) {
+  base ^ exponente
+}
+
+
+elevar(3)
+
+elevar(3, 3) 
+```
+
+---
+
+## Control de flujo
+
+- **if()** es un control condicional de flujo .
+- Para otras funciones de control de flujo vease `?if`
+- **stop()**: interrumpe la execución y muestar un mensaje de error.
+- Vease `?stop` y `?`
+
+```{r}
+divide <- function(a, b){
+    if (!is.numeric(a)| !is.numeric(b)) {
+        stop("Error: a y b deben ser numéricos ")
+    }
+    else{
+        if(a == 0 & b == 0)
+            warning("0/0 es indefinida.")
+        else
+            a/b
+    }
+}
+```
+---
+## Control de flujo para manejo de errores
+
+
+```{r , error=TRUE}
+divide("a", 2)
+divide(0, 0)
+divide(5, 2)
+```
+
+
+---
+## Tareas repetidas
+
+##### Matriz de especies x sitios
+```{r }
+matriz[1:4,1:4]
+```
+##### Diversidad alfa de espécies
+
+```{r }
+pres <- matriz > 0
+(sp.por.sitio <- apply(pres, 2, sum))
+mean(sp.por.sitio)
+```
+
+##### Una función para hacerlo
+
+```{r }
+alfa <- function(matriz) {
+    pres <- matriz > 0
+    sp.por.sitio <- apply(pres, 2, sum)
+    mean(sp.por.sitio)
+}
+
+alfa(matriz)
+```
+
+---
+
+## Repetición con `sapply()`
+
+```{r }
+str(abund)
+```
+
+```{r }
+sapply(abund, alfa)
+```
+
+---
+
+## El riesgo de inconsistencia
+
+.pull-left[
+```{r pasitos, eval=FALSE }
+plot(species.richness ~ island.area,
+     data = islas, log = "xy",
+     type = "n"
+     )
+points(species.richness ~ island.area,
+       data = islas,
+       subset =
+           island.type == "Oceanic",
+       col = 1)
+points(species.richness ~ island.area,
+       data = islas,
+       subset =
+           island.type == "Continental",
+       col = 3)
+points(species.richness ~ island.area,
+       data = islas,
+       subset =
+           island.type ==
+           "Habitat-Patches",
+       col = 4)
+```
+]
+
+.pull-right[
+
+```{r, ref.label= "pasitos", eval=TRUE, echo=FALSE}
+
+```
+]
+
+---
+
+## Código más consistente y organizado
+
+.pull-left[
+
+```{r pasito2, eval=FALSE }
+pasito <- function(type, color) {
+    points(species.richness ~
+               island.area,
+           data = islas,
+           subset = island.type==type,
+           col = color)
+}
+
+plot(species.richness ~ island.area,
+     data = islas, log = "xy",
+     type = "n"
+     )
+pasito("Oceanic", 1)
+pasito("Continental", 3)
+pasito("Habitat-Patches", 4)
+```
+]
+
+.pull-right[
+
+```{r, ref.label="pasito2", eval=TRUE, echo=FALSE}
+
+```
+
+]
+
+### La ellipsis
+
+.pull-left[
+```{r , pasito3}
+pasito <- function(type, color, ...) {
+    points(species.richness ~ island.area,
+           data = islas,
+           subset = island.type==type,
+           col = color, ...)
+}
+```
+
+```{r }
+plot(species.richness ~ island.area,
+     data = islas, log = "xy",
+     type = "n"
+     )
+pasito("Oceanic", 1, pch = 2)
+pasito("Continental", 3, pch = 3)
+pasito("Habitat-Patches", 4, pch = 4)
+```
+]
+
+.pull-right[
+
+```{r , ref.label="pasito3", echo=FALSE}
+
+```
+
+]
+---
+
+## Un ejemplo mas complejo en RStudio
+
+.pull-left[
+### Tarea
+
+Crea un factor para cada variable de medida con los niveles:
+  - Pequeño: menor que el primer cuartil (<25%) de la espécie
+  - Médio: dentro del rango interquartilico (>=25% & < 75%) de la espécie
+  - Grande: igual o más grande que el último cuartil (>=75%) de la espécie
+] 
+
+
+.pull-right[
+```{r }
+data(iris)
+head(iris)
+```
+]
+
+---
+
+## Que hacer ahora
+
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("../01_introduccion/figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+
+#### Ejercícios en notaR
+
+A la seción *Criando Funções* :
+
+* **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
+* **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139
+
+
+]
+
+
