@@ -1,6 +1,6 @@
 ---
 title: "Funciones y programación"
-date: "2025-01-09" 
+date: "2025-01-10" 
 author:
   - name: Paulo Inácio Prado
 ---
@@ -19,9 +19,9 @@ xaringanExtra::embed_xaringan("04_funciones_y_programacion/slides.html")
 
 # Códigos
 
-* [Códigos demonstrados en clase](04_funciones_y_progamacion/masster_class.R)
+* [Códigos demonstrados en clase](04_funciones_y_progamacion/demonstracion.R)
 
-#### Ejercícios en notaR
+# Ejercícios en notaR
 
 A la seción *Criando Funções* :
 

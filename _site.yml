@@ -18,7 +18,7 @@ navbar:
         - text: "Gráficos"
           href: 03_graficos.html
         - text: "Funciones y programación"
-          href: 04_funciones_y_progamacion.html
+          href: 04_funciones_y_programacion.html
         - text: "Modelos estadisticos"
           href: 05_modelos_estadisticos.html
         - text: "Rmarkdown y tidyverse"
