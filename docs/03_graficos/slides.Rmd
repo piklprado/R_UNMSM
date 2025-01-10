@@ -133,6 +133,7 @@ reg.rich <- aggregate(species.richness ~ biogeo.realm, data = islas, mean)
 
 .pull-left[
 * Generan gráficos preestablecidas.
+
 * Un montón de argumentos ...
 * ... pero pocos son  obrigatorios
 * Empezaran con paquete `graphics` (*R Base graphics*)

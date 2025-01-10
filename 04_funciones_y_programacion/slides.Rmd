@@ -357,6 +357,29 @@ head(iris)
 
 ---
 
+## ¿Hacer o no hacer funciones?
+
+**¡Hágalo!** y anotálo. 
+
+En general, la pendiente temporal es:
+
+* Funciones para tu uso en un caso específico
+* Funciones para tu uso en muchos casos
+* Funciones que quieres compartir 
+* Un conjunto integrado de funciones que quieres compartir (paquetes)
+
+---
+
+## Paquetes tinen un estandar muy estricto en R
+
+##### https://cran.r-project.org/web/packages/rcompendium/vignettes/developing_a_package.html
+
+```{r , echo = FALSE}
+knitr::include_url("https://cran.r-project.org/web/packages/rcompendium/vignettes/developing_a_package.html")
+```
+---
+
+
 ## Que hacer ahora
 
 .left-column[
