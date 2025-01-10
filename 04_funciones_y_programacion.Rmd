@@ -1,0 +1,29 @@
+---
+title: "Funciones y programación"
+date: "2025-01-10" 
+author:
+  - name: Paulo Inácio Prado
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+# Slides
+
+```{r slides}
+#| eval: true
+xaringanExtra::embed_xaringan("04_funciones_y_programacion/slides.html")
+```
+
+# Códigos
+
+* [Códigos demonstrados en clase](04_funciones_y_programacion/demonstracion.R)
+
+# Ejercícios en notaR
+
+A la seción *Criando Funções* :
+
+* **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
+* **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139
