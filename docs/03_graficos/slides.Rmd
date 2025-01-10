@@ -129,7 +129,7 @@ reg.rich <- aggregate(species.richness ~ biogeo.realm, data = islas, mean)
 
 ---
 
-## Funcciones de alto nivel
+## Funciones de alto nivel
 
 .pull-left[
 * Generan gráficos preestablecidas.
