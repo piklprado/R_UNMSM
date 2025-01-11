@@ -212,7 +212,7 @@ mean(sp.por.sitio)
 ```
 ---
 
-##### Una función para hacerlo
+## Una función para hacerlo
 
 ```{r }
 alfa <- function(matriz) {
@@ -305,6 +305,7 @@ pasito("Habitat-Patches", 4)
 ]
 
 ---
+
 ### La ellipsis
 
 .pull-left[
@@ -393,7 +394,7 @@ include_graphics("../01_introduccion/figs/bora-la.jpg")
 
 #### Ejercícios en notaR
 
-A la seción *Criando Funções* :
+A la sección *Criando Funções* :
 
 * **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
 * **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139
