@@ -14,9 +14,9 @@ table(iris$Species)
 quantile(iris$Sepal.Length)
 ?quantile
 ## Calculo de los cuantiles de 25% de cada especie
-q25 <- aggregate(iris["Sepal.Length"],
-                 by=(list(iris$Species)),
-                 quantile, prob=0.25)
+(q25 <- aggregate(iris["Sepal.Length"],
+                 by=list(iris$Species),
+                 quantile, prob=0.25))
 ## Calculo de los cuantiles de 75% de cada especie
 q75 <- aggregate(iris["Sepal.Length"],
                  by=(list(iris$Species)),
@@ -30,28 +30,29 @@ rep.q25 <- merge(iris[c("Species","Sepal.Length")], q25,
 data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25)
 ## Hace lo mismo para los cuantiles de 75%
 rep.q75 <- merge(iris[c("Species","Sepal.Length")], q75,
-                 by = "Species", by.y = "Group.1")[[3]]
+                 by.x = "Species", by.y = "Group.1")[[3]]
 ## Verificando
 data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.q75)
 ## Crea un vector de caracteres del mismo tamaño de la variable Sepal.Length para rellenar
 tama <- vector(mode="character", length = length(rep.q25))
 ## Verificando
-head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.75, tama))
+head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.q75, tama))
 ## Incluye la cadena "Pequeño" en las posiciones del vector en que la variable
 ## es menor que el valor del vector emparejado rep.q25
-tama[iris[["Sepal.Length"]] < rep.q25] <- "Pequeño"
+criterio <- iris[["Sepal.Length"]] < rep.q25
+tama[criterio] <- "Pequeño"
 ## Verificando
-head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.75, tama))
+head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.q75, tama))
 ## Lo mismo para Médias
 tama[iris[["Sepal.Length"]] >= rep.q25 & iris[["Sepal.Length"]] < rep.q75] <- "Médio"
 ## Verificando
-head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.75, tama))
+head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.q75, tama))
 ## Lo mismo para Grandes
 tama[iris[["Sepal.Length"]] >= rep.q75] <- "Grande"
 ## Coerción para factor
 tama <- factor(tama, levels = c("Pequeño", "Médio", "Grande"))
 ## Verificando
-head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.75, tama))
+head(data.frame(Sepal.Length=iris[["Sepal.Length"]], rep.q25, rep.q75, tama))
 ## Aqui hacemos una tabla de frecuencias de los niveles para cada espécie
 table(tama, iris$Species)
 

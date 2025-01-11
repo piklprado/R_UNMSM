@@ -17,9 +17,10 @@ knitr::opts_chunk$set(echo = FALSE)
 xaringanExtra::embed_xaringan("04_funciones_y_programacion/slides.html")
 ```
 
-# Códigos
+# Códigos demonstrados en classe
 
-* [Códigos demonstrados en clase](04_funciones_y_programacion/demonstracion.R)
+* [Diversidad alfa](04_funciones_y_programacion/demonstracion_alfa_div.R)
+* [Factor por cuantiles](04_funciones_y_programacion/demonstracion.R)
 
 # Ejercícios en notaR
 

@@ -210,6 +210,7 @@ pres <- matriz > 0
 (sp.por.sitio <- apply(pres, 2, sum))
 mean(sp.por.sitio)
 ```
+---
 
 ##### Una función para hacerlo
 
@@ -301,9 +302,9 @@ pasito("Habitat-Patches", 4)
 ```{r, ref.label="pasito2", eval=TRUE, echo=FALSE}
 
 ```
-
 ]
 
+---
 ### La ellipsis
 
 .pull-left[
@@ -332,7 +333,6 @@ pasito("Habitat-Patches", 4, pch = 4)
 ```{r , ref.label="pasito3", echo=FALSE}
 
 ```
-
 ]
 ---
 
