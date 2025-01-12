@@ -302,7 +302,7 @@ pasito("Habitat-Patches", 4)
 
 ---
 
-### La ellipsis
+## La ellipsis
 
 .pull-left[
 

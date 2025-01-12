@@ -98,7 +98,7 @@ nombre_funcion &lt;- function(argumentos) {
 ```
 
 ```
-[1] "¡Eso es chévere !"
+[1] "¡Eso es genial !"
 ```
 
 ---
@@ -362,14 +362,15 @@ zona_1 zona_2 zona_3
 
 ---
 
-### La ellipsis
+## La ellipsis
 
 .pull-left[
 
 
 ``` r
 &gt; pasito &lt;- function(type, color, ...) {
-+     points(species.richness ~ island.area,
++     points(species.richness ~
++                island.area,
 +            data = islas,
 +            subset = island.type==type,
 +            col = color, ...)
