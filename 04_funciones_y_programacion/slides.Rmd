@@ -306,9 +306,10 @@ pasito("Habitat-Patches", 4)
 
 .pull-left[
 
-```{r , pasito3a, eval=FALSE}
+```{r , pasito3, eval=FALSE}
 pasito <- function(type, color, ...) {
-    points(species.richness ~ island.area,
+    points(species.richness ~
+               island.area,
            data = islas,
            subset = island.type==type,
            col = color, ...)
