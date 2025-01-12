@@ -207,9 +207,8 @@ Warning in divide(0, 0): 0/0 es indefinida.
 
 
 ---
-## Tareas repetidas
+## Diversidad alfa de espécies
 
-##### Matriz de especies x sitios
 
 ``` r
 &gt; matriz[1:4,1:4]
@@ -222,10 +221,9 @@ sp.44       2       0       0       0
 sp.55       2       0      13       3
 sp.73       4      28       0       0
 ```
-##### Diversidad alfa de espécies
-
 
 ``` r
+&gt; ## Diversidade alfa de especies
 &gt; pres &lt;- matriz &gt; 0
 &gt; (sp.por.sitio &lt;- apply(pres, 2, sum))
 ```
@@ -328,7 +326,7 @@ zona_1 zona_2 zona_3
 
 .pull-right[
 
-![](slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -359,7 +357,7 @@ zona_1 zona_2 zona_3
 
 .pull-right[
 
-![](slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -368,33 +366,29 @@ zona_1 zona_2 zona_3
 
 .pull-left[
 
+
 ``` r
 &gt; pasito &lt;- function(type, color, ...) {
 +     points(species.richness ~ island.area,
 +            data = islas,
 +            subset = island.type==type,
 +            col = color, ...)
-+ }
-```
-
-
-``` r
++     }
+&gt; 
 &gt; plot(species.richness ~ island.area,
 +      data = islas, log = "xy",
-+      type = "n"
-+      )
++      type = "n")
 &gt; pasito("Oceanic", 1, pch = 2)
 &gt; pasito("Continental", 3, pch = 3)
 &gt; pasito("Habitat-Patches", 4, pch = 4)
 ```
-
-![](slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
 
 
 ]
+
 ---
 
 ## Un ejemplo mas complejo en RStudio
@@ -464,7 +458,7 @@ En general, la pendiente temporal es:
 A la sección *Criando Funções* :
 
 * **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
-* **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139
+* **109.01** Una función simple: http://notar.ib.usp.br/exercicio/139
 
 
 ]

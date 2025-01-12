@@ -197,15 +197,11 @@ divide(5, 2)
 
 
 ---
-## Tareas repetidas
+## Diversidad alfa de espécies
 
-##### Matriz de especies x sitios
 ```{r }
 matriz[1:4,1:4]
-```
-##### Diversidad alfa de espécies
-
-```{r }
+## Diversidade alfa de especies
 pres <- matriz > 0
 (sp.por.sitio <- apply(pres, 2, sum))
 mean(sp.por.sitio)
@@ -309,20 +305,18 @@ pasito("Habitat-Patches", 4)
 ### La ellipsis
 
 .pull-left[
-```{r , pasito3}
+
+```{r , pasito3a, eval=FALSE}
 pasito <- function(type, color, ...) {
     points(species.richness ~ island.area,
            data = islas,
            subset = island.type==type,
            col = color, ...)
-}
-```
+    }
 
-```{r }
 plot(species.richness ~ island.area,
      data = islas, log = "xy",
-     type = "n"
-     )
+     type = "n")
 pasito("Oceanic", 1, pch = 2)
 pasito("Continental", 3, pch = 3)
 pasito("Habitat-Patches", 4, pch = 4)
@@ -335,6 +329,7 @@ pasito("Habitat-Patches", 4, pch = 4)
 
 ```
 ]
+
 ---
 
 ## Un ejemplo mas complejo en RStudio
@@ -397,7 +392,7 @@ include_graphics("../01_introduccion/figs/bora-la.jpg")
 A la sección *Criando Funções* :
 
 * **109.02** Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140 
-* **109.01** Una función simples: http://notar.ib.usp.br/exercicio/139
+* **109.01** Una función simple: http://notar.ib.usp.br/exercicio/139
 
 
 ]
