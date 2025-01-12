@@ -11,7 +11,7 @@
       ],
       "date": "2025-01-06",
       "contents": "\nSlides\n\n\n\n\n\nTutoriales\nA continuación está una lista de los tutoriales de esta unidad de aprendizaje.\nEjecute los tutoriales en Rstudio, con el paquete swirl. Consulta nuestra página\nde inicio para saber cómo hacerlo.\nPara ver la transcripción de un tutorial, haz clic en su nombre en la lista:\n1: Mi primera session\n2: Objetos Tipos de Datos y Operaciones Basicas\n3: Secuencias\n4: Vectores Logicos y de Caracteres\n5: Valores Faltantes\nDatos\nConjuntos de datos que utilizaremos en esa unidad\nusda_plant_data.csv: especies de plantas de Estados Unidos. Fuente: PLANTS database\njbi14149-sup-0002-appendixs2.xlsx: Número de especies de hormigas en islas y manchas de hábitat en varios sítios por el mundo. Fuente: Ohyama et al. 2021. The species–area relationship in ant ecology. Journal of Biogeography 48: 1824-1841..\n\n\n\n",
-      "last_modified": "2025-01-12T02:26:57-03:00"
+      "last_modified": "2025-01-12T02:31:42-03:00"
     },
     {
       "path": "02_manipulacion_de_datos.html",
@@ -24,7 +24,7 @@
       ],
       "date": "2025-01-07",
       "contents": "\nSlides\n\n\n\n\n\nTutoriales\nA continuación está una lista de los tutoriales de esta unidad de aprendizaje.\nEjecute los tutoriales en Rstudio, con el paquete swirl. Consulta nuestra página\nde inicio para saber cómo hacerlo.\nPara ver la transcripción de un tutorial, haz clic en su nombre en la lista:\n6: Leer y escribir datos\n7. Subconjuntos de datos\n8. Funciones *apply\nAlternativas\nPara el tema de funciones lapply y sapply puedes tambiém correr el\ntutorial del curso en swril Programando en R.\nPara eso ingressa eses comandos en la consola de R:\n\n\nlibrary(swirl)\ninstall_course_github('josersosa','Programando_en_R')\nswirl()\n\n\nEscoge el curso “Programando en R” e entonces la lección “10: lapply and sapply”.\n\n\n\n",
-      "last_modified": "2025-01-12T02:26:58-03:00"
+      "last_modified": "2025-01-12T02:31:43-03:00"
     },
     {
       "path": "03_graficos.html",
@@ -37,7 +37,7 @@
       ],
       "date": "2025-01-09",
       "contents": "\nSlides\n\n\n\n\n\nTutoriales\nDel curso en swril Programación estadística en R, de Ismael Frenández, UNAM.\nPara eso ingressa eses comandos en la consola de R:\n\n\nlibrary(swirl)\nswirl::install_course_github(\"ifunam\", \"programacion-estadistica-r\")\nswirl()\n\n\nEscoge el curso “programacion-estadistica-r” e entonces las lecciones\n7: Graficacion\n8: Parametros en el Sistema de Graficos\n\n\n\n",
-      "last_modified": "2025-01-12T02:26:59-03:00"
+      "last_modified": "2025-01-12T02:31:43-03:00"
     },
     {
       "path": "04_funciones_y_programacion.html",
@@ -50,7 +50,7 @@
       ],
       "date": "2025-01-10",
       "contents": "\nSlides\n\n\n\n\n\nCódigos demonstrados en classe\nDiversidad alfa\nFactor por cuantiles\nEjercícios en notaR\nA la sección Criando Funções :\n109.02 Indices de diversidad de especies: http://notar.ib.usp.br/exercicio/140\n109.01 Una función simples: http://notar.ib.usp.br/exercicio/139\n\n\n\n",
-      "last_modified": "2025-01-12T02:26:59-03:00"
+      "last_modified": "2025-01-12T02:31:44-03:00"
     },
     {
       "path": "05_rmarkdown.html",
@@ -63,7 +63,7 @@
       ],
       "date": "2025-01-13",
       "contents": "\npágina en construcción\nSlides\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2025-01-12T02:27:00-03:00"
+      "last_modified": "2025-01-12T02:31:45-03:00"
     },
     {
       "path": "index.html",
@@ -71,7 +71,7 @@
       "description": "Doctorado em Ciencias Biológicas, UNMSM, Lima, 2025\n",
       "author": [],
       "contents": "\nBienvenida(o) a nuestro curso.\nEste es un curso creado por un estudiante de biología de toda la vida para ayudar a otros estudiantes a aprender R más fácil y rápido que él mismo.\n\n«Una de las cosas más importantes que puedes hacer es dedicar tiempo a aprender un verdadero lenguaje de programación. Aprender a programar es como aprender otro idioma: lleva tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera cuesta empinada de la curva de aprendizaje, las ganancias como científico son enormes. La programación no sólo te liberará de la camisa de fuerza de los paquetes estadísticos, sino que agudizará tu capacidad analítica y ampliará tus horizontes de modelización ecológica y estadística.»\n\n— Traducción algo libre de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.\n\nProfesor responsable\nPaulo Inácio Prado, Instituto de Biociências, Universidade de São Paulo, Brasil.\nPrograma\n\n\nFecha\n\n\nTema\n\n\n06/Enero\n\n\nIntroducción al lenguage R\n\n\n07/Enero\n\n\nManipulación de datos\n\n\n08/Enero\n\n\nManipulación de datos (cont.)\n\n\n09/Enero\n\n\nGráficos\n\n\n10/Enero\n\n\nFunciones y programación\n\n\n13/Enero\n\n\nRmarkdown\n\n\nBibliografia\nCrawley, M. J. 2014. Statistics: an introduction using R. John Wiley &\nSons.\nHernández, F & Usuga O. 2024. Manual de R.\nLong, J. D., & Teetor, P. (2019). R cookbook: proven recipes for data\nanalysis, statistics, and graphics. O'Reilly Media. 2nd Ed.\nVerzani, J. 2014. Using R for introductory statistics. Chapman and\nHall/CRC. 2nd Ed.\nWickham, H., Çetinkaya-Rundel, M., & Grolemund, G. 2023. R for data\nscience. O'Reilly Media, Inc. 2nd Ed.\n1a Edición en Castellano\nXie, Y. Allaire, J. J., Grolemund, G. 2023. R Markdown: The Definitive\nGuide. Chapman and Hall/CRC.\nXiménez , C, & Revuelta, J. 2022. Análisis de Datos en Lenguaje R. UAM\nEdiciones, Madrid.\nTutoriales\nUtilizaremos tutoriales programados con el paquete swirl. En la sección «Instale nuestros tutoriales» se explica cómo instalar el paquete y cargar el archivo con los tutoriales.\nIMPORTANTE: Cada día de clase habrá una nueva versión de los tutoriales. Así que asegúrese siempre de atualizar los tutoriales.\nVéanse también las orientaciones para los estudiantes en el sitio de swril.\nPreparate para el curso\nInstale R y RStudio\nDispondremos de computadoras durante las lecciones, pero le\nrecomendamos que también instale R en una computadora de trabajo para\nque pueda realizar las tareas y ejercicios después de las lecciones.\nVe a la página de R, elige una réplica\n(el más cercano a tu ubicación) y sigue las instrucciones para instalar R\nsegún tu sistema operativo.\nVe a la página de instalación de R Studio y sigue las instrucciones para instalar R Studio según tu sistema operativo1.\nEn RStudio instale los paquete swirl. Has clic en la opción de menu “Tools”, y entonces en la opción “Install packages”. En la ventana de diálogo escriba swril en la casilla “Package” y pulse el botón “Install”.\n\n\nInstale nuestros tutoriales\nHay dos modos de hacerlo. Le recomendamos que intente el primero.\nPor github\nAbre la R consola o RStudio. En la línea de comando escribe y pulse ENTER a cada comando:\n\n\nlibrary(swirl)\nuninstall_course(\"Curso_R_UNMSM\")\ninstall_course_github(\"pilaboratory\", \"Curso_R_UNMSM\")\n\n\nDescargando el archivo\nDescargue el archivo de los tutoriales\nAbre el programa RStudio. En la línea de comando escribe library(swirl)\nEn la línea de comando de RStudio escribe install_course()\nSe abrirá una ventana de selección de archivos. Navegue por los directorios hasta encontrar el archivo que ha descargado y haga clic en él.\nDebes ver el mensage Course installed successfully!\nConozca a notaR\nHaremos ejercicios en la plataforma notaR, que es un sistema en línea\npara comprobar códigos en R. Ve a la página del servicio notaR en\nUSP y busca el ejercício “Bienvenido a\nnotaR”. Intenta resolverlo.\nConsulte también las instrucciones para envío de respuestas a notaR.\nRstudio es uno de los muchos IDE para programar en R. Si ya usas otro IDE puede quedarte con él en su computadora de trabajo. Pero en las computadores en la class usaremos RStudio.\n\n↩︎\n",
-      "last_modified": "2025-01-12T02:27:01-03:00"
+      "last_modified": "2025-01-12T02:31:45-03:00"
     }
   ],
   "collections": []
