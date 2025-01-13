@@ -21,6 +21,7 @@ arquip$ecoregion <- factor(arquip$ecoregion)
 arquip$island.type <- factor(arquip$island.type,
                                     levels = c("Oceanic", "Continental", "Mainland Island"),
                                     labels = c("Oceanic", "Continental", "Habitat-Patches"))
+
 ## Solucion 1
 islas.raw <- read.csv("islas.csv")
 islas.nombres <- names(islas.raw)
