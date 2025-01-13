@@ -1,0 +1,344 @@
+---
+title: "Análisis y visualización de datos biológicos con R"
+subtitle: "Rmarkdown"
+author: 
+  - "Paulo Inácio Prado (PI)"
+date: '13 Enero 2025'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+self-contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(servr.daemon = TRUE)#para que no bloquee la sesión
+knitr::opts_chunk$set(prompt = TRUE, comment = "")
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(ggplot2)
+library(ggthemes)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyr)
+
+xaringanExtra::use_share_again()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_tachyons()
+
+style_solarized_light(
+  title_slide_background_color = "#586e75",# base 3
+  header_color = "#586e75",
+  text_bold_color = "#cb4b16",
+  background_color = "#fdf6e3", # base 3
+  header_font_google = google_font("DM Sans"),
+  text_font_google = google_font("Roboto Condensed", "300", "300i"),
+  code_font_google = google_font("Fira Mono"), text_font_size = "28px",
+  code_font_size="1rem"
+)
+# clipboard
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "Copy code <i class=\"fa fa-clipboard\"></i>",
+    success_text = "Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+  )
+```
+
+
+```{r prep, echo = FALSE}
+abund <- readRDS("../notaR/inventario.rds")
+matriz <- abund[[1]]
+islas.raw <- read.csv("../notaR/islas.csv")
+islas.nombres <- names(islas.raw)
+islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
+islas <- islas.raw
+names(islas) <- islas.nombres
+## Solucion 3
+islas$species.richness.log <- log(islas$species.richness)
+islas$island.area.log<- log(islas$island.area)
+## Solucion 4
+islas$sar.type <- factor(islas$sar.type)
+islas$island.type <- factor(islas$island.type, levels = c("Oceanic", "Continental", "Habitat-Patches"))
+## Numero de ilhas por study site
+islas.N <- as.data.frame(table(islas$study.id))
+## manipulacao de nomes
+names(islas.N) <- c("study.id", "n.muestra")
+## Coercao
+islas.N$study.id <- as.character(islas.N$study.id)
+## Solución 6 #
+islas.N.6 <- islas.N$n.muestra > 6
+## nombres de los arch
+islas.ids <- islas.N$study.id[islas.N.6]
+islas.test <- islas$study.id %in% islas.ids
+## Selección por indexación de las islas de los archipielagos con N>6
+islas.sel <- islas[islas.test, ]
+reg.rich <- aggregate(species.richness ~ biogeo.realm, data = islas, mean)
+```
+
+## Programación literaria (literate programming)
+
+El número de espécies por sitio fue :
+
+```{r , echo=FALSE}
+(sp.por.sitio <- apply(matriz>0, 2, sum))
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+```{r , echo=FALSE}
+mean(sp.por.sitio)
+```
+--
+
+```{r }
+(sp.por.sitio <- apply(matriz>0, 2, sum))
+mean(sp.por.sitio)
+```
+
+---
+
+## Programación letrada
+
+.left-column[
+#### Donald Knuth
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("KnuthAtOpenContentAlliance.jpg")
+```
+]
+
+.right-column[
+* Un programa letrado describe en lenguaje natural problemas y sus soluciones;
+* Las explicaciones se intercalam con bloques de códigos, que son interpretados por la computadora.
+* La **compilación** de programas letrados genera un texto intercalado de resultados de los códigos.
+* Así, se desarrollan programas por el flujo del pensamiento humano y no pela forma imposta por computadoras.
+]
+
+---
+
+
+## Rmarkdown es un ejemplo
+
+````markdown
+
+El número de espécies por sitio fue :
+
+`r ''````{r , echo=FALSE}
+(sp.por.sitio <- apply(matriz>0, 2, sum))
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+`r ''````{r , echo=FALSE}
+mean(sp.por.sitio)
+
+```
+
+````
+
+---
+
+
+## Rmarkdown
+
+* Un documento que combina texto y código en un mismo archivo. 
+* Son **compilados** por programas que generan reportes en muchos formatos (*e.g* html, pdf, docx, ...)
+* Los reportes a menudo contienen texto, resultados de los códigos y también los próprios códigos. 
+* Estos archivos tienen la extensión `.Rmd`.
+*  En R, el paquete mas usado para compilar archivos `.Rmd` es `knitr`.
+* Rstudio tiene `knitr` cargado por defecto, asi como un paquete que lo utiliza, `rmarkdown`. 
+
+---
+
+## Estructura de un archivo Rmarkdown
+
+### Encabezado YAML
+
+* Ubicado al início del archivo Rmarkdown
+* Contiene :
+   * metadados, como titulo, autor, fecha
+   * parámetros del archivo de salida, como tipo de archivo y *layout* (temas).
+ 
+
+```
+---
+title: "Ejemplo de R Markdown"
+author: "Tu Nombre"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```
+
+---
+
+## Estructura de un archivo Rmarkdown
+
+### Texto en markdown
+
+* Texto en lenguage natural con un sintaxis simples para estruturarlo:
+  * Formatos de texto (simples, enfasis, cursivo)
+  * Títulos y subtítulos
+  * Listas, tablas, citas
+* La sintaxis permite inclusión de enlaces y imágenes.
+
+
+---
+
+## Markdown: ejemplos
+
+.pull-left[
+
+```markdown
+# Sección
+ Lista desordenada:
+ *  *cursivas*
+ *  **destaque**
+### Subsección
+Sintaxis de Latex para matemática:
+$e^{i \pi} + 1 = 0$
+
+```
+]
+
+.pull-right[
+# Sección
+ Lista desordenada:
+* *cursivas*
+* **destaque**
+### Subsección
+Sintaxis de Latex para matemática:
+$e^{i \pi} + 1 = 0$
+]
+---
+
+## Markdown
+
+* Para una guía rápida véase https://rmarkdown.rstudio.com/authoring_basics.html
+
+```{r , echo = FALSE}
+knitr::include_url("https://rmarkdown.rstudio.com/authoring_basics.html")
+```
+---
+
+## Estructura de un archivo Rmarkdown
+
+### Bloques de código en R (*chunks*)
+
+* Comienza y termina con tres tildes invertidas (```` `) seguidas de una etiqueta que indica el lenguaje ({r}).
+* En la etiqueta puedes agregar opciones para controlar cómo el bloque ejecuta el código o como se muestra y a sus resultados.
+
+.pull-left[
+
+````markdown
+
+`r ''````{r , echo=FALSE}
+mean(sp.por.sitio)
+
+```
+````
+
+``` {r , echo=FALSE}
+mean(sp.por.sitio)
+```
+]
+
+.pull-right[
+
+````markdown
+
+`r ''````{r , echo=TRUE}
+mean(sp.por.sitio)
+
+```
+````
+
+``` {r , echo=TRUE}
+mean(sp.por.sitio)
+```
+]
+
+---
+
+## Como luce un archivo Rmarkdown
+
+````markdown
+---
+title: "Calculo de diversidade alfa"
+author: "Paulo Inácio"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+El número de espécies por sitio fue :
+
+`r ''````{r , echo=FALSE}
+(sp.por.sitio <- apply(matriz>0, 2, sum))
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+`r ''````{r , echo=FALSE}
+mean(sp.por.sitio)
+
+```
+
+````
+
+---
+## Como luce un archivo Rmarkdown
+
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("example_rmd_output.png")
+```
+
+---
+
+## Ayuda en Rmarkdown
+
+Hay muchísimos documentos online. Para una guía rápida véase https://rstudio.github.io/cheatsheets/
+
+```{r , echo = FALSE}
+knitr::include_url("https://rstudio.github.io/cheatsheets/translations/spanish/rmarkdown_es.pdf")
+```
+
+---
+
+## Ventajas
+
+R Markdown permite compilar el código, los resultados y el texto en un único archivo de salida. 
+
+* **Reproducilidad** : Rmd + datos son todo lo que necesitas para reproducir las analisis y verificar los resultados.
+* **Eficiencia** : Si los datos cambian o notas un error en sus analisis, puedes actualizar todo el reporte simplemente volviendo a ejecutarlo, sin tener que copiar y pegar resultados nuevamente.
+* **Automatización**: reportes periodicos automáticos con diferentes conjuntos de datos o parámetros.
+* **Flexibilidad de salidas**: puedes generar el mismo reporte en diferentes formatos sin esfuerzo adicional (html, pdf, word, presentaciones).
+
+---
+
+## Que hacer ahora
+
+.left-column[
+```{r , echo=FALSE, fig.align='center'}
+include_graphics("../01_introduccion/figs/bora-la.jpg")
+```
+]
+
+.right-column[
+
+
+#### Ejercício: empeza su reporte final
+
+* En la unidad "05 - Rmarkdown" véase sección "Ejercício".
+
+]
+
+

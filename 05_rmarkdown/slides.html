@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis y visualización de datos biológicos con R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Paulo Inácio Prado (PI)" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy code <i class=\"fa fa-clipboard\"><\/i>","success":"Copied! <i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Not copied 😕 <i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Análisis y visualización de datos biológicos con R
+]
+.subtitle[
+## Rmarkdown
+]
+.author[
+### Paulo Inácio Prado (PI)
+]
+.date[
+### 13 Enero 2025
+]
+
+---
+
+
+
+
+
+
+
+
+
+## Programación literaria (literate programming)
+
+El número de espécies por sitio fue :
+
+
+```
+ sitio_1  sitio_2  sitio_3  sitio_4  sitio_5  sitio_6  sitio_7  sitio_8  sitio_9 sitio_10 
+      10        9        6        5        8        7        9        6        8        7 
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+
+```
+[1] 7.5
+```
+--
+
+
+``` r
+&gt; (sp.por.sitio &lt;- apply(matriz&gt;0, 2, sum))
+```
+
+```
+ sitio_1  sitio_2  sitio_3  sitio_4  sitio_5  sitio_6  sitio_7  sitio_8  sitio_9 sitio_10 
+      10        9        6        5        8        7        9        6        8        7 
+```
+
+``` r
+&gt; mean(sp.por.sitio)
+```
+
+```
+[1] 7.5
+```
+
+---
+
+## Programación letrada
+
+.left-column[
+#### Donald Knuth
+&lt;img src="KnuthAtOpenContentAlliance.jpg" width="293" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+* Un programa letrado describe en lenguaje natural problemas y sus soluciones;
+* Las explicaciones se intercalam con bloques de códigos, que son interpretados por la computadora.
+* La **compilación** de programas letrados genera un texto intercalado de resultados de los códigos.
+* Así, se desarrollan programas por el flujo del pensamiento humano y no pela forma imposta por computadoras.
+]
+
+---
+
+
+## Rmarkdown es un ejemplo
+
+````markdown
+
+El número de espécies por sitio fue :
+
+```{r , echo=FALSE}
+(sp.por.sitio &lt;- apply(matriz&gt;0, 2, sum))
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+```{r , echo=FALSE}
+mean(sp.por.sitio)
+
+```
+
+````
+
+---
+
+
+## Rmarkdown
+
+* Un documento que combina texto y código en un mismo archivo. 
+* Son **compilados** por programas que generan reportes en muchos formatos (*e.g* html, pdf, docx, ...)
+* Los reportes a menudo contienen texto, resultados de los códigos y también los próprios códigos. 
+* Estos archivos tienen la extensión `.Rmd`.
+*  En R, el paquete mas usado para compilar archivos `.Rmd` es `knitr`.
+* Rstudio tiene `knitr` cargado por defecto, asi como un paquete que lo utiliza, `rmarkdown`. 
+
+---
+
+## Estructura de un archivo Rmarkdown
+
+### Encabezado YAML
+
+* Ubicado al início del archivo Rmarkdown
+* Contiene :
+   * metadados, como titulo, autor, fecha
+   * parámetros del archivo de salida, como tipo de archivo y *layout* (temas).
+ 
+
+```
+---
+title: "Ejemplo de R Markdown"
+author: "Tu Nombre"
+date: "2025-01-13"
+output: html_document
+---
+```
+
+---
+
+## Estructura de un archivo Rmarkdown
+
+### Texto en markdown
+
+* Texto en lenguage natural con un sintaxis simples para estruturarlo:
+  * Formatos de texto (simples, enfasis, cursivo)
+  * Títulos y subtítulos
+  * Listas, tablas, citas
+* La sintaxis permite inclusión de enlaces y imágenes.
+
+
+---
+
+## Markdown: ejemplos
+
+.pull-left[
+
+```markdown
+# Sección
+ Lista desordenada:
+ *  *cursivas*
+ *  **destaque**
+### Subsección
+Sintaxis de Latex para matemática:
+$e^{i \pi} + 1 = 0$
+
+```
+]
+
+.pull-right[
+# Sección
+ Lista desordenada:
+* *cursivas*
+* **destaque**
+### Subsección
+Sintaxis de Latex para matemática:
+`\(e^{i \pi} + 1 = 0\)`
+]
+---
+
+## Markdown
+
+* Para una guía rápida véase https://rmarkdown.rstudio.com/authoring_basics.html
+
+&lt;iframe src="https://rmarkdown.rstudio.com/authoring_basics.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+---
+
+## Estructura de un archivo Rmarkdown
+
+### Bloques de código en R (*chunks*)
+
+* Comienza y termina con tres tildes invertidas (```` `) seguidas de una etiqueta que indica el lenguaje ({r}).
+* En la etiqueta puedes agregar opciones para controlar cómo el bloque ejecuta el código o como se muestra y a sus resultados.
+
+.pull-left[
+
+````markdown
+
+```{r , echo=FALSE}
+mean(sp.por.sitio)
+
+```
+````
+
+
+```
+[1] 7.5
+```
+]
+
+.pull-right[
+
+````markdown
+
+```{r , echo=TRUE}
+mean(sp.por.sitio)
+
+```
+````
+
+
+``` r
+&gt; mean(sp.por.sitio)
+```
+
+```
+[1] 7.5
+```
+]
+
+---
+
+## Como luce un archivo Rmarkdown
+
+````markdown
+---
+title: "Calculo de diversidade alfa"
+author: "Paulo Inácio"
+date: "2025-01-13"
+output: html_document
+---
+
+El número de espécies por sitio fue :
+
+```{r , echo=FALSE}
+(sp.por.sitio &lt;- apply(matriz&gt;0, 2, sum))
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+```{r , echo=FALSE}
+mean(sp.por.sitio)
+
+```
+
+````
+
+---
+## Como luce un archivo Rmarkdown
+
+&lt;img src="example_rmd_output.png" width="1673" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Ayuda en Rmarkdown
+
+Hay muchísimos documentos online. Para una guía rápida véase https://rstudio.github.io/cheatsheets/
+
+&lt;iframe src="https://rstudio.github.io/cheatsheets/translations/spanish/rmarkdown_es.pdf" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+---
+
+## Ventajas
+
+R Markdown permite compilar el código, los resultados y el texto en un único archivo de salida. 
+
+* **Reproducilidad** : Rmd + datos son todo lo que necesitas para reproducir las analisis y verificar los resultados.
+* **Eficiencia** : Si los datos cambian o notas un error en sus analisis, puedes actualizar todo el reporte simplemente volviendo a ejecutarlo, sin tener que copiar y pegar resultados nuevamente.
+* **Automatización**: reportes periodicos automáticos con diferentes conjuntos de datos o parámetros.
+* **Flexibilidad de salidas**: puedes generar el mismo reporte en diferentes formatos sin esfuerzo adicional (html, pdf, word, presentaciones).
+
+---
+
+## Que hacer ahora
+
+.left-column[
+&lt;img src="../01_introduccion/figs/bora-la.jpg" width="987" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+
+#### Ejercício: empeza su reporte final
+
+* En la unidad "05 - Rmarkdown" véase sección "Ejercício".
+
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

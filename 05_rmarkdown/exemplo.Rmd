@@ -1,0 +1,17 @@
+---
+title: "Calculo de diversidade alfa"
+author: "Paulo Inácio"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+El número de espécies por sitio fue :
+
+```{r  especies-por-sitio}
+(sp.por.sitio <- apply(matriz>0, 2, sum))
+```
+De donde calculamos la alfa diversidade, es decir, el promedio de riqueza por sítio:
+
+```{r alfa}
+mean(sp.por.sitio)
+```

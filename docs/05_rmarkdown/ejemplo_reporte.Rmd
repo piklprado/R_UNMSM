@@ -1,0 +1,13 @@
+---
+title: "Reporte final del Curso"
+subtitle: "Análisis y visualización de datos biológicos con R"
+output: html_document
+author: "Paulo Inácio Prado"
+date: "`r Sys.Date()`"
+---
+
+# Introducción
+
+En este reporte están los códigos de solución de los ejercícios del curso "Análisis y visualización de datos biológicos con R". 
+
+Los ejercícios utilizam los datos del artículo de [Oyhama et al. 2021](https://onlinelibrary.wiley.com/doi/10.1111/jbi.14149)

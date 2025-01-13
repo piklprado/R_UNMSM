@@ -8,12 +8,16 @@ author:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-**página en construcción**
+
 
 # Slides
 
 ```{r slides}
 #| eval: true
-xaringanExtra::embed_xaringan("06_remarkdown_y_tidyverse/slides.html")
+xaringanExtra::embed_xaringan("05_rmarkdown/slides.html")
 ```
 
+
+# Ejercícios
+
+* [Reporte final en Rmarkdown](05_rmarkdown/ejercicio_final.html)
