@@ -38,7 +38,7 @@ Escoge el curso "`programacion-estadistica-r`" e entonces las lecciones
 
 Aquí se reproducen los enunciados de los ejercícios de notaR de esa unidad.
 
-## 07. Graficación
+## Graficación
 
 En este ejercicio usaremos el  *data frame* `islas.sel`,  que hás creado y trabajado en los ejercícios precedentes. 
 

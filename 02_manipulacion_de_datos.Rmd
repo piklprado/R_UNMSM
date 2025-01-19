@@ -47,7 +47,7 @@ Escoge el curso "Programando en R" e entonces la lección "10: lapply and sapply
 
 Aquí se reproducen los enunciados de los ejercícios de notaR de esa unidad.
 
-## 03. Añadir variables
+## Añadir variables
 
 En este ejercicio vamos a añadir nuevas variables al *data frame* `islas` que hás creado en el ejercício [Leyendo Datos](http://notar.ib.usp.br/exercicio/128).
 
@@ -57,7 +57,7 @@ En este ejercicio vamos a añadir nuevas variables al *data frame* `islas` que h
 
 3. Añade una otra variable al objeto `islas` que contenga el logaritmo natural de la variable `island.area`. Esa nueva variable debe llamarse `island.area.log`.
 
-## 04. Variables categóricas
+## Variables categóricas
 
 En este ejercicio convertiremos en factores variables de los *data frame* `islas` y `archipelagos` que hás creado en los ejercícios 1, 2 y 3. 
 
@@ -73,7 +73,7 @@ En este ejercicio convertiremos en factores variables de los *data frame* `islas
 
 6. Convierte la variable `island.type` del objeto `archipielagos` en un factor. Los niveles dese factor devem ser `Oceanic`, `Continental`, `Habitat-Patches`, en este orden. Tenga en cuenta que deberá utilizar el argumento `labels` de la función `factor` para renombrar los niveles y el argumento `levels` para reordenar los niveles. 
 
-## 05. Agregación
+## Agregación
 
 En este ejercicio usaremos el  *data frame* `islas` que hás creado y trabajado en los ejercícios precedentes. 
 
@@ -89,7 +89,7 @@ En este ejercicio usaremos el  *data frame* `islas` que hás creado y trabajado 
 
 6. Convierta la variable `study.id` del objeto `islas.N` para la clase `character`.
 
-## 06. Filtrado de datos
+## Filtrado de datos
 
 En este ejercicio usaremos los  *data frames* `islas`, `archipielagos` y `islas.N` que hás creado y trabajado en los ejercícios precedentes. 
 

@@ -32,7 +32,7 @@ A la sección *Criando Funções* :
 
 Abajo se reproducen los enunciados de los ejercícios de notaR de esa unidad:
 
-## 109.01. Una función simples
+## Una función simples
 
 Construye una funcion nombranda  `conversor` que recibe un vector numérico de valores de temperatura en grados Fahrenheit y devuelve un dataframe con dos columnas. Una colunma deve nombrarse (`gC`) e llevar todos los valores em grados Celsius que resultan de la conversión. La otra colunma del dataframe debe nombrarse `gF` e contener ter los  valores em Fahrenheit que se ingresaran.
 
