@@ -2500,9 +2500,24 @@ Sílabo
 <h1 id="ejercícios-en-notar">Ejercícios en notaR</h1>
 <p>A la sección <em>Criando Funções</em> :</p>
 <ul>
-<li><strong>109.02</strong> Indices de diversidad de especies: <a href="http://notar.ib.usp.br/exercicio/140" class="uri">http://notar.ib.usp.br/exercicio/140</a></li>
 <li><strong>109.01</strong> Una función simples: <a href="http://notar.ib.usp.br/exercicio/139" class="uri">http://notar.ib.usp.br/exercicio/139</a></li>
+<li><strong>109.02</strong> Indices de diversidad de especies: <a href="http://notar.ib.usp.br/exercicio/140" class="uri">http://notar.ib.usp.br/exercicio/140</a></li>
 </ul>
+<p>Abajo se reproducen los enunciados de los ejercícios de notaR de esa unidad:</p>
+<h2 id="una-función-simples">109.01. Una función simples</h2>
+<p>Construye una funcion nombranda <code>conversor</code> que recibe un vector numérico de valores de temperatura en grados Fahrenheit y devuelve un dataframe con dos columnas. Una colunma deve nombrarse (<code>gC</code>) e llevar todos los valores em grados Celsius que resultan de la conversión. La otra colunma del dataframe debe nombrarse <code>gF</code> e contener ter los valores em Fahrenheit que se ingresaran.</p>
+<p>La ecuación matemática de equivalencia entre grados Celsius y Fahrenheit es:</p>
+<p><span class="math display">\[^{\circ}C = \frac{5}{9}(^{\circ}F - 32)\]</span></p>
+<h2 id="indices-de-diversidad-de-especies">Indices de diversidad de especies</h2>
+<p>Haz una función llamada <code>shannon</code> para calcular el indice de diversidad de Shannon y una otra función nombrada <code>simpson</code> para calcular el indice de Simpson de un vector de valores numéricos positivos.</p>
+<p>Considere que:</p>
+<ol type="1">
+<li>El objeto de entrada deve ser un vector con la abundancia de cada espécie en una amostra.</li>
+<li>Su función debe manejar la posibilidade de valores faltantes (<code>NA</code>), sacandoles para entonces hacer los calculos.</li>
+<li>El indiced e Shannon es: <span class="math inline">\(H = -\sum p_i \ln (p_i)\)</span> y el índice de simpson es <span class="math inline">\(D=\sum (p_i)^2\)</span>, donde <span class="math inline">\(p_i\)</span> es la proporción de indivíduos de cada espécie <span class="math inline">\(n_i\)</span> en respecto al número total de indivíduos <span class="math inline">\(N\)</span> en la muestra: <span class="math inline">\(p_i = n_i/N\)</span>.</li>
+<li>El logaritmo de zero retorna <code>NaN</code>. Eso importa para el calculo del indice de diversidad de Shannon.</li>
+<li>Debes usar el logaritmo natural para el cálculo del indice de Shannon.</li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2511,6 +2526,15 @@ Sílabo
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

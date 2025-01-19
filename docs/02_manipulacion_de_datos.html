@@ -2514,6 +2514,46 @@ tutorial del curso en swril <a href="https://swirlstats.com/scn/programando.html
 </div>
 </div>
 <p>Escoge el curso “Programando en R” e entonces la lección “10: lapply and sapply”.</p>
+<h1 id="ejercicios">Ejercicios</h1>
+<p>Aquí se reproducen los enunciados de los ejercícios de notaR de esa unidad.</p>
+<h2 id="añadir-variables">03. Añadir variables</h2>
+<p>En este ejercicio vamos a añadir nuevas variables al <em>data frame</em> <code>islas</code> que hás creado en el ejercício <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>.</p>
+<ol type="1">
+<li><p>Inicia tu script R con el código que has utilizado para resolver el ejercicio <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>. Este código debe crear el objeto <code>islas</code> en tu espacio de trabajo.</p></li>
+<li><p>Añade una variable al objeto <code>islas</code> que contenga el logaritmo natural de la variable <code>species.richness</code>. Esa nueva variable debe llamarse <code>species.richness.log</code>.</p></li>
+<li><p>Añade una otra variable al objeto <code>islas</code> que contenga el logaritmo natural de la variable <code>island.area</code>. Esa nueva variable debe llamarse <code>island.area.log</code>.</p></li>
+</ol>
+<h2 id="variables-categóricas">04. Variables categóricas</h2>
+<p>En este ejercicio convertiremos en factores variables de los <em>data frame</em> <code>islas</code> y <code>archipelagos</code> que hás creado en los ejercícios 1, 2 y 3.</p>
+<ol type="1">
+<li><p>Inicia tu script R con los códigos que has utilizado para resolver los ejercicios <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>, <a href="http://notar.ib.usp.br/exercicio/130">Leyendo Más Datos</a> y <a href="http://notar.ib.usp.br/exercicio/131">Añadir Variables</a>. Con eso tu código para este ejercício debe crear los objetos <code>islas</code> y <code>archipielagos</code> en tu espacio de trabajo.</p></li>
+<li><p>Convierte la variable <code>sar.type</code> del objeto <code>islas</code> en un factor.</p></li>
+<li><p>Convierte la variable <code>island.type</code> del objeto <code>islas</code> en un factor. Los niveles dese factor devem ser <code>Oceanic</code>, <code>Continental</code>, <code>Habitat-Patches</code>, en este orden. Tenga en cuenta que deberá utilizar el argumento <code>levels</code> de la función <code>factor</code> para reordenar los niveles.</p></li>
+<li><p>Convierte la variable <code>sar.type</code> del objeto <code>archipielagos</code> en un factor.</p></li>
+<li><p>Convierte la variable <code>ecoregion</code> del objeto <code>archipielagos</code> en un factor.</p></li>
+<li><p>Convierte la variable <code>island.type</code> del objeto <code>archipielagos</code> en un factor. Los niveles dese factor devem ser <code>Oceanic</code>, <code>Continental</code>, <code>Habitat-Patches</code>, en este orden. Tenga en cuenta que deberá utilizar el argumento <code>labels</code> de la función <code>factor</code> para renombrar los niveles y el argumento <code>levels</code> para reordenar los niveles.</p></li>
+</ol>
+<h2 id="agregación">05. Agregación</h2>
+<p>En este ejercicio usaremos el <em>data frame</em> <code>islas</code> que hás creado y trabajado en los ejercícios precedentes.</p>
+<ol type="1">
+<li><p>Inicia tu script R con los códigos que has utilizado para resolver los ejercicios <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>, <a href="http://notar.ib.usp.br/exercicio/130">Leyendo Más Datos</a>, <a href="http://notar.ib.usp.br/exercicio/131">Añadir Variables</a> y <a href="http://notar.ib.usp.br/exercicio/132">Variables Categoricas</a>. Con eso tu código para este ejercício debe crear los objetos <code>islas</code> y <code>archipielagos</code> en tu espacio de trabajo. (En este ejercício necesitas solamente del objeto <code>islas</code>, pero mantenga los <em>scripts</em> de todos los ejercícios en su código).</p></li>
+<li><p>Aplica la funcción <code>aggregate</code> en el objeto <code>islas</code> para hacer un <em>data frame</em> con las médias de los logaritmos de las areas de las islas por tipo de isla (variable <code>island.type</code>) y por región biogeografica (variable <code>biogeo.realm</code>). Assigne el resultado a un objeto com el nombre <code>islas.mean.area.log</code>.</p></li>
+<li><p>Aplica la funcción <code>table</code> en la variable <code>study.id</code> del objeto <code>islas</code> para hacer una tabla con el número de observaciones (islas) por sítio de estudio. Assigne el resultado a un objeto con el nombre <code>islas.N</code>.</p></li>
+<li><p>Convierta el objeto <code>islas.N</code> para la classe <code>data.frame</code>.</p></li>
+<li><p>Cambie los nombres de las dos variables del objeto <code>islas.N</code> para <code>study.id</code> y <code>n.muestra</code>.</p></li>
+<li><p>Convierta la variable <code>study.id</code> del objeto <code>islas.N</code> para la clase <code>character</code>.</p></li>
+</ol>
+<h2 id="filtrado-de-datos">06. Filtrado de datos</h2>
+<p>En este ejercicio usaremos los <em>data frames</em> <code>islas</code>, <code>archipielagos</code> y <code>islas.N</code> que hás creado y trabajado en los ejercícios precedentes.</p>
+<ol type="1">
+<li><p>Inicia tu script R con los códigos que has utilizado para resolver los ejercicios <a href="http://notar.ib.usp.br/exercicio/128">Leyendo Datos</a>, <a href="http://notar.ib.usp.br/exercicio/130">Leyendo Más Datos</a>, <a href="http://notar.ib.usp.br/exercicio/131">Añadir Variables</a>, <a href="http://notar.ib.usp.br/exercicio/132">Variables Categoricas</a> y <a href="http://notar.ib.usp.br/exercicio/133">Tablas de Agregación</a>. Con eso tu código para este ejercício debe crear los objetos <code>islas</code>, <code>archipielagos</code> y <code>islas.N</code> en tu espacio de trabajo.</p></li>
+<li><p>Cree un vector lógico que tenga un valor de <code>TRUE</code> para cada valor de la variable <code>n.muestra</code> del objeto <code>islas.N</code> que sea mayor que 6. Y que tenga un valor de <code>FALSE</code> para cada valor menor o igual que 6. Asigna esta matriz a un objeto con el nombre <code>islas.N.6</code>.</p></li>
+<li><p>Utilice el vector lógico <code>islas.N.6</code> para filtrar todos los valores de la variable <code>study.id</code> del objeto <code>islas.N</code> para los que el valor de <code>islas.N.6</code> sea <code>TRUE</code>. Asigna el resultado de este filtrado a un objeto llamado <code>islas.ids</code>. Este objeto tendrá los rótulos de los sítios de estudio con más de seis islas.</p></li>
+<li><p>Ahora realice una prueba lógica que verifique si cada valor de la variable <code>study.id</code> del objeto <code>islas</code> se encuentra entre los rótulos contenidos en el objeto <code>islas.id</code>. Utilice el operador lógico <code>%in%</code>. Guarda el resultado de esta prueba en un objeto llamado <code>islas.test</code>.</p></li>
+<li><p>Filtra las filas del <em>data frame</em> <code>islas</code> que corresponden a los valores <code>TRUE</code> del objeto <code>islas.test</code>. El resultado será un nuevo <em>data frame</em>, con las mismas variables que el objeto <code>islas</code>, pero sólo con las filas seleccionadas. Guarde este nuevo <em>data frame</em> en un objeto llamado <code>islas.sel</code>.</p></li>
+<li><p>Haiga más una prueba lógica, pero ahora para el objeto <code>archipielagos</code>. Su prueba debe verificar si cada valor de la variable <code>study.id</code> del objeto <code>archipielagos</code> se encuentra entre las rótulos contenidos en el objeto <code>islas.id</code>. Guarda el resultado en un objeto llamado <code>archipielagos.test</code>.</p></li>
+<li><p>Filtra las filas del <em>data frame</em> <code>archipielagos</code> que corresponden a los valores <code>TRUE</code> del objeto <code>archipielagos.test</code>. El resultado será un nuevo <em>data frame</em>, con las mismas variables que el objeto <code>archipielagos</code>, pero sólo con las filas seleccionadas. Guarde este nuevo <em>data frame</em> en un objeto llamado <code>archipielagos.sel</code>.</p></li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
