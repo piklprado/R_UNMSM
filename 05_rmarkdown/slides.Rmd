@@ -295,7 +295,7 @@ mean(sp.por.sitio)
 ````
 
 ---
-## Como luce un archivo Rmarkdown
+## Como luce una salida compilada de Rmarkdown
 
 ```{r , echo=FALSE, fig.align='center'}
 include_graphics("example_rmd_output.png")
