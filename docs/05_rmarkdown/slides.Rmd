@@ -175,7 +175,7 @@ mean(sp.por.sitio)
 ---
 title: "Ejemplo de R Markdown"
 author: "Tu Nombre"
-date: "`r Sys.Date()`"
+date: "2025-01-13"
 output: html_document
 ---
 ```
@@ -276,7 +276,7 @@ mean(sp.por.sitio)
 ---
 title: "Calculo de diversidade alfa"
 author: "Paulo Inácio"
-date: "`r Sys.Date()`"
+date: "2025-01-13"
 output: html_document
 ---
 

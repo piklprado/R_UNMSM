@@ -90,7 +90,7 @@ theme_Publication <- function(base_size = 14, base_family = "helvetica") {
 
 
 ```{r prep, echo=FALSE}
-islas.raw <- read.csv("../notaR/islas_corrigido.csv")
+islas.raw <- read.csv("../notaR/islas.csv")
 islas.nombres <- names(islas.raw)
 islas.nombres <- gsub("_", ".", tolower(islas.nombres), fixed = TRUE)
 islas <- islas.raw
@@ -136,8 +136,8 @@ reg.rich <- aggregate(species.richness ~ biogeo.realm, data = islas, mean)
 
 * Un montón de argumentos ...
 * ... pero pocos son  obrigatorios
-* Empezaran con paquete `graphics` (*R Base graphics*)
-* Muchos otros paquetes basados en `graphics`
+* Empezaran con el paquete `graphics` (*R Base graphics*)
+* Hay muchos otros paquetes basados en `graphics`
 ]
 
 .pull-right[
@@ -223,7 +223,7 @@ plot(islas$species.richness.log ~
 
 ---
 
-## Argumentos 
+## Argumentos de las funciones de nivel alto
 
 .pull-left[
 
@@ -252,7 +252,7 @@ plot(species.richness.log ~
 
 ## Funciones de nivel inferior en R Base Graphics
 
-Se utilizan para añadir elementos a gráficos. Las usamos despues de la llamada de un función gráfica de nivel alto. 
+Se utilizan para añadir elementos a gráficos. Las llamamos despues de la llamada de un función gráfica de nivel alto. 
 
 - **`points()`**: añade puntos;
 - **`lines()`**: líneas que conectan puntos;
@@ -421,7 +421,7 @@ points(species.richness ~ island.area,
 ## Los dispositivos gráficos
 
 * Son piezas de *software* que generan y te mostran gráficas.
-* Por defecto, R usa el dispositivo gráfico de la pantalla.
+* Por defecto, R utiliza el dispositivo gráfico de la pantalla.
 * Hay muchos otros dispositivos, que generan gráficas en archivos de diferentes formatos.
 * Los dispositivos de archivos te permiten guardar tus gráficos con total control.
 * Por ejemplo, escoges el tipo de archivo, la resolución, dimensiones y mucho más.
@@ -440,7 +440,7 @@ args(png)
 .pull-left[
 #### Generan archivos vetoriales:
 Códigos de fórmulas matemáticas que generan objetos geométricos. No
-tiene detalle para una foto, pero son escalables y en general muy
+tienen detalle para una foto, pero son escalables y en general muy
 buenos para gráficos. 
 * `pdf()` : **P**ortable **D**ocument **F**ormat
 * `eps()`: **E**ncapsulated **P**ost**S**cript

@@ -752,7 +752,7 @@ b
 
 ## La clase `factor`
 
-* Un `factor` es una clases para variables categoricas.
+* Un `factor` es una clase para variables categoricas.
 * Puedes hacer un factor con números, caracteres o mismo logicos.
 * Cada valor diferente en su vector se convierte en un nivel de su variable categórica.
 
